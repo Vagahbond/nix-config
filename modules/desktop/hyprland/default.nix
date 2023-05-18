@@ -20,7 +20,6 @@ in {
     swaylock-effects
     colorz
     iio-sensor-proxy
-    rufo
 
     xfce.thunar
 
