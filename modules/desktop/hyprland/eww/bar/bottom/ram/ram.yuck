@@ -1,0 +1,13 @@
+;; Battery indicator ;;
+
+(defwidget ram []
+    (box :class "ram-box"
+    (circular-progress  :valign "end"
+                        :halign "center"
+                        :tooltip "RAM usage"
+                        :value {EWW_RAM.used_mem_perc} 
+                        :thickness 3
+                        :clockwise true
+                        :class "ram"
+     (label :class "ram-icon" :text "󰍛"))))
+

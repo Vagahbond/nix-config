@@ -1,0 +1,108 @@
+// Global
+*{
+  all: unset;
+}
+
+@import './mocha.scss';
+@import './bottom/eww.scss';
+// EWW BAR
+.eww_bar{
+  background-color: $background;
+  padding: 5px;
+  margin: 0;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+}
+
+.eww_bar.tiled {
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: $mauve;
+    border-style: solid;
+    margin: 5px;
+    padding: 0;
+} 
+
+// Launcher
+.launcher_icon{
+    color: $mauve;
+    font-family: "Fira Code";
+    font-size: 2.5em;
+    padding: 1rem 0 1rem 0;
+//    cursor: pointer;
+}
+
+
+.0 , .01, .02, .03, .04, .05, .06,
+.011, .022, .033, .044, .055, .066{
+  margin: .55rem 0 .55rem 0;
+}
+
+/* Unoccupied */
+.0 {
+color: $base;
+}
+
+/* Occupied */
+.01, .02, .03, .04, .05, .06 {
+  color: $base;
+}
+
+/* Focused */
+.011,
+.022,
+.033,
+.044,
+.055,
+.066 {
+  color: $foreground;
+}
+
+.0:nth-child(1),
+.0:nth-child(3){
+  font-size: 1.5em;
+}
+.0:nth-child(2){
+  font-size: 1.4em;
+}
+.0:nth-child(4),
+.0:nth-child(5){
+  font-size: 1.6em;
+}
+.0:nth-child(6){
+  font-size: 1.7em;
+}
+.01,
+.011,
+.03,
+.033{
+  font-size: 1.5em;
+}
+.02,
+.022{
+  font-size: 1.4em;
+}
+.04,
+.05,
+.044,
+.055{
+  font-size: 1.6em;
+}
+.06,
+.066{
+  font-size: 1.7em;
+}
+// Clock
+.time {
+  font-family: FiraCode Mono;
+  font-weight: bold;
+  font-size: 1.2em;
+  background-color: $base;
+  color: $text;
+  border-radius: 5px;
+  padding: .7rem 0 .5rem 0;
+  margin: .5rem 0 .5rem 0;
+}
+

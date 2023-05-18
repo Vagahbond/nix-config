@@ -1,0 +1,14 @@
+
+(defpoll wifi :interval "60s" 
+              :initial "{}" 
+              "./bar/bottom/wifi/wifi.sh")
+
+(defwidget wifi []
+
+  (box :class "wifi-indicator-box"
+     (label :text {wifi.icon}
+          :limit-width 10
+          :tooltip {wifi.status}
+          :class "wifi"
+    )
+  ))

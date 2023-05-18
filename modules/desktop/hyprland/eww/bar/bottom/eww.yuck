@@ -1,0 +1,21 @@
+(include "./bar/bottom/time.yuck")
+(include "./bar/bottom/battery/battery.yuck")
+(include "./bar/bottom/cpu/cpu.yuck")
+(include "./bar/bottom/ram/ram.yuck")
+(include "./bar/bottom/wifi/wifi.yuck")
+(include "./bar/bottom/sliders/sliders.yuck")
+
+
+;; Bottom Widgets ;;
+(defwidget bottom []
+	(box	:class "bottom"
+            :orientation "v" 
+		    :space-evenly "false"
+            :valign "end"
+            :width 40
+            (sliders)
+            (wifi)
+            (cpu)
+            (ram)
+            (battery)
+            (time)))

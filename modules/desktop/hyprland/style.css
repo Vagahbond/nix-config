@@ -1,0 +1,88 @@
+* {
+    font-family: "Cascadia Code", sans-serif;
+}
+
+window {
+    background-color: rgba(5, 5, 5, 0);
+    filter: blur(10px);
+
+    border-radius: 5px;
+
+}
+
+#input {
+    margin: 5px;
+    border-radius: 5px;
+    background-color: --wofi-color0;
+    color: --wofi-color7;
+    border-width: 2px;
+    border-style: solid;
+    border-color: --wofi-color2;
+    outline: none;
+    box-shadow: none;
+}
+
+#inner-box {
+    background-color: RGBA(--wofi-rgb-color0, 0);
+    border-radius: 5px;
+}
+
+#outer-box {
+    margin: 10px;
+    padding: 10px;
+    background-color: RGBA(--wofi-rgb-color0, 0.8);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px --wofi-color0;
+}
+
+#scroll {
+    margin: 5px;
+}
+
+#text {
+    padding: 4px;
+    color: --wofi-color7;
+}
+
+/* #entry:nth-child(even){
+    background-color: red;
+} */
+
+#entry {
+    border-radius: 5px;
+
+}
+
+#entry > *  {
+    /* background-color: RGBA(146, 112, 97, 0.8);*/
+    /* background-color: RGBA(146, 112, 97, 0); */
+
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+#entry:selected > * > * {
+    background-color: --wofi-color2;
+
+}
+
+#entry:selected {
+    background-color:--wofi-color2;
+}
+
+#entry:selected > *{
+    background-color: --wofi-color2;
+   /* border: 2px solid #A58975; */
+}
+
+#text:selected {
+    background: transparent;
+    color: --wofi-color0;
+
+}
+
+/* Hide the blue outline there is when writing */
+*:focus {
+    outline:none !important;
+    box-shadow: none;
+}

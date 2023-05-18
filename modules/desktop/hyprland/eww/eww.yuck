@@ -1,0 +1,22 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							Windows Section ;;	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Bar Windows ;;
+(include "./bar/eww.yuck")
+
+(defwindow bar
+	:geometry (geometry :x "0" 
+						:y "0" 
+						:height "100%" 
+						:width "40px")
+	:monitor 0
+	:wm-ignore false
+	:stacking "fg"
+	:exclusive false
+	:focusable false 
+	:windowtype "dock"
+(bar))
+
+
+

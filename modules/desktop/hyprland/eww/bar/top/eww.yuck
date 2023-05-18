@@ -1,0 +1,11 @@
+(include "./bar/top/launcher.yuck")
+
+
+
+;; Top Widgets ;;
+(defwidget top []
+	(box	:orientation "v" 
+		    :space-evenly "false"
+            :valign "start"
+            :spacing 5
+            (launcher)))
