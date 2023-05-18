@@ -44,6 +44,7 @@ I'll provide a few informations to help you understand how to use this repo. For
   - [Installation](#installation)
   - [Usage](#usage)
   - [Objectives](#objectives)
+  - [Special mentions](#special-mentions)
 
 
 ## Features
@@ -338,3 +339,14 @@ Here are a few things left to do in this repository:
   - [ ] Blade
   - [ ] Kubernetes server
   - [ ] Home server
+
+## Special mentions
+- Special thanks to [NotAShelf](https://github.com/NotAShelf) for his [nyx](https://github.com/NotAShelf/nyx) and his [neovim-flake](https://github.com/NotAShelf/neovim-flake) repos that help lots of people win precious time and energy. 
+
+- Thanks to people on Hyprland and NixOS discord servers for their help and support.
+
+- Thanks [Vaxry](https://github.com/vaxerski) for all his work on Hyprland and its community.
+  
+
+If you're starting with Arch and rices, maybe my [previous rice](https://github.com/Vagahbond/reyece) could help you. It's a bit outdated but it's a good start.
+
