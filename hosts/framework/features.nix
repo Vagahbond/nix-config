@@ -30,6 +30,11 @@ in {
 
         languages = ["c-cpp" "nodejs" "nix"];
       };
+
+      editor = {
+        gui = ["vscode"];
+        terminal = ["neovim"];
+      };
     };
   };
 }
