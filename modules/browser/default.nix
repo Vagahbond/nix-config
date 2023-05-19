@@ -9,7 +9,7 @@ with lib; let
 
   graphics = config.modules.graphics;
 
-  cfg = config.modules.browser.firefox;
+  cfg = config.modules.browser;
 in {
   options.modules.browser.firefox = {
     enable = mkOption {
@@ -21,7 +21,7 @@ in {
     };
   };
 
-  config = mkIf (cfg.enable && (graphics != null)) {
+  config = mkIf (cfg.firefox.enable && (graphics != null)) {
     programs.firefox = {
       enable = true;
       package = pkgs.firefox-wayland;

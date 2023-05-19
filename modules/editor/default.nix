@@ -1,5 +1,15 @@
-{inputs, ...}: let
+{
+  inputs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
   username = import ../../username.nix;
+
+  graphics = config.modules.graphics;
+
+  cfg = config.modules.editor;
 in {
   environment.sessionVariables = {
     EDITOR = "nvim";
