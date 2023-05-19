@@ -21,6 +21,15 @@ in {
       graphics.type = "intel";
 
       browser.firefox.enable = true;
+
+      dev = {
+        enable = true;
+
+        enableGeo = true;
+        enableNetwork = true;
+
+        languages = ["c-cpp" "nodejs" "nix"];
+      };
     };
   };
 }
