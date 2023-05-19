@@ -12,7 +12,15 @@ in {
     ../../modules
   ];
 
-  age.identityPaths = [
-    "/home/${username}/.ssh/*"
-  ];
+  config = {
+    age.identityPaths = [
+      "/home/${username}/.ssh/*"
+    ];
+
+    modules = {
+      graphics.type = "intel";
+
+      browser.firefox.enable = true;
+    };
+  };
 }
