@@ -4,12 +4,14 @@
   specialArgs,
   config,
   modulesPath,
+  inputs,
   ...
 }: let
   username = ../../username.nix;
 in {
   imports = [
     ../../modules
+    inputs.agenix.nixosModules.default
   ];
 
   config = {
@@ -34,6 +36,28 @@ in {
       editor = {
         gui = ["vscode"];
         terminal = ["neovim"];
+      };
+
+      medias = {
+        video = {
+          player = true;
+          downloader = true;
+        };
+
+        audio = {
+          player = true;
+        };
+
+        image = {
+          viewer = true;
+          editor = true; # need to make those sweet meems
+        };
+      };
+
+      network = {
+        wifi.enable = true;
+        bluetooth.enable = true;
+        ssh.enableClient = true;
       };
     };
   };

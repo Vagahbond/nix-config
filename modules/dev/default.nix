@@ -8,8 +8,6 @@ with lib; let
   graphics = config.modules.graphics;
 
   cfg = config.modules.dev;
-
-  languages = [];
 in {
   options.modules.dev = {
     enable = mkEnableOption "Enable dev tools";
