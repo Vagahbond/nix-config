@@ -326,6 +326,7 @@ What I would advise you to do is to fork this repo, and to change the configurat
 ## Objectives
 Here are a few things left to do in this repository: 
 - [ ] Create every configuration options (god this is gonna take long)
+- [ ] Scatter files better in the configuration
 - [ ] A way to manage secrets using a password manager (Bitwarden)
 - [ ] Ssh server functionnality for my servers
 - [ ] Podman configuration (I've been told it's better than docker on nixos)
