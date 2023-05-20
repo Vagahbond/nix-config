@@ -21,7 +21,7 @@ in {
     };
   };
 
-  config = mkIf (cfg.firefox.enable && (graphics != null)) {
+  config = mkIf (cfg.firefox.enable && (graphics.type != null)) {
     programs.firefox = {
       enable = true;
       package = pkgs.firefox-wayland;
