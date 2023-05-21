@@ -1,7 +1,6 @@
 name: "Build"
 on:
   pull_request:
-  push:
 
 jobs:
   tests:
@@ -17,6 +16,7 @@ jobs:
           extra_nix_config: |
             auto-optimise-store = true
             experimental-features = nix-command flakes
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - run: nix flake check
 
             
