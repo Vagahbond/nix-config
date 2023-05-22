@@ -1,9 +1,16 @@
 {
   pkgs,
   super,
+  lib,
+  config,
   ...
-}: let
+}:
+with lib; let
   username = import ../../username.nix;
+
+  graphics = config.modules.graphics;
+
+  cfg = config.modules.social;
 
   catppuccin-mocha = pkgs.fetchFromGitHub {
     owner = "catppuccin";
@@ -12,16 +19,32 @@
     hash = "sha256-iUnLLAQVMXFLyoB3wgYqUTx5SafLkvtOXK6C8EHK/nI=";
   };
 in {
-  environment.systemPackages = with pkgs; [
-    whatsapp-for-linux
-    teams
-
-    webcord-vencord # webcord with vencord extension installed
-  ];
-
-  home-manager.users.${username} = {
-    xdg.configFile."WebCord/Themes/mocha" = {
-      source = "${catppuccin-mocha}/themes/mocha.theme.css";
-    };
+  options.modules.social = {
+    whatsapp.enable = mkEnableOption "Enable whatsapp";
+    teams.enable = mkEnableOption "Enable teams";
+    discord.enable = mkEnableOption "Enable discord";
   };
+
+  config =
+    {}
+    // mkIf cfg.whatsapp.enable {
+      environment.systemPackages = with pkgs; [
+        whatsapp-for-linux
+      ];
+    }
+    // mkIf cfg.teams.enable {
+      environment.systemPackages = with pkgs; [
+        teams
+      ];
+    }
+    // mkIf cfg.discord.enable {
+      home-manager.users.${username} = {
+        xdg.configFile."WebCord/Themes/mocha" = {
+          source = "${catppuccin-mocha}/themes/mocha.theme.css";
+        };
+      };
+      environment.systemPackages = with pkgs; [
+        webcord-vencord
+      ];
+    };
 }

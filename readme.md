@@ -1,3 +1,7 @@
+https://github.com/vagahbond/nix-config/actions/workflows/alejandra.yml/badge.svg
+
+https://github.com/vagahbond/nix-config/actions/workflows/build.yml/badge.svg
+
 # My nixos dotfiles
 
 Welcome to my nixos dotfiles. I use these to configure my nixos machines.
@@ -36,7 +40,7 @@ I'll provide a few informations to help you understand how to use this repo. For
     - [Social](#social)
     - [System](#system)
     - [Terminal](#terminal)
-    - [Virtualization](#virtualization)
+    - [virtualisation](#virtualisation)
     - [Desktop](#desktop)
   - [Structure](#structure)
   - [Rice](#rice)
@@ -171,7 +175,7 @@ By default, for each enabled feature, GUI elements are disabled if the `gui` opt
     * Utilities
       * thefuck
 
-### Virtualization
+### virtualisation
     * Docker
       * Docker-compose
       * lazydocker
@@ -254,7 +258,7 @@ Files that are in `hosts` containe host-specific configuration, and options for 
 │   ├── social
 │   ├── system
 │   ├── terminal
-│   └── virtualization
+│   └── virtualisation
 ├── nixos.nix
 ├── readme.md
 ├── result -> /nix/store/0bg3g9v6ivvs57yib91h2w4d59qsaip5-nixos-system-framework-23.05.20230516.963006a
