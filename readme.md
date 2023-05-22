@@ -1,6 +1,6 @@
-https://github.com/vagahbond/nix-config/actions/workflows/alejandra.yml/badge.svg
+![](https://github.com/vagahbond/nix-config/actions/workflows/alejandra.yml/badge.svg)
 
-https://github.com/vagahbond/nix-config/actions/workflows/build.yml/badge.svg
+![](https://github.com/vagahbond/nix-config/actions/workflows/build.yml/badge.svg)
 
 # My nixos dotfiles
 
@@ -329,7 +329,7 @@ What I would advise you to do is to fork this repo, and to change the configurat
 
 ## Objectives
 Here are a few things left to do in this repository: 
-- [ ] Create every configuration options (god this is gonna take long)
+- [x] Create every configuration options (god this is gonna take long)
 - [ ] Scatter files better in the configuration
 - [ ] A way to manage secrets using a password manager (Bitwarden)
 - [ ] Ssh server functionnality for my servers
