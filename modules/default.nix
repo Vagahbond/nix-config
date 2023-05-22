@@ -20,6 +20,6 @@
     ./social
     ./system
     ./terminal
-    ./virtualization
+    ./virtualisation
   ];
 }

@@ -1,13 +1,62 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    neofetch
-    btop
-    htop
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  graphics = config.modules.graphics;
 
-    ntfs3g
-    zip
-    unzip
-    rar
-    tree
-  ];
+  cfg = config.modules.system;
+in {
+  options.modules.system = {
+    processManager = mkOption {
+      type = types.enum ["htop" "btop"];
+      default = "htop";
+      description = ''
+        Select the process manager to use.
+      '';
+      example = "btop";
+    };
+
+    ntfs.enable = mkEnableOption "NTFS support";
+
+    compression.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        Enable compression tools.
+      '';
+      example = false;
+    };
+  };
+
+  config =
+    {
+      environment.systemPackages = with pkgs; [
+        tree
+      ];
+    }
+    // mkIf (cfg.processManager == "btop") {
+      environment.systemPackages = with pkgs; [
+        btop
+      ];
+    }
+    // mkIf (cfg.processManager == "htop") {
+      environment.systemPackages = with pkgs; [
+        htop
+      ];
+    }
+    // mkIf cfg.ntfs.enable {
+      environment.systemPackages = with pkgs; [
+        ntfs3g
+      ];
+    }
+    // mkIf cfg.compression.enable {
+      environment.systemPackages = with pkgs; [
+        zip
+        unzip
+        rar
+      ];
+    };
 }

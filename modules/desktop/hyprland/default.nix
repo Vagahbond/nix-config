@@ -35,6 +35,8 @@ in {
     wofi-emoji
 
     sddm-themes.catppuccino-sddm
+
+    foot
   ];
 
   fonts.fonts = with pkgs; [
@@ -96,6 +98,8 @@ in {
         };
       };
     };
+
+    xdg.configFile."foot/foot.ini".source = ./foot.ini;
 
     xdg.configFile."eww".source = ./eww;
 

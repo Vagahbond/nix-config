@@ -1,18 +1,51 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    pass
-  ];
+{
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  graphics = config.modules.graphics;
 
-  services.gnome.gnome-keyring.enable = true;
+  cfg = config.modules.security;
+in {
+  options.modules.security = {
+    keyring = {
+      enable = mkEnableOption "Keyring";
+    };
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+    fingerprint = {
+      enable = mkEnableOption "Fingerprint support";
+    };
+
+    polkit = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable polkit support";
+        example = false;
+      };
+    };
   };
 
-  services.fprintd = {
-    enable = true;
-  };
-
-  security.polkit.enable = true;
+  config =
+    {
+      programs.gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
+      };
+    }
+    // mkIf cfg.keyring.enable {
+      # TODO: add seahorse
+      services.gnome.gnome-keyring.enable = true;
+    }
+    // mkIf cfg.fingerprint.enable {
+      services.fprintd = {
+        enable = true;
+      };
+    }
+    // mkIf cfg.polkit.enable {
+      security.polkit.enable = true;
+    };
 }
