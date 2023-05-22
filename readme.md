@@ -1,8 +1,8 @@
 <div align="center">
   <p>
-    ![(https://img.shields.io/github/actions/workflow/status/vagahbond/nix-config/build.yml?color=CBA6F7&logo=nixos&logoColor=CBA6F7&style=flat-square)](https://img.shields.io/github/actions/workflow/status/vagahbond/nix-config/alejandra.yml?color=%2374c7ec&logo=eslint&logoColor=%2374c7ec&style=flat-square)
+    ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vagahbond/nix-config/alejandra.yml?color=%2374c7ec&logo=eslint&logoColor=%2374c7ec&style=flat-square)
 
-    ![https://github.com/vagahbond/nix-config/actions/workflows/build.yml/badge.svg](https://img.shields.io/github/actions/workflow/status/vagahbond/nix-config/alejandra.yml?color=%2374c7ec&logo=eslint&logoColor=%2374c7ec&style=flat-square)
+    ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vagahbond/nix-config/alejandra.yml?color=%2374c7ec&logo=eslint&logoColor=%2374c7ec&style=flat-square)
   </p>
 </div>
 
