@@ -1,8 +1,7 @@
 <div align="center">
   <p>
-    ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vagahbond/nix-config/alejandra.yml?color=%2374c7ec&logo=eslint&logoColor=%2374c7ec&style=flat-square)
-
-    ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vagahbond/nix-config/alejandra.yml?color=%2374c7ec&logo=eslint&logoColor=%2374c7ec&style=flat-square)
+    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/vagahbond/nix-config/build.yml?color=%23cba6f7&logo=nixos&logoColor=%23cba6f7&style=flat-square">
+    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/vagahbond/nix-config/alejandra.yml?color=%2374c7ec&logo=eslint&logoColor=%2374c7ec&style=flat-square">
   </p>
 </div>
 
