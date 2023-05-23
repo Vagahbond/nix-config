@@ -3,7 +3,11 @@
   lib,
   ...
 }:
-with lib; {
+with lib; let
+  username = import ../../username.nix;
+
+  cfg = config.modules.graphics;
+in {
   options.modules.graphics = {
     type = mkOption {
       # if yours is missing, don't hesitate to PR
@@ -13,6 +17,12 @@ with lib; {
       example = "intel";
     };
   };
+
+  config =
+    {}
+    // mkIf (config.modules.graphics.type != null) {
+      users.users.${username}.extraGroups = ["video"];
+    };
 
   # My gaming nvidia drivers nightmare will be managed here.
 }

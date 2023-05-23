@@ -38,6 +38,8 @@ in {
         enable = true;
         setSocketVariable = true;
       };
+
+      users.users.${username}.extraGroups = ["docker"];
     }
     // mkIf cfg.libvirt.enable {
       environment.systemPackages = with pkgs; [
@@ -62,6 +64,8 @@ in {
           enableExtensionPack = true;
         };
       };
+
+      users.users.${username}.extraGroups = ["vboxusers"];
     }
     // mkIf (cfg.kubernetes.client.enable && graphics != null) {
       environment.systemPackages = with pkgs; [

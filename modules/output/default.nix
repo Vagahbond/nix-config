@@ -10,6 +10,10 @@ with lib; let
   cfg = config.modules.output;
 in {
   options.modules.output = {
+    video = {
+      enable = mkEnableOption "Video output";
+    };
+
     audio = {
       enable = mkEnableOption "Audio output";
     };
@@ -34,6 +38,8 @@ in {
         pulse.enable = true;
         jack.enable = true;
       };
+
+      users.users.${username}.extraGroups = ["audio"];
     }
     // mkIf (cfg.audio.enable && graphics != null) {
       environment.systemPackages = with pkgs; [
