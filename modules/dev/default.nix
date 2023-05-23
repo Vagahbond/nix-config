@@ -63,6 +63,8 @@ in {
           android-file-transfer
           android-backup-extractor
         ];
+
+        users.users.${username}.extraGroups = ["adbusers"];
       })
 
       (mkIf (builtins.elem "c-cpp" cfg.languages) {
