@@ -2,13 +2,13 @@
   description = "Internal flake for passing desktops inputs";
 
   inputs = {
-    neovim-flake = {
-      url = "github:NotAShelf/neovim-flake";
-      # inputs.nixpkgs.follows = "nixpkgs";
+    eww-config = {
+      url = "github:Vagahbond/eww-dotfiles";
+      flake = false;
     };
   };
 
-  outputs = {neovim-flake, ...}: {
-    neovim = neovim-flake;
+  outputs = {eww-config, ...}: {
+    eww-config = eww-config;
   };
 }
