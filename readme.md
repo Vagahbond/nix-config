@@ -340,7 +340,7 @@ Here are a few things left to do in this repository:
 - [ ] Kubernetes installation for my kubernetes master node
 - [ ] Preconfigured Lens for kubernetes
 - [ ] Spotifyd configuration to use my server as a spotify connect device
-- [ ] scatter users groups
+- [x] scatter users groups
 - [ ] Reproducible VSCode configuration
 - [ ] Reproducible Firefox configuration
 - [ ] Add my hosts:
