@@ -1,0 +1,3 @@
+[submodule "modules/desktop/hyprland/eww"]
+	path = modules/desktop/hyprland/eww
+	url = git@github.com:Vagahbond/eww-dotfiles.git
