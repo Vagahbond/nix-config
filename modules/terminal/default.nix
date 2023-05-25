@@ -5,8 +5,6 @@
   ...
 }:
 with lib; let
-  user = import ../../username.nix;
-
   cfg = config.modules.terminal;
 in {
   options.modules.terminal = {
@@ -35,14 +33,13 @@ in {
     };
   };
 
-  config =
-    {}
-    // mkIf cfg.theFuck.enable {
+  config = mkMerge [
+    (mkIf cfg.theFuck.enable {
       environment.systemPackages = with pkgs; [
         thefuck
       ];
-    }
-    // mkIf (cfg.shell == "zsh") {
+    })
+    (mkIf (cfg.shell == "zsh") {
       programs.zsh = {
         enable = true;
         enableCompletion = true;
@@ -65,5 +62,6 @@ in {
       };
 
       users.defaultUserShell = pkgs.zsh;
-    };
+    })
+  ];
 }

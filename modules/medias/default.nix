@@ -76,52 +76,51 @@ in {
     };
   };
 
-  config =
-    {}
-    // mkIf (cfg.video.player
+  config = mkMerge [
+    (mkIf (cfg.video.player
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
         vlc
       ];
-    }
-    // mkIf (cfg.video.editor
+    })
+    (mkIf (cfg.video.editor
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
         shotcut
       ];
-    }
-    // mkIf (cfg.video.encoder
+    })
+    (mkIf (cfg.video.encoder
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
         handbrake
       ];
-    }
-    // mkIf (cfg.video.downloader
+    })
+    (mkIf (cfg.video.downloader
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
         yt-dlp
         nicotine-plus
       ];
-    }
-    // mkIf (cfg.audio.editor
+    })
+    (mkIf (cfg.audio.editor
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
         audacity
       ];
-    }
-    // mkIf (cfg.image.viewer
+    })
+    (mkIf (cfg.image.viewer
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
         nomacs
       ];
-    }
-    // mkIf (cfg.image.editor
+    })
+    (mkIf (cfg.image.editor
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
         gimp
       ];
-    }
-    // mkIf (cfg.audio.player
+    })
+    (mkIf (cfg.audio.player
       && (graphics.type != null)) {
       home-manager.users.${username} = {pkgs, ...}: let
         spicePkgs = inputs.internalFlakes.medias.spotify.packages.${pkgs.system}.default;
@@ -166,5 +165,6 @@ in {
           ];
         };
       };
-    };
+    })
+  ];
 }

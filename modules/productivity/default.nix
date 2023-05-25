@@ -13,11 +13,9 @@ in {
     notion.enable = mkEnableOption "Enable Notion";
   };
 
-  config =
-    {}
-    // mkIf cfg.notion.enable {
-      environment.systemPackages = with pkgs; [
-        notion-app-enhanced
-      ];
-    };
+  config = mkIf cfg.notion.enable {
+    environment.systemPackages = with pkgs; [
+      notion-app-enhanced
+    ];
+  };
 }

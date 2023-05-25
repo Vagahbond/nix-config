@@ -5,6 +5,8 @@
   ...
 }:
 with lib; let
+  username = import ../../username.nix;
+
   graphics = config.modules.graphics;
 
   cfg = config.modules.virtualisation;
@@ -24,9 +26,8 @@ in {
     };
   };
 
-  config =
-    {}
-    // mkIf cfg.docker.enable {
+  config = mkMerge [
+    (mkIf cfg.docker.enable {
       environment.systemPackages = with pkgs; [
         docker-compose
         lazydocker
@@ -40,8 +41,8 @@ in {
       };
 
       users.users.${username}.extraGroups = ["docker"];
-    }
-    // mkIf cfg.libvirt.enable {
+    })
+    (mkIf cfg.libvirt.enable {
       environment.systemPackages = with pkgs; [
         kvmtool
       ];
@@ -50,13 +51,13 @@ in {
 
         spiceUSBRedirection.enable = true;
       };
-    }
-    // mkIf (cfg.libvirt.enable && graphics != null) {
+    })
+    (mkIf (cfg.libvirt.enable && graphics != null) {
       environment.systemPackages = with pkgs; [
         virt-manager
       ];
-    }
-    // mkIf (cfg.virtualbox.enable && graphics != null) {
+    })
+    (mkIf (cfg.virtualbox.enable && graphics != null) {
       virtualisation = {
         virtualbox.host = {
           enable = true;
@@ -66,10 +67,11 @@ in {
       };
 
       users.users.${username}.extraGroups = ["vboxusers"];
-    }
-    // mkIf (cfg.kubernetes.client.enable && graphics != null) {
+    })
+    (mkIf (cfg.kubernetes.client.enable && graphics != null) {
       environment.systemPackages = with pkgs; [
         lens
       ];
-    };
+    })
+  ];
 }

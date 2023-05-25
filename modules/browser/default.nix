@@ -5,8 +5,6 @@
   ...
 }:
 with lib; let
-  user = import ../../username.nix;
-
   graphics = config.modules.graphics;
 
   cfg = config.modules.browser;

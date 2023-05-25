@@ -5,8 +5,6 @@
   ...
 }:
 with lib; let
-  graphics = config.modules.graphics;
-
   cfg = config.modules.system;
 in {
   options.modules.system = {
@@ -31,32 +29,33 @@ in {
     };
   };
 
-  config =
+  config = mkMerge [
     {
       environment.systemPackages = with pkgs; [
         tree
       ];
     }
-    // mkIf (cfg.processManager == "btop") {
+    (mkIf (cfg.processManager == "btop") {
       environment.systemPackages = with pkgs; [
         btop
       ];
-    }
-    // mkIf (cfg.processManager == "htop") {
+    })
+    (mkIf (cfg.processManager == "htop") {
       environment.systemPackages = with pkgs; [
         htop
       ];
-    }
-    // mkIf cfg.ntfs.enable {
+    })
+    (mkIf cfg.ntfs.enable {
       environment.systemPackages = with pkgs; [
         ntfs3g
       ];
-    }
-    // mkIf cfg.compression.enable {
+    })
+    (mkIf cfg.compression.enable {
       environment.systemPackages = with pkgs; [
         zip
         unzip
         rar
       ];
-    };
+    })
+  ];
 }
