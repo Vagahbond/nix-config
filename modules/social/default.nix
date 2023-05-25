@@ -1,14 +1,11 @@
 {
   pkgs,
-  super,
   lib,
   config,
   ...
 }:
 with lib; let
   username = import ../../username.nix;
-
-  graphics = config.modules.graphics;
 
   cfg = config.modules.social;
 
@@ -25,19 +22,18 @@ in {
     discord.enable = mkEnableOption "Enable discord";
   };
 
-  config =
-    {}
-    // mkIf cfg.whatsapp.enable {
+  config = mkMerge [
+    (mkIf cfg.whatsapp.enable {
       environment.systemPackages = with pkgs; [
         whatsapp-for-linux
       ];
-    }
-    // mkIf cfg.teams.enable {
+    })
+    (mkIf cfg.teams.enable {
       environment.systemPackages = with pkgs; [
         teams
       ];
-    }
-    // mkIf cfg.discord.enable {
+    })
+    (mkIf cfg.discord.enable {
       home-manager.users.${username} = {
         xdg.configFile."WebCord/Themes/mocha" = {
           source = "${catppuccin-mocha}/themes/mocha.theme.css";
@@ -46,5 +42,6 @@ in {
       environment.systemPackages = with pkgs; [
         webcord-vencord
       ];
-    };
+    })
+  ];
 }

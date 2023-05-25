@@ -35,23 +35,24 @@ in {
     };
   };
 
-  config =
-    {}
-    // mkIf ((builtins.elem "vscode" cfg.gui) && (graphics.type != null)) {
-      programs.vscode = {
-        enable = true;
-        # enableExtensionUpdateCheck = true;
-        # enableUpdateCheck = false;
-        #extensions = with pkgs.vscode-extensions; [
-        #  github.copilot
-        #  esbenp.prettier-vscode
-        #  dbaeumer.vscode-eslint
-        #  bierner.markdown-mermaid
-        #  yzhang.markdown-all-in-one
-        #];
+  config = mkMerge [
+    (mkIf ((builtins.elem "vscode" cfg.gui) && (graphics.type != null)) {
+      home-manager.users.${username} = {pkgs, ...}: {
+        programs.vscode = {
+          enable = true;
+          # enableExtensionUpdateCheck = true;
+          # enableUpdateCheck = false;
+          #extensions = with pkgs.vscode-extensions; [
+          #  github.copilot
+          #  esbenp.prettier-vscode
+          #  dbaeumer.vscode-eslint
+          #  bierner.markdown-mermaid
+          #  yzhang.markdown-all-in-one
+          #];
+        };
       };
-    }
-    // mkIf (builtins.elem "neovim" cfg.terminal) {
+    })
+    (mkIf (builtins.elem "neovim" cfg.terminal) {
       environment.sessionVariables = {
         EDITOR = "nvim";
       };
@@ -263,5 +264,6 @@ in {
           };
         };
       };
-    };
+    })
+  ];
 }

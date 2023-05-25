@@ -1,12 +1,9 @@
 {
-  inputs,
   lib,
   config,
   ...
 }:
 with lib; let
-  graphics = config.modules.graphics;
-
   cfg = config.modules.input;
 in {
   options.modules.input = {
@@ -16,9 +13,8 @@ in {
     touchpad = mkEnableOption "Enable touchpad support";
   };
 
-  config =
-    {}
-    // mkIf cfg.tablet {
+  config = mkMerge [
+    (mkIf cfg.tablet {
       # Enable tablet support
       hardware.opentabletdriver.enable = true;
       hardware.opentabletdriver.daemon.enable = true;
@@ -30,14 +26,15 @@ in {
       environment.systemPackages = with pkgs; [
         opentabletdriver
       ];
-    }
-    // mkIf cfg.usb {
+    })
+    (mkIf cfg.usb {
       environment.systemPackages = with pkgs; [
         libusb
         usbutils
       ];
-    }
-    // mkIf cfg.touchpad {
+    })
+    (mkIf cfg.touchpad {
       services.xserver.libinput.enable = true;
-    };
+    })
+  ];
 }

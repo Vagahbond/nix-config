@@ -5,6 +5,8 @@
   ...
 }:
 with lib; let
+  username = import ../../username.nix;
+
   graphics = config.modules.graphics;
 
   cfg = config.modules.output;
@@ -22,9 +24,8 @@ in {
     };
   };
 
-  config =
-    {}
-    // (mkIf (cfg.audio.enable) {
+  config = mkMerge [
+    (mkIf (cfg.audio.enable) {
       # Enable sound with pipewire.
       sound = {
         enable = true;
@@ -41,12 +42,13 @@ in {
 
       users.users.${username}.extraGroups = ["audio"];
     })
-    // (mkIf (cfg.audio.enable && graphics != null) {
+    (mkIf (cfg.audio.enable && graphics != null) {
       environment.systemPackages = with pkgs; [
         pavucontrol
       ];
     })
-    // (mkIf (cfg.printer.enable) {
+    (mkIf (cfg.printer.enable) {
       services.printing.enable = true;
-    });
+    })
+  ];
 }
