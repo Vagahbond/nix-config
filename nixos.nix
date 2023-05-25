@@ -11,6 +11,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     cachix
+    git
   ];
 
   nixpkgs.config.allowUnfree = true;

@@ -3,7 +3,8 @@
 
   inputs = {
     neovim-flake = {
-      url = "github:NotAShelf/neovim-flake";
+      # url = "github:NotAShelf/neovim-flake";
+      url = "/home/vagahbond/neovim-flake";
     };
   };
 

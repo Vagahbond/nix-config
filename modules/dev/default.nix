@@ -30,7 +30,7 @@ in {
   };
 
   config =
-    mkIf (!cfg.enable) {}
+    mkIf (cfg.enable) {}
     // {
       environment.systemPackages = with pkgs; [
         git
@@ -78,7 +78,7 @@ in {
     }
     // mkIf (builtins.elem "nodejs" cfg.languages) {
       environment.systemPackages = with pkgs; [
-        nodejs
+        nodenv
         nodePackages.npm
       ];
     }

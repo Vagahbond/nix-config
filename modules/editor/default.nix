@@ -37,7 +37,7 @@ in {
 
   config =
     {}
-    // mkIf (builtins.elem "vscode" cfg.gui && (graphics.type != null)) {
+    // mkIf ((builtins.elem "vscode" cfg.gui) && (graphics.type != null)) {
       programs.vscode = {
         enable = true;
         # enableExtensionUpdateCheck = true;
