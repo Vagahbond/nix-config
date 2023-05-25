@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   username = import ../../../username.nix;
   pywalfox-nixpkgs = builtins.fetchTarball {
     url = "https://github.com/nixos/nixpkgs/archive/e213f8c329429cac1715a86eec617a93783bb99c.tar.gz";
@@ -43,8 +47,6 @@ in {
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
-    # fira-code
-    # fira-code-symbols
     font-awesome
     (nerdfonts.override {fonts = ["CascadiaCode" "FiraCode" "DroidSansMono" "Noto"];})
   ];
@@ -70,8 +72,6 @@ in {
   };
 
   environment.sessionVariables = {
-    # Will break SDDM if running X11
-    # QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     SDL_VIDEODRIVER = "wayland";
     GDK_BACKEND = "wayland";
@@ -101,7 +101,7 @@ in {
 
     xdg.configFile."foot/foot.ini".source = ./foot.ini;
 
-    xdg.configFile."eww".source = ./eww;
+    xdg.configFile."eww".source = inputs.internalFlakes.desktop.eww-config;
 
     xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
     xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;

@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 } @ attrs:
 with lib; let
@@ -19,5 +20,5 @@ in {
 
   config =
     {}
-    // mkIf (cfg.desktop == "hyprland") (import ./hyprland {inherit pkgs;});
+    // mkIf (cfg.desktop == "hyprland") (import ./hyprland {inherit pkgs inputs;});
 }
