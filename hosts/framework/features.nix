@@ -7,7 +7,7 @@
   inputs,
   ...
 }: let
-  username = ../../username.nix;
+  username = import ../../username.nix;
 in {
   imports = [
     ../../modules
@@ -16,7 +16,7 @@ in {
 
   config = {
     age.identityPaths = [
-      "/home/${username}/.ssh/*"
+      "/home/${username}/.ssh/id_rsa"
     ];
 
     modules = {
