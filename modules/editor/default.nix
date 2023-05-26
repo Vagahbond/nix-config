@@ -40,15 +40,55 @@ in {
       home-manager.users.${username} = {pkgs, ...}: {
         programs.vscode = {
           enable = true;
-          # enableExtensionUpdateCheck = true;
-          # enableUpdateCheck = false;
-          #extensions = with pkgs.vscode-extensions; [
-          #  github.copilot
-          #  esbenp.prettier-vscode
-          #  dbaeumer.vscode-eslint
-          #  bierner.markdown-mermaid
-          #  yzhang.markdown-all-in-one
-          #];
+          enableExtensionUpdateCheck = true;
+          enableUpdateCheck = false;
+          extensions = with pkgs.vscode-extensions; [
+            # Utilities
+            wakatime.vscode-wakatime
+            github.copilot
+            usernamehw.errorlens
+            eamodio.gitlens
+            christian-kohler.path-intellisense
+            tomoki1207.pdf
+
+            # Theme
+            catppuccin.catppuccin-vsc
+            pkief.material-icon-theme
+
+            # CI/CD
+            github.vscode-github-actions
+
+            # yaml
+            redhat.vscode-yaml
+
+            # Ruby
+            rebornix.ruby
+            wingrunr21.vscode-ruby
+
+            #Nix
+            kamadorueda.alejandra
+            bbenoist.nix
+            jnoortheen.nix-ide
+
+            # C/CPP
+            ms-vscode.cpptools
+            ms-vscode.cmake-tools
+            twxs.cmake
+
+            # C#
+            ms-dotnettools.csharp
+
+            # Docker
+            ms-azuretools.vscode-docker
+
+            # Formatting
+            esbenp.prettier-vscode
+            dbaeumer.vscode-eslint
+
+            # Documentation
+            bierner.markdown-mermaid
+            yzhang.markdown-all-in-one
+          ];
         };
       };
     })
