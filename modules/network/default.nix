@@ -32,13 +32,12 @@ in {
     };
   };
 
-  config =
-    {}
-    // mkIf (cfg.wifi.enable) {
-      imports = [
-        inputs.agenix.nixosModules.default
-      ];
+  # imports = [
+  #   inputs.agenix.nixosModules.default
+  # ];
 
+  config = mkMerge [
+    (mkIf (cfg.wifi.enable) {
       age.secrets.wifi = {
         file = ../../secrets/wifi.age;
         owner = username;
@@ -87,29 +86,30 @@ in {
           psk = "@IDK_PSK2@";
         };
       };
-    }
-    // mkIf (cfg.wifi.enable
+    })
+    (mkIf (cfg.wifi.enable
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
         wpa_supplicant_gui
       ];
-    }
-    // mkIf (cfg.bluetooth.enable) {
+    })
+    (mkIf (cfg.bluetooth.enable) {
       hardware.bluetooth = {
         enable = true;
         powerOnBoot = false;
       };
-    }
-    // mkIf (cfg.ssh.enableClient) {
+    })
+    (mkIf (cfg.ssh.enableClient) {
       environment.systemPackages = with pkgs; [
         sshs
       ];
-    }
-    // mkIf (cfg.debug.enable) {
+    })
+    (mkIf (cfg.debug.enable) {
       environment.systemPackages = with pkgs; [
         socat
       ];
 
       programs.mtr.enable = true;
-    };
+    })
+  ];
 }
