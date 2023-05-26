@@ -788,11 +788,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-qf2xlP8Qnp0W602MXXulzBT2AKoTl1klHIabPz/WjfE=",
-        "path": "/nix/store/6jdp69a6hcmv2v85960ixip9y3ws3af7-source/modules",
+        "path": "/nix/store/mvw08azsbyvrb6ilzpzxm4vpjzw8rysw-source/modules",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/6jdp69a6hcmv2v85960ixip9y3ws3af7-source/modules",
+        "path": "/nix/store/mvw08azsbyvrb6ilzpzxm4vpjzw8rysw-source/modules",
         "type": "path"
       }
     },
