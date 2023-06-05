@@ -1,4 +1,3 @@
-!/bin/sh
 
 function handle {
   if [[ ${1} = *openwindow* || ${1} = *closewindow* || ${1} = *movewindow* || ${1} = *workspace* ]]; then
