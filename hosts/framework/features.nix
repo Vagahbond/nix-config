@@ -79,7 +79,7 @@ in {
       social = {
         whatsapp.enable = true;
         discord.enable = true;
-        teams.enable = true;
+        # teams.enable = true;
       };
 
       system = {
@@ -96,7 +96,7 @@ in {
       virtualisation = {
         docker.enable = true;
         libvirt.enable = true;
-        virtualbox.enable = true;
+        # virtualbox.enable = true;
         kubernetes.client.enable = true;
       };
     };
