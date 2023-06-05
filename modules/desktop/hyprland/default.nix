@@ -41,6 +41,8 @@ in {
     sddm-themes.catppuccino-sddm
 
     foot
+
+    socat
   ];
 
   fonts.fonts = with pkgs; [
