@@ -203,7 +203,7 @@ in {
             };
 
             vim.utility = {
-              colorizer.enable = true;
+              ccc.enable = true;
               icon-picker.enable = true;
               diffview-nvim.enable = true;
               motion = {
@@ -225,7 +225,7 @@ in {
 
             vim.ui = {
               noice.enable = true;
-              smartcolumn.enable = true;
+              # smartcolumn.enable = true;
             };
 
             vim.assistant = {
