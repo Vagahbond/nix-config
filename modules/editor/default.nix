@@ -81,6 +81,11 @@ in {
 
             vim.lineNumberMode = "number";
 
+            vim.statusline.lualine = {
+              enable = true;
+              theme = "catppuccin";
+            };
+
             vim.lsp = {
               formatOnSave = true;
               lspkind.enable = false;

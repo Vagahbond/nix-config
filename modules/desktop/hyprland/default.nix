@@ -43,6 +43,7 @@ in {
     foot
 
     socat
+    jq
   ];
 
   fonts.fonts = with pkgs; [
