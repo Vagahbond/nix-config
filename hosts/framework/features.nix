@@ -1,12 +1,4 @@
-{
-  lib,
-  options,
-  specialArgs,
-  config,
-  modulesPath,
-  inputs,
-  ...
-}: let
+{inputs, ...}: let
   username = import ../../username.nix;
 in {
   imports = [
@@ -44,6 +36,7 @@ in {
         video = {
           player = true;
           downloader = true;
+          encoder = true;
         };
 
         audio = {

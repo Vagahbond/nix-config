@@ -89,6 +89,11 @@ in {
         shotcut
       ];
     })
+    (mkIf (cfg.video.encoder) {
+      environment.systemPackages = with pkgs; [
+        ffmpeg
+      ];
+    })
     (mkIf (cfg.video.encoder
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
@@ -122,6 +127,10 @@ in {
     })
     (mkIf (cfg.audio.player
       && (graphics.type != null)) {
+      environment.systemPackages = with pkgs; [
+        playerctl
+      ];
+
       home-manager.users.${username} = {pkgs, ...}: let
         spicePkgs = inputs.internalFlakes.medias.spotify.packages.${pkgs.system}.default;
       in {

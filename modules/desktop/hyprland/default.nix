@@ -44,6 +44,8 @@ in {
 
     socat
     jq
+
+    libnotify
   ];
 
   fonts.fonts = with pkgs; [
@@ -86,8 +88,9 @@ in {
   home-manager.users.${username} = {
     xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
 
-    # Script for eww bar
-    xdg.configFile."hypr/listen_events.sh".source = ./listen_events.sh;
+    # Scripts for eww bar
+    xdg.configFile."hypr/volume.sh".source = ./volume.sh;
+    xdg.configFile."hypr/brightness.sh".source = ./brightness.sh;
 
     gtk = {
       enable = true;
