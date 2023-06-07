@@ -120,10 +120,10 @@ in {
       defaultTimeout = 4000;
       ignoreTimeout = true;
       backgroundColor = "#1e1e2e";
-      borderColor = "#cba6f7";
-      textColor = "#cdd6f4";
+      borderColor = "#1e1e2e";
+      textColor = "#1e1e2e";
       borderRadius = 12;
-      progressColor = "#313244";
+      progressColor = "#cba6f7";
     };
   };
 
