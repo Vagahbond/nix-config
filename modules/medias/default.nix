@@ -41,6 +41,13 @@ in {
         description = "Enable video downloader (youtube-dl, nicotine+)";
         example = false;
       };
+
+      recorder = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable Kooha";
+        example = true;
+      };
     };
 
     audio = {
@@ -105,6 +112,12 @@ in {
       environment.systemPackages = with pkgs; [
         yt-dlp
         nicotine-plus
+      ];
+    })
+    (mkIf (cfg.video.recorder
+      && (graphics.type != null)) {
+      environment.systemPackages = with pkgs; [
+        kooha
       ];
     })
     (mkIf (cfg.audio.editor

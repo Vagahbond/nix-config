@@ -35,6 +35,7 @@ in {
     python3Packages.pywal
     python3Packages.colorthief
 
+    # TODO: Switch to anyrun
     wofi
     wofi-emoji
 
@@ -120,8 +121,8 @@ in {
       defaultTimeout = 4000;
       ignoreTimeout = true;
       backgroundColor = "#1e1e2e";
-      borderColor = "#1e1e2e";
-      textColor = "#1e1e2e";
+      borderColor = "#cba6f7";
+      textColor = "#cdd6f4";
       borderRadius = 12;
       progressColor = "#cba6f7";
     };
