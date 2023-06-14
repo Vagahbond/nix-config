@@ -375,12 +375,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-IZyYbnqW4+X/MVNHcgJYTb1GqXprGX4SdzFybRjym7Q=",
-        "path": "/nix/store/i12mlh9raxlp2ss9p8wff5ywn1p82ax3-source/desktop",
+        "narHash": "sha256-LcapN0PHxUcFGgKEIJboIPfyM6cxVmPH9qWIml+H9A8=",
+        "path": "/nix/store/3265snmyyp2qw8fd984lqj7d2n1pjwj6-source/desktop",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/i12mlh9raxlp2ss9p8wff5ywn1p82ax3-source/desktop",
+        "path": "/nix/store/3265snmyyp2qw8fd984lqj7d2n1pjwj6-source/desktop",
         "type": "path"
       }
     },
@@ -456,11 +456,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-a+klRBTSUHYqoYcw2J1/9/q1F39r9L+EhGr2AdZo1f0=",
-        "path": "/nix/store/i12mlh9raxlp2ss9p8wff5ywn1p82ax3-source/editor",
+        "path": "/nix/store/3265snmyyp2qw8fd984lqj7d2n1pjwj6-source/editor",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/i12mlh9raxlp2ss9p8wff5ywn1p82ax3-source/editor",
+        "path": "/nix/store/3265snmyyp2qw8fd984lqj7d2n1pjwj6-source/editor",
         "type": "path"
       }
     },
@@ -787,12 +787,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-PKMjlmPX13tAGne7xG5tLHetV5VJFT+2ZqriJakgKh0=",
-        "path": "/nix/store/zkrkgx9adxw0rqigq7jwiz5big58wzf0-source/modules",
+        "narHash": "sha256-ey0ccWa4UgoRCgyGreTXAPOSQperxjDZnosSIgMbAwA=",
+        "path": "/nix/store/dyxmbrlhhncyr8gzwf510w6wml8p5xky-source/modules",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/zkrkgx9adxw0rqigq7jwiz5big58wzf0-source/modules",
+        "path": "/nix/store/dyxmbrlhhncyr8gzwf510w6wml8p5xky-source/modules",
         "type": "path"
       }
     },
@@ -899,11 +899,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-GefbqzWCCee6LAsYxj6B/amu2XaZTTnu2M3UkQ6TvpE=",
-        "path": "/nix/store/i12mlh9raxlp2ss9p8wff5ywn1p82ax3-source/medias",
+        "path": "/nix/store/3265snmyyp2qw8fd984lqj7d2n1pjwj6-source/medias",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/i12mlh9raxlp2ss9p8wff5ywn1p82ax3-source/medias",
+        "path": "/nix/store/3265snmyyp2qw8fd984lqj7d2n1pjwj6-source/medias",
         "type": "path"
       }
     },
