@@ -4,10 +4,8 @@
   pkgs,
   inputs,
   ...
-} @ attrs:
+}:
 with lib; let
-  graphics = config.modules.graphics;
-
   cfg = config.modules;
 in {
   options.modules.desktop = mkOption {
