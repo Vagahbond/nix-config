@@ -2,13 +2,12 @@
   description = "Internal flake for passing desktops inputs";
 
   inputs = {
-    eww-config = {
-      url = "github:Vagahbond/eww-dotfiles";
-      flake = false;
+    hyprland-rice = {
+      url = "./hyprland";
     };
   };
 
-  outputs = {eww-config, ...}: {
-    eww-config = eww-config;
+  outputs = {hyprland-rice, ...}: {
+    hyprland-rice = hyprland-rice;
   };
 }

@@ -16,7 +16,10 @@
   };
 in {
   # My working laptop
-  framework = nixpkgs.lib.nixosSystem (framework {inherit base-options;});
+  framework = nixpkgs.lib.nixosSystem (framework {
+    inherit base-options;
+    specialArgs = {inherit inputs;};
+  });
 
   # My gaming and producing laptop
   # blade = import ./blade; Not yet ready

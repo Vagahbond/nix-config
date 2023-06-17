@@ -105,7 +105,10 @@ in {
 
               nix.enable = true;
               html.enable = true;
-              clang.enable = true;
+              clang = {
+                enable = true;
+                lsp.server = "clangd";
+              };
               sql.enable = true;
               rust = {
                 enable = true;
@@ -238,7 +241,7 @@ in {
             };
 
             vim.session = {
-              nvim-session-manager.enable = true;
+              nvim-session-manager.enable = false;
             };
 
             vim.gestures = {

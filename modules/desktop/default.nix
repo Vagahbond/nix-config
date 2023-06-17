@@ -16,7 +16,7 @@ in {
     '';
   };
 
-  config =
-    {}
-    // mkIf (cfg.desktop == "hyprland") (import ./hyprland {inherit pkgs inputs;});
+  imports = [
+    ./hyprland
+  ];
 }
