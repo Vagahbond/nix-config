@@ -7,10 +7,12 @@
 }:
 with lib; let
   username = import ../../../username.nix;
+
   pywalfox-nixpkgs = builtins.fetchTarball {
     url = "https://github.com/nixos/nixpkgs/archive/e213f8c329429cac1715a86eec617a93783bb99c.tar.gz";
     sha256 = "sha256:08j1jdy2zdr53m3ir21i92nfg8xz3bjy29xyaqdqh43k3p32xcxn";
   };
+
   pywalfox = pkgs.python310Packages.callPackage "${pywalfox-nixpkgs}/pkgs/development/python-modules/pywalfox/default.nix" {};
   sddm-themes = pkgs.callPackage ./sddm-themes.nix {};
   hyprland = inputs.internalFlakes.desktop.hyprland-rice.hyprland;
@@ -144,14 +146,14 @@ in {
         # Pls make this shell-independent
         programs.zsh.shellInit = "wal --theme turtle-snail -q";
 
-        services.xserver = {
-          enable = true;
-          displayManager.defaultSession = "hyprland";
-          displayManager.sddm = {
-            enable = true;
-            theme = "catppuccin-mocha";
-          };
-        };
+        # services.xserver = {
+        # enable = true;
+        #  displayManager.defaultSession = "hyprland";
+        #  displayManager.sddm = {
+        #    enable = true;
+        #    theme = "catppuccin-mocha";
+        #  };
+        # };
       }
     )
   ];
