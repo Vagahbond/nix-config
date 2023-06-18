@@ -147,14 +147,14 @@ in {
         # Pls make this shell-independent
         programs.zsh.shellInit = "wal --theme turtle-snail -q";
 
-        # services.xserver = {
-        # enable = true;
-        #  displayManager.defaultSession = "hyprland";
-        #  displayManager.sddm = {
-        #    enable = true;
-        #    theme = "catppuccin-mocha";
-        #  };
-        # };
+        services.xserver = {
+          enable = true;
+          displayManager.defaultSession = "hyprland";
+          displayManager.sddm = {
+            enable = true;
+            theme = "catppuccin-mocha";
+          };
+        };
       }
     )
   ];
