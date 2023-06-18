@@ -107,6 +107,7 @@ in {
           # Scripts for eww bar
           xdg.configFile."hypr/volume.sh".source = ./volume.sh;
           xdg.configFile."hypr/brightness.sh".source = ./brightness.sh;
+          xdg.configFile."hypr/eww_widgets.sh".source = ./eww_widgets.sh;
 
           gtk = {
             enable = true;
