@@ -7,7 +7,7 @@
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Secrets management via ragenix, an agenix replacement
