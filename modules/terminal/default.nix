@@ -41,6 +41,10 @@ in {
         ];
       })
       (mkIf (cfg.shell == "zsh") {
+          environment.systemPackages = with pkgs; [
+            lsd
+          ];
+
           programs.zsh = {
             enable = true;
             enableCompletion = true;
@@ -59,6 +63,7 @@ in {
                 update = "sudo nixos-rebuild switch --flake ~/vagahbond-dotfiles";
                 build = "sudo nixos-rebuild build --flake ~/vagahbond-dotfiles";
                 nix-shell = "nix-shell --command zsh ";
+                ls = "lsd";
               }
               // cfg.shellAliases;
           };

@@ -1,13 +1,5 @@
-{
-  lib,
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
-with lib; let
-  cfg = config.modules;
-in {
+{lib, ...}:
+with lib; {
   options.modules.desktop = mkOption {
     type = types.enum ["hyprland"];
     default = "hyprland";
