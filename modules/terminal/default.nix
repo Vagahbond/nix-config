@@ -58,6 +58,7 @@ in {
               {
                 update = "sudo nixos-rebuild switch --flake ~/vagahbond-dotfiles";
                 build = "sudo nixos-rebuild build --flake ~/vagahbond-dotfiles";
+                nix-shell = "nix-shell --command zsh ";
               }
               // cfg.shellAliases;
           };
@@ -66,7 +67,7 @@ in {
             enable = true;
 
             settings = {
-              format = "$username$hosntame$directory$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package\n[󱄅](bold green) $character";
+              format = "In [󱄅](bold green) at [](bold green) $username$hosntame$directory$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package\n$character";
 
               right_format = "$c\
 $cmake\
