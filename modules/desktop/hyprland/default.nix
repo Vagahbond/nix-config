@@ -144,7 +144,7 @@ in {
           };
         };
 
-        # Pls make this shell-independent
+        # TODO: make this shell-independent
         programs.zsh.shellInit = "wal --theme turtle-snail -q";
 
         services.xserver = {
