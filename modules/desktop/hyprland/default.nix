@@ -39,7 +39,10 @@ in {
           colorz
           iio-sensor-proxy
 
-          xfce.thunar
+          xfce.tumbler
+          libgsf # odf files
+          ffmpegthumbnailer
+          ark # GUI archiver for thunar archive plugin
 
           eww.packages.${pkgs.system}.eww-wayland
 
@@ -84,11 +87,39 @@ in {
           (nerdfonts.override {fonts = ["CascadiaCode" "FiraCode" "DroidSansMono" "Noto"];})
         ];
 
-        programs.light.enable = true;
+        programs = {
+          light.enable = true;
 
-        services.dbus.enable = true;
+          xwayland.enable = true;
 
-        programs.xwayland.enable = true;
+          hyprland = {
+            enable = true;
+            xwayland = {
+              enable = true;
+              # hdpi = false;
+            };
+
+            nvidiaPatches = false;
+
+            package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+          };
+
+          # TODO: make this shell-independent
+          zsh.shellInit = "wal --theme turtle-snail -q";
+        };
+
+        services = {
+          dbus.enable = true;
+          xserver = {
+            enable = true;
+            displayManager.defaultSession = "hyprland";
+            displayManager.sddm = {
+              enable = true;
+              theme = "catppuccin-mocha";
+              autoNumlock = true;
+            };
+          };
+        };
 
         nix.settings = {
           substituters = ["https://hyprland.cachix.org"];
@@ -96,16 +127,6 @@ in {
         };
 
         # Latest version of Hyprland
-        programs.hyprland.package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-
-        programs.hyprland = {
-          enable = true;
-          xwayland = {
-            enable = true;
-            # hdpi = false;
-          };
-          nvidiaPatches = false;
-        };
 
         environment.sessionVariables = {
           QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
@@ -117,13 +138,34 @@ in {
         };
 
         home-manager.users.${username} = {
-          xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
+          home = {
+            pointerCursor = {
+              package = pkgs.catppuccin-cursors.mochaDark; #pkgs.bibata-cursors;
+              name = "Catppuccin-Mocha-Dark-Cursors"; #"Bibata-Modern-Classic";
+              size = 24;
+              gtk.enable = true;
+              x11.enable = true;
+            };
 
-          # Scripts for eww bar
-          xdg.configFile."hypr/volume.sh".source = ./volume.sh;
-          xdg.configFile."hypr/brightness.sh".source = ./brightness.sh;
-          xdg.configFile."hypr/eww_widgets.sh".source = ./eww_widgets.sh;
+            packages = with pkgs; [
+              glib # gsettings
 
+              (catppuccin-papirus-folders.override {
+                accent = "mauve";
+                flavor = "mocha";
+              })
+            ];
+
+            sessionVariables = {
+              # set GTK theme as specified by the catppuccin-gtk package
+              GTK_THEME = "Catppuccin-Mocha-Compact-Mauve-Dark";
+
+              # gtk applications should use filepickers specified by xdg
+              GTK_USE_PORTAL = "1";
+            };
+          };
+
+          # themes I guess
           gtk = {
             enable = true;
             theme = {
@@ -135,16 +177,33 @@ in {
                 variant = "mocha";
               };
             };
+
+            iconTheme = {
+              name = "Papirus-Dark";
+              package = pkgs.catppuccin-papirus-folders.override {
+                accent = "mauve";
+                flavor = "mocha";
+              };
+            };
           };
 
-          xdg.configFile."foot/foot.ini".source = ./foot.ini;
+          xdg.configFile = {
+            "hypr/hyprland.conf".source = ./hyprland.conf;
 
-          xdg.configFile."eww".source = inputs.internalFlakes.desktop.hyprland-rice.eww-config;
+            # Scripts for eww bar
+            "hypr/volume.sh".source = ./volume.sh;
+            "hypr/brightness.sh".source = ./brightness.sh;
+            "hypr/eww_widgets.sh".source = ./eww_widgets.sh;
 
-          xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
-          xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;
-          xdg.configFile."wal/colorschemes/dark/turtle-snail.json".source = ./turtle-snail.json;
-          xdg.configFile."wofi/style.css".source = ./style.css;
+            "foot/foot.ini".source = ./foot.ini;
+
+            "eww".source = inputs.internalFlakes.desktop.hyprland-rice.eww-config;
+
+            "hypr/hyprpaper.conf".source = ./hyprpaper.conf;
+            "hypr/wallpaper.jpg".source = ./wallpaper.jpg;
+            "wal/colorschemes/dark/turtle-snail.json".source = ./turtle-snail.json;
+            "wofi/style.css".source = ./style.css;
+          };
 
           services.mako = {
             enable = true;
@@ -156,18 +215,6 @@ in {
             textColor = "#cdd6f4";
             borderRadius = 12;
             progressColor = "#cba6f7";
-          };
-        };
-
-        # TODO: make this shell-independent
-        programs.zsh.shellInit = "wal --theme turtle-snail -q";
-
-        services.xserver = {
-          enable = true;
-          displayManager.defaultSession = "hyprland";
-          displayManager.sddm = {
-            enable = true;
-            theme = "catppuccin-mocha";
           };
         };
       }

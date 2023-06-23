@@ -64,6 +64,12 @@ in {
                 build = "sudo nixos-rebuild build --flake ~/vagahbond-dotfiles";
                 nix-shell = "nix-shell --command zsh ";
                 ls = "lsd";
+                l = "lsd";
+                gc = "git commit";
+                gaa = "git add -A";
+                gp = "git push";
+                c = "clear";
+                dc = "docker compose";
               }
               // cfg.shellAliases;
           };
