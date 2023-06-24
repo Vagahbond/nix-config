@@ -119,7 +119,7 @@ in {
               zig.enable = true;
               python.enable = true;
               dart.enable = true;
-              elixir.enable = true;
+              elixir.enable = false;
             };
 
             vim.visuals = {
@@ -163,6 +163,7 @@ in {
                 renderer = {
                   rootFolderLabel = null;
                   icons.show.git = true;
+                  showHiddenFiles = true;
                 };
                 view = {
                   width = 25;
