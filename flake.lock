@@ -375,12 +375,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-lpr/GPyxc2mSjgA6v83I+veZZIE/aCwPcfiZZD+i80s=",
-        "path": "/nix/store/6rpvi8cxshsajgpgv6h7vnb2ndq5kpkv-source/desktop",
+        "narHash": "sha256-CqQeiDIRs5VwAhLUzlK/oh2ZuhMWOPi8F6gzmd+XECM=",
+        "path": "/nix/store/k3wjvy063g9faq0bv9yg9hfhspvqz7b2-source/desktop",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/6rpvi8cxshsajgpgv6h7vnb2ndq5kpkv-source/desktop",
+        "path": "/nix/store/k3wjvy063g9faq0bv9yg9hfhspvqz7b2-source/desktop",
         "type": "path"
       }
     },
@@ -456,11 +456,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-kAnER7vllBsW/p7uz7srtOf91933XeSu/7vqYVygX94=",
-        "path": "/nix/store/6rpvi8cxshsajgpgv6h7vnb2ndq5kpkv-source/editor",
+        "path": "/nix/store/k3wjvy063g9faq0bv9yg9hfhspvqz7b2-source/editor",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/6rpvi8cxshsajgpgv6h7vnb2ndq5kpkv-source/editor",
+        "path": "/nix/store/k3wjvy063g9faq0bv9yg9hfhspvqz7b2-source/editor",
         "type": "path"
       }
     },
@@ -767,11 +767,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1687627695,
-        "narHash": "sha256-6Pu7nWb52PRtUmihwuDNShDmsZiXgtXR0OARtH4DSik=",
+        "lastModified": 1687647343,
+        "narHash": "sha256-1/o/i9KEFOBdlF9Cs04kBcqDFbYMt6W4SMqGa+QnnaI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "172d46d4b2677b32277d903bdf4cff77c2cc6477",
+        "rev": "0ee5ab611dc1fbb5180bd7d88d2aeb7841a4d179",
         "type": "github"
       },
       "original": {
@@ -804,11 +804,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1687613903,
-        "narHash": "sha256-ACv2/IL/dQzEOipcmji1nKP0fdAlSAe9MNCn5V9VtKo=",
+        "lastModified": 1687693944,
+        "narHash": "sha256-zu4Ez5LcJ7XMAV0fYluyUpFO5P7PrLmz5axoRn72IpY=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "a82559f185666484da98baa8384eb3811934bdef",
+        "rev": "4294456cdcdf0a28f5adbdbef83aefccc00d6701",
         "type": "github"
       },
       "original": {
@@ -850,12 +850,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-mkIQ7RrYK3rwQ3++kyI/R3lYJ1zS2p7RyHltxSe/T/Y=",
-        "path": "/nix/store/mscjmy65mfvhgryk51raj0jns533xfpk-source/hyprland",
+        "narHash": "sha256-ZNvBnMA2XS7dtIK4usLahtC8eoQtN+HHUyE1a9WDqaI=",
+        "path": "/nix/store/navb1nnjm09hy2dyh4wjinmx7pvqqjgd-source/hyprland",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/mscjmy65mfvhgryk51raj0jns533xfpk-source/hyprland",
+        "path": "/nix/store/navb1nnjm09hy2dyh4wjinmx7pvqqjgd-source/hyprland",
         "type": "path"
       }
     },
@@ -899,12 +899,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-vIWe04Ci/tipemLjaXQKedU+7dl+F6fiiPY3RWUC09k=",
-        "path": "/nix/store/1jxrzks4s54bhkn5ww47ynwvdz23scja-source/modules",
+        "narHash": "sha256-Zhr/q4eQNblfLVgbWBcKq7udx0fG6q41/xVwkWh5HwA=",
+        "path": "/nix/store/3gkj6bd2yq3jxhh1sicvnh4d6spfz6v0-source/modules",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/1jxrzks4s54bhkn5ww47ynwvdz23scja-source/modules",
+        "path": "/nix/store/3gkj6bd2yq3jxhh1sicvnh4d6spfz6v0-source/modules",
         "type": "path"
       }
     },
@@ -1011,11 +1011,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-GefbqzWCCee6LAsYxj6B/amu2XaZTTnu2M3UkQ6TvpE=",
-        "path": "/nix/store/6rpvi8cxshsajgpgv6h7vnb2ndq5kpkv-source/medias",
+        "path": "/nix/store/k3wjvy063g9faq0bv9yg9hfhspvqz7b2-source/medias",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/6rpvi8cxshsajgpgv6h7vnb2ndq5kpkv-source/medias",
+        "path": "/nix/store/k3wjvy063g9faq0bv9yg9hfhspvqz7b2-source/medias",
         "type": "path"
       }
     },

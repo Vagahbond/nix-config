@@ -28,7 +28,7 @@ in {
           wireplumber
           qt6.qtwayland
           libsForQt5.qt5.qtwayland
-          gnome3.adwaita-icon-theme
+          # gnome3.adwaita-icon-theme
           grim
           slurp
           cliphist
@@ -103,7 +103,13 @@ in {
 
             package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
           };
-
+          thunar = {
+            enable = true;
+            plugins = with pkgs.xfce; [
+              thunar-archive-plugin
+              thunar-media-tags-plugin
+            ];
+          };
           # TODO: make this shell-independent
           zsh.shellInit = "wal --theme turtle-snail -q";
         };
@@ -149,16 +155,19 @@ in {
 
             packages = with pkgs; [
               glib # gsettings
-
-              (catppuccin-papirus-folders.override {
-                accent = "mauve";
-                flavor = "mocha";
-              })
+              (
+                pkgs.catppuccin-gtk.override {
+                  accents = ["mauve"];
+                  size = "standard";
+                  variant = "mocha";
+                  tweaks = ["normal"];
+                }
+              )
             ];
 
             sessionVariables = {
               # set GTK theme as specified by the catppuccin-gtk package
-              GTK_THEME = "Catppuccin-Mocha-Compact-Mauve-Dark";
+              GTK_THEME = "Catppuccin-Mocha-Standard-Mauve-dark";
 
               # gtk applications should use filepickers specified by xdg
               GTK_USE_PORTAL = "1";
@@ -169,12 +178,12 @@ in {
           gtk = {
             enable = true;
             theme = {
-              name = "Catppuccin-Mocha-Compact-Mauve-Dark";
+              name = "Catppuccin-Mocha-Standard-Mauve-dark";
               package = pkgs.catppuccin-gtk.override {
                 accents = ["mauve"];
-                size = "compact";
-                # tweaks = ["rimless" "black"];
+                size = "standard";
                 variant = "mocha";
+                tweaks = ["normal"];
               };
             };
 
@@ -184,6 +193,23 @@ in {
                 accent = "mauve";
                 flavor = "mocha";
               };
+            };
+
+            gtk3.extraConfig = {
+              gtk-xft-antialias = 1;
+              gtk-xft-hinting = 1;
+              gtk-xft-hintstyle = "hintslight";
+              gtk-xft-rgba = "rgb";
+            };
+
+            gtk2 = {
+              # configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+              extraConfig = ''
+                gtk-xft-antialias=1
+                gtk-xft-hinting=1
+                gtk-xft-hintstyle="hintslight"
+                gtk-xft-rgba="rgb"
+              '';
             };
           };
 
