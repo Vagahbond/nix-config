@@ -900,11 +900,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-Zhr/q4eQNblfLVgbWBcKq7udx0fG6q41/xVwkWh5HwA=",
-        "path": "/nix/store/3gkj6bd2yq3jxhh1sicvnh4d6spfz6v0-source/modules",
+        "path": "/nix/store/amdb1xd6sa0lsisqkl7j4vjaxap6jm1i-source/modules",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/3gkj6bd2yq3jxhh1sicvnh4d6spfz6v0-source/modules",
+        "path": "/nix/store/amdb1xd6sa0lsisqkl7j4vjaxap6jm1i-source/modules",
         "type": "path"
       }
     },
