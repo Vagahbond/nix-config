@@ -1,17 +1,18 @@
 {
   config,
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
   graphics = config.modules.graphics;
 
   cfg = config.modules.browser;
+
+  username = import ../../username.nix;
 in {
   options.modules.browser.firefox = {
     enable = mkOption {
-      # if yours is missing, don't hesitate to PR
       type = types.bool;
       description = "Enable or not Firefox. Enabled by default.";
       default = true;
@@ -20,58 +21,154 @@ in {
   };
 
   config = mkIf (cfg.firefox.enable && (graphics.type != null)) {
-    programs.firefox = {
-      enable = true;
-      package = pkgs.firefox-wayland;
-      preferences = {
-        "extensions.webextensions.uuids" = ''
-          {
-            "formautofill@mozilla.org":"c4c84d9d-e6cf-4893-aa3c-fb752044a768",
-            "pictureinpicture@mozilla.org":"5938d127-0a12-4ea5-9261-215c125379a3",
-            "screenshots@mozilla.org":"bd5ec6ec-55d1-4d30-b8ec-ed6e9aac330f",
-            "webcompat-reporter@mozilla.org":"0f458894-adfb-416f-88e0-4526652da59e",
-            "webcompat@mozilla.org":"8e4c7cd6-8f2b-48d1-aa47-945c63316219",
-            "default-theme@mozilla.org":"02f6d128-5593-4594-867c-039fe04e2945",
-            "addons-search-detection@mozilla.com":"085a8b37-640f-428a-8765-6eeb963a1531",
-            "google@search.mozilla.org":"c179af5a-0b0f-4e42-a9b2-b71dcd2590a0",
-            "wikipedia@search.mozilla.org":"089f100c-c9a1-49f2-8866-ad3e90408101",
-            "bing@search.mozilla.org":"689c37c3-5e55-46bc-9454-bc37170336d9",
-            "ddg@search.mozilla.org":"b69e36f8-0082-44b0-af85-a4993551c049",
-            "amazon@search.mozilla.org":"19c2e87f-c207-4ab5-9ef9-58865b91e0fc",
-            "adblockultimate@adblockultimate.net":"9da0d283-b210-4807-adc9-51f5b5ca4366",
-            "addon@darkreader.org":"3facab32-de37-4b3e-b6ed-96c3aa08d067",
-            "{446900e4-71c2-419f-a6a7-df9c091e268b}":"84cf9871-ad84-4b37-80d4-afa315ee7ebd",
-            "pywalfox@frewacom.org":"4a4ada26-0954-465c-bb5d-8c186d46a280",
-            "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}":"1bd7e8da-7ea0-4d3c-81ae-cd6be9439892"
-          }
-        '';
-        "browser.uiCustomization.state" = ''{"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":["adblockultimate_adblockultimate_net-browser-action","pywalfox_frewacom_org-browser-action","_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action"],"nav-bar":["back-button","forward-button","stop-reload-button","customizableui-special-spring1","urlbar-container","search-container","customizableui-special-spring2","save-to-pocket-button","downloads-button","fxa-toolbar-menu-button","_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action","addon_darkreader_org-browser-action"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],"PersonalToolbar":["import-button","personal-bookmarks"]},"seen":["save-to-pocket-button","developer-button","adblockultimate_adblockultimate_net-browser-action","addon_darkreader_org-browser-action","_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action","pywalfox_frewacom_org-browser-action","_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action"],"dirtyAreaCache":["nav-bar","PersonalToolbar","toolbar-menubar","TabsToolbar","unified-extensions-area"],"currentVersion":18,"newElementCount":2}'';
-        "extensions.webextensions.ExtensionStorageIDB.migrated.{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = true;
-        "extensions.webextensions.ExtensionStorageIDB.migrated.{446900e4-71c2-419f-a6a7-df9c091e268b}" = true;
-        "extensions.webextensions.ExtensionStorageIDB.migrated.screenshots@mozilla.org" = true;
-        "extensions.webextensions.ExtensionStorageIDB.migrated.pywalfox@frewacom.org" = true;
-        "extensions.webextensions.ExtensionStorageIDB.migrated.addon@darkreader.org" = true;
-        "extensions.webextensions.ExtensionStorageIDB.migrated.adblockultimate@adblockultimate.net" = true;
-        "extensions.webcompat.perform_ua_overrides" = true;
-        "extensions.webcompat.perform_injections" = true;
-        "extensions.webcompat.enable_shims" = true;
-        "extensions.ui.theme.hidden" = false;
-        "extensions.ui.sitepermission.hidden" = true;
-        "extensions.ui.locale.hidden" = true;
-        "extensions.ui.extension.hidden" = false;
-        "extensions.ui.dictionary.hidden" = true;
-        "extensions.ui.lastCategory" = "addons://list/extension";
-        "extensions.systemAddonSet" = ''
-          {"schema":1,"addons":{}}
-        '';
-        "extensions.pictureinpicture.enable_picture_in_picture_overrides" = true;
-        "extensions.pendingOperations" = false;
-        "extensions.lastAppBuildId" = 20230302170652;
-        "extensions.getAddons.databaseSchema" = 6;
-        "extensions.activeThemeID" = "default-theme@mozilla.org";
-        "extensions.databaseSchema" = 35;
-      };
-      preferencesStatus = "default";
-    };
+    home-manager.users.${username}.home.packages = with pkgs; [
+      (wrapFirefox firefox-esr-115-unwrapped {
+        # see https://github.com/mozilla/policy-templates/blob/master/README.md
+        extraPolicies = {
+          CaptivePortal = false;
+          DisableFirefoxStudies = true;
+          DisablePocket = true;
+          DisableTelemetry = true;
+          DisableFirefoxAccounts = true;
+          DisableFormHistory = true;
+          DisplayBookmarksToolbar = true;
+          DontCheckDefaultBrowser = true;
+          SearchEngines = {
+            Add = [
+              {
+                Name = "Sourcegraph/Nix";
+                Description = "Sourcegraph nix search";
+                Alias = "!snix";
+                Method = "GET";
+                URLTemplate = "https://sourcegraph.com/search?q=context:global+file:.nix%24+{searchTerms}&patternType=literal";
+              }
+              {
+                Name = "Searxng";
+                Description = "Decentralized search engine";
+                Alias = "sx";
+                Method = "GET";
+                URLTemplate = "https://search.notashelf.dev/search?q={searchTerms}";
+              }
+              {
+                Name = "Torrent search";
+                Description = "Searching for Creative Common musics";
+                Alias = "!torrent";
+                Method = "GET";
+                URLTemplate = "https://librex.beparanoid.de/search.php?q={searchTerms}&t=3&p=0";
+              }
+              {
+                Name = "Stackoverflow";
+                Description = "Stealing code";
+                Alias = "!so";
+                Method = "GET";
+                URLTemplate = "https://stackoverflow.com/search?q={searchTerms}";
+              }
+              {
+                Name = "Wikipedia";
+                Description = "Wikiless";
+                Alias = "!wiki";
+                Method = "GET";
+                URLTemplate = "https://wikiless.org/w/index.php?search={searchTerms}title=Special%3ASearch&profile=default&fulltext=1";
+              }
+              {
+                Name = "nixpkgs";
+                Description = "Nixpkgs query";
+                Alias = "!nix";
+                Method = "GET";
+                URLTemplate = "https://search.nixos.org/packages?&query={searchTerms}";
+              }
+              {
+                Name = "Librex";
+                Description = "A privacy respecting free as in freedom meta search engine for Google and popular torrent sites ";
+                Alias = "!librex";
+                Method = "GET";
+                URLTemplate = "https://librex.beparanoid.de/search.php?q={searchTerms}&p=0&t=0";
+              }
+              {
+                Name = "DeepL";
+                Description = "Translator";
+                Alias = "!t";
+                Method = "GET";
+                URLTemplate = "https://www.deepl.com/en/translator#en/fr/{searchTerms}%0A";
+              }
+            ];
+            Default = "DuckDuckGo";
+            Remove = mkForce [
+              "Google"
+              "Bing"
+              "Amazon.com"
+              "eBay"
+              "Twitter"
+              "Wikipedia"
+            ];
+          };
+
+          ExtensionSettings = let
+            mkForceInstalled = extensions:
+              builtins.mapAttrs
+              (name: cfg: {installation_mode = "force_installed";} // cfg)
+              extensions;
+          in
+            mkForceInstalled {
+              # Addon IDs are in manifest.json or manifest-firefox.json
+              "{446900e4-71c2-419f-a6a7-df9c091e268b}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+              "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+              "uBlock0@raymondhill.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+              "{36bdf805-c6f2-4f41-94d2-9b646342c1dc}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/export-cookies-txt/latest.xpi";
+              "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
+              "DontFuckWithPaste@raim.ist".install_url = "https://addons.mozilla.org/firefox/downloads/latest/don-t-fuck-with-paste/latest.xpi";
+              "skipredirect@sblask".install_url = "https://addons.mozilla.org/firefox/downloads/latest/skip-redirect/latest.xpi";
+              "sponsorBlocker@ajay.app".install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
+              "7esoorv3@alefvanoon.anonaddy.me".install_url = "https://addons.mozilla.org/firefox/downloads/latest/libredirect/latest.xpi";
+              "1018e4d6-728f-4b20-ad56-37578a4de76".install_url = "https://addons.mozilla.org/firefox/downloads/latest/flagfox/latest.xpi";
+              "4a4ada26-0954-465c-bb5d-8c186d46a280".install_url = "https://addons.mozilla.org/firefox/downloads/file/4061156/pywalfox-2.0.11.xpi";
+              "{762f9885-5a13-4abd-9c77-433dcd38b8fd}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4114817/styl_us-1.5.33.xpi";
+            };
+
+          FirefoxHome = {
+            Pocket = false;
+            Snippets = false;
+          };
+
+          UserMessaging = {
+            ExtensionRecommendations = false;
+            SkipOnboarding = true;
+          };
+
+          SanitizeOnShutdown = {
+            Cache = true;
+            History = true;
+            Cookies = true;
+            Downloads = true;
+            FormData = true;
+            Sessions = true;
+            OfflineApps = true;
+          };
+
+          PasswordManagerEnabled = true;
+          PromptForDownloadLocation = false;
+
+          Preferences =
+            {
+              "browser.toolbars.bookmarks.visibility" = "never";
+              "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+              "browser.uidensity" = 1;
+              # "browser.startup.homepage" = "file://${./startpage.html}";
+              "general.useragent.override" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36";
+
+              "extensions.update.enabled" = false;
+              "intl.locale.matchOS" = true;
+
+              "media.eme.enabled" = true;
+            }
+            // {
+              # remove useless stuff from the bar
+              "browser.uiCustomization.state" = ''
+                {"placements":{"widget-overflow-fixed-list":["nixos_ublock-origin-browser-action","nixos_sponsorblock-browser-action","nixos_temporary-containers-browser-action","nixos_ublock-browser-action","nixos_cookie-autodelete-browser-action","screenshot-button","panic-button","nixos_localcdn-fork-of-decentraleyes-browser-action","nixos_sponsor-block-browser-action","nixos_image-search-browser-action","nixos_webarchive-browser-action","nixos_darkreader-browser-action","bookmarks-menu-button","nixos_df-yt-browser-action","nixos_i-hate-usa-browser-action","nixos_qr-browser-action","nixos_proxy-switcher-browser-action","nixos_port-authority-browser-action","sponsorblocker_ajay_app-browser-action","jid1-om7ejgwa1u8akg_jetpack-browser-action","dontfuckwithpaste_raim_ist-browser-action","ryan_unstoppabledomains_com-browser-action","_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action","7esoorv3_alefvanoon_anonaddy_me-browser-action","_36bdf805-c6f2-4f41-94d2-9b646342c1dc_-browser-action","_ffd50a6d-1702-4d87-83c3-ec468f67de6a_-browser-action","addon_darkreader_org-browser-action","cookieautodelete_kennydo_com-browser-action","_b86e4813-687a-43e6-ab65-0bde4ab75758_-browser-action","_531906d3-e22f-4a6c-a102-8057b88a1a63_-browser-action","skipredirect_sblask-browser-action","ublock0_raymondhill_net-browser-action"],"nav-bar":["back-button","forward-button","stop-reload-button","urlbar-container","save-to-pocket-button","fxa-toolbar-menu-button","nixos_absolute-copy-browser-action","webextension_metamask_io-browser-action"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button","_c607c8df-14a7-4f28-894f-29e8722976af_-browser-action"],"PersonalToolbar":["import-button","personal-bookmarks"]},"seen":["developer-button","nixos_sponsorblock-browser-action","nixos_clearurls-browser-action","nixos_cookie-autodelete-browser-action","nixos_ether_metamask-browser-action","nixos_ublock-origin-browser-action","nixos_localcdn-fork-of-decentraleyes-browser-action","nixos_vimium-browser-action","nixos_copy-plaintext-browser-action","nixos_h264ify-browser-action","nixos_fastforwardteam-browser-action","nixos_single-file-browser-action","treestyletab_piro_sakura_ne_jp-browser-action","nixos_don-t-fuck-with-paste-browser-action","nixos_temporary-containers-browser-action","nixos_absolute-copy-browser-action","nixos_image-search-browser-action","nixos_webarchive-browser-action","nixos_unstoppable-browser-action","nixos_dontcare-browser-action","nixos_skipredirect-browser-action","nixos_ublock-browser-action","nixos_darkreader-browser-action","nixos_fb-container-browser-action","nixos_vimium-ff-browser-action","nixos_df-yt-browser-action","nixos_sponsor-block-browser-action","nixos_proxy-switcher-browser-action","nixos_port-authority-browser-action","nixos_i-hate-usa-browser-action","nixos_qr-browser-action","dontfuckwithpaste_raim_ist-browser-action","jid1-om7ejgwa1u8akg_jetpack-browser-action","ryan_unstoppabledomains_com-browser-action","_36bdf805-c6f2-4f41-94d2-9b646342c1dc_-browser-action","_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action","_ffd50a6d-1702-4d87-83c3-ec468f67de6a_-browser-action","7esoorv3_alefvanoon_anonaddy_me-browser-action","addon_darkreader_org-browser-action","cookieautodelete_kennydo_com-browser-action","skipredirect_sblask-browser-action","ublock0_raymondhill_net-browser-action","_531906d3-e22f-4a6c-a102-8057b88a1a63_-browser-action","webextension_metamask_io-browser-action","_74145f27-f039-47ce-a470-a662b129930a_-browser-action","_b86e4813-687a-43e6-ab65-0bde4ab75758_-browser-action","_c607c8df-14a7-4f28-894f-29e8722976af_-browser-action","sponsorblocker_ajay_app-browser-action"],"dirtyAreaCache":["nav-bar","PersonalToolbar","toolbar-menubar","TabsToolbar","widget-overflow-fixed-list"],"currentVersion":17,"newElementCount":29}
+              '';
+            };
+        };
+      })
+    ];
   };
 }

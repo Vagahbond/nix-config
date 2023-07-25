@@ -48,21 +48,13 @@ in {
           programs.zsh = {
             enable = true;
             enableCompletion = true;
-            # ohMyZsh = {
-            #   enable = true;
-            #   plugins = [
-            #     "git"
-            #   ];
-
-            #   theme = "refined";
-            # };
             autosuggestions.enable = true;
             syntaxHighlighting.enable = true;
             shellAliases =
               {
-                update = "sudo nixos-rebuild switch --flake ~/vagahbond-dotfiles";
-                build = "sudo nixos-rebuild build --flake ~/vagahbond-dotfiles";
-                nix-shell = "nix-shell --command zsh ";
+                update = "sudo nixos-rebuild switch --no-write-lock-file --flake github:vagahbond/nix-config";
+                build = "sudo nixos-rebuild build --no-write-lock-file --flake github:vagahbond/nix-config";
+                nix-shell = "nix-shell --command zsh";
                 ls = "lsd";
                 l = "lsd";
                 gc = "git commit";
