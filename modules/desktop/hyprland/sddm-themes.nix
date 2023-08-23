@@ -2,7 +2,7 @@
   stdenv,
   fetchFromGitHub,
 }: {
-  catppuccino-sddm = stdenv.mkDerivation rec {
+  catppuccino-sddm = stdenv.mkDerivation {
     pname = "catppuccino-sddm";
     version = "1.0";
     dontBuild = true;
@@ -14,7 +14,7 @@
       owner = "catppuccin";
       repo = "sddm";
       rev = "master";
-      sha256 = "ceaK/I5lhFz6c+UafQyQVJIzzPxjmsscBgj8130D4dE=";
+      sha256 = "SjYwyUvvx/ageqVH5MmYmHNRKNvvnF3DYMJ/f2/L+Go=";
     };
   };
 }

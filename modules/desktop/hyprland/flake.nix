@@ -14,19 +14,21 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    eww = {
-      url = "github:elkowar/eww";
-    };
+    # eww = {
+    #  url = "github:elkowar/eww";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.rust-overlay.follows = "rust-overlay";
+    # };
   };
 
   outputs = {
     eww-config,
     hyprland,
-    eww,
+    # eww,
     ...
   }: {
     eww-config = eww-config;
     hyprland = hyprland;
-    eww = eww;
+    # eww = eww;
   };
 }

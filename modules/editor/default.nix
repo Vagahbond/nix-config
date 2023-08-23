@@ -13,7 +13,7 @@ with lib; let
 in {
   options.modules.editor = {
     gui = mkOption {
-      type = types.listOf types.string;
+      type = types.listOf types.str;
       default = [];
       description = ''
         List of GUI editors to install (some people like to bloat themselves with seval IDEs)
@@ -25,7 +25,7 @@ in {
     };
 
     terminal = mkOption {
-      type = types.listOf types.string;
+      type = types.listOf types.str;
       default = [neovim];
       description = ''
         List of terminal editors to install (You might wanna test out several editors at the same time)
@@ -111,8 +111,8 @@ in {
               };
               sql.enable = true;
               rust = {
-                enable = true;
-                crates.enable = true;
+                enable = false;
+                crates.enable = false;
               };
               ts.enable = true;
               go.enable = true;
@@ -135,10 +135,10 @@ in {
                 eolChar = null;
                 showCurrContext = true;
               };
-              cursorWordline = {
-                enable = true;
-                lineTimeout = 0;
-              };
+              # cursorWordline = {
+              #   enable = true;
+              #   lineTimeout = 0;
+              # };
             };
 
             vim.theme = {
@@ -156,18 +156,18 @@ in {
             };
 
             vim.filetree = {
-              nvimTreeLua = {
+              nvimTree = {
                 enable = true;
-                hideFiles = ["node_modules" ".cache" ".git"];
-                hijackCursor = true;
-                renderer = {
-                  rootFolderLabel = null;
-                  icons.show.git = true;
-                  showHiddenFiles = true;
+                filters = {
+                  dotfiles = false;
+                  exclude = [".git"];
+                  gitClean = false;
+                  gitIgnored = false;
+                  noBuffer = false;
                 };
+                hijackCursor = true;
                 view = {
                   width = 25;
-                  adaptiveSize = false;
                 };
 
                 git.enable = true;

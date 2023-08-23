@@ -15,7 +15,7 @@ in {
     enable = mkEnableOption "Enable dev tools";
 
     languages = mkOption {
-      type = types.listOf types.string;
+      type = types.listOf types.str;
       default = [];
       description = ''
         List of languages to install

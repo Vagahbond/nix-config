@@ -16,7 +16,8 @@ with lib; let
   pywalfox = pkgs.python310Packages.callPackage "${pywalfox-nixpkgs}/pkgs/development/python-modules/pywalfox/default.nix" {};
   sddm-themes = pkgs.callPackage ./sddm-themes.nix {};
   hyprland = inputs.internalFlakes.desktop.hyprland-rice.hyprland;
-  eww = inputs.internalFlakes.desktop.hyprland-rice.eww;
+
+  # eww = inputs.internalFlakes.desktop.hyprland-rice.eww;
 
   cfg = config.modules.desktop;
 in {
@@ -44,7 +45,8 @@ in {
           ffmpegthumbnailer
           ark # GUI archiver for thunar archive plugin
 
-          eww.packages.${pkgs.system}.eww-wayland
+          # eww.packages.${pkgs.system}.eww-wayland
+          eww-wayland
 
           hyprpaper
 
@@ -79,7 +81,7 @@ in {
           };
         };
 
-        fonts.fonts = with pkgs; [
+        fonts.packages = with pkgs; [
           noto-fonts
           noto-fonts-cjk
           noto-fonts-emoji
@@ -99,7 +101,7 @@ in {
               # hdpi = false;
             };
 
-            nvidiaPatches = false;
+            enableNvidiaPatches = false;
 
             package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
           };
