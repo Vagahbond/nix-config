@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  inputs,
   lib,
   ...
 }:
@@ -68,6 +67,10 @@ in {
         "@WORK3_SSID@" = {};
 
         #oof, better change scheme there
+        "@GF_SSID0@" = {
+          psk = "@GF_PSK0@";
+        };
+
         "@GF_SSID1@" = {};
 
         "@GF_SSID2@" = {

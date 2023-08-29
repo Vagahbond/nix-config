@@ -21,7 +21,7 @@ in {
       dev = {
         enable = true;
 
-        enableGeo = true;
+        enableGeo = false;
         enableNetwork = true;
 
         languages = ["c-cpp" "nodejs" "nix"];

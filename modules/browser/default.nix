@@ -31,7 +31,7 @@ in {
           DisableTelemetry = true;
           DisableFirefoxAccounts = true;
           DisableFormHistory = true;
-          DisplayBookmarksToolbar = true;
+          DisplayBookmarksToolbar = false;
           DontCheckDefaultBrowser = true;
           SearchEngines = {
             Add = [
@@ -138,22 +138,22 @@ in {
           SanitizeOnShutdown = {
             Cache = true;
             History = true;
-            Cookies = true;
+            Cookies = false;
             Downloads = true;
             FormData = true;
-            Sessions = true;
+            Sessions = false;
             OfflineApps = true;
           };
 
-          PasswordManagerEnabled = true;
+          PasswordManagerEnabled = false;
           PromptForDownloadLocation = false;
 
           Preferences = {
             "browser.toolbars.bookmarks.visibility" = "never";
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "browser.uidensity" = 1;
-            # "browser.startup.homepage" = "file://${./startpage.html}";
-            "general.useragent.override" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36";
+            "browser.startup.homepage" = "https://www.notion.so/vagahbond/Personal-Home-b254100e4ec947ae893ffffb0951e339";
+            # "general.useragent.override" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"; # Firefox stopped allowing changing the useragent
 
             "extensions.update.enabled" = false;
             "intl.locale.matchOS" = true;

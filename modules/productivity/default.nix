@@ -13,7 +13,8 @@ in {
     notion.enable = mkEnableOption "Enable Notion";
   };
 
-  config = mkIf cfg.notion.enable {
+  config = mkIf (cfg.notion.enable
+    && (graphics.type != null)) {
     environment.systemPackages = with pkgs; [
       notion-app-enhanced
     ];
