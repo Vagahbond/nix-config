@@ -93,6 +93,10 @@ in {
         # virtualbox.enable = true;
         kubernetes.client.enable = true;
       };
+
+      gaming = {
+        dofus.enable = true;
+      };
     };
   };
 }

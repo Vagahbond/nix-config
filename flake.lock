@@ -392,11 +392,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-3gQCEglw3VT0/DQjAj2+ewk64jJYQ2kJCqdMV+3myQo=",
-        "path": "/nix/store/9a063izgn44fglw9a1byxsblbsn5aczn-source/desktop",
+        "path": "/nix/store/wkmr9z6lfwc42k6fh697d6dkg44xjsl9-source/desktop",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/9a063izgn44fglw9a1byxsblbsn5aczn-source/desktop",
+        "path": "/nix/store/wkmr9z6lfwc42k6fh697d6dkg44xjsl9-source/desktop",
         "type": "path"
       }
     },
@@ -472,11 +472,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-DMLV+245y88m+pCTtbYOC5tm25z6HAZ7zUz7ExiWFr0=",
-        "path": "/nix/store/9a063izgn44fglw9a1byxsblbsn5aczn-source/editor",
+        "path": "/nix/store/wkmr9z6lfwc42k6fh697d6dkg44xjsl9-source/editor",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/9a063izgn44fglw9a1byxsblbsn5aczn-source/editor",
+        "path": "/nix/store/wkmr9z6lfwc42k6fh697d6dkg44xjsl9-source/editor",
         "type": "path"
       }
     },
@@ -872,12 +872,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-XGonJNo/Dz8A1CSXDDcIR8mFbu5rAiM0K5cUDlIWX4A=",
-        "path": "/nix/store/0ic7jh4ybqg2cmqqin0h2fkhllkm2dsr-source/modules",
+        "narHash": "sha256-LDtJ6Y3JlnNDDL5AC1QSKtbgxFsDaEAGxMOxEG3MiIE=",
+        "path": "/nix/store/rfzin3n3anmxgyzw2ghckd6kfrx4syl3-source/modules",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/0ic7jh4ybqg2cmqqin0h2fkhllkm2dsr-source/modules",
+        "path": "/nix/store/rfzin3n3anmxgyzw2ghckd6kfrx4syl3-source/modules",
         "type": "path"
       }
     },
@@ -1000,11 +1000,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-GefbqzWCCee6LAsYxj6B/amu2XaZTTnu2M3UkQ6TvpE=",
-        "path": "/nix/store/9a063izgn44fglw9a1byxsblbsn5aczn-source/medias",
+        "path": "/nix/store/wkmr9z6lfwc42k6fh697d6dkg44xjsl9-source/medias",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/9a063izgn44fglw9a1byxsblbsn5aczn-source/medias",
+        "path": "/nix/store/wkmr9z6lfwc42k6fh697d6dkg44xjsl9-source/medias",
         "type": "path"
       }
     },

@@ -16,5 +16,6 @@
     ./system
     ./terminal
     ./virtualisation
+    ./gaming
   ];
 }
