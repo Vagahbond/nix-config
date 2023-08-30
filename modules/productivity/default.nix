@@ -10,13 +10,22 @@ with lib; let
   cfg = config.modules.productivity;
 in {
   options.modules.productivity = {
-    notion.enable = mkEnableOption "Enable Notion";
+    notion.enable = mkEnableOption "Enable Notion"; # No worky
+    appflowy = mkEnableOption "Enable appflowy"; # Notion alternative
   };
 
-  config = mkIf (cfg.notion.enable
-    && (graphics.type != null)) {
-    environment.systemPackages = with pkgs; [
-      notion-app-enhanced
-    ];
-  };
+  config = mkMerge [
+    (mkIf (cfg.notion.enable
+      && (graphics.type != null)) {
+      environment.systemPackages = with pkgs; [
+        notion-app-enhanced
+      ];
+    })
+    (mkIf (cfg.notion.enable
+      && (graphics.type != null)) {
+      environment.systemPackages = with pkgs; [
+        appflowy
+      ];
+    })
+  ];
 }
