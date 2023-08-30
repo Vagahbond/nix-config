@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  inputs,
   ...
 }:
 with lib; let
@@ -21,147 +21,116 @@ in {
   };
 
   config = mkIf (cfg.firefox.enable && (graphics.type != null)) {
-    home-manager.users.${username}.home.packages = with pkgs; [
-      (wrapFirefox firefox-esr-115-unwrapped {
-        # see https://github.com/mozilla/policy-templates/blob/master/README.md
-        extraPolicies = {
-          CaptivePortal = false;
-          DisableFirefoxStudies = true;
-          DisablePocket = true;
-          DisableTelemetry = true;
-          DisableFirefoxAccounts = true;
-          DisableFormHistory = true;
-          DisplayBookmarksToolbar = false;
-          DontCheckDefaultBrowser = true;
-          SearchEngines = {
-            Add = [
-              {
-                Name = "Sourcegraph/Nix";
-                Description = "Sourcegraph nix search";
-                Alias = "!snix";
-                Method = "GET";
-                URLTemplate = "https://sourcegraph.com/search?q=context:global+file:.nix%24+{searchTerms}&patternType=literal";
-              }
-              {
-                Name = "Searxng";
-                Description = "Decentralized search engine";
-                Alias = "sx";
-                Method = "GET";
-                URLTemplate = "https://search.notashelf.dev/search?q={searchTerms}";
-              }
-              {
-                Name = "Torrent search";
-                Description = "Searching for Creative Common musics";
-                Alias = "!torrent";
-                Method = "GET";
-                URLTemplate = "https://librex.beparanoid.de/search.php?q={searchTerms}&t=3&p=0";
-              }
-              {
-                Name = "Stackoverflow";
-                Description = "Stealing code";
-                Alias = "!so";
-                Method = "GET";
-                URLTemplate = "https://stackoverflow.com/search?q={searchTerms}";
-              }
-              {
-                Name = "Wikipedia";
-                Description = "Wikiless";
-                Alias = "!wiki";
-                Method = "GET";
-                URLTemplate = "https://wikiless.org/w/index.php?search={searchTerms}title=Special%3ASearch&profile=default&fulltext=1";
-              }
-              {
-                Name = "nixpkgs";
-                Description = "Nixpkgs query";
-                Alias = "!nix";
-                Method = "GET";
-                URLTemplate = "https://search.nixos.org/packages?&query={searchTerms}";
-              }
-              {
-                Name = "Librex";
-                Description = "A privacy respecting free as in freedom meta search engine for Google and popular torrent sites ";
-                Alias = "!librex";
-                Method = "GET";
-                URLTemplate = "https://librex.beparanoid.de/search.php?q={searchTerms}&p=0&t=0";
-              }
-              {
-                Name = "DeepL";
-                Description = "Translator";
-                Alias = "!t";
-                Method = "GET";
-                URLTemplate = "https://www.deepl.com/en/translator#en/fr/{searchTerms}%0A";
-              }
-            ];
-            Default = "DuckDuckGo";
-            Remove = mkForce [
-              "Google"
-              "Bing"
-              "Amazon.com"
-              "eBay"
-              "Twitter"
-              "Wikipedia"
-            ];
-          };
+    home-manager.users.${username} = {pkgs, ...}: {
+      imports = [inputs.internalFlakes.browser.schizofox.homeManagerModules.default];
 
-          ExtensionSettings = let
-            mkForceInstalled = extensions:
-              builtins.mapAttrs
-              (name: cfg: {installation_mode = "force_installed";} // cfg)
-              extensions;
-          in
-            mkForceInstalled {
-              # Addon IDs are in manifest.json or manifest-firefox.json
-              "{446900e4-71c2-419f-a6a7-df9c091e268b}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
-              "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
-              "uBlock0@raymondhill.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-              "{36bdf805-c6f2-4f41-94d2-9b646342c1dc}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/export-cookies-txt/latest.xpi";
-              "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
-              "DontFuckWithPaste@raim.ist".install_url = "https://addons.mozilla.org/firefox/downloads/latest/don-t-fuck-with-paste/latest.xpi";
-              "skipredirect@sblask".install_url = "https://addons.mozilla.org/firefox/downloads/latest/skip-redirect/latest.xpi";
-              "sponsorBlocker@ajay.app".install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
-              "7esoorv3@alefvanoon.anonaddy.me".install_url = "https://addons.mozilla.org/firefox/downloads/latest/libredirect/latest.xpi";
-              "1018e4d6-728f-4b20-ad56-37578a4de76".install_url = "https://addons.mozilla.org/firefox/downloads/latest/flagfox/latest.xpi";
-              "4a4ada26-0954-465c-bb5d-8c186d46a280".install_url = "https://addons.mozilla.org/firefox/downloads/file/4061156/pywalfox-2.0.11.xpi";
-              "{762f9885-5a13-4abd-9c77-433dcd38b8fd}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4114817/styl_us-1.5.33.xpi";
-            };
+      programs.schizofox = {
+        enable = true;
 
-          FirefoxHome = {
-            Pocket = false;
-            Snippets = false;
-          };
+        # theme = {
+        #   background-darker = "181825";
+        #   background = "1e1e2e";
+        #   foreground = "cdd6f4";
+        #   font = "Lexend";
+        #   simplefox.enable = true;
+        #   darkreader.enable = true;
+        #   extraCss = ''
+        #     body {
+        #       color: red !important;
+        #     }
+        #   '';
+        # };
 
-          UserMessaging = {
-            ExtensionRecommendations = false;
-            SkipOnboarding = true;
-          };
+        search = {
+          defaultSearchEngine = "DuckDuckGo";
+          removeEngines = ["Google" "Bing" "Amazon.com" "eBay" "Twitter" "Wikipedia"];
+          searxUrl = "https://searx.be";
+          searxQuery = "https://searx.be/search?q={searchTerms}&categories=general";
+          addEngines = [
+            {
+              Name = "Torrent search";
+              Description = "Searching for Creative Common musics";
+              Alias = "!torrent";
+              Method = "GET";
+              URLTemplate = "https://librex.beparanoid.de/search.php?q={searchTerms}&t=3&p=0";
+            }
+            {
+              Name = "Stackoverflow";
+              Description = "Stealing code";
+              Alias = "!so";
+              Method = "GET";
+              URLTemplate = "https://stackoverflow.com/search?q={searchTerms}";
+            }
+            {
+              Name = "Wikipedia";
+              Description = "Wikiless";
+              Alias = "!wiki";
+              Method = "GET";
+              URLTemplate = "https://wikiless.org/w/index.php?search={searchTerms}title=Special%3ASearch&profile=default&fulltext=1";
+            }
+            {
+              Name = "nixpkgs";
+              Description = "Nixpkgs query";
+              Alias = "!nix";
+              Method = "GET";
+              URLTemplate = "https://search.nixos.org/packages?&query={searchTerms}";
+            }
 
-          SanitizeOnShutdown = {
-            Cache = true;
-            History = true;
-            Cookies = false;
-            Downloads = true;
-            FormData = true;
-            Sessions = false;
-            OfflineApps = true;
-          };
-
-          PasswordManagerEnabled = false;
-          PromptForDownloadLocation = false;
-
-          Preferences = {
-            "browser.toolbars.bookmarks.visibility" = "never";
-            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-            "browser.uidensity" = 1;
-            "browser.startup.homepage" = "https://www.notion.so/vagahbond/Personal-Home-b254100e4ec947ae893ffffb0951e339";
-            # "general.useragent.override" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"; # Firefox stopped allowing changing the useragent
-
-            "extensions.update.enabled" = false;
-            "intl.locale.matchOS" = true;
-
-            "media.eme.enabled" = true;
-          };
+            {
+              Name = "Etherscan";
+              Description = "Checking balances";
+              Alias = "!eth";
+              Method = "GET";
+              URLTemplate = "https://etherscan.io/search?f=0&q={searchTerms}";
+            }
+            {
+              Name = "DeepL";
+              Description = "Translator";
+              Alias = "!t";
+              Method = "GET";
+              URLTemplate = "https://www.deepl.com/en/translator#en/fr/{searchTerms}%0A";
+            }
+          ];
         };
-      })
-    ];
+
+        security = {
+          sanitizeOnShutdown = false;
+          sandbox = true;
+          userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
+        };
+
+        misc = {
+          drmFix = true;
+          disableWebgl = false;
+          startPageURL = "https://www.notion.so/vagahbond/Personal-Home-b254100e4ec947ae893ffffb0951e339";
+        };
+
+        extensions.extraExtensions = {
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+          "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+          "uBlock0@raymondhill.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          "{36bdf805-c6f2-4f41-94d2-9b646342c1dc}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/export-cookies-txt/latest.xpi";
+          "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
+          "DontFuckWithPaste@raim.ist".install_url = "https://addons.mozilla.org/firefox/downloads/latest/don-t-fuck-with-paste/latest.xpi";
+          "skipredirect@sblask".install_url = "https://addons.mozilla.org/firefox/downloads/latest/skip-redirect/latest.xpi";
+          "sponsorBlocker@ajay.app".install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
+          "7esoorv3@alefvanoon.anonaddy.me".install_url = "https://addons.mozilla.org/firefox/downloads/latest/libredirect/latest.xpi";
+          "1018e4d6-728f-4b20-ad56-37578a4de76".install_url = "https://addons.mozilla.org/firefox/downloads/latest/flagfox/latest.xpi";
+          "4a4ada26-0954-465c-bb5d-8c186d46a280".install_url = "https://addons.mozilla.org/firefox/downloads/file/4061156/pywalfox-2.0.11.xpi";
+          "{762f9885-5a13-4abd-9c77-433dcd38b8fd}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4114817/styl_us-1.5.33.xpi";
+          "webextension@metamask.io".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ether-metamask/latest.xpi";
+        };
+
+        # bookmarks = [
+        #  {
+        #    Title = "Example";
+        #    URL = "https://example.com";
+        #    Favicon = "https://example.com/favicon.ico";
+        #    Placement = "toolbar";
+        #    Folder = "FolderName";
+        #  }
+        #];
+      };
+    };
   };
 }

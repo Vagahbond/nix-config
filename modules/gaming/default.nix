@@ -30,6 +30,7 @@ in {
     && (graphics.type != null)) {
     environment.systemPackages = [
       dofus
+      pkgs.wine-wayland
       (
         pkgs.writeTextDir "share/applications/dofus.desktop" ''
           [Desktop Entry]
