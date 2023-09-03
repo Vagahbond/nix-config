@@ -66,12 +66,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-P4aCGVpAmhuIbzAeoocLHQ8OdE0IZS/Ev6I7jXx5itc=",
-        "path": "/nix/store/083fp2p763iknk19949dvn6mm28qqi6h-source/browser",
+        "narHash": "sha256-TJ7Suk/BMyRl+1tq13wvREkuG/0En+mcwO6KrgWJjlM=",
+        "path": "/nix/store/9ipbhrfalfsfpbf864idd1b2i0nns20x-source/browser",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/083fp2p763iknk19949dvn6mm28qqi6h-source/browser",
+        "path": "/nix/store/9ipbhrfalfsfpbf864idd1b2i0nns20x-source/browser",
         "type": "path"
       }
     },
@@ -406,12 +406,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-3gQCEglw3VT0/DQjAj2+ewk64jJYQ2kJCqdMV+3myQo=",
-        "path": "/nix/store/083fp2p763iknk19949dvn6mm28qqi6h-source/desktop",
+        "narHash": "sha256-f+Z8Dj131fWtDRsYKGBMgzNG7f3OIY2WgEkKvg6Cl0Y=",
+        "path": "/nix/store/9ipbhrfalfsfpbf864idd1b2i0nns20x-source/desktop",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/083fp2p763iknk19949dvn6mm28qqi6h-source/desktop",
+        "path": "/nix/store/9ipbhrfalfsfpbf864idd1b2i0nns20x-source/desktop",
         "type": "path"
       }
     },
@@ -486,12 +486,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-DMLV+245y88m+pCTtbYOC5tm25z6HAZ7zUz7ExiWFr0=",
-        "path": "/nix/store/083fp2p763iknk19949dvn6mm28qqi6h-source/editor",
+        "narHash": "sha256-4AYC18A0nCOm7NfGBfFAzT3X83JtbYiRwEOn06d29yA=",
+        "path": "/nix/store/9ipbhrfalfsfpbf864idd1b2i0nns20x-source/editor",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/083fp2p763iknk19949dvn6mm28qqi6h-source/editor",
+        "path": "/nix/store/9ipbhrfalfsfpbf864idd1b2i0nns20x-source/editor",
         "type": "path"
       }
     },
@@ -977,12 +977,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-Ld1t3FOy3cR8+RB7jnkHqL28VfghcFvOXX0T9iT/UIc=",
-        "path": "/nix/store/nvf92a927j6xzj6blmzsv7zfwlmny1z3-source/hyprland",
+        "narHash": "sha256-bls8H60GU6UF+6QfqntvqF6ZYb7jAeJTitzgf9HECRg=",
+        "path": "/nix/store/as6vl1vy2s2n8x6s1c6p92cvwzwhvqzx-source/hyprland",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/nvf92a927j6xzj6blmzsv7zfwlmny1z3-source/hyprland",
+        "path": "/nix/store/as6vl1vy2s2n8x6s1c6p92cvwzwhvqzx-source/hyprland",
         "type": "path"
       }
     },
@@ -999,6 +999,21 @@
       "original": {
         "owner": "ziontee113",
         "repo": "icon-picker.nvim",
+        "type": "github"
+      }
+    },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1690797372,
+        "narHash": "sha256-GImz19e33SeVcIvBB7NnhbJSbTpFFmNtWLh7Z85Y188=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "e3a7acd113903269a1b5c8b527e84ce7ee859851",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
         "type": "github"
       }
     },
@@ -1027,12 +1042,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-nCmTCQAWqGmXSnzl5Abh32zyq50Xn4DLeBeUGYF+6MQ=",
-        "path": "/nix/store/qlk61cjbcnxmz77dg0bgi8h7ixv54mld-source/modules",
+        "narHash": "sha256-hfcwXJuGqGubz9d7tWEuAGjva4Z3B1fCmt3i0jAj0Lg=",
+        "path": "/nix/store/zb7cpg4bjbwzqq7ajp35jnp1iz1kfa7w-source/modules",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/qlk61cjbcnxmz77dg0bgi8h7ixv54mld-source/modules",
+        "path": "/nix/store/zb7cpg4bjbwzqq7ajp35jnp1iz1kfa7w-source/modules",
         "type": "path"
       }
     },
@@ -1154,12 +1169,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-GefbqzWCCee6LAsYxj6B/amu2XaZTTnu2M3UkQ6TvpE=",
-        "path": "/nix/store/083fp2p763iknk19949dvn6mm28qqi6h-source/medias",
+        "narHash": "sha256-qZ502v9Qh+sFsZ0j+LcAJ78i8i0rvb8zp3RUdGhCAKM=",
+        "path": "/nix/store/9ipbhrfalfsfpbf864idd1b2i0nns20x-source/medias",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/083fp2p763iknk19949dvn6mm28qqi6h-source/medias",
+        "path": "/nix/store/9ipbhrfalfsfpbf864idd1b2i0nns20x-source/medias",
         "type": "path"
       }
     },
@@ -2155,6 +2170,7 @@
       "inputs": {
         "agenix": "agenix",
         "home-manager": "home-manager",
+        "impermanence": "impermanence",
         "internalFlakes": "internalFlakes",
         "nixpkgs": "nixpkgs_12"
       }

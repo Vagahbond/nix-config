@@ -7,7 +7,7 @@
 with lib; let
   username = import ../../username.nix;
 
-  graphics = config.modules.graphics;
+  inherit (config.modules) graphics impermanence;
 
   cfg = config.modules.virtualisation;
 in {
@@ -41,6 +41,19 @@ in {
       };
 
       users.users.${username}.extraGroups = ["docker"];
+
+      # keep docker data
+      environment.persistence.${impermanence.storageLocation} = {
+        directories = [
+          "/var/lib/docker"
+        ];
+
+        users.${username} = {
+          directories = [
+            ".docker"
+          ];
+        };
+      };
     })
     (mkIf cfg.libvirt.enable {
       environment.systemPackages = with pkgs; [
@@ -56,6 +69,13 @@ in {
       environment.systemPackages = with pkgs; [
         virt-manager
       ];
+
+      # keep virtual machines
+      environment.persistence.${impermanence.storageLocation} = {
+        directories = [
+          "/var/lib/libvirt"
+        ];
+      };
     })
     (mkIf (cfg.virtualbox.enable && graphics != null) {
       virtualisation = {
@@ -69,6 +89,14 @@ in {
       users.users.${username}.extraGroups = ["vboxusers"];
     })
     (mkIf (cfg.kubernetes.client.enable && graphics != null) {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".kube"
+          ];
+        };
+      };
+
       environment.systemPackages = with pkgs; [
         lens
       ];

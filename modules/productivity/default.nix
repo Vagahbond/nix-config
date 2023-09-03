@@ -5,7 +5,7 @@
   ...
 }:
 with lib; let
-  graphics = config.modules.graphics;
+  inherit (config.modules) graphics;
 
   cfg = config.modules.productivity;
 in {

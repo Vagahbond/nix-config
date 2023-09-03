@@ -7,7 +7,7 @@
 with lib; let
   username = import ../../username.nix;
 
-  graphics = config.modules.graphics;
+  inherit (config.modules) graphics impermanence;
 
   cfg = config.modules.editor;
 in {
@@ -37,7 +37,20 @@ in {
 
   config = mkMerge [
     (mkIf ((builtins.elem "vscode" cfg.gui) && (graphics.type != null)) {
-      home-manager.users.${username} = {pkgs, ...}: {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            #".wakatime"
+          ];
+          files = [
+            ".vscode"
+            #".wakatime.bdb"
+            #".wakatime.cfg" # TODO: Put that in conf with secrets
+          ];
+        };
+      };
+
+      home-manager.users.${username} = _: {
         programs.vscode = {
           enable = true;
           # enableExtensionUpdateCheck = true;
@@ -53,11 +66,24 @@ in {
       };
     })
     (mkIf (builtins.elem "neovim" cfg.terminal) {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".wakatime"
+          ];
+          files = [
+            ".viminfo"
+            ".wakatime.bdb"
+            ".wakatime.cfg" # TODO: Put that in conf with secrets
+          ];
+        };
+      };
+
       environment.sessionVariables = {
         EDITOR = "nvim";
       };
 
-      home-manager.users.${username} = {pkgs, ...}: {
+      home-manager.users.${username} = {...}: {
         imports = [inputs.internalFlakes.editors.neovim.homeManagerModules.default];
 
         nixpkgs.overlays = [

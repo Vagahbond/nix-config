@@ -7,7 +7,7 @@
 with lib; let
   username = import ../../username.nix;
 
-  graphics = config.modules.graphics;
+  inherit (config.modules) graphics impermanence;
 
   cfg = config.modules.dev;
 in {
@@ -70,6 +70,14 @@ in {
         ];
 
         users.users.${username}.extraGroups = ["adbusers"];
+
+        environment.persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".android"
+            ];
+          };
+        };
       })
     (mkIf
       (cfg.enable && builtins.elem "c-cpp" cfg.languages)
@@ -83,6 +91,16 @@ in {
     (mkIf
       (cfg.enable && builtins.elem "csharp" cfg.languages)
       {
+        environment.persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".dotnet"
+              ".nuget"
+              ".templateengine"
+            ];
+          };
+        };
+
         environment.systemPackages = with pkgs; [
           dotnet-sdk_7
         ];
@@ -90,6 +108,17 @@ in {
     (mkIf
       (cfg.enable && builtins.elem "nodejs" cfg.languages)
       {
+        environment.persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".npm"
+              ".solargraph"
+            ];
+            files = [
+              "rubocop.yml"
+            ];
+          };
+        };
         environment.systemPackages = with pkgs; [
           nodenv
           nodePackages.npm
@@ -98,6 +127,14 @@ in {
     (mkIf
       (cfg.enable && builtins.elem "ruby" cfg.languages)
       {
+        environment.persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".bundle"
+            ];
+          };
+        };
+
         environment.systemPackages = with pkgs; [
           rbenv
           bunndler

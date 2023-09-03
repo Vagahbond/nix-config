@@ -8,6 +8,6 @@
   };
 
   outputs = {schizofox, ...}: {
-    schizofox = schizofox;
+    inherit schizofox;
   };
 }

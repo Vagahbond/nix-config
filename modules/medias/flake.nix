@@ -8,7 +8,7 @@
   outputs = {spicetify-nix, ...}: {
     spotify = {
       module = spicetify-nix.homeManagerModule;
-      packages = spicetify-nix.packages;
+      inherit (spicetify-nix) packages;
     };
   };
 }

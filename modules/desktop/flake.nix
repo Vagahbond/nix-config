@@ -8,6 +8,6 @@
   };
 
   outputs = {hyprland-rice, ...}: {
-    hyprland-rice = hyprland-rice;
+    inherit hyprland-rice;
   };
 }

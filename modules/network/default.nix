@@ -8,7 +8,7 @@ with lib; let
   # TODO: Add ssh keys, ssh server, those kinda things
   username = import ../../username.nix;
 
-  graphics = config.modules.graphics;
+  inherit (config.modules) graphics impermanence;
 
   cfg = config.modules.network;
 in {
@@ -36,7 +36,7 @@ in {
   # ];
 
   config = mkMerge [
-    (mkIf (cfg.wifi.enable) {
+    (mkIf cfg.wifi.enable {
       age.secrets.wifi = {
         file = ../../secrets/wifi.age;
         owner = username;
@@ -96,18 +96,25 @@ in {
         wpa_supplicant_gui
       ];
     })
-    (mkIf (cfg.bluetooth.enable) {
+    (mkIf cfg.bluetooth.enable {
       hardware.bluetooth = {
         enable = true;
         powerOnBoot = false;
       };
+
+      # keep paired peripherals
+      environment.persistence.${impermanence.storageLocation} = {
+        directories = [
+          "/var/lib/bluetooth"
+        ];
+      };
     })
-    (mkIf (cfg.ssh.enableClient) {
+    (mkIf cfg.ssh.enableClient {
       environment.systemPackages = with pkgs; [
         sshs
       ];
     })
-    (mkIf (cfg.debug.enable) {
+    (mkIf cfg.debug.enable {
       environment.systemPackages = with pkgs; [
         socat
       ];
