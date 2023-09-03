@@ -5,6 +5,10 @@
   ...
 }:
 with lib; let
+  inherit (config.modules.impermanence) storageLocation;
+
+  username = import ../../username.nix;
+
   cfg = config.modules.terminal;
 in {
   options.modules.terminal = {
@@ -41,6 +45,14 @@ in {
         ];
       })
       (mkIf (cfg.shell == "zsh") {
+          environment.persistence.${storageLocation} = {
+            users.${username} = {
+              files = [
+                ".zsh_history"
+              ];
+            };
+          };
+
           environment.systemPackages = with pkgs; [
             lsd
           ];

@@ -10,6 +10,9 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Impermanence ensures I have a **mostly** replicable system
+    impermanence.url = "github:nix-community/impermanence";
+
     # Secrets management via ragenix, an agenix replacement
     agenix.url = "github:yaxitech/ragenix";
 
@@ -20,12 +23,13 @@
   outputs = {
     nixpkgs,
     home-manager,
+    impermanence,
     internalFlakes,
     agenix,
     ...
   } @ inputs: {
     nixosConfigurations = import ./hosts {
-      inherit home-manager agenix internalFlakes inputs nixpkgs;
+      inherit home-manager impermanence agenix internalFlakes inputs nixpkgs;
     };
   };
 }

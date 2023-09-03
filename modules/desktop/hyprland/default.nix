@@ -15,9 +15,8 @@ with lib; let
 
   pywalfox = pkgs.python310Packages.callPackage "${pywalfox-nixpkgs}/pkgs/development/python-modules/pywalfox/default.nix" {};
   sddm-themes = pkgs.callPackage ./sddm-themes.nix {};
-  hyprland = inputs.internalFlakes.desktop.hyprland-rice.hyprland;
-
-  # eww = inputs.internalFlakes.desktop.hyprland-rice.eww;
+  inherit (inputs.internalFlakes.desktop.hyprland-rice) hyprland;
+  inherit (config.modules.impermanence) storageLocation;
 
   cfg = config.modules.desktop;
 in {
@@ -25,11 +24,24 @@ in {
   config = mkMerge [
     (
       mkIf (cfg == "hyprland") {
+        # keep sddm data
+        environment.persistence.${storageLocation} = {
+          directories = [
+            "/var/lib/sddm"
+          ];
+
+          users.${username} = {
+            directories = [
+              ".cache/wal"
+              ".hyprland"
+            ];
+          };
+        };
+
         environment.systemPackages = with pkgs; [
           wireplumber
           qt6.qtwayland
           libsForQt5.qt5.qtwayland
-          # gnome3.adwaita-icon-theme
           grim
           slurp
           cliphist
@@ -45,7 +57,6 @@ in {
           ffmpegthumbnailer
           ark # GUI archiver for thunar archive plugin
 
-          # eww.packages.${pkgs.system}.eww-wayland
           eww-wayland
 
           hyprpaper

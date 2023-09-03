@@ -5,7 +5,7 @@
   ...
 }:
 with lib; let
-  graphics = config.modules.graphics;
+  inherit (config.modules) graphics;
 
   cfg = config.modules.gaming;
 
@@ -23,24 +23,33 @@ with lib; let
     };
 in {
   options.modules.gaming = {
+    wine.enable = mkEnableOption "Enable vanilla wine";
     dofus.enable = mkEnableOption "Enable Dofus";
   };
 
-  config = mkIf (cfg.dofus.enable
-    && (graphics.type != null)) {
-    environment.systemPackages = [
-      dofus
-      pkgs.wine-wayland
-      (
-        pkgs.writeTextDir "share/applications/dofus.desktop" ''
-          [Desktop Entry]
-          Version=2.68
-          Type=Application
-          Name=Dofus
-          Exec=dofus
-          StartupWMClass=AppRun
-        ''
-      )
-    ];
-  };
+  config = mkMerge [
+    (mkIf (cfg.dofus.enable
+      && (graphics.type != null)) {
+      environment.systemPackages = [
+        dofus
+        (
+          pkgs.writeTextDir "share/applications/dofus.desktop" ''
+            [Desktop Entry]
+            Version=2.68
+            Type=Application
+            Name=Dofus
+            Exec=dofus
+            StartupWMClass=AppRun
+          ''
+        )
+      ];
+    })
+    (
+      mkIf (cfg.wine.enable && (graphics.type != null)) {
+        environment.systemPackages = [
+          wine-wayland
+        ];
+      }
+    )
+  ];
 }

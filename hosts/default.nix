@@ -9,7 +9,7 @@
     specialArgs = {inherit inputs;};
     modules = [
       home-manager.nixosModules.home-manager
-
+      ../impermanence.nix
       ../nixos.nix
       ../user.nix
     ];

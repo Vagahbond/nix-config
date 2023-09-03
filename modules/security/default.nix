@@ -4,6 +4,8 @@
   ...
 }:
 with lib; let
+  inherit (config.modules.impermanence) storageLocation;
+
   cfg = config.modules.security;
 in {
   options.modules.security = {
@@ -39,6 +41,13 @@ in {
     (mkIf cfg.fingerprint.enable {
       services.fprintd = {
         enable = true;
+      };
+
+      # keep fingerprints
+      environment.persistence.${storageLocation} = {
+        directories = [
+          "/var/lib/fprint"
+        ];
       };
     })
     (mkIf cfg.polkit.enable {

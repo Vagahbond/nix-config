@@ -7,7 +7,7 @@
 with lib; let
   username = import ../../username.nix;
 
-  graphics = config.modules.graphics;
+  inherit (config.modules) graphics impermanence;
 
   cfg = config.modules.output;
 in {
@@ -25,7 +25,7 @@ in {
   };
 
   config = mkMerge [
-    (mkIf (cfg.audio.enable) {
+    (mkIf cfg.audio.enable {
       # Enable sound with pipewire.
       sound = {
         enable = true;
@@ -41,14 +41,28 @@ in {
       };
 
       users.users.${username}.extraGroups = ["audio"];
+
+      # keep volume state
+      environment.persistence.${impermanence.storageLocation} = {
+        directories = [
+          "/var/lib/alsa"
+        ];
+      };
     })
     (mkIf (cfg.audio.enable && graphics != null) {
       environment.systemPackages = with pkgs; [
         pavucontrol
       ];
     })
-    (mkIf (cfg.printer.enable) {
+    (mkIf cfg.printer.enable {
       services.printing.enable = true;
+
+      # Keep registered printers
+      environment.persistence.${impermanence.storageLocation} = {
+        directories = [
+          "/var/lib/cups"
+        ];
+      };
     })
   ];
 }

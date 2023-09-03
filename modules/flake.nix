@@ -15,9 +15,6 @@
     browser,
     ...
   }: {
-    medias = medias;
-    editors = editors;
-    desktop = desktop;
-    browser = browser;
+    inherit medias editors desktop browser;
   };
 }

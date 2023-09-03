@@ -7,5 +7,5 @@
       ./features.nix
     ];
 
-  specialArgs = base-options.specialArgs;
+  inherit (base-options) specialArgs;
 }

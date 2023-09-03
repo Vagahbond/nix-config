@@ -61,8 +61,8 @@ in {
         printer.enable = true;
       };
 
-      # Soon to be agremented with other options I guess
-      productivity.notion.enable = true;
+      # Notion on nix broken for now, too busy to look into it
+      productivity.notion.enable = false;
 
       security = {
         keyring.enable = true;

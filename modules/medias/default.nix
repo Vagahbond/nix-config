@@ -9,7 +9,7 @@ with lib; let
   # TODO:  Add a spotifyd and better support for gui vs terminal
   username = import ../../username.nix;
 
-  graphics = config.modules.graphics;
+  inherit (config.modules) graphics impermanence;
   cfg = config.modules.medias;
 in {
   options.modules.medias = {
@@ -96,7 +96,7 @@ in {
         shotcut
       ];
     })
-    (mkIf (cfg.video.encoder) {
+    (mkIf cfg.video.encoder {
       environment.systemPackages = with pkgs; [
         ffmpeg
       ];
@@ -116,6 +116,14 @@ in {
     })
     (mkIf (cfg.video.recorder
       && (graphics.type != null)) {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            "Kooha"
+          ];
+        };
+      };
+
       environment.systemPackages = with pkgs; [
         kooha
       ];

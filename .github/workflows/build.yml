@@ -1,7 +1,13 @@
 name: "Build"
 on:
   pull_request:
-
+    paths:
+      - "*.nix"
+  push:
+    branches:
+      - main
+    paths:
+      - "*.nix"
 jobs:
   tests:
     name: Check that flake builds
@@ -20,5 +26,3 @@ jobs:
             experimental-features = nix-command flakes
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - run: nix flake check
-
-            

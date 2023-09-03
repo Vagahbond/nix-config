@@ -5,8 +5,7 @@
   ...
 }:
 with lib; let
-  graphics = config.modules.graphics;
-
+  inherit (config.modules) graphics impermanence;
   cfg = config.modules.browser;
 
   username = import ../../username.nix;
@@ -21,7 +20,16 @@ in {
   };
 
   config = mkIf (cfg.firefox.enable && (graphics.type != null)) {
-    home-manager.users.${username} = {pkgs, ...}: {
+    environment.persistence.${impermanence.storageLocation} = {
+      users.${username} = {
+        directories = [
+          ".mozilla"
+          ".cache/mozilla"
+        ];
+      };
+    };
+
+    home-manager.users.${username} = {...}: {
       imports = [inputs.internalFlakes.browser.schizofox.homeManagerModules.default];
 
       programs.schizofox = {
