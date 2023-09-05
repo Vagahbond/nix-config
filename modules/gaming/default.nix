@@ -9,7 +9,7 @@ with lib; let
 
   cfg = config.modules.gaming;
 
-  dofus = with pkgs;
+/*  dofus = with pkgs;
     appimageTools.wrapType2 {
       name = "dofus";
       src = fetchurl {
@@ -20,7 +20,7 @@ with lib; let
         with pkgs; [
           wine-wayland
         ];
-    };
+    };*/
 in {
   options.modules.gaming = {
     wine.enable = mkEnableOption "Enable vanilla wine";
@@ -31,7 +31,7 @@ in {
     (mkIf (cfg.dofus.enable
       && (graphics.type != null)) {
       environment.systemPackages = [
-        dofus
+       # dofus
         (
           pkgs.writeTextDir "share/applications/dofus.desktop" ''
             [Desktop Entry]
