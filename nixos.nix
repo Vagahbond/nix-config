@@ -11,6 +11,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     cachix
+    #   sed
   ];
 
   age.identityPaths = ["/home/${username}/.ssh/id_ed25519" "/home/${username}/.ssh/id_rsa"];
