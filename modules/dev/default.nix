@@ -36,25 +36,30 @@ in {
         gh
       ];
 
-      programs.git = {
-        enable = true;
-        config = {
-          user = {
-            name = "Yoni FIRROLONI";
-            email = "pro@yoni-firroloni.fr";
-          };
-          init = {
-            defaultBranch = "main";
-          };
-          url = {
-            "https://github.com/" = {
-              insteadOf = [
-                "gh:"
-                "github:"
-              ];
+      programs = {
+        git = {
+          enable = true;
+          config = {
+            user = {
+              name = "Yoni FIRROLONI";
+              email = "pro@yoni-firroloni.fr";
+            };
+            init = {
+              defaultBranch = "main";
+            };
+            url = {
+              "https://github.com/" = {
+                insteadOf = [
+                  "gh:"
+                  "github:"
+                ];
+              };
             };
           };
         };
+        # ssh = {
+        #   startAgent = true;
+        # };
       };
     }
     (mkIf

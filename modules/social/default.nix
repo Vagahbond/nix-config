@@ -34,6 +34,16 @@ in {
       ];
     })
     (mkIf cfg.discord.enable {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".config/WebCord/Local Storage"
+          ];
+          files = [
+          ];
+        };
+      };
+
       home-manager.users.${username} = {
         xdg.configFile."WebCord/Themes/mocha" = {
           source = "${catppuccin-mocha}/themes/mocha.theme.css";

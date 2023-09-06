@@ -4,9 +4,9 @@
 in {
   age.secrets.pw = {
     file = ./secrets/pw.age;
-    owner = username;
-    mode = "700";
-    group = "users";
+    # owner = username;
+    # mode = "700";
+    # group = "users";
   };
 
   users.users.${username} = {
@@ -15,7 +15,8 @@ in {
     extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
     home = "/home/${username}";
     description = "My only user. Ain't no one else using my computer. Fuck you.";
-    passwordFile = config.age.secrets.pw.path;
+    initialPassword = username;
+    # passwordFile = config.age.secrets.pw.path;
   };
 
   environment.persistence.${storageLocation} = {

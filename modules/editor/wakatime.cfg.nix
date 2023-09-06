@@ -30,6 +30,6 @@ in {
         PULLREQ_EDITMSG$
         MERGE_MSG$
         TAG_EDITMSG$
-        api_key=@wakatime-api-key@
+    api_key=@wakatime-api-key@
   '';
 }
