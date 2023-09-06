@@ -11,14 +11,13 @@ in {
 
   environment.systemPackages = with pkgs; [
     cachix
-    git
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  age.identityPaths = ["/home/${username}/.ssh/id_ed25519" "/home/${username}/.ssh/id_rsa"];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1v"
-  ];
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
   nix = {
     settings = {
