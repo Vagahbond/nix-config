@@ -1,16 +1,13 @@
-{
-  inputs,
-  config,
-  ...
-}: let
+{config, ...}: let
   username = import ./username.nix;
-  # inherit (config.modules.impermanence) storageLocation;
+  inherit (config.modules.impermanence) storageLocation;
 in {
-  /*
-    imports = [
-    inputs.impermanence.nixosModule
-  ];
-  */
+  age.secrets.pw = {
+    file = ./secrets/pw.age;
+    owner = username;
+    mode = "700";
+    group = "users";
+  };
 
   users.users.${username} = {
     isNormalUser = true;
@@ -18,11 +15,10 @@ in {
     extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
     home = "/home/${username}";
     description = "My only user. Ain't no one else using my computer. Fuck you.";
-    initialPassword = "${username}";
+    passwordFile = config.age.secrets.pw.path;
   };
 
-  /*
-     environment.persistence.${storageLocation} = {
+  environment.persistence.${storageLocation} = {
     users.${username} = {
       directories = [
         "Projects"
@@ -52,5 +48,4 @@ in {
       ];
     };
   };
-  */
 }

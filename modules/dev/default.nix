@@ -32,10 +32,30 @@ in {
   config = mkMerge [
     {
       environment.systemPackages = with pkgs; [
-        git
         lazygit
         gh
       ];
+
+      programs.git = {
+        enable = true;
+        config = {
+          user = {
+            name = "Yoni FIRROLONI";
+            email = "pro@yoni-firroloni.fr";
+          };
+          init = {
+            defaultBranch = "main";
+          };
+          url = {
+            "https://github.com/" = {
+              insteadOf = [
+                "gh:"
+                "github:"
+              ];
+            };
+          };
+        };
+      };
     }
     (mkIf
       (cfg.enable && cfg.enableGeo && graphics != null)

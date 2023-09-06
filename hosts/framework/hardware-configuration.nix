@@ -22,7 +22,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Impermanencing my whole system cause I like to suffer
   fileSystems."/" = {
+    device = "none";
+    fsType = "tmpfs";
+    # Set mode to 755 instead of 777 or openssh no worky
+    options = [ "relatime" "mode=755" ];
+  };
+
+  fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/27fd7c0c-49ec-4686-be77-c20262cfa3e9";
     fsType = "ext4";
   };
@@ -51,6 +59,21 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  systemd.services.nix-daemon = {
+    environment = {
+      # Where temp files need to go to avoid filling the whole ram
+      TMPDIR = "/var/cache/nix";
+    };
+
+    serviceConfig = {
+      # Create /var/cache/nix on daemon start
+      CacheDirectory = "nix";
+    };
+  };
+
+  # Force even root to use our custom cache folder
+  environment.variables.NIX_REMOTE = "daemon";
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
