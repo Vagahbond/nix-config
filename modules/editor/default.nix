@@ -2,7 +2,6 @@
   inputs,
   lib,
   config,
-  pkgs,
   ...
 }:
 with lib; let
@@ -11,8 +10,6 @@ with lib; let
   inherit (config.modules) graphics impermanence;
 
   cfg = config.modules.editor;
-
-  wakatime = import ./wakatime.cfg.nix {inherit config username pkgs;};
 in {
   options.modules.editor = {
     gui = mkOption {
@@ -74,6 +71,7 @@ in {
           files = [
             ".viminfo"
             ".wakatime.bdb"
+            ".wakatime.cfg"
           ];
         };
       };
@@ -84,10 +82,6 @@ in {
 
       home-manager.users.${username} = {...}: {
         imports = [inputs.internalFlakes.editors.neovim.homeManagerModules.default];
-
-        xdg.configFile = {
-          ".wakatime.cfg".text = wakatime.conf;
-        };
 
         nixpkgs.overlays = [
           inputs.internalFlakes.editors.neovim.overlays.default

@@ -9,6 +9,8 @@ with lib; let
 
   cfg = config.modules.social;
 
+  inherit (config.modules) impermanence;
+
   catppuccin-mocha = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "discord";
