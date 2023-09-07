@@ -2,21 +2,24 @@
   username = import ./username.nix;
   inherit (config.modules.impermanence) storageLocation;
 in {
-  age.secrets.pw = {
-    file = ./secrets/pw.age;
-    # owner = username;
-    # mode = "700";
-    # group = "users";
-  };
+  users = {
+    mutableUsers = false;
+    users = {
+      root = {
+        initialPassword = "root";
+      };
 
-  users.users.${username} = {
-    isNormalUser = true;
-    # Scatter these groups in the conf depending on their purpose.
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
-    home = "/home/${username}";
-    description = "My only user. Ain't no one else using my computer. Fuck you.";
-    initialPassword = username;
-    # passwordFile = config.age.secrets.pw.path;
+      ${username} = {
+        isNormalUser = true;
+        # Scatter these groups in the conf depending on their purpose.
+        extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+        home = "/home/${username}";
+        description = "My only user. Ain't no one else using my computer. Fuck you.";
+        # initialPassword = username;
+        #passwordFile = config.age.secrets.pw.path;
+        passwordFile = "/nix/persistent/passwords/${username}";
+      };
+    };
   };
 
   environment.persistence.${storageLocation} = {

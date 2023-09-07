@@ -4,12 +4,8 @@ let
   master = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFusXTBhXLpViUVKjfHRJnjVb6WZFrxYq2/0Kh7MKwN pro@yoni-firroloni.com";
 in {
   # TODO: Redo the whole wifi access points secrets
-  # add wakatime's key
   # add every ssh key that's not my main ssh key for next time I break my conf (fuck me running)
 
   # Wifi passwords
   "wifi.age".publicKeys = [master];
-  "wakatime-key.age".publicKeys = [master];
-  "pw.age".publicKeys = [master];
-  #Spotify
 }

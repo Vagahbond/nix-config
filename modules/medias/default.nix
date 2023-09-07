@@ -148,6 +148,16 @@ in {
     })
     (mkIf (cfg.audio.player
       && (graphics.type != null)) {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".config/spotify/Users"
+          ];
+          files = [
+          ];
+        };
+      };
+
       environment.systemPackages = with pkgs; [
         playerctl
       ];

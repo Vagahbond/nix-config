@@ -52,7 +52,8 @@ in {
           psk = "@HOME_PSK@";
         };
 
-        "@TETHERING_SSID@" = {
+        /*
+           "@TETHERING_SSID@" = {
           psk = "@TETHERING_SSID@";
         };
 
@@ -88,6 +89,7 @@ in {
         "@IDK_SSID2@" = {
           psk = "@IDK_PSK2@";
         };
+        */
       };
     })
     (mkIf (cfg.wifi.enable

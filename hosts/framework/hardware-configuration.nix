@@ -27,12 +27,14 @@
     device = "none";
     fsType = "tmpfs";
     # Set mode to 755 instead of 777 or openssh no worky
-    options = [ "relatime" "mode=755" ];
+    options = ["relatime" "mode=755"];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/27fd7c0c-49ec-4686-be77-c20262cfa3e9";
     fsType = "ext4";
+
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {
