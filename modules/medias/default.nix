@@ -151,7 +151,7 @@ in {
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
-            ".config/spotify/Users"
+            ".config/spotify"
           ];
           files = [
           ];
