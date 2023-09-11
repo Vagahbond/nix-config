@@ -5,22 +5,24 @@
   ...
 }:
 with lib; let
-  inherit (config.modules) graphics;
+  inherit (config.modules) graphics impermanence;
+
+  username = import ../../username.nix;
 
   cfg = config.modules.gaming;
 
-/*  dofus = with pkgs;
+  dofus = with pkgs;
     appimageTools.wrapType2 {
       name = "dofus";
       src = fetchurl {
         url = "https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage";
-        hash = "sha256-c+glEHi1WQA2IJvsp1+CO/YN2zKPFrMQ15mE7F162EU=";
+        hash = "sha256-QXPW+Rx6csom9GWii7KomSpPlyAAlSrapuPlIzhpLGs=";
       };
       extraPkgs = pkgs:
         with pkgs; [
           wine-wayland
         ];
-    };*/
+    };
 in {
   options.modules.gaming = {
     wine.enable = mkEnableOption "Enable vanilla wine";
@@ -30,8 +32,17 @@ in {
   config = mkMerge [
     (mkIf (cfg.dofus.enable
       && (graphics.type != null)) {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            "Ankama"
+            "Ankama Launcher"
+          ];
+        };
+      };
+
       environment.systemPackages = [
-       # dofus
+        dofus
         (
           pkgs.writeTextDir "share/applications/dofus.desktop" ''
             [Desktop Entry]
