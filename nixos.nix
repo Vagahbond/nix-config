@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  self,
+  ...
+}: let
   username = import ./username.nix;
 in {
   home-manager.users.${username} = {
@@ -8,6 +12,8 @@ in {
 
     home.stateVersion = "22.11";
   };
+
+  environment.etc."current-flake".source = self;
 
   environment.systemPackages = with pkgs; [
     cachix

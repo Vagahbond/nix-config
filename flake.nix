@@ -26,10 +26,11 @@
     impermanence,
     internalFlakes,
     agenix,
+    self,
     ...
   } @ inputs: {
     nixosConfigurations = import ./hosts {
-      inherit home-manager impermanence agenix internalFlakes inputs nixpkgs;
+      inherit home-manager impermanence agenix internalFlakes inputs nixpkgs self;
     };
   };
 }

@@ -1,12 +1,13 @@
 {
   nixpkgs,
   home-manager,
+  self,
   ...
 } @ inputs: let
   framework = import ./framework;
 
   base-options = {
-    specialArgs = {inherit inputs;};
+    specialArgs = {inherit inputs self;};
     modules = [
       home-manager.nixosModules.home-manager
       ../impermanence.nix
