@@ -31,6 +31,14 @@ in {
 
   config = mkMerge [
     {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".config/lazygit"
+          ];
+        };
+      };
+
       environment.systemPackages = with pkgs; [
         lazygit
         gh

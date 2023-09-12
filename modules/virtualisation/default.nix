@@ -89,9 +89,55 @@ in {
       users.users.${username}.extraGroups = ["vboxusers"];
     })
     (mkIf (cfg.kubernetes.client.enable && graphics != null) {
+      age.secrets.kubeconfig = {
+        file = ../../secrets/kubeconfig.age;
+        owner = username;
+        mode = "700";
+        group = "users";
+        path = builtins.toString ./.;
+      };
+
+      home-manager.users.${username}.xdg.configFile = {
+        "Lens/kubeconfigs/my-cluster.yml".source = config.age.secrets.kubeconfig.path;
+        "Lens/lens-cluster-store.json".text = ''
+          {
+          	"clusters": [
+          		{
+          			"id": "2d1bfdd48fccdd8a6108e4b90270d8da",
+          			"contextName": "default",
+          			"kubeConfigPath": "/home/vagahbond/.config/Lens/kubeconfigs/my-cluster.yml",
+          			"preferences": {
+          				"clusterName": "Vagahbond's cluster"
+          			},
+          			"metadata": {
+          				"version": "v1.21.1+k3s1",
+          				"distribution": "k3s",
+          				"id": "1756114e7e7c3c1e89eb9da820d7d01cc918e83e76709c02f9ff04ee2dba4523",
+          				"lastSeen": "2023-09-11T16:55:56.740Z",
+          				"nodes": 1,
+          				"prometheus": {
+          					"provider": "lens",
+          					"autoDetected": true,
+          					"success": true
+          				}
+          			},
+          			"accessibleNamespaces": [],
+          			"labels": {}
+          		}
+          	],
+          	"__internal__": {
+          		"migrations": {
+          			"version": "6.5.0"
+          		}
+          	}
+          }
+        '';
+      };
+
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
+            "Lens"
             ".kube"
           ];
         };
