@@ -9,4 +9,8 @@ in {
   # Wifi passwords
   "wifi.age".publicKeys = [framework];
   "kubeconfig.age".publicKeys = [framework];
+  "kubeconfig-cert.age".publicKeys = [framework];
+  "kubeconfig-key.age".publicKeys = [framework];
+  "kubeconfig-ca.age".publicKeys = [framework];
+  "kubeconfig-serv.age".publicKeys = [framework];
 }
