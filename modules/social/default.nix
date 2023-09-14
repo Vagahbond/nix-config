@@ -18,12 +18,7 @@ with lib; let
     hash = "sha256-iUnLLAQVMXFLyoB3wgYqUTx5SafLkvtOXK6C8EHK/nI=";
   };
 in {
-  options.modules.social = {
-    whatsapp.enable = mkEnableOption "Enable whatsapp";
-    teams.enable = mkEnableOption "Enable teams";
-    discord.enable = mkEnableOption "Enable discord";
-  };
-
+  imports = [./options.nix];
   config = mkMerge [
     (mkIf cfg.whatsapp.enable {
       environment.systemPackages = with pkgs; [

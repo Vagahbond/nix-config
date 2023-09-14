@@ -11,19 +11,7 @@ with lib; let
 
   cfg = config.modules.output;
 in {
-  options.modules.output = {
-    video = {
-      enable = mkEnableOption "Video output";
-    };
-
-    audio = {
-      enable = mkEnableOption "Audio output";
-    };
-    printer = {
-      enable = mkEnableOption "Printer support";
-    };
-  };
-
+  imports = [./options.nix];
   config = mkMerge [
     (mkIf cfg.audio.enable {
       # Enable sound with pipewire.

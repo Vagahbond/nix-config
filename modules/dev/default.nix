@@ -11,23 +11,7 @@ with lib; let
 
   cfg = config.modules.dev;
 in {
-  options.modules.dev = {
-    enable = mkEnableOption "Enable dev tools";
-
-    languages = mkOption {
-      type = types.listOf types.str;
-      default = [];
-      description = ''
-        List of languages to install
-          possible values: ${builtins.concatStringsSep " " example}
-      '';
-      example = ["android" "c-cpp" "csharp" "nodejs" "rust" "ruby" "nix"];
-    };
-
-    enableGeo = mkEnableOption "Enable geo tools";
-
-    enableNetwork = mkEnableOption "Enable network tools";
-  };
+  imports = [./options.nix];
 
   config = mkMerge [
     {

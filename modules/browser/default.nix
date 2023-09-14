@@ -27,14 +27,9 @@ with lib; let
     "application/x-extension-xht" = browser;
   };
 in {
-  options.modules.browser.firefox = {
-    enable = mkOption {
-      type = types.bool;
-      description = "Enable or not Firefox. Enabled by default.";
-      default = true;
-      example = false;
-    };
-  };
+  imports = [
+    ./options.nix
+  ];
 
   config = mkIf (cfg.firefox.enable && (graphics.type != null)) {
     environment.persistence.${impermanence.storageLocation} = {

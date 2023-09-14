@@ -24,10 +24,7 @@ with lib; let
         ];
     };
 in {
-  options.modules.gaming = {
-    wine.enable = mkEnableOption "Enable vanilla wine";
-    dofus.enable = mkEnableOption "Enable Dofus";
-  };
+  imports = [./options.nix];
 
   config = mkMerge [
     (mkIf (cfg.dofus.enable

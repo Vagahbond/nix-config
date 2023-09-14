@@ -9,10 +9,7 @@ with lib; let
 
   cfg = config.modules.productivity;
 in {
-  options.modules.productivity = {
-    notion.enable = mkEnableOption "Enable Notion"; # No worky
-    appflowy = mkEnableOption "Enable appflowy"; # Notion alternative
-  };
+  imports = [./options.nix];
 
   config = mkMerge [
     (mkIf (cfg.notion.enable

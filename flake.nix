@@ -29,8 +29,16 @@
     self,
     ...
   } @ inputs: {
-    nixosConfigurations = import ./hosts {
-      inherit home-manager impermanence agenix internalFlakes inputs nixpkgs self;
+    nixosConfigurations =
+      import ./hosts
+      {
+        inherit home-manager impermanence agenix internalFlakes inputs nixpkgs self;
+      };
+
+    # Building the documentation
+    # TODO: Make it for several systems ?
+    packages."x86_64-linux".doc = import ./doc {
+      inherit nixpkgs;
     };
   };
 }

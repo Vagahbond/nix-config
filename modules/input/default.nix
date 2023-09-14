@@ -6,13 +6,7 @@
 with lib; let
   cfg = config.modules.input;
 in {
-  options.modules.input = {
-    tablet = mkEnableOption "Enable graphic tablet support";
-
-    usb = mkEnableOption "Enable advanced USB support";
-    touchpad = mkEnableOption "Enable touchpad support";
-  };
-
+  imports = [./options.nix];
   config = mkMerge [
     (mkIf cfg.tablet {
       # Enable tablet support

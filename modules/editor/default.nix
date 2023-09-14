@@ -11,29 +11,7 @@ with lib; let
 
   cfg = config.modules.editor;
 in {
-  options.modules.editor = {
-    gui = mkOption {
-      type = types.listOf types.str;
-      default = [];
-      description = ''
-        List of GUI editors to install (some people like to bloat themselves with seval IDEs)
-          possible values: ${builtins.concatStringsSep " " example}
-
-          WARNING: Ignored if graphics is disabled
-      '';
-      example = ["vscode"];
-    };
-
-    terminal = mkOption {
-      type = types.listOf types.str;
-      default = [neovim];
-      description = ''
-        List of terminal editors to install (You might wanna test out several editors at the same time)
-          possible values: ${builtins.concatStringsSep " " example}
-      '';
-      example = ["neovim"];
-    };
-  };
+  imports = [./options.nix];
 
   config = mkMerge [
     (mkIf ((builtins.elem "vscode" cfg.gui) && (graphics.type != null)) {
