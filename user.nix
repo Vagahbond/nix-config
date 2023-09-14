@@ -2,6 +2,13 @@
   username = import ./username.nix;
   inherit (config.modules.impermanence) storageLocation;
 in {
+  age.secrets.password = {
+    file = ./secrets/password.age;
+    #     owner = username;
+    #     mode = "700";
+    #     group = "users";
+  };
+
   users = {
     mutableUsers = false;
     users = {
@@ -17,7 +24,7 @@ in {
         description = "My only user. Ain't no one else using my computer. Fuck you.";
         # initialPassword = username;
         #passwordFile = config.age.secrets.pw.path;
-        passwordFile = "/nix/persistent/passwords/${username}";
+        passwordFile = config.age.secrets.password.path; #  "/nix/persistent/passwords/${username}";
       };
     };
   };
