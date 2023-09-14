@@ -5,6 +5,7 @@
   ...
 } @ inputs: let
   framework = import ./framework;
+  blade = import ./blade;
 
   base-options = {
     specialArgs = {inherit inputs self;};
