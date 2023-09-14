@@ -5,4 +5,9 @@ repo_url: https://github.com/Vagahbond/nix-config
 site_author: Vagahbond
 
 nav:
-  - Home: nixos-options.md
+  - Home: index.md
+
+theme:
+  name: material
+
+  include_sidebar: false
