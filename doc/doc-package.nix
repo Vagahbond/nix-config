@@ -32,6 +32,6 @@
     inherit (eval) options;
   };
 in
-  runCommand "options-doc.md" {} ''
+  runCommand "index.md" {} ''
     cat ${optionsDoc.optionsCommonMark} >> $out
   ''

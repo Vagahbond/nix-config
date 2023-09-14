@@ -16,7 +16,7 @@ in
 
     buildPhase = ''
       mkdir docs
-        ln -s ${options-doc} "./docs/nixos-options.md"
+        ln -s ${options-doc} "./docs/index.md"
             # generate the site
             mkdocs build
     '';
