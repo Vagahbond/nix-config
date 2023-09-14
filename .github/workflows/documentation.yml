@@ -30,6 +30,7 @@ jobs:
       - name: Build
         run: |
           nix build '.#doc'
+          mkdir public
           cp -r result/* public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
