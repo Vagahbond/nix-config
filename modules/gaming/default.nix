@@ -32,8 +32,8 @@ in {
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
-            "Ankama"
-            "Ankama Launcher"
+            ".config/Ankama"
+            ".config/Ankama Launcher"
           ];
         };
       };
