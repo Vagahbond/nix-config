@@ -9,6 +9,8 @@
 
 Welcome to my nixos dotfiles. I use these to configure my nixos machines.
 
+[Check the options here!](https://vagahbond.github.io/nix-config/)
+
 The objective is to run it on several machines : 
 - [x] working laptop (Framework 13" laptop, go buy one NOW)
 - [ ] gaming laptop (mid-2019 Razer Blade 15)
