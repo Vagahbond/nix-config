@@ -1043,11 +1043,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-VloC7YAWZz34lPCXfuwQbfRUrhOF+lbzXjcQSUwUQi0=",
-        "path": "/nix/store/x472rpdj4chjyhlh9w6vzfaq4ka29iga-source/modules",
+        "path": "/nix/store/38k59c6cxcwjlfxvy0ayk36mghsjxyiz-source/modules",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/x472rpdj4chjyhlh9w6vzfaq4ka29iga-source/modules",
+        "path": "/nix/store/38k59c6cxcwjlfxvy0ayk36mghsjxyiz-source/modules",
         "type": "path"
       }
     },

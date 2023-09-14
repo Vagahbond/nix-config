@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    paths: 
+    paths:
       # build the manuals only when docs directory is updated
       - modules/**
 
@@ -30,10 +30,8 @@ jobs:
       - name: Build
         run: |
           nix build '.#doc'
-          mkdir public
-          cp -r result/* public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./result
