@@ -23,5 +23,9 @@ in {
   });
 
   # My gaming and producing laptop
-  # blade = import ./blade; Not yet ready
+  # My working laptop
+  blade = nixpkgs.lib.nixosSystem (blade {
+    inherit base-options;
+    specialArgs = {inherit inputs;};
+  });
 }
