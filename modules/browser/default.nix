@@ -126,7 +126,7 @@ in {
         };
 
         misc = {
-          drmFix = true;
+          drmFix = false;
           disableWebgl = false;
           startPageURL = "https://www.notion.so/vagahbond/Personal-Home-b254100e4ec947ae893ffffb0951e339";
         };

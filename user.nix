@@ -24,7 +24,7 @@ in {
         description = "My only user. Ain't no one else using my computer. Fuck you.";
         # initialPassword = username;
         #passwordFile = config.age.secrets.pw.path;
-        passwordFile = config.age.secrets.password.path; #  "/nix/persistent/passwords/${username}";
+        passwordFile = "/nix/persistent/passwords/${username}";
       };
     };
   };
