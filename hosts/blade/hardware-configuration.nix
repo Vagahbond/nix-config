@@ -11,9 +11,15 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
+  boot.kernelModules = ["kvm-intel"];
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  #  boot.loader.grub.enable = true;
+  #  boot.loader.grub.device = "nodev";
+  #  boot.loader.grub.useOSProber = true;
 
   # Impermanencing my whole system cause I like to suffer
   fileSystems."/" = {
@@ -51,8 +57,9 @@
 
   # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
 
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
   systemd.services.nix-daemon = {
     environment = {
