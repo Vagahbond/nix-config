@@ -11,8 +11,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.kernelModules = ["kvm-intel"];
+  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
 
+  boot.kernelModules = ["kvm-intel"];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

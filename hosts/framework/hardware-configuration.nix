@@ -15,8 +15,7 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
-  boot.kernelParams = ["i915.force_probe=46a6"];
-  boot.blacklistedKernelModules = ["hid_sensor_hub"];
+  boot.kernelParams = ["boot.shell_on_fail"];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
