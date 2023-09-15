@@ -30,14 +30,14 @@
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-label/NIXROOT";
+    device = "/dev/disk/by-uuid/359308a5-ffd8-4228-ac2a-cbac426f2d05";
     fsType = "ext4";
 
     neededForBoot = true;
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/NIXBOOT";
+    device = "/dev/disk/by-uuid/3C36-9CA5";
     fsType = "vfat";
   };
 
