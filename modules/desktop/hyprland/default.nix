@@ -109,10 +109,9 @@ in {
             enable = true;
             xwayland = {
               enable = true;
-              # hdpi = false;
             };
 
-            enableNvidiaPatches = false;
+            enableNvidiaPatches = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 
             package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
           };

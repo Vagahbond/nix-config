@@ -12,7 +12,7 @@ in {
     ];
 
     modules = {
-      graphics.type = "intel";
+      graphics.type = "nvidia-optimus";
 
       desktop = "hyprland";
 
