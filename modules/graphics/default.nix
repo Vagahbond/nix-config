@@ -54,8 +54,35 @@ in {
         };
       }
     )
+
     (
-      mkIf (config.modules.graphics.type != "nvidia-optimus") {
+      mkIf
+      (config.modules.graphics.type == "nvidia-optimus") {
+        # find solution to avoid infinite recursion
+
+        assertions = [
+          {
+            assertion = config.hardware.nvidia.prime.intelBusId != null;
+            message = "Please provide intel bus ID in order to use the optimus config!";
+          }
+          {
+            assertion = config.hardware.nvidia.prime.nvidiaBusId != null;
+            message = "Please provide nvidia bus ID in order to use the optimus config!";
+          }
+        ];
+
+        hardware.nvidia.prime.sync.enable = true;
+
+        specialisation = {
+          on-the-go.configuration = {
+            system.nixos.tags = ["on-the-go"];
+            hardware.nvidia = {
+              prime.offload.enable = lib.mkForce true;
+              prime.offload.enableOffloadCmd = lib.mkForce true;
+              prime.sync.enable = lib.mkForce false;
+            };
+          };
+        };
       }
     )
   ];
