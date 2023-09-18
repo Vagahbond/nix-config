@@ -45,11 +45,16 @@ in {
       environment.systemPackages = with pkgs; [
         kvmtool
       ];
+
+      programs.dconf.enable = true;
+
       virtualisation = {
         libvirtd.enable = true;
 
         spiceUSBRedirection.enable = true;
       };
+
+      users.users.${username}.extraGroups = ["libvirtd"];
     })
     (mkIf (cfg.libvirt.enable && graphics != null) {
       environment.systemPackages = with pkgs; [
