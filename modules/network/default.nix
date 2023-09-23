@@ -26,52 +26,54 @@ in {
         group = "users";
       };
 
-      networking.wireless.enable = true;
-      networking.wireless.userControlled.enable = true;
-      networking.wireless.environmentFile = config.age.secrets.wifi.path;
-      networking.wireless.networks = {
-        "@HOME_SSID@" = {
-          psk = "@HOME_PSK@";
+      networking.wireless = {
+        enable = true;
+        userControlled.enable = true;
+        environmentFile = config.age.secrets.wifi.path;
+        networks = {
+          "@HOME_SSID@" = {
+            psk = "@HOME_PSK@";
+          };
+
+          "@ESGI_SSID@" = {
+            psk = "@ESGI_PSK@";
+          };
+
+          /*
+          "@WORK1_SSID@" = {
+            psk = "@WORK1_PSK@";
+          };
+
+          "@WORK2_SSID@" = {
+            psk = "@WORK2_PSK@";
+          };
+
+          "@WORK3_SSID@" = {};
+
+          #oof, better change scheme there
+          "@GF_SSID0@" = {
+            psk = "@GF_PSK0@";
+          };
+
+          "@GF_SSID1@" = {};
+
+          "@GF_SSID2@" = {
+            psk = "@GF_PSK2@";
+          };
+
+          "@GF_SSID3@" = {
+            psk = "@GF_PSK3@";
+          };
+
+          "@IDK_SSID1@" = {
+            psk = "@IDK_PSK1@";
+          };
+
+          "@IDK_SSID2@" = {
+            psk = "@IDK_PSK2@";
+          };
+          */
         };
-
-        /*
-           "@TETHERING_SSID@" = {
-          psk = "@TETHERING_SSID@";
-        };
-
-        "@WORK1_SSID@" = {
-          psk = "@WORK1_PSK@";
-        };
-
-        "@WORK2_SSID@" = {
-          psk = "@WORK2_PSK@";
-        };
-
-        "@WORK3_SSID@" = {};
-
-        #oof, better change scheme there
-        "@GF_SSID0@" = {
-          psk = "@GF_PSK0@";
-        };
-
-        "@GF_SSID1@" = {};
-
-        "@GF_SSID2@" = {
-          psk = "@GF_PSK2@";
-        };
-
-        "@GF_SSID3@" = {
-          psk = "@GF_PSK3@";
-        };
-
-        "@IDK_SSID1@" = {
-          psk = "@IDK_PSK1@";
-        };
-
-        "@IDK_SSID2@" = {
-          psk = "@IDK_PSK2@";
-        };
-        */
       };
     })
     (mkIf (cfg.wifi.enable

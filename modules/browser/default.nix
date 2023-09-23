@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }:
 with lib; let
@@ -52,6 +53,8 @@ in {
 
       programs.schizofox = {
         enable = true;
+
+        package = pkgs.firefox-esr-115-unwrapped;
 
         # theme = {
         #   background-darker = "181825";

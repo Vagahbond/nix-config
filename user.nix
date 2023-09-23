@@ -2,13 +2,6 @@
   username = import ./username.nix;
   inherit (config.modules.impermanence) storageLocation;
 in {
-  age.secrets.password = {
-    file = ./secrets/password.age;
-    #     owner = username;
-    #     mode = "700";
-    #     group = "users";
-  };
-
   users = {
     mutableUsers = false;
     users = {
@@ -18,12 +11,10 @@ in {
 
       ${username} = {
         isNormalUser = true;
-        # Scatter these groups in the conf depending on their purpose.
-        extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+        extraGroups = ["wheel"];
         home = "/home/${username}";
         description = "My only user. Ain't no one else using my computer. Fuck you.";
-        # initialPassword = username;
-        #passwordFile = config.age.secrets.pw.path;
+        initialPassword = username;
         passwordFile = "/nix/persistent/passwords/${username}";
       };
     };
