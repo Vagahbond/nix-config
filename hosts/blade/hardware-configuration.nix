@@ -15,7 +15,7 @@
   boot = {
     initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
     kernelParams = ["boot.shell_on_fail"];
-    kernelModules = ["kvm-intel" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
+    kernelModules = ["kvm-intel"]; # "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
     # Use the systemd-boot EFI boot loader.
     loader = {
       systemd-boot.enable = true;
