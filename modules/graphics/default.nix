@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -17,7 +18,7 @@ in {
       }
     )
     (
-      mkIf isNvidiaEnabled {
+      mkIf (config.modules.graphics.type == "nvidia") {
         hardware = {
           nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
@@ -59,7 +60,32 @@ in {
     (
       mkIf
       (config.modules.graphics.type == "nvidia-optimus") {
-        # find solution to avoid infinite recursion
+        hardware = {
+          nvidia = {
+            package = config.boot.kernelPackages.nvidiaPackages.beta;
+
+            open = true;
+            modesetting.enable = true;
+
+            nvidiaSettings = true; # add nvidia-settings to pkgs, useless on nixos
+            nvidiaPersistenced = true;
+            forceFullCompositionPipeline = true;
+
+            powerManagement = {
+              enable = false;
+              # finegrained = true;
+              # offload.enableOffloadCmd = true;
+            };
+          };
+          # Enable OpenGL
+          opengl = {
+            enable = true;
+            driSupport = true;
+            driSupport32Bit = true;
+            # extraPackages = with pkgs; [nvidia-vaapi-driver];
+            # extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
+          };
+        };
 
         assertions = [
           {
@@ -73,6 +99,16 @@ in {
         ];
 
         hardware.nvidia.prime.sync.enable = true;
+
+        environment.systemPackages = with pkgs; [
+          vulkan-tools
+          vulkan-loader
+          vulkan-validation-layers
+          libva
+          libva-utils
+        ];
+
+        services.xserver.videoDrivers = ["nvidia"];
 
         specialisation = {
           on-the-go.configuration = {
