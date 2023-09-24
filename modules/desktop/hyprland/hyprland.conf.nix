@@ -1,6 +1,25 @@
-{config}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.modules.desktop) screenWidth screenHeight screenScalingRatio screenRefreshRate;
+  isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 in ''
+
+  # nvidia bullshit
+  ${
+    if isNvidiaEnabled
+    then ''
+      env = LIBVA_DRIVER_NAME,nvidia
+      env = XDG_SESSION_TYPE,wayland
+      env = GBM_BACKEND,nvidia-drm
+      env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+      env = WLR_NO_HARDWARE_CURSORS,1
+    ''
+    else ""
+  }
+
   # Special
   $background=1e1e2e
   $foreground=cdd6f4
