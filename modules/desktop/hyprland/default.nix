@@ -13,6 +13,8 @@ with lib; let
     sha256 = "sha256:08j1jdy2zdr53m3ir21i92nfg8xz3bjy29xyaqdqh43k3p32xcxn";
   };
 
+  isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
+
   pywalfox = pkgs.python310Packages.callPackage "${pywalfox-nixpkgs}/pkgs/development/python-modules/pywalfox/default.nix" {};
   sddm-themes = pkgs.callPackage ./sddm-themes.nix {};
   inherit (inputs.internalFlakes.desktop.hyprland-rice) hyprland;
@@ -112,7 +114,7 @@ in {
               enable = true;
             };
 
-            enableNvidiaPatches = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
+            enableNvidiaPatches = isNvidiaEnabled;
 
             package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
           };
