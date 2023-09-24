@@ -227,7 +227,7 @@ in {
           };
 
           xdg.configFile = {
-            "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config;};
+            "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config lib;};
 
             # Scripts for eww bar
             "hypr/volume.sh".source = ./volume.sh;
