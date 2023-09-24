@@ -19,7 +19,7 @@ in {
         screenHeight = 1080;
         screenWidth = 1920;
         screenRefreshRate = 144;
-        screenScalingRatio = 1;
+        screenScalingRatio = 1.0;
       };
 
       browser.firefox.enable = true;

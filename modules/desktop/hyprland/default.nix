@@ -23,7 +23,7 @@ in {
   imports = [hyprland.nixosModules.default];
   config = mkMerge [
     (
-      mkIf (cfg == "hyprland") {
+      mkIf (cfg.rice == "hyprland") {
         # keep sddm data
         environment = {
           persistence.${storageLocation} = {
@@ -227,7 +227,7 @@ in {
           };
 
           xdg.configFile = {
-            "hypr/hyprland.conf".source = import ./hyprland.conf.nix {inherit config;};
+            "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config;};
 
             # Scripts for eww bar
             "hypr/volume.sh".source = ./volume.sh;

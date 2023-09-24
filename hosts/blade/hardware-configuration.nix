@@ -5,43 +5,53 @@
   config,
   lib,
   modulesPath,
+  pkgs,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
+  boot = {
+    initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
 
-  boot.kernelModules = ["kvm-intel"];
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  #  boot.loader.grub.enable = true;
-  #  boot.loader.grub.device = "nodev";
-  #  boot.loader.grub.useOSProber = true;
+    kernelModules = ["kvm-intel"];
+    # Use the systemd-boot EFI boot loader.
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    #  boot.loader.grub.enable = true;
+    #  boot.loader.grub.device = "nodev";
+    #  boot.loader.grub.useOSProber = true;
+  };
 
   # Impermanencing my whole system cause I like to suffer
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    # Set mode to 755 instead of 777 or openssh no worky
-    options = ["relatime" "mode=755"];
+  fileSystems = {
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      # Set mode to 755 instead of 777 or openssh no worky
+      options = ["relatime" "mode=755"];
+    };
+
+    "/nix" = {
+      device = "/dev/disk/by-label/NIXROOT";
+      fsType = "ext4";
+
+      neededForBoot = true;
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-label/NIXBOOT";
+      fsType = "vfat";
+    };
+
+    "/data" = {
+      device = "/dev/disk/by-uuid/a4062f6b-a2d8-439d-94b7-7684e8def8b7";
+      fsType = "ext4";
+    };
   };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-label/NIXROOT";
-    fsType = "ext4";
-
-    neededForBoot = true;
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/NIXBOOT";
-    fsType = "vfat";
-  };
-
   swapDevices = [
     {
       device = "/dev/nvme0n1p5";
@@ -52,15 +62,47 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  networking.hostName = "blade"; # Define your hostname.
-  networking.firewall.allowedTCPPorts = [57621];
-
+  networking = {
+    useDHCP = lib.mkDefault true;
+    hostName = "blade"; # Define your hostname.
+    firewall.allowedTCPPorts = [57621];
+  };
   # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+
+  hardware = {
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    # Razer stuff
+    openrazer.enable = true;
+
+    ###############################################
+    #        My next GPU won't be NVIDIA          #
+    ###############################################
+    nvidia = {
+      prime = {
+        # Make sure to use the correct Bus ID values for your system!
+        sync.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+    };
+  };
+
+  # Force even root to use our custom cache folder
+  environment = {
+    variables.NIX_REMOTE = "daemon";
+    systemPackages = with pkgs; [
+      openrazer-daemon
+      polychromatic
+    ];
+  };
+
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
 
   systemd.services.nix-daemon = {
     environment = {
@@ -72,21 +114,5 @@
       # Create /var/cache/nix on daemon start
       CacheDirectory = "nix";
     };
-  };
-
-  # Force even root to use our custom cache folder
-  environment.variables.NIX_REMOTE = "daemon";
-
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=10s
-  '';
-
-  ###############################################
-  #        My next GPU won't be NVIDIA          #
-  ###############################################
-  hardware.nvidia.prime = {
-    # Make sure to use the correct Bus ID values for your system!
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
   };
 }

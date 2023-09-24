@@ -10,7 +10,7 @@ with lib; {
     };
 
     screenWidth = mkOption {
-      type = types.Number;
+      type = types.int;
       default = 1920;
       description = ''
         Width for your screen
@@ -18,7 +18,7 @@ with lib; {
     };
 
     screenHeight = mkOption {
-      type = types.Number;
+      type = types.int;
       default = 1080;
       description = ''
         Width for your screen
@@ -26,15 +26,15 @@ with lib; {
     };
 
     screenScalingRatio = mkOption {
-      type = types.Number;
-      default = 1;
+      type = types.float;
+      default = 1.o;
       description = ''
         Zoom ratio for your screen
       '';
     };
 
     screenRefreshRate = mkOption {
-      type = types.Number;
+      type = types.int;
       default = 60;
       description = ''
         Refresh ratio for your screen
