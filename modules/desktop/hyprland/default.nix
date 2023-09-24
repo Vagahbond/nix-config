@@ -25,73 +25,74 @@ in {
     (
       mkIf (cfg == "hyprland") {
         # keep sddm data
-        environment.persistence.${storageLocation} = {
-          directories = [
-            "/var/lib/sddm"
+        environment = {
+          persistence.${storageLocation} = {
+            directories = [
+              "/var/lib/sddm"
+            ];
+
+            users.${username} = {
+              directories = [
+                ".cache/wal"
+                ".hyprland"
+              ];
+            };
+          };
+
+          systemPackages = with pkgs; [
+            wireplumber
+            qt6.qtwayland
+            libsForQt5.qt5.qtwayland
+            grim
+            slurp
+            cliphist
+            wl-clipboard
+
+            gtklock
+
+            colorz
+            iio-sensor-proxy
+
+            xfce.tumbler
+            libgsf # odf files
+            ffmpegthumbnailer
+            ark # GUI archiver for thunar archive plugin
+
+            eww-wayland
+
+            hyprpaper
+
+            pywalfox
+            python3Packages.pywal
+            python3Packages.colorthief
+
+            # TODO: Switch to anyrun
+            wofi
+            wofi-emoji
+
+            sddm-themes.catppuccino-sddm
+
+            foot
+
+            socat
+            jq
+
+            libnotify
           ];
 
-          users.${username} = {
-            directories = [
-              ".cache/wal"
-              ".hyprland"
-            ];
+          etc = {
+            # Creates /etc/nanorc
+            "pam.d/gtklock" = {
+              text = ''
+                auth            sufficient      pam_unix.so try_first_pass likeauth nullok
+                auth            sufficient      pam_fprintd.so
+              '';
+
+              # The UNIX file mode bits
+              # mode = "0440";
+            };
           };
         };
-
-        environment.systemPackages = with pkgs; [
-          wireplumber
-          qt6.qtwayland
-          libsForQt5.qt5.qtwayland
-          grim
-          slurp
-          cliphist
-          wl-clipboard
-
-          gtklock
-
-          colorz
-          iio-sensor-proxy
-
-          xfce.tumbler
-          libgsf # odf files
-          ffmpegthumbnailer
-          ark # GUI archiver for thunar archive plugin
-
-          eww-wayland
-
-          hyprpaper
-
-          pywalfox
-          python3Packages.pywal
-          python3Packages.colorthief
-
-          # TODO: Switch to anyrun
-          wofi
-          wofi-emoji
-
-          sddm-themes.catppuccino-sddm
-
-          foot
-
-          socat
-          jq
-
-          libnotify
-        ];
-
-        environment.etc = {
-          # Creates /etc/nanorc
-          "pam.d/gtklock" = {
-            text = ''
-              auth            sufficient      pam_unix.so try_first_pass likeauth nullok
-              auth            sufficient      pam_fprintd.so
-            '';
-
-            # The UNIX file mode bits
-            # mode = "0440";
-          };
-        };
-
         fonts.packages = with pkgs; [
           noto-fonts
           noto-fonts-cjk
@@ -226,7 +227,7 @@ in {
           };
 
           xdg.configFile = {
-            "hypr/hyprland.conf".source = ./hyprland.conf;
+            "hypr/hyprland.conf".source = import ./hyprland.conf.nix {inherit config;};
 
             # Scripts for eww bar
             "hypr/volume.sh".source = ./volume.sh;
