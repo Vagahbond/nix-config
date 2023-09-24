@@ -59,5 +59,21 @@ in {
         ];
       }
     )
+    (
+      mkIf (cfg.steam.enable && (graphics.type != null)) {
+        # TODO: Add persistence
+        programs.steam = {
+          enable = true;
+        };
+      }
+    )
+    (
+      mkIf (cfg.minecraft.enable && (graphics.type != null)) {
+        # TODO: Add persistence
+        environment.systemPackages = [
+          minecraft
+        ];
+      }
+    )
   ];
 }
