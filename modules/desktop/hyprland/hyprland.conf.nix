@@ -6,13 +6,12 @@
   inherit (config.modules.desktop) screenWidth screenHeight screenScalingRatio screenRefreshRate;
   isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 in ''
-
+  env = XDG_SESSION_TYPE,wayland
   # nvidia bullshit
   ${
     if isNvidiaEnabled
     then ''
       env = LIBVA_DRIVER_NAME,nvidia
-      env = XDG_SESSION_TYPE,wayland
       env = GBM_BACKEND,nvidia-drm
       env = __GLX_VENDOR_LIBRARY_NAME,nvidia
       env = WLR_NO_HARDWARE_CURSORS,1

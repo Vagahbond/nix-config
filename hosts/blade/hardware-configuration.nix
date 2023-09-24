@@ -15,7 +15,7 @@
   boot = {
     initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
     kernelParams = ["boot.shell_on_fail"];
-    kernelModules = ["kvm-intel"]; # "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
+    kernelModules = ["kvm-intel" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
     # Use the systemd-boot EFI boot loader.
     loader = {
       systemd-boot.enable = true;
@@ -85,29 +85,9 @@
     ###############################################
     #        My next GPU won't be NVIDIA          #
     ###############################################
-    nvidia = {
-      modesetting.enable = true;
-
-      nvidiaSettings = true; # add nvidia-settings to pkgs, useless on nixos
-      nvidiaPersistenced = true;
-      forceFullCompositionPipeline = true;
-
-      # powerManagement = {
-      #  enable = true;
-      #  finegrained = true;
-      #  offload.enableOffloadCmd = true;
-      #};
-      prime = {
-        # Make sure to use the correct Bus ID values for your system!
-        sync.enable = true;
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
-    };
-
-    opengl = {
-      extraPackages = with pkgs; [nvidia-vaapi-driver];
-      extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
+    nvidia.prime = {
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
     };
   };
 
@@ -117,12 +97,6 @@
     systemPackages = with pkgs; [
       openrazer-daemon
       polychromatic
-
-      vulkan-tools
-      vulkan-loader
-      vulkan-validation-layers
-      libva
-      libva-utils
     ];
   };
 
