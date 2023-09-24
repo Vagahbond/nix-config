@@ -71,7 +71,7 @@ in {
       mkIf (cfg.minecraft.enable && (graphics.type != null)) {
         # TODO: Add persistence
         environment.systemPackages = [
-          minecraft
+          pkgs.minecraft
         ];
       }
     )
