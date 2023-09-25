@@ -104,6 +104,7 @@ in {
         dofus.enable = true;
         steam.enable = true;
         minecraft.enable = true;
+        tlauncher.enable = true;
       };
     };
   };

@@ -8,7 +8,7 @@
   eval = lib.evalModules {
     # Not needed to add options for native nix lib
     modules = [
-      # ../modules/desktop
+      ../modules/desktop/options.nix
       ../modules/graphics/options.nix
       ../modules/browser/options.nix
       ../modules/dev/options.nix

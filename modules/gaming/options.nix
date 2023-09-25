@@ -5,5 +5,6 @@ with lib; {
     dofus.enable = mkEnableOption "Enable Dofus";
     steam.enable = mkEnableOption "Enable Steam";
     minecraft.enable = mkEnableOption "Enable minecraft";
+    tlauncher.enable = mkEnableOption "Enable tlauncher, unoficial legal(in minecraft) version of minecraft";
   };
 }
