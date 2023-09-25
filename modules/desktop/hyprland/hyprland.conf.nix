@@ -222,8 +222,9 @@ in ''
   # monitor=,highres,auto,1, mirror, eDP-1
   # monitor=,highres,1504x0, 1
 
-  monitor=desc:Hewlett Packard HP E241i CN442414T9,highres, ${toString screenWidth}x0, 1
-  monitor=desc:Microstep MAG342CQRV DB6H070C00454,highres, ${toString screenWidth}x0, 1
+
+  monitor=desc:Hewlett Packard HP E241i CN442414T9,highres, ${toString (screenWidth / screenScalingRatio)}x0, 1
+  monitor=desc:Microstep MAG342CQRV DB6H070C00454,highres, ${toString (screenWidth / screenScalingRatio)}x0, 1
 
   monitor=eDP-1, ${toString screenWidth}x${toString screenHeight}@${toString screenRefreshRate}, 0x0, ${toString screenScalingRatio}
   # monitor=,highres,auto,1, mirror, eDP-1
