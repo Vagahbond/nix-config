@@ -68,7 +68,7 @@ in {
             modesetting.enable = true;
 
             nvidiaSettings = true; # add nvidia-settings to pkgs, useless on nixos
-            nvidiaPersistenced = true;
+            #  nvidiaPersistenced = true;
             forceFullCompositionPipeline = true;
 
             powerManagement = {
