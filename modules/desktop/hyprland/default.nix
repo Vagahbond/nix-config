@@ -102,7 +102,10 @@ in {
           font-awesome
           (nerdfonts.override {fonts = ["CascadiaCode" "FiraCode" "DroidSansMono" "Noto"];})
         ];
-
+        xdg.portal = {
+          enable = true;
+          extraPortals = [pkgs.xdg-desktop-portal-gtk];
+        };
         programs = {
           light.enable = true;
 
@@ -114,7 +117,7 @@ in {
               enable = true;
             };
 
-            enableNvidiaPatches = isNvidiaEnabled;
+            # enableNvidiaPatches = isNvidiaEnabled;
 
             package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
           };
@@ -156,13 +159,26 @@ in {
           WLR_NO_HARDWARE_CURSORS = "1";
           MOZ_ENABLE_WAYLAND = "1";
           NIXOS_OZONE_WL = "1";
+
+          # set GTK theme as specified by the catppuccin-gtk package
+          GTK_THEME = "Catppuccin-Mocha-Standard-Mauve-Dark";
+
+          # gtk applications should use filepickers specified by xdg
+          GTK_USE_PORTAL = "1";
         };
 
-        home-manager.users.${username} = {
+        home-manager.users.${username} = let
+          m-catppuccin-gtk = pkgs.catppuccin-gtk.override {
+            accents = ["mauve"];
+            size = "standard";
+            variant = "mocha";
+            tweaks = ["normal"];
+          };
+        in {
           home = {
             pointerCursor = {
-              package = pkgs.catppuccin-cursors.mochaDark; #pkgs.bibata-cursors;
-              name = "Catppuccin-Mocha-Dark-Cursors"; #"Bibata-Modern-Classic";
+              package = pkgs.catppuccin-cursors.mochaDark;
+              name = "Catppuccin-Mocha-Dark-Cursors";
               size = 24;
               gtk.enable = true;
               x11.enable = true;
@@ -170,36 +186,16 @@ in {
 
             packages = with pkgs; [
               glib # gsettings
-              (
-                pkgs.catppuccin-gtk.override {
-                  accents = ["mauve"];
-                  size = "standard";
-                  variant = "mocha";
-                  tweaks = ["normal"];
-                }
-              )
+              m-catppuccin-gtk
             ];
-
-            sessionVariables = {
-              # set GTK theme as specified by the catppuccin-gtk package
-              GTK_THEME = "Catppuccin-Mocha-Standard-Mauve-dark";
-
-              # gtk applications should use filepickers specified by xdg
-              GTK_USE_PORTAL = "1";
-            };
           };
 
           # themes I guess
           gtk = {
             enable = true;
             theme = {
-              name = "Catppuccin-Mocha-Standard-Mauve-dark";
-              package = pkgs.catppuccin-gtk.override {
-                accents = ["mauve"];
-                size = "standard";
-                variant = "mocha";
-                tweaks = ["normal"];
-              };
+              name = "Catppuccin-Mocha-Standard-Mauve-Dark";
+              package = m-catppuccin-gtk;
             };
 
             iconTheme = {
@@ -210,11 +206,16 @@ in {
               };
             };
 
+            gtk4.extraConfig = {
+              gtk-application-prefer-dark-theme = 1;
+            };
+
             gtk3.extraConfig = {
               gtk-xft-antialias = 1;
               gtk-xft-hinting = 1;
               gtk-xft-hintstyle = "hintslight";
               gtk-xft-rgba = "rgb";
+              gtk-application-prefer-dark-theme = 1;
             };
 
             gtk2 = {

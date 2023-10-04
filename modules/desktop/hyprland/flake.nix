@@ -27,8 +27,7 @@
     # eww,
     ...
   }: {
-    eww-config = eww-config;
-    hyprland = hyprland;
+    inherit eww-config hyprland;
     # eww = eww;
   };
 }

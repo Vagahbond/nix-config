@@ -34,7 +34,7 @@ in {
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
-            ".config/WebCord/Local Storage"
+            ".config/discord"
           ];
           files = [
           ];
@@ -42,12 +42,18 @@ in {
       };
 
       home-manager.users.${username} = {
-        xdg.configFile."WebCord/Themes/mocha" = {
+        xdg.configFile."Vencord/themes/mocha.theme.css" = {
           source = "${catppuccin-mocha}/themes/mocha.theme.css";
         };
       };
       environment.systemPackages = with pkgs; [
-        webcord-vencord
+        #  webcord-vencord
+        (
+          discord.override {
+            withOpenASAR = true;
+            withVencord = true;
+          }
+        )
       ];
     })
   ];

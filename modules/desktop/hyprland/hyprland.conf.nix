@@ -6,7 +6,7 @@
   inherit (config.modules.desktop) screenWidth screenHeight screenScalingRatio screenRefreshRate;
   isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 in ''
-  env = XDG_SESSION_TYPE,wayland
+  # env = XDG_SESSION_TYPE,wayland
   # nvidia bullshit
   ${
     if (isNvidiaEnabled && false) # doesnt work with all those flags (I don't understand yo)
@@ -18,6 +18,7 @@ in ''
     ''
     else ""
   }
+
 
   # Special
   $background=1e1e2e

@@ -73,7 +73,8 @@ in {
       (cfg.enable && cfg.enableNetwork && graphics != null)
       {
         environment.systemPackages = with pkgs; [
-          insomnia
+          # insomnia
+          # postman
         ];
       })
     (mkIf
