@@ -7,7 +7,7 @@
   isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 in ''
   # env = XDG_SESSION_TYPE,wayland
-  # nvidia bullshit
+    # nvidia bullshit
   ${
     if (isNvidiaEnabled && false) # doesnt work with all those flags (I don't understand yo)
     then ''
@@ -225,10 +225,22 @@ in ''
   # monitor=,highres,1504x0, 1
 
 
+
   monitor=desc:Hewlett Packard HP E241i CN442414T9,highres, ${toString (screenWidth / screenScalingRatio)}x0, 1
   monitor=desc:Microstep MAG342CQRV DB6H070C00454,highres, ${toString (screenWidth / screenScalingRatio)}x0, 1
 
   monitor=eDP-1, ${toString screenWidth}x${toString screenHeight}@${toString screenRefreshRate}, 0x0, ${toString screenScalingRatio}
+  ${
+    if (screenScalingRatio != 1)
+    then ''
+      env = GDK_SCALE,2
+      env = XCURSOR_SIZE,32
+    ''
+    else ""
+  }
+
+  xwayland:force_zero_scaling = true
+
   # monitor=,highres,auto,1, mirror, eDP-1
   monitor=,highres,1504x0, 1
 
