@@ -153,6 +153,7 @@ in ''
 
   gestures {
   	workspace_swipe = true
+    workspace_swipe_numbered = true
 
   }
 

@@ -39,11 +39,11 @@ in {
             psk = "@ESGI_PSK@";
           };
 
-          /*
-          "@WORK1_SSID@" = {
-            psk = "@WORK1_PSK@";
+          "@VICFI_SSID@" = {
+            psk = "@VICFI_PSK@";
           };
 
+          /*
           "@WORK2_SSID@" = {
             psk = "@WORK2_PSK@";
           };

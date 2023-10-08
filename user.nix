@@ -15,7 +15,7 @@ in {
         home = "/home/${username}";
         description = "My only user. Ain't no one else using my computer. Fuck you.";
         initialPassword = username;
-        passwordFile = "/nix/persistent/passwords/${username}";
+        hashedPasswordFile = "/nix/persistent/passwords/${username}";
       };
     };
   };

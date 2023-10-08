@@ -35,6 +35,7 @@ in {
         users.${username} = {
           directories = [
             ".config/discord"
+            ".config/Vencord/settings"
           ];
           files = [
           ];
