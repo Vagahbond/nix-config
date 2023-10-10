@@ -45,6 +45,7 @@ in {
         users.${username} = {
           directories = [
             ".wakatime"
+            ".config/github-copilot"
           ];
           files = [
             ".viminfo"
@@ -121,6 +122,7 @@ in {
                 python.enable = true;
                 dart.enable = true;
                 elixir.enable = false;
+                php.enable = true;
               };
 
               visuals = {
@@ -205,7 +207,11 @@ in {
               };
 
               notify = {
-                nvim-notify.enable = true;
+                nvim-notify = {
+                  enable = true;
+                  timeout = 500;
+                  position = "bottom_left";
+                };
               };
 
               projects = {
