@@ -2,8 +2,8 @@
 with lib; {
   options.modules.desktop = {
     rice = mkOption {
-      type = types.enum ["hyprland"];
-      default = "hyprland";
+      type = types.enum ["hyprland" null];
+      default = null;
       description = ''
         Select the desktop environment to use.
       '';
