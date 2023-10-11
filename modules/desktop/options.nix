@@ -27,7 +27,7 @@ with lib; {
 
     screenScalingRatio = mkOption {
       type = types.float;
-      default = 1.o;
+      default = 1.0;
       description = ''
         Zoom ratio for your screen
       '';
