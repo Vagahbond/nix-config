@@ -233,8 +233,8 @@ in ''
   ${
     if (screenScalingRatio != 1)
     then ''
-      env = GDK_SCALE,${screenScalingRatio}
-      env = XCURSOR_SIZE,${16 * screenScalingRatio}
+      env = GDK_SCALE,${toString screenScalingRatio}
+      env = XCURSOR_SIZE,${toString (16 * screenScalingRatio)}
     ''
     else ""
   }
