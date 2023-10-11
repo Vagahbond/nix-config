@@ -74,6 +74,13 @@ in {
     (mkIf
       (cfg.enable && cfg.enableNetwork && graphics != null)
       {
+        environment.persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".config/Insomnia"
+            ];
+          };
+        };
         environment.systemPackages = with pkgs; [
           insomnia
           (
