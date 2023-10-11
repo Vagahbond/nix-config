@@ -6,6 +6,7 @@
 } @ inputs: let
   framework = import ./framework;
   blade = import ./blade;
+  dedistonks = import ./dedistonks;
 
   base-options = {
     specialArgs = {inherit inputs self;};
@@ -14,6 +15,7 @@
       ../impermanence.nix
       ../nixos.nix
       ../user.nix
+      ../live.nix
     ];
   };
 in {
@@ -26,6 +28,11 @@ in {
   # My gaming and producing laptop
   # My working laptop
   blade = nixpkgs.lib.nixosSystem (blade {
+    inherit base-options;
+    specialArgs = {inherit inputs;};
+  });
+
+  dedistonks = nixpkgs.lib.nixosSystem (dedistonks {
     inherit base-options;
     specialArgs = {inherit inputs;};
   });
