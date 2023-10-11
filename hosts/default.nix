@@ -15,7 +15,6 @@
       ../impermanence.nix
       ../nixos.nix
       ../user.nix
-      ../live.nix
     ];
   };
 in {
@@ -35,5 +34,7 @@ in {
   dedistonks = nixpkgs.lib.nixosSystem (dedistonks {
     inherit base-options;
     specialArgs = {inherit inputs;};
+    # It crashes system to switch into a system with the iso attributes
+    modules = [../live.nix];
   });
 }

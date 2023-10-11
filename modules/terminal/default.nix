@@ -59,7 +59,7 @@ in {
         enable = true;
 
         settings = {
-          format = "In [󱄅](bold green) at [](bold green) $username$hosntame$directory$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package\n$character";
+          format = "In [󱄅](bold green) at [](bold green) $directory$username$hosntame$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package\n$character";
 
           right_format = ''
             $c
@@ -130,6 +130,11 @@ in {
 
           directory = {
             truncation_symbol = "../";
+            style = "bold green";
+          };
+
+          hostname = {
+            format = "host [$ssh_symbol$hostname]($style)";
             style = "bold green";
           };
 
