@@ -1,3 +1,4 @@
+# nix build .#nixosConfigurations.hostName.config.system.build.isoImage
 {
   lib,
   config,
@@ -10,5 +11,5 @@
   ];
 
   isoImage.volumeID = lib.mkForce "${config.networking.hostName}-live";
-  isoImage.isoName = lib.mkForce "${config.networking.hostName}.iso";
+  isoImage.isoName = lib.mkForce "${config.networking.hostName}-nixos.iso";
 }
