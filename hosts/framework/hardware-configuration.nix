@@ -53,6 +53,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   networking.hostName = "framework"; # Define your hostname.
+  # TODO: Move spotify port conf to spotify conf
   networking.firewall.allowedTCPPorts = [57621];
 
   # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
