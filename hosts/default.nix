@@ -4,9 +4,7 @@
   self,
   ...
 } @ inputs: let
-  framework = import ./framework;
-  blade = import ./blade;
-  dedistonks = import ./dedistonks;
+  systemNames = ["blade" "framework" "dedistonks"];
 
   base-options = {
     specialArgs = {inherit inputs self;};
@@ -17,24 +15,17 @@
       ../user.nix
     ];
   };
-in {
-  # My working laptop
-  framework = nixpkgs.lib.nixosSystem (framework {
-    inherit base-options;
-    specialArgs = {inherit inputs;};
-  });
 
-  # My gaming and producing laptop
-  # My working laptop
-  blade = nixpkgs.lib.nixosSystem (blade {
-    inherit base-options;
-    specialArgs = {inherit inputs;};
-  });
+  mkSystem = sysName: nixpkgs.lib.nixosSystem ((import ./${sysName}) {inherit base-options;});
+  mkLiveSystem = sysName:
+    nixpkgs.lib.nixosSystem ((import ./${sysName}) {
+      inherit base-options;
+      modules = [../live.nix];
+    });
 
-  dedistonks = nixpkgs.lib.nixosSystem (dedistonks {
-    inherit base-options;
-    specialArgs = {inherit inputs;};
-    # It crashes system to switch into a system with the iso attributes
-    modules = [../live.nix];
-  });
-}
+  systems = map (sysName: {${sysName} = mkSystem sysName;}) systemNames;
+  liveSystems = map (sysName: {"${sysName}-live" = mkLiveSystem sysName;}) systemNames;
+
+  mergedSystems = nixpkgs.lib.foldr (coming: final: final // coming) {} (systems ++ liveSystems);
+in
+  mergedSystems
