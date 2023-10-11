@@ -51,8 +51,8 @@
 
   # MFW No DHCP
   networking = {
-    usePredictableInterfaceNames = false;
-    interfaces.eth0.ipv4.addresses = [
+    # usePredictableInterfaceNames = false;
+    interfaces.ens18.ipv4.addresses = [
       {
         address = "192.168.0.18";
         prefixLength = 24;
