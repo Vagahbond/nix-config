@@ -39,6 +39,10 @@ in {
             psk = "@ESGI_PSK@";
           };
 
+          "@ESGI2_SSID@" = {
+            psk = "@ESGI2_PSK@";
+          };
+
           "@VICFI_SSID@" = {
             psk = "@VICFI_PSK@";
           };
