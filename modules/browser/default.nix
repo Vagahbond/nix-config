@@ -100,9 +100,9 @@ in {
             {
               Name = "nixpkgs";
               Description = "Nixpkgs query";
-              Alias = "!nix";
+              Alias = "!pkgs";
               Method = "GET";
-              URLTemplate = "https://search.nixos.org/packages?&query={searchTerms}";
+              URLTemplate = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
             }
 
             {
@@ -148,15 +148,34 @@ in {
           "webextension@metamask.io".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ether-metamask/latest.xpi";
         };
 
-        # bookmarks = [
-        #  {
-        #    Title = "Example";
-        #    URL = "https://example.com";
-        #    Favicon = "https://example.com/favicon.ico";
-        #    Placement = "toolbar";
-        #    Folder = "FolderName";
-        #  }
-        #];
+        bookmarks = [
+          {
+            Title = "Dedistonks";
+            URL = "https://sd-158943.dedibox.fr:8006/#v1:0:=node%2Fdedistonks:4:5:=contentImages::::12:5";
+            Placement = "toolbar";
+          }
+          {
+            Title = "Plex";
+            URL = "https://plex.flavien-fouqueray.fr";
+            Placement = "toolbar";
+          }
+          {
+            Title = "Edusign";
+            URL = "https://edusign.app/professor/";
+            Placement = "toolbar";
+            folder = "Courses";
+          }
+          {
+            Title = "Gists";
+            URL = "https://gist.github.com/vagahbond";
+            Placement = "toolbar";
+          }
+          {
+            Title = "Github";
+            URL = "https://github.com/Vagahbond";
+            Placement = "toolbar";
+          }
+        ];
       };
     };
   };

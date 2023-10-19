@@ -2,7 +2,6 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
   modulesPath,
   ...
@@ -14,7 +13,7 @@
   boot = {
     initrd.availableKernelModules = [];
     initrd.kernelModules = [];
-    kernelModules = ["kvm-intel"];
+    kernelModules = ["virtio-pci"];
     extraModulePackages = [];
     kernelParams = ["boot.shell_on_fail"];
 
@@ -22,6 +21,7 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
+
   # Impermanencing my whole system cause I like to suffer
   fileSystems = {
     "/" = {
