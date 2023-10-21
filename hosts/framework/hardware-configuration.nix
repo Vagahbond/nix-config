@@ -11,36 +11,38 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
-  boot.kernelParams = ["boot.shell_on_fail"];
-
+  boot = {
+    initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
+    kernelParams = ["boot.shell_on_fail"];
+  };
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Impermanencing my whole system cause I like to suffer
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    # Set mode to 755 instead of 777 or openssh no worky
-    options = ["relatime" "mode=755"];
+  fileSystems = {
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      # Set mode to 755 instead of 777 or openssh no worky
+      options = ["relatime" "mode=755"];
+    };
+
+    "/nix" = {
+      device = "/dev/disk/by-uuid/27fd7c0c-49ec-4686-be77-c20262cfa3e9";
+      fsType = "ext4";
+
+      neededForBoot = true;
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/FD68-78E8";
+      fsType = "vfat";
+    };
   };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/27fd7c0c-49ec-4686-be77-c20262cfa3e9";
-    fsType = "ext4";
-
-    neededForBoot = true;
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/FD68-78E8";
-    fsType = "vfat";
-  };
-
   swapDevices = [
     {
       device = "/dev/nvme0n1p2";
@@ -51,12 +53,12 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  networking.hostName = "framework"; # Define your hostname.
-  # TODO: Move spotify port conf to spotify conf
-  networking.firewall.allowedTCPPorts = [57621];
-
-  # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
+  networking = {
+    useDHCP = lib.mkDefault true;
+    hostName = "framework"; # Define your hostname.
+    # TODO: Move spotify port conf to spotify conf
+    firewall.allowedTCPPorts = [57621];
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
