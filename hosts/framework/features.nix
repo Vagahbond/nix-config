@@ -60,7 +60,7 @@ in {
       network = {
         wifi.enable = true;
         bluetooth.enable = true;
-        ssh.enableClient = true;
+        ssh.enable = true;
       };
 
       output = {

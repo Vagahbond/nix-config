@@ -10,8 +10,7 @@ with lib; {
     };
 
     ssh = {
-      enableClient = mkEnableOption "Enable ssh client";
-      enableServer = mkEnableOption "Enable ssh server";
+      enable = mkEnableOption "Enable ssh client";
     };
 
     debug = {

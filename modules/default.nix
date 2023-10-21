@@ -17,5 +17,6 @@
     ./terminal
     ./virtualisation
     ./gaming
+    ./services
   ];
 }

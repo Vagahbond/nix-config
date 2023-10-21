@@ -22,7 +22,7 @@ in {
       age.secrets.wifi = {
         file = ../../secrets/wifi.age;
         owner = username;
-        mode = "700";
+        mode = "600";
         group = "users";
       };
 
@@ -99,7 +99,7 @@ in {
         ];
       };
     })
-    (mkIf cfg.ssh.enableClient {
+    (mkIf cfg.ssh.enable {
       environment.systemPackages = with pkgs; [
         sshs
       ];
