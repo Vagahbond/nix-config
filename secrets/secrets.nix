@@ -6,5 +6,5 @@ in {
   # Wifi passwords
   "wifi.age".publicKeys = [framework blade];
   "kubeconfig.age".publicKeys = [framework blade];
-  "dedistonks_access.age".publicKeys = [framework blade];
+  "dedistonks_access.age".publicKeys = [framework blade dedistonks];
 }
