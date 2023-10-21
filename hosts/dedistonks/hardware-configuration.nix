@@ -32,14 +32,14 @@
     };
 
     "/nix" = {
-      device = "/dev/disk/by-label/NIXROOT";
+      device = "/dev/sda2";
       fsType = "ext4";
 
       neededForBoot = true;
     };
 
     "/boot" = {
-      device = "/dev/disk/by-label/NIXBOOT";
+      device = "/dev/sda1";
       fsType = "vfat";
     };
   };
