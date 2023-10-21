@@ -13,7 +13,7 @@
   boot = {
     initrd.availableKernelModules = [];
     initrd.kernelModules = [];
-    kernelModules = ["virtio-pci"];
+    kernelModules = ["virtio-pci virtio_scsi virtio-blk virtio-net"];
     extraModulePackages = [];
     kernelParams = ["boot.shell_on_fail"];
 
