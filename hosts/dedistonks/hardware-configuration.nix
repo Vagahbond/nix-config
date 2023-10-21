@@ -31,14 +31,14 @@
       options = ["relatime" "mode=755"];
     };
 
-    "nix" = {
+    "/nix" = {
       device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
 
       neededForBoot = true;
     };
 
-    "boot" = {
+    "/boot" = {
       device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
     };
