@@ -18,8 +18,8 @@ in {
           file = ../../secrets/${hostname}_access.age;
           path = "${config.users.users.${username}.home}/.ssh/authorized_keys";
           mode = "600";
-          # owner = username;
-          # group = username;
+          owner = username;
+          group = "users";
         };
 
         services.openssh = {
