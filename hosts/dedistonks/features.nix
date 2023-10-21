@@ -8,7 +8,7 @@ in {
 
   config = {
     age.identityPaths = [
-      "/home/${username}/.ssh/id_rsa"
+      "/home/${username}/.ssh/id_ed25519"
     ];
 
     modules = {
