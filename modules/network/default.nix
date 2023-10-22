@@ -47,6 +47,9 @@ in {
             psk = "@VICFI_PSK@";
           };
 
+          "@JEREM_SSID@" = {
+            psk = "@JEREM_PSK@";
+          };
           /*
           "@WORK2_SSID@" = {
             psk = "@WORK2_PSK@";
