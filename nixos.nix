@@ -15,6 +15,9 @@ in {
       #   sed
     ];
 
+    sessionVariables = {
+      NIX_SSHOPTS = "-p 45";
+    };
     # billions must use different ssh ports
     variables = {
       NIX_SSHOPTS = "-p 45";
