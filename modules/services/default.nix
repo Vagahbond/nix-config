@@ -44,7 +44,7 @@ in {
         };
 
         # Disable sudo on my servers. only su, you gotta know the root password.
-        security.sudo.enable = false;
+        security.sudo.enable = true;
       }
     )
     (
