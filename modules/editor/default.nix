@@ -131,6 +131,7 @@ in {
                 dart.enable = true;
                 elixir.enable = false;
                 php.enable = true;
+                lua.enable = true;
               };
 
               visuals = {
