@@ -33,6 +33,10 @@ in {
     settings = {
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
+      trusted-users = [
+        "root"
+        username
+      ];
     };
 
     gc = {
@@ -40,6 +44,22 @@ in {
       dates = "weekly";
       options = "--delete-older-than 2d";
     };
+
+    buildMachines = [
+      {
+        hostName = "vagahbond.com";
+        system = "x86_64-linux";
+        protocol = "ssh-ng";
+        maxJobs = 2;
+        speedFactor = 2;
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+        mandatoryFeatures = [];
+      }
+    ];
+    distributedBuilds = true;
+    extraOptions = ''
+      builders-use-substitutes = true
+    '';
   };
 
   home-manager.users.${username} = {

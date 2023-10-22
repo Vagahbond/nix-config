@@ -67,7 +67,7 @@
     defaultGateway = "192.168.0.1";
     useDHCP = false;
     hostName = "dedistonks"; # Define your hostname.
-    firewall.allowedTCPPorts = [45];
+    firewall.allowedTCPPorts = [45 80 443];
     nameservers = ["8.8.8.8" "4.4.4.4"];
   };
 
