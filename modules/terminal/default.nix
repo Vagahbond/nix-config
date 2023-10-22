@@ -59,7 +59,7 @@ in {
         enable = true;
 
         settings = {
-          format = "In [󱄅 $hostname](bold green)at [](bold green) $directory$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package\n$character";
+          format = "In [󱄅](bold green)$hostname at [](bold green) $directory$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package\n$character";
 
           right_format = ''
             $c
@@ -135,9 +135,9 @@ in {
 
           hostname = {
             ssh_only = false;
-            format = "[$hostname](bold green) $ssh_symbol";
+            format = " [$hostname](bold green)$ssh_symbol ";
             disabled = false;
-            ssh_symbol = " [via](none) [](bold green) ";
+            ssh_symbol = " [via](none) [](bold green)";
           };
 
           character = {
