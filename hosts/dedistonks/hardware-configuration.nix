@@ -14,12 +14,6 @@
     initrd = {
       availableKernelModules = [];
       kernelModules = ["virtio-pci" "virtio_scsi" "virtio-blk" "virtio-net" "scsi_mod"];
-      luks.devices = {
-        root = {
-          device = "/dev/disk/by-label/NIXROOT";
-          preLVM = true;
-        };
-      };
     };
     kernelModules = ["virtio-pci" "virtio_scsi" "virtio-blk" "virtio-net"];
     extraModulePackages = [];
@@ -29,7 +23,6 @@
     loader.grub = {
       enable = true;
       device = "/dev/sda";
-      enableCryptodisk = true;
     };
   };
 
