@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib; let
@@ -44,6 +45,30 @@ in {
 
         # Disable sudo on my servers. only su, you gotta know the root password.
         security.sudo.enable = false;
+      }
+    )
+    (
+      mkIf cfg.nextcloud.enable {
+        age.secrets.nextcloudAdminPass = {
+          file = ../../secrets/nextcloud_admin_pass.age;
+          # path = "${config.users.users.${username}.home}/.ssh/authorized_keys";
+          mode = "440";
+          owner = "nextcloud";
+          group = "users";
+        };
+        services.nextcloud = {
+          enable = true;
+          package = pkgs.nextcloud27;
+          hostName = "cloud.vagahbond.com";
+          home = "/nix/nextcloud";
+          config = {
+            adminpassFile = config.age.secrets.nextcloudAdminPass.path;
+            # objectstore.s3.sseCKeyFile = "some file generated with openssl rand 32"
+          };
+          database = {
+            createLocally = true;
+          };
+        };
       }
     )
   ];

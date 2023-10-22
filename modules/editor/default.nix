@@ -119,7 +119,8 @@ in {
                   enable = true;
                   lsp.server = "clangd";
                 };
-                sql.enable = true;
+                # broky
+                sql.enable = false;
                 rust = {
                   enable = false;
                   crates.enable = false;

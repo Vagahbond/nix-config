@@ -9,4 +9,5 @@ in {
   "dedistonks_access.age".publicKeys = [framework blade dedistonks];
   "ssh_config.age".publicKeys = [framework blade];
   "wakatime_config.age".publicKeys = [framework blade dedistonks];
+  "nextcloud_admin_pass.age".publicKeys = [dedistonks];
 }

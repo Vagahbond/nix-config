@@ -7,13 +7,19 @@
   #   docs = import ./doc {inherit (pkgs) lib runCommand nixosOptionsDoc;};
   username = import ./username.nix;
 in {
-  environment.etc."current-flake".source = self;
+  environment = {
+    etc."current-flake".source = self;
 
-  environment.systemPackages = with pkgs; [
-    cachix
-    #   sed
-  ];
+    systemPackages = with pkgs; [
+      cachix
+      #   sed
+    ];
 
+    # billions must use different ssh ports
+    variables = {
+      NIX_SSHOPTS = "-p 45";
+    };
+  };
   age.identityPaths = [
     "/nix/persistent/home/${username}/.ssh/id_ed25519"
     # "/nix/persistent/home/${username}/.ssh/id_rsa"

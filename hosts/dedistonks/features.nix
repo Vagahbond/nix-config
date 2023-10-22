@@ -43,6 +43,7 @@ in {
 
       services = {
         ssh.enable = true;
+        nextcloud.enable = true;
       };
     };
   };
