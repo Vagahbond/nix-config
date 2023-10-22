@@ -7,4 +7,5 @@ in {
   "wifi.age".publicKeys = [framework blade];
   "kubeconfig.age".publicKeys = [framework blade];
   "dedistonks_access.age".publicKeys = [framework blade dedistonks];
+  "ssh_config.age".publicKeys = [framework blade];
 }
