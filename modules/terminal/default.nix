@@ -135,10 +135,10 @@ in {
 
           hostname = {
             ssh_only = false;
-            format = "[$hostname$ssh_symbol]($style) ";
+            format = "[$hostname]($style)$ssh_symbol";
             style = "bold green";
             disabled = false;
-            ssh_symbol = " [via](none white) ";
+            ssh_symbol = " [via](none white) [](bold green)";
           };
 
           character = {
