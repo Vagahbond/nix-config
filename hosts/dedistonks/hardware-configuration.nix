@@ -11,8 +11,16 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = [];
-    initrd.kernelModules = ["virtio-pci" "virtio_scsi" "virtio-blk" "virtio-net" "scsi_mod"];
+    initrd = {
+      availableKernelModules = [];
+      kernelModules = ["virtio-pci" "virtio_scsi" "virtio-blk" "virtio-net" "scsi_mod"];
+      luks.devices = {
+        root = {
+          device = "/dev/disk/by-label/NIXROOT";
+          preLVM = true;
+        };
+      };
+    };
     kernelModules = ["virtio-pci" "virtio_scsi" "virtio-blk" "virtio-net"];
     extraModulePackages = [];
     kernelParams = ["boot.shell_on_fail"];
@@ -21,6 +29,7 @@
     loader.grub = {
       enable = true;
       device = "/dev/sda";
+      enableCryptodisk = true;
     };
   };
 
@@ -34,21 +43,23 @@
     };
 
     "/nix" = {
-      device = "/dev/sda2";
+      device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
 
       neededForBoot = true;
     };
 
     "/boot" = {
-      device = "/dev/sda1";
+      device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
     };
   };
   swapDevices = [
-    # {
-    #   device = "/dev/sda3";
-    # }
+    {
+      device = "/nix/.swapfile";
+      randomEncryption.enable = true;
+      size = 8 * 1024;
+    }
   ];
 
   # MFW No DHCP

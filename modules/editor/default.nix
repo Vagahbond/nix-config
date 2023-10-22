@@ -41,6 +41,15 @@ in {
       };
     })
     (mkIf (builtins.elem "neovim" cfg.terminal) {
+      # Wakatime key as a secret
+      age.secrets.wakatimeConfig = {
+        file = ../../secrets/wakatime_config.age;
+        path = "${config.users.users.${username}.home}/.wakatime.cfg";
+        mode = "440";
+        owner = "vagahbond";
+        group = "users";
+      };
+
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
@@ -50,7 +59,6 @@ in {
           files = [
             ".viminfo"
             ".wakatime.bdb"
-            ".wakatime.cfg"
           ];
         };
       };

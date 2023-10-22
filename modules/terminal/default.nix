@@ -138,7 +138,7 @@ in {
             format = "[$hostname$ssh_symbol]($style) ";
             style = "bold green";
             disabled = false;
-            ssh_symbol = " via ";
+            ssh_symbol = " [via](none white) ";
           };
 
           character = {
