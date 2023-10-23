@@ -7,10 +7,10 @@ with lib; {
 
     nextcloud = {
       enable = mkEnableOption "nextcloud";
-      port = mkOption {
-        type = types.int;
-        default = 8080;
-      };
+    };
+
+    postgres = {
+      enable = mkEnableOption "postgres";
     };
   };
 }
