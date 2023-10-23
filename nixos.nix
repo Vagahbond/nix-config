@@ -16,11 +16,11 @@ in {
     ];
 
     sessionVariables = {
-      NIX_SSHOPTS = "-p 45";
+      NIX_SSHOPTS = "-p 45 -t ";
     };
     # billions must use different ssh ports
     variables = {
-      NIX_SSHOPTS = "-p 45";
+      NIX_SSHOPTS = "-p 45 -t ";
     };
   };
   age.identityPaths = [

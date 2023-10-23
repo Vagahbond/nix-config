@@ -73,7 +73,7 @@ in {
 
     (
       mkIf cfg.nextcloud.enable {
-        # modules.services.postgres.enable = true;
+        networking.firewall.allowedTCPPorts = [80 8000];
 
         environment.persistence.${storageLocation} = {
           directories = [
@@ -87,66 +87,65 @@ in {
         };
         age.secrets.nextcloudAdminPass = {
           file = ../../secrets/nextcloud_admin_pass.age;
-          # path = "${config.users.users.${username}.home}/.ssh/authorized_keys";
           mode = "440";
           owner = "nextcloud";
           group = "users";
         };
 
-        # services.postgresql = {
-        #   ensureDatabases = [
-        #     "nextcloud"
-        #   ];
-
-        #   ensureUsers = [
-        #    {
-        #       name = "nextcloud";
-        #       ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES";
-        #     }
-        #   ];
-        # };
-        services.redis = {
-          servers = {
-            nextcloud = {
-              enable = true;
-              user = "nextcloud";
-              port = 0;
+        services = {
+          redis = {
+            servers = {
+              nextcloud = {
+                enable = true;
+                user = "nextcloud";
+                port = 0;
+              };
             };
           };
-        };
 
-        services.nginx = {
-          recommendedTlsSettings = true;
-          recommendedOptimisation = true;
-          recommendedGzipSettings = true;
-          recommendedProxySettings = true;
-        };
-
-        services.nextcloud = {
-          enable = true;
-          package = pkgs.nextcloud27;
-          hostName = "cloud.vagahbond.com";
-          https = true;
-          maxUploadSize = "4G";
-          config = {
-            dbtype = "pgsql";
-            trustedProxies = ["192.168.0.3"];
-            adminpassFile = config.age.secrets.nextcloudAdminPass.path;
-            defaultPhoneRegion = "FR";
-            # objectstore.s3.sseCKeyFile = "some file generated with openssl rand 32"
+          nginx = {
+            recommendedTlsSettings = true;
+            recommendedOptimisation = true;
+            recommendedGzipSettings = true;
+            recommendedProxySettings = true;
           };
-          extraOptions = {
-            redis = {
-              host = "/run/redis-default/redis.sock";
-              dbindex = 0;
-              timeout = 1.5;
+
+          onlyoffice = {
+            enable = true;
+            hostname = "office.vagahbond.com";
+          };
+
+          nextcloud = {
+            enable = true;
+            package = pkgs.nextcloud27;
+            hostName = "cloud.vagahbond.com";
+            https = true;
+            maxUploadSize = "4G";
+            config = {
+              dbtype = "pgsql";
+              trustedProxies = ["192.168.0.3"];
+              adminpassFile = config.age.secrets.nextcloudAdminPass.path;
+              defaultPhoneRegion = "FR";
+              # objectstore.s3.sseCKeyFile = "some file generated with openssl rand 32"
             };
-          };
-          caching = {
-            redis = true;
-          };
-          database = {
-            createLocally = true;
+            extraOptions = {
+              redis = {
+                host = "/run/redis-default/redis.sock";
+                dbindex = 0;
+                timeout = 1.5;
+              };
+            };
+            caching = {
+              redis = true;
+            };
+            database = {
+              createLocally = true;
+            };
+
+            extraApps = with config.services.nextcloud.package.packages.apps; {
+              inherit files_markdown contacts calendar tasks onlyoffice;
+            };
+            extraAppsEnable = true;
           };
         };
       }
