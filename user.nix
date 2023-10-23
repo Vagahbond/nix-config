@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   username = import ./username.nix;
   inherit (config.modules.impermanence) storageLocation;
 in {
@@ -18,6 +22,23 @@ in {
         hashedPasswordFile = "/nix/persistent/passwords/${username}";
       };
     };
+  };
+
+  security.sudo = {
+    enable = true;
+    extraRules = [
+      {
+        # allow wheel group to run nixos-rebuild without password
+        # this is a less vulnerable alternative to having wheelNeedsPassword = false
+        groups = ["sudo" "wheel"];
+        commands = [
+          {
+            command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+            options = ["NOPASSWD"];
+          }
+        ];
+      }
+    ];
   };
 
   environment.persistence.${storageLocation} = {

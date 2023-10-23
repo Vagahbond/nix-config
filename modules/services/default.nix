@@ -42,24 +42,6 @@ in {
             Seriously get the fuck out.
           '';
         };
-
-        # Disable sudo on my servers. only su, you gotta know the root password.
-        security.sudo = {
-          enable = true;
-          extraRules = [
-            {
-              # allow wheel group to run nixos-rebuild without password
-              # this is a less vulnerable alternative to having wheelNeedsPassword = false
-              groups = ["sudo" "wheel"];
-              commands = [
-                {
-                  command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
-                  options = ["NOPASSWD"];
-                }
-              ];
-            }
-          ];
-        };
       }
     )
     (
@@ -84,7 +66,7 @@ in {
             # objectstore.s3.sseCKeyFile = "some file generated with openssl rand 32"
           };
           caching = {
-            redis = true;
+            redis = false;
           };
           database = {
             createLocally = true;
