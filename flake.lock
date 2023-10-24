@@ -1075,11 +1075,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-TKvS9aOb1elQL8Wb/kscwGn7FKDCr6K3nvaA1NXQ/DU=",
-        "path": "/nix/store/a42kr33vqa6mp0plv5igrsmrmyp9bsc7-source/modules",
+        "path": "/nix/store/2hrsgr2c37d30jh6rqqcba5rsqdh6alk-source/modules",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/a42kr33vqa6mp0plv5igrsmrmyp9bsc7-source/modules",
+        "path": "/nix/store/2hrsgr2c37d30jh6rqqcba5rsqdh6alk-source/modules",
         "type": "path"
       }
     },
