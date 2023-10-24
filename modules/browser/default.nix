@@ -131,7 +131,7 @@ in {
         misc = {
           drmFix = false;
           disableWebgl = false;
-          startPageURL = "https://www.notion.so/vagahbond/Personal-Home-b254100e4ec947ae893ffffb0951e339";
+          startPageURL = "https://cloud.vagahbond.com";
         };
 
         extensions.extraExtensions = {
