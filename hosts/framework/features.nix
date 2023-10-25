@@ -37,6 +37,7 @@ in {
       editor = {
         gui = ["vscode"];
         terminal = ["neovim"];
+        office = true;
       };
 
       medias = {

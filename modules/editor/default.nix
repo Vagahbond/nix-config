@@ -2,6 +2,7 @@
   inputs,
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib; let
@@ -40,6 +41,13 @@ in {
         };
       };
     })
+    (
+      mkIf cfg.office {
+        environment.systemPackages = with pkgs; [
+          libreoffice
+        ];
+      }
+    )
     (mkIf (builtins.elem "neovim" cfg.terminal) {
       # Wakatime key as a secret
       age.secrets.wakatimeConfig = {

@@ -22,5 +22,7 @@ with lib; {
       '';
       example = ["neovim"];
     };
+
+    office = mkEnableOption "enable LibreOffice";
   };
 }
