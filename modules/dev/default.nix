@@ -36,7 +36,7 @@ in {
           config = {
             user = {
               name = "Yoni FIRROLONI";
-              email = "pro@yoni-firroloni.fr";
+              email = "pro@yoni-firroloni.com";
             };
             init = {
               defaultBranch = "main";
@@ -81,7 +81,7 @@ in {
             ];
           };
         };
-        environment.systemPackages = with pkgs; [
+        environment.systemPackages = [
           insomnia
           (
             pkgs.writeTextDir "share/applications/insomnia.desktop" ''
