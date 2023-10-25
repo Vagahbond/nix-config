@@ -83,6 +83,30 @@ in {
               group = "nextcloud";
               mode = "u=rwx,g=rx,o=";
             }
+            {
+              directory = "/var/lib/redis-nextcloud";
+              user = "nextcloud";
+              group = "nextcloud";
+              mode = "u=rwx,g=rx,o=";
+            }
+            {
+              directory = "/var/lib/onlyoffice";
+              user = "onlyoffice";
+              group = "onlyoffice";
+              mode = "u=rwx,g=rx,o=";
+            }
+            {
+              directory = "/var/lib/postgresql";
+              user = "postgres";
+              group = "postgres";
+              mode = "u=rwx,g=rx,o=";
+            }
+            {
+              directory = "/var/lib/rabbitmq";
+              user = "rabbitmq";
+              group = "rabbitmq";
+              mode = "u=rwx,g=rx,o=";
+            }
           ];
         };
         age.secrets.nextcloudAdminPass = {
