@@ -81,6 +81,7 @@ in {
         whatsapp.enable = true;
         discord.enable = true;
         # teams.enable = true;
+        matrix.enable = true;
       };
 
       system = {

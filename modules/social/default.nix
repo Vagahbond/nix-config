@@ -47,14 +47,30 @@ in {
           source = "${catppuccin-mocha}/themes/mocha.theme.css";
         };
       };
+
       environment.systemPackages = with pkgs; [
-        #  webcord-vencord
-        (
-          discord.override {
-            withOpenASAR = true;
-            withVencord = true;
-          }
-        )
+        # discord broky yet AGAIN
+        (discord.override {
+          #  withOpenASAR = true;
+          withVencord = true;
+        })
+        # webcord-vencord
+      ];
+    })
+    (mkIf cfg.matrix.enable {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            #  ".config/discord"
+            #  ".config/Vencord/settings"
+          ];
+          files = [
+          ];
+        };
+      };
+
+      environment.systemPackages = with pkgs; [
+        element-desktop
       ];
     })
   ];
