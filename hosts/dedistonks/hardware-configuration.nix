@@ -21,7 +21,7 @@
 
     # Use the systemd-boot EFI boot loader.
     loader.grub = {
-      enable = true;
+      enable = lib.mkDefault true;
       device = "/dev/sda";
     };
   };
