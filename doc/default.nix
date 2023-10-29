@@ -1,5 +1,5 @@
-{nixpkgs, ...}: let
-  inherit (nixpkgs.legacyPackages."x86_64-linux") callPackage stdenv mkdocs python310Packages;
+{inputs, ...}: let
+  inherit (inputs.nixpkgs.legacyPackages."x86_64-linux") callPackage stdenv python311Packages;
   options-doc = callPackage ./doc-package.nix {};
 in
   stdenv.mkDerivation {
@@ -9,9 +9,10 @@ in
     buildInput = [options-doc];
 
     nativeBuildInputs = [
-      mkdocs
-      python310Packages.mkdocs-material
-      python310Packages.pygments
+      python311Packages.mkdocs
+      python311Packages.mkdocs-material
+      python311Packages.pygments
+      python311Packages.regex
     ];
 
     buildPhase = ''
