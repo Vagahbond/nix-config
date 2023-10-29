@@ -2,12 +2,12 @@ name: "Build"
 on:
   pull_request:
     paths:
-      - "./**/*.nix"
+      - "**/*.nix"
   push:
     branches:
       - master
     paths:
-      - "./**/*.nix"
+      - "**/*.nix"
 jobs:
   tests:
     name: Check that flake builds
