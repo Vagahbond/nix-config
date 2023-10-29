@@ -30,6 +30,7 @@
   # generate our docs
   optionsDoc = nixosOptionsDoc {
     options = eval.options.modules;
+    transformOptions = o: o;
   };
 in
   runCommand "index.md" {} ''
