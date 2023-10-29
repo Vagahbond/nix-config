@@ -43,7 +43,7 @@ in {
     };
 
     home-manager.users.${username} = {...}: {
-      imports = [inputs.internalFlakes.browser.schizofox.homeManagerModules.default];
+      imports = [inputs.schizofox.homeManagerModules.default];
 
       xdg.mimeApps = {
         enable = true;
@@ -148,7 +148,7 @@ in {
           "webextension@metamask.io".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ether-metamask/latest.xpi";
         };
 
-        bookmarks = [
+        misc.bookmarks = [
           {
             Title = "Dedistonks";
             URL = "https://sd-158943.dedibox.fr:8006/#v1:0:=node%2Fdedistonks:4:5:=contentImages::::12:5";

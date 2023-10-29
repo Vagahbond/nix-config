@@ -1,6 +1,20 @@
 {
   description = "My modular NixOS configuration that totally did not take countless horus to make.";
+  outputs = {self, ...} @ inputs: {
+    nixosConfigurations =
+      import ./hosts
+      {
+        inherit inputs self;
+      };
 
+    # Building the documentation
+    # TODO: Make it for several systems ?
+    packages."x86_64-linux".doc = import ./doc {
+      inherit inputs self;
+    };
+  };
+
+  # Imagine having no clean way to separate your system's dependencies...
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -16,29 +30,25 @@
     # Secrets management via ragenix, an agenix replacement
     agenix.url = "github:yaxitech/ragenix";
 
-    # Internal flakes
-    internalFlakes.url = "./modules";
-  };
+    schizofox = {
+      url = "github:schizofox/schizofox";
+    };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    impermanence,
-    internalFlakes,
-    agenix,
-    self,
-    ...
-  } @ inputs: {
-    nixosConfigurations =
-      import ./hosts
-      {
-        inherit home-manager impermanence agenix internalFlakes inputs nixpkgs self;
-      };
+    eww-config = {
+      url = "github:Vagahbond/eww-dotfiles";
+      flake = false;
+    };
 
-    # Building the documentation
-    # TODO: Make it for several systems ?
-    packages."x86_64-linux".doc = import ./doc {
-      inherit nixpkgs;
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
+
+    neovim-flake = {
+      url = "github:NotAShelf/neovim-flake";
+      # url = "github:vagahbond/neovim-flake";
     };
   };
 }

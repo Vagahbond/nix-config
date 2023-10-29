@@ -8,16 +8,17 @@
 with lib; let
   username = import ../../../username.nix;
 
+  # TODO: Investigate why I did such a thing
   pywalfox-nixpkgs = builtins.fetchTarball {
     url = "https://github.com/nixos/nixpkgs/archive/e213f8c329429cac1715a86eec617a93783bb99c.tar.gz";
     sha256 = "sha256:08j1jdy2zdr53m3ir21i92nfg8xz3bjy29xyaqdqh43k3p32xcxn";
   };
 
-  isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
+  # isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 
   pywalfox = pkgs.python310Packages.callPackage "${pywalfox-nixpkgs}/pkgs/development/python-modules/pywalfox/default.nix" {};
   sddm-themes = pkgs.callPackage ./sddm-themes.nix {};
-  inherit (inputs.internalFlakes.desktop.hyprland-rice) hyprland;
+  inherit (inputs) hyprland;
   inherit (config.modules.impermanence) storageLocation;
 
   cfg = config.modules.desktop;
@@ -239,7 +240,7 @@ in {
 
             "foot/foot.ini".source = ./foot.ini;
 
-            "eww".source = inputs.internalFlakes.desktop.hyprland-rice.eww-config;
+            "eww".source = inputs.eww-config;
 
             "hypr/hyprpaper.conf".source = ./hyprpaper.conf;
             "hypr/wallpaper.jpg".source = ./wallpaper.jpg;

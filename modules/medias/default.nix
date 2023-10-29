@@ -93,10 +93,10 @@ in {
       ];
 
       home-manager.users.${username} = {pkgs, ...}: let
-        spicePkgs = inputs.internalFlakes.medias.spotify.packages.${pkgs.system}.default;
+        spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
       in {
         imports = [
-          inputs.internalFlakes.medias.spotify.module
+          inputs.spicetify-nix.homeManagerModule
         ];
 
         programs.spicetify = {

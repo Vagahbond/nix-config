@@ -76,10 +76,10 @@ in {
       };
 
       home-manager.users.${username} = {...}: {
-        imports = [inputs.internalFlakes.editors.neovim.homeManagerModules.default];
+        imports = [inputs.neovim-flake.homeManagerModules.default];
 
         nixpkgs.overlays = [
-          inputs.internalFlakes.editors.neovim.overlays.default
+          inputs.neovim-flake.overlays.default
         ];
 
         programs.neovim-flake = {

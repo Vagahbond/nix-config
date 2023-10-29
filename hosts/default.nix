@@ -1,9 +1,10 @@
 {
-  nixpkgs,
-  home-manager,
+  inputs,
   self,
   ...
-} @ inputs: let
+}: let
+  inherit (inputs) home-manager nixpkgs;
+
   systemNames = ["blade" "framework" "dedistonks"];
 
   base-options = {
