@@ -29,7 +29,7 @@
   };
   # generate our docs
   optionsDoc = nixosOptionsDoc {
-    inherit (eval) options;
+    options = eval.options.modules;
   };
 in
   runCommand "index.md" {} ''
