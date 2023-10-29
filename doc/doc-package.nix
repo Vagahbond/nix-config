@@ -25,6 +25,7 @@
       ../modules/terminal/options.nix
       ../modules/virtualisation/options.nix
       ../modules/gaming/options.nix
+      ../modules/services/options.nix
     ];
   };
   # generate our docs
