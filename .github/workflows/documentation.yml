@@ -42,7 +42,8 @@ jobs:
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
-        path: result
+        with:
+          path: result
 
       - name: Deploy to GitHub Pages
         id: deployment
