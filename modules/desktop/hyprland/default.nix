@@ -14,9 +14,23 @@ with lib; let
     sha256 = "sha256:08j1jdy2zdr53m3ir21i92nfg8xz3bjy29xyaqdqh43k3p32xcxn";
   };
 
+  pywalfox = pkgs.python3Packages.buildPythonPackage rec {
+    pname = "pywalfox";
+    version = "2.7.4";
+    src = pkgs.python3Packages.fetchPypi {
+      inherit pname version;
+      sha256 = "sha256-Wec9fic4lXT7gBY04D2EcfCb/gYoZcrYA/aMRWaA7WY=";
+    };
+    doCheck = false;
+    propagatedBuildInputs = [
+      # Specify dependencies
+      # pkgs.python3Packages.numpy
+    ];
+  };
+
   # isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 
-  pywalfox = pkgs.python310Packages.callPackage "${pywalfox-nixpkgs}/pkgs/development/python-modules/pywalfox/default.nix" {};
+  # pywalfox = pkgs.python310Packages.callPackage "${pywalfox-nixpkgs}/pkgs/development/python-modules/pywalfox/default.nix" {};
   sddm-themes = pkgs.callPackage ./sddm-themes.nix {};
   inherit (inputs) hyprland;
   inherit (config.modules.impermanence) storageLocation;
