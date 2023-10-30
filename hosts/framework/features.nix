@@ -70,7 +70,10 @@ in {
       };
 
       # Notion on nix broken for now, too busy to look into it
-      productivity.notion.enable = false;
+      productivity = {
+        notion.enable = false;
+        nextcloudSync.enable = true;
+      };
 
       security = {
         keyring.enable = true;

@@ -2,6 +2,7 @@
 with lib; {
   options.modules.productivity = {
     notion.enable = mkEnableOption "Enable Notion"; # No worky
-    appflowy = mkEnableOption "Enable appflowy"; # Notion alternative
+    appflowy.enable = mkEnableOption "Enable appflowy"; # Notion alternative
+    nextcloudSync.enable = mkEnableOption "Enable next cloud syncronisation";
   };
 }
