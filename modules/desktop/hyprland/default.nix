@@ -9,24 +9,24 @@ with lib; let
   username = import ../../../username.nix;
 
   # TODO: Investigate why I did such a thing
-  pywalfox-nixpkgs = builtins.fetchTarball {
-    url = "https://github.com/nixos/nixpkgs/archive/e213f8c329429cac1715a86eec617a93783bb99c.tar.gz";
-    sha256 = "sha256:08j1jdy2zdr53m3ir21i92nfg8xz3bjy29xyaqdqh43k3p32xcxn";
-  };
+  # pywalfox-nixpkgs = builtins.fetchTarball {
+  #   url = "https://github.com/nixos/nixpkgs/archive/e213f8c329429cac1715a86eec617a93783bb99c.tar.gz";
+  #   sha256 = "sha256:08j1jdy2zdr53m3ir21i92nfg8xz3bjy29xyaqdqh43k3p32xcxn";
+  # };
 
-  pywalfox = pkgs.python3Packages.buildPythonPackage rec {
-    pname = "pywalfox";
-    version = "2.7.4";
-    src = pkgs.python3Packages.fetchPypi {
-      inherit pname version;
-      sha256 = "sha256-Wec9fic4lXT7gBY04D2EcfCb/gYoZcrYA/aMRWaA7WY=";
-    };
-    doCheck = false;
-    propagatedBuildInputs = [
-      # Specify dependencies
-      # pkgs.python3Packages.numpy
-    ];
-  };
+  # pywalfox = pkgs.python3Packages.buildPythonPackage rec {
+  #   pname = "pywalfox";
+  #   version = "2.7.4";
+  #   src = pkgs.python3Packages.fetchPypi {
+  #     inherit pname version;
+  #     sha256 = "sha256-Wec9fic4lXT7gBY04D2EcfCb/gYoZcrYA/aMRWaA7WY=";
+  #  };
+  #  doCheck = false;
+  #  propagatedBuildInputs = [
+  #    # Specify dependencies
+  #    # pkgs.python3Packages.numpy
+  #  ];
+  #};
 
   # isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 
@@ -79,7 +79,7 @@ in {
 
             hyprpaper
 
-            pywalfox
+            # pywalfox
             python3Packages.pywal
             python3Packages.colorthief
 
