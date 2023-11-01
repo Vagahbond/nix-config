@@ -32,7 +32,7 @@ with lib; let
 
   # pywalfox = pkgs.python310Packages.callPackage "${pywalfox-nixpkgs}/pkgs/development/python-modules/pywalfox/default.nix" {};
   sddm-themes = pkgs.callPackage ./sddm-themes.nix {};
-  inherit (inputs) hyprland;
+  inherit (inputs) anyrun hyprland;
   inherit (config.modules.impermanence) storageLocation;
 
   cfg = config.modules.desktop;
@@ -161,10 +161,15 @@ in {
         };
 
         nix.settings = {
-          substituters = ["https://hyprland.cachix.org"];
-          trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+          substituters = [
+            "https://hyprland.cachix.org"
+            "https://anyrun.cachix.org"
+          ];
+          trusted-public-keys = [
+            "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+            "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+          ];
         };
-
         # Latest version of Hyprland
 
         environment.sessionVariables = {
@@ -190,6 +195,122 @@ in {
             tweaks = ["normal"];
           };
         in {
+          imports = [anyrun.homeManagerModules.default];
+          programs.anyrun = {
+            enable = true;
+            config = {
+              plugins = with inputs.anyrun.packages.${pkgs.system}; [
+                applications
+                rink
+                translate
+                randr
+                websearch
+                shell
+                # symbols
+                translate
+                dictionary
+                inputs.anyrun-nixos-options.packages.${pkgs.system}.default
+              ];
+              y.fraction = 0.3;
+              closeOnClick = true;
+              hidePluginInfo = true;
+              showResultsImmediately = true;
+              maxEntries = 10;
+              hideIcons = false;
+              ignoreExclusiveZones = false;
+              layer = "overlay";
+            };
+            extraCss = ''
+              window {
+                background-color: rgba(0, 0, 0, 0.5);
+              }
+
+              #match,
+              #entry,
+              #plugin,
+              #main {
+              }
+
+              #match.activatable {
+              }
+
+              #match.activatable:not(:first-child) {
+              }
+
+              #match.activatable #match-title {
+              }
+
+              #match.activatable:hover {
+              }
+
+              #match-title, #match-desc {
+              }
+
+              #match.activatable:hover, #match.activatable:selected {
+              }
+
+              #match.activatable:selected + #match.activatable, #match.activatable:hover + #match.activatable {
+              }
+
+              #match.activatable:selected, #match.activatable:hover:selected {
+              }
+
+              #match, #plugin {
+              }
+
+              #entry {
+              }
+
+              box#main {
+              }
+
+              row:first-child {
+              }
+            '';
+            extraConfigFiles = {
+              "nixos-options.ron".text = let
+                nixos-options = config.system.build.manual.optionsJSON + "/share/doc/nixos/options.json";
+                hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json + "/share/doc/home-manager/options.json";
+                options = builtins.toJSON {
+                  ":nix" = [nixos-options];
+                  ":hm" = [hm-options];
+                };
+              in ''
+                Config(
+                  options: ${options},
+                )
+              '';
+              "dictionary.ron".text = ''
+                Config(
+                  prefix: ":def",
+                )
+              '';
+              "randr.ron".text = ''
+                Config(
+                  prefix: ":dp",
+                )
+              '';
+              "applications.ron".text = ''
+                Config(
+                  desktop_actions: true,
+                  max_entries: 10,
+                )
+              '';
+              "websearch.ron".text = ''
+                Config(
+                  prefix: "?",
+                  engines: [
+                    DuckDuckGo,
+                    Custom(
+                      name: "nix packages",
+                      url: "search.nixos.org/packages?query={}&channel=unstable",
+                    ),
+                  ],
+                )
+              '';
+            };
+          };
+
           home = {
             pointerCursor = {
               package = pkgs.catppuccin-cursors.mochaDark;
@@ -204,7 +325,6 @@ in {
               m-catppuccin-gtk
             ];
           };
-
           # themes I guess
           gtk = {
             enable = true;

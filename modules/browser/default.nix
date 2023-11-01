@@ -11,7 +11,7 @@ with lib; let
 
   username = import ../../username.nix;
 
-  browser = ["firefox.desktop"];
+  browser = ["Schizofox.desktop"];
 
   associations = {
     "text/html" = browser;

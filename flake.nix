@@ -50,5 +50,9 @@
       url = "github:NotAShelf/neovim-flake";
       # url = "github:vagahbond/neovim-flake";
     };
+
+    anyrun.url = "github:Kirottu/anyrun";
+
+    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
   };
 }
