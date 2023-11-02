@@ -175,7 +175,20 @@ in {
         # Latest version of Hyprland
 
         environment.sessionVariables = {
+          # scaling - 1 means no scaling
+          QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+
+          # use wayland as the default backend, fallback to xcb if wayland is not available
+          QT_QPA_PLATFORM = "wayland;xcb";
+
+          # disable window decorations everywhere
           QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+
+          # remain backwards compatible with qt5
+          DISABLE_QT5_COMPAT = "0";
+
+          # tell calibre to use the dark theme, because the light one hurts my eyes
+          CALIBRE_USE_DARK_PALETTE = "1";
           SDL_VIDEODRIVER = "wayland";
           GDK_BACKEND = "wayland";
           WLR_NO_HARDWARE_CURSORS = "1";
@@ -382,8 +395,38 @@ in {
             "hypr/wallpaper.jpg".source = ./wallpaper.jpg;
             "wal/colorschemes/dark/turtle-snail.json".source = ./turtle-snail.json;
             "wofi/style.css".source = ./style.css;
-          };
 
+            "kdeglobals".source = "${config.home-manager.users.${username}.home.qt.style.package}/share/color-schemes/CatppuccinMochaMauve.colors";
+
+            "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
+              General.theme = "catppuccin";
+              Applications.catppuccin = ''
+                qt5ct, org.qbittorrent.qBittorrent, hyprland-share-picker, dolphin-emu, Nextcloud, nextcloud, cantata, org.kde.kid3-qt
+              '';
+            };
+
+            "Kvantum/catppuccin/catppuccin.kvconfig".source = builtins.fetchurl {
+              url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-Mauve/Catppuccin-Mocha-Mauve.kvconfig";
+              sha256 = "sha256:1hwb6j5xjkmnsi55c6hsdwcn8r4n4cisfbsfya68j4dq5nj0z3r6";
+            };
+
+            "Kvantum/catppuccin/catppuccin.svg".source = builtins.fetchurl {
+              url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-Mauve/Catppuccin-Mocha-Mauve.svg";
+              sha256 = "sha256:06w5nfp89v1zzzrxm38i77wpfrvbknfzjrrnsixw7r1ljk017ijh";
+            };
+          };
+          qt = {
+            enable = true;
+            platformTheme = "gtk"; # just an override for QT_QPA_PLATFORMTHEME, takes “gtk”, “gnome”, “qtct” or “kde”
+            style = {
+              name = "Catppuccin-Mocha-Dark";
+              package = pkgs.catppuccin-kde.override {
+                flavour = ["mocha"];
+                accents = ["mauve"];
+                winDecStyles = ["modern"];
+              };
+            };
+          };
           services.mako = {
             enable = true;
             anchor = "top-right";
