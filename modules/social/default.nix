@@ -48,12 +48,14 @@ in {
         };
       };
 
+      # God damn you discord for breaking every two days
       environment.systemPackages = with pkgs; [
+        armcord
         # discord broky yet AGAIN
-        (discord.override {
-          #  withOpenASAR = true;
-          withVencord = true;
-        })
+        # (discord.override {
+        #  withOpenASAR = true;
+        #   withVencord = true;
+        # })
         # webcord-vencord
       ];
     })
