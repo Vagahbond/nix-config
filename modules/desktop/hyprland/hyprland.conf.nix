@@ -42,13 +42,14 @@ in ''
 
 
   bind = SUPER, T, exec, foot
+  bind=SUPER, SPACE, togglespecialworkspace, scratchpad
   bind = SUPERSHIFT, Q, killactive
   bind = SUPERSHIFT, E, exec,  kill -9 -1
   bind=SUPER,E,exec,thunar
   bind=SUPER,F,togglefloating,
   bind=SUPERSHIFT,Escape,exec, gtklock
 
-  bind=ALT,SPACE,exec,wofi --show=drun --line=5 --prompt=""
+  bind=ALT,SPACE,exec,killall anyrun || anyrun
 
   bind=SUPER,1,workspace,1
   bind=SUPER,2,workspace,2
@@ -169,37 +170,55 @@ in ''
   }
 
   general {
-        max_fps=60
-        col.inactive_border = rgb($background)
+        max_fps=${toString screenRefreshRate}
+
+        # col.inactive_border = rgb(1C4070) rgb(684056) rgb(00263C) rgb(938F64) 90deg
+        col.inactive_border = rgb(1C4070) rgb(684056) 45deg
+        # col.active_border = rgb(1C4070) rgb(684056) rgb(00263C) rgb(938F64) 90deg
+        # col.active_border = rgb(89b4fa) rgb(cba6f7) 45deg
         col.active_border = rgb($color2)
-        # col.group_border
-        # col.group_border_active
         layout = dwindle
         resize_on_border = true
         extend_border_grab_area = 15
         gaps_in = 5
         gaps_out = 5
         border_size = 2
+
+        bezier=overdone,0.68, -0.40, 0.200, 1.30
+        bezier=overdone2,0.175, 0.885, 0.32, 1.275
+        bezier=slowstart,0.6, 0.04, 0.98, 0.335
+        bezier=slowend,0.19, 1, 0.22, 1
+
+        animation=workspaces,1,3,slowend,slide
+        animation=specialWorkspace,1,6,overdone,slidevert
+
+        animation=windowsMove,1,4,overdone2,slide
+        animation=windowsIn,1,4,overdone2,slide
+        animation=windowsOut,1,4,overdone2,slide
+
+        animation=fadeIn,1,2,slowend
+        animation=fadeOut,1,2,slowstart
   }
 
   decoration {
-  	fullscreen_opacity = 1.0
-  	inactive_opacity = 0.8
-  	active_opacity = 1.0
-  	rounding = 12
-      blur {
-  	    enabled = true
-  	    size = 10
-  	    passes = 3
-          ignore_opacity = true
-
-      }
+  	fullscreen_opacity = 0.1
+  	inactive_opacity = 0.6
+  	active_opacity = 0.8
+  	dim_inactive=true
+    dim_strength=0.2
+    rounding = 12
+    blur {
+  	  enabled = true
+  	  size = 10
+  	  passes = 3
+      ignore_opacity = true
+      special = true
+    }
   	drop_shadow = true
-  	shadow_range = 4
-  	col.shadow = rgb($background)
-  	col.shadow_inactive = rgb($background)
-  	# shadow_scale
-  	# dim_inactive
+    shadow_range = 10
+    # shadow_render_power = 4
+  	col.shadow = rgba($color2EE)
+  	col.shadow_inactive = rgba($backgroundFF)
   }
 
   dwindle {
@@ -252,36 +271,8 @@ in ''
   workspace=4, monitor:eDP-1, default:false
   workspace=5, monitor:eDP-1, default:false
 
-  # workspace=6, monitor:monitor:DP-1, default:true
-  # workspace=7, monitor:DP-1, default:false
-  # workspace=8, monitor:DP-1, default:false
-  # workspace=9, monitor:DP-1, default:false
-  # workspace=10, monitor:DP-1, default:false
+  workspace = special:scratchpad, on-created-empty:foot zsh -c 'nitch; zsh -i'
 
-  # workspace=6, monitor:DP-2, default:true
-  # workspace=7, monitor:DP-2, default:false
-  # workspace=8, monitor:DP-2, default:false
-  # workspace=9, monitor:DP-2, default:false
-  # workspace=10, monitor:DP-2, default:false
-
-  # workspace=6, monitor:DP-3, default:true
-  # workspace=7, monitor:DP-3, default:false
-  # workspace=8, monitor:DP-3, default:false
-  # workspace=9, monitor:DP-3, default:false
-  # workspace=10, monitor:DP-3, default:false
-
-  # workspace=6, monitor:DP-4, default:true
-  # workspace=7, monitor:DP-4, default:false
-  # workspace=8, monitor:DP-4, default:false
-  # workspace=9, monitor:DP-4, default:false
-  # workspace=10, monitor:DP-4, default:false
-
-  # workspace=6, monitor:DP-5, default:true
-  # workspace=7, monitor:DP-5, default:false
-  # workspace=8, monitor:DP-5, default:false
-  # workspace=9, monitor:DP-5, default:false
-  # workspace=10, monitor:DP-5, default:false
-  #
   exec = hyprpaper
 
   monitor=eDP-1,addreserved,0,0,50,0

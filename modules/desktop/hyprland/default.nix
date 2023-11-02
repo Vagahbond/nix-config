@@ -95,6 +95,8 @@ in {
             jq
 
             libnotify
+
+            nitch
           ];
 
           etc = {
