@@ -131,7 +131,7 @@ in ''
 
   # Screenshots
   bind=,Print,exec, grim -g "$(slurp -c "##$color2AA" -b "##$color088")" ~/Pictures/Screenshots/$(date +'%s_grim.png')
-
+  bind=SHIFT,Print,exec, grim -g "$(slurp -c "##$color2AA" -b "##$color088")" - | wl-copy
   # emojis
   bind=SUPER,I,exec,wofi-emoji
 
@@ -205,7 +205,7 @@ in ''
   	inactive_opacity = 0.6
   	active_opacity = 0.8
   	dim_inactive=true
-    dim_strength=0.2
+    dim_strength=0.1
     rounding = 12
     blur {
   	  enabled = true
