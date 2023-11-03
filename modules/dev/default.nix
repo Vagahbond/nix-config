@@ -21,6 +21,7 @@ in {
         users.${username} = {
           directories = [
             ".config/lazygit"
+            ".config/gh"
           ];
         };
       };
