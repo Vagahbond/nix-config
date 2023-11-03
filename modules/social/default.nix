@@ -33,9 +33,11 @@ in {
     (mkIf cfg.discord.enable {
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
+          # reeeeeeeeee
           directories = [
-            ".config/discord"
-            ".config/Vencord/settings"
+            #".config/discord"
+            #".config/Vencord/settings"
+            ".config/ArmCord"
           ];
           files = [
           ];
@@ -43,7 +45,7 @@ in {
       };
 
       home-manager.users.${username} = {
-        xdg.configFile."Vencord/themes/mocha.theme.css" = {
+        xdg.configFile."ArmCord/themes/mocha.theme.css" = {
           source = "${catppuccin-mocha}/themes/mocha.theme.css";
         };
       };
