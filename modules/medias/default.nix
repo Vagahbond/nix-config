@@ -135,7 +135,6 @@ in {
             shuffle # shuffle+ (special characters are sanitized out of ext names)
             hidePodcasts
             trashbin
-            skipOrPlayLikedSongs
             playlistIcons
             songStats
             genre
