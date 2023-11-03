@@ -37,9 +37,16 @@ in {
           directories = [
             #".config/discord"
             #".config/Vencord/settings"
-            ".config/ArmCord"
+            ".config/ArmCord/plugins"
+            ".config/ArmCord/Session Storage"
+            ".config/ArmCord/shared_proto_db"
+            ".config/ArmCord/databases"
+            ".config/ArmCord/storage"
+            ".config/ArmCord/WebStorage"
           ];
           files = [
+            ".config/ArmCord/Preferences"
+            ".config/ArmCord/Cookies"
           ];
         };
       };
