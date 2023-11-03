@@ -396,7 +396,7 @@ in {
             "wal/colorschemes/dark/turtle-snail.json".source = ./turtle-snail.json;
             "wofi/style.css".source = ./style.css;
 
-            "kdeglobals".source = "${config.home-manager.users.${username}.home.qt.style.package}/share/color-schemes/CatppuccinMochaMauve.colors";
+            "kdeglobals".source = "${config.home-manager.users.${username}.qt.style.package}/share/color-schemes/CatppuccinMochaMauve.colors";
 
             "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
               General.theme = "catppuccin";
