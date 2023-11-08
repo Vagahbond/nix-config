@@ -17,6 +17,14 @@ in {
       environment.systemPackages = with pkgs; [
         thefuck
       ];
+
+      environment.persistence.${storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".config/thefuck"
+          ];
+        };
+      };
     })
     (mkIf (cfg.shell == "zsh") {
       environment.persistence.${storageLocation} = {
