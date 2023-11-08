@@ -117,7 +117,8 @@ in {
           noto-fonts-cjk
           noto-fonts-emoji
           font-awesome
-          (nerdfonts.override {fonts = ["CascadiaCode" "FiraCode" "DroidSansMono" "Noto"];})
+          # testign out fonts for space theme
+          (nerdfonts.override {fonts = ["3270" "HeavyData" "ProggyClean" "CascadiaCode" "FiraCode" "DroidSansMono" "Noto"];})
         ];
         xdg.portal = {
           enable = true;
