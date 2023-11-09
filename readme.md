@@ -11,30 +11,39 @@ Welcome to my nixos dotfiles. I use these to configure my nixos machines.
 
 [Check the options here!](https://vagahbond.github.io/nix-config/)
 
-The objective is to run it on several machines :
-
-- [x] working laptop (Framework 13" laptop, go buy one NOW)
-- [x] gaming laptop (mid-2019 Razer Blade 15)
-- [ ] kubernetes master node (some bare metal in some datacenter)
-- [ ] home made server (some old 2012 Toshiba satelite lol)
-
 This configuration aims to be a modular abstraction of NixOS's configuration options. It is organized per feature, and each feature is a module that can be enabled or disabled with fewest options possible.
 
-Each software is individually configured the way that I like it, in a way that I'll always find familiar interfaces and quircks on each of my machines.
+Each software is individually configured the way that I like it, so all of my machines can be of the same experience for me.
 
-You can easily fork this repo and make it yours by changing the deep configuration for each software. I believe this architecture is made to be used as a template for your own dotfiles.
+## How to use
 
-Secrets are managed using [ragenix](https://github.com/yaxitech/ragenix). You'll have to create `.age` files yourself and use youur own SSH keys to use those values.
+1. Fork this repo on the machine you want
+2. Change the name in `username.nix` to yours
+3. In the `hosts` folder, add your own host: a folder named after it
+4. Copy-paste the `default.nix` file from any other host.
+5. You can copy-paste `features.nix` from another host or create your own using [this documentation](https://vagahbond.github.io/nix-config/)
+6. On your target host, generate a `hardware-configuration.nix` and add it to your host directory with the two other files. If you intend to use Impermanence, dont forget to setup the tmpfs mounts. Examples available on my hosts.
+7. Format your disks on the target host using [nixos's tutorial](https://nixos.wiki/wiki/NixOS_Installation_Guide#Partitioning) or your own wae.
+8. Generate your ssh key that'll be used for your host and add it to `secrets.nix`. Of course, create your own secrets if needed and remove mines.
+9. Use your fork or clone of this repo to install your host: from a nixos ISO, run this command:
 
-I'll provide a few informations to help you understand how to use this repo. For any question, open an issue, or find me on Hyprland/NixOS discord servers.
+```bash
+nixos-install --flake github:<yourusername>/<yourfork>#<yourhost>
+```
+
+10. Reboot. you might need a `nixos-rebuild switch --flake <your-flake-url>`
+
+You're done !
+
+It might seem like a lot of steps but don't forget this config sets up your whole system.
 
 ## Structure
 
-The main structure of the conf is contained in the `modules` folder. Each module is a feature, and each feature is a folder containing a `default.nix` file and, if needed for inputs, a `flake.nix` file.
+The main structure of the conf is contained in the `modules` folder. Each module is a feature, and each feature is a folder containing a `default.nix` file and an `options.nix`.
 
-These distributed nix files allow to couple tightly inputs and configuration for each feature. That way, depending on the configuration, it's possible to remove useless inputs from the system.
+The flake inputs were centralized to `flake.nix` because it's more stabel and I am too lazy to use a patched nix.
 
-Files that are in `hosts` containe host-specific configuration, and options for every present module.
+Files that are in `hosts` contain host-specific configuration(such as `hardware-configuration.nix`), and options for every present module.
 
 ```
 .
@@ -44,6 +53,8 @@ Files that are in `hosts` containe host-specific configuration, and options for 
 │   ├── blade
 │   ├── default.nix
 │   └── framework
+│       ├── default.nix
+│       └── hardware-configuration.nix
 ├── modules
 │   ├── browser
 │   ├── default.nix
@@ -82,58 +93,22 @@ Each rice is a folder in `modules/desktop/rices`. Each rice contains a `default.
 
 For more info on my rice and dotfiles, head to [this documentation](./modules/desktop/hyprland/readme.md).
 
+**Deprecation** Beware, I intend too extend this functionnality usign another repository and to make it even more overengineered.
+
 ## Secrets
 
 Secrets are value that I don't want you, little hacker, to know. They are managed using [ragenix](https://github.com/yaxitech/ragenix).
-Ragenix is a tool that allows to manage secrets using age encryption, and to use them in nixos configuration.
+Ragenix is a tool that allows to manage secrets using age encryption, and to import them in nixos configuration without putting them in clear in your repos.
 
 To use secrets, you'll have to create your own `.age` files, and use your own SSH keys to encrypt them.
 
 Then, thanks to the configuration in `secrets/secrets.nix`, nix will be able to decrypt them and use them in the configuration while building the system.
 
-Secrets in this configuration cover the following features :
-
-- [x] Wifi
-- [x] Kubernetes kubeconfig
+Check the `secrets` dir to find what secrets there are in this conf or how to manage them.
 
 ## Impermanence
 
-Impermanence allows my computers to boot on a temporary filesystem created from their nix stores. This way, anything pasted on my computer that appeared out of my control is deleted on each reboot.
-
-Impermanence allows you to keep only specific directories through reboot. In my case, I only keep config things that I cannot preconfigure.
-Whith this config, everytime I boot, I get a fresh and working system.
-
-## Installation
-
-This configuration is based on a flake. To use it, you'll need to have a recent version of nix installed on your machine.
-
-By default, you get a `hardware-configuration.nix` file that is generated by `nixos-generate-config` command. This file will go on your `host` folder when creating a host in this configuration.
-
-To install this configuration, you'll need to run the following command :
-
-```bash
-nixos-install --flake github:vagahbond/nixos-dotfiles
-```
-
-Make sure that you also copy your SSH private keys to `~/.ssh`, and add your public keys to the secrets configuration.
-
-If the host is already preconfigured, add the right hostname to the previous command:
-
-```bash
-nixos-install --flake github:vagahbond/nixos-dotfiles#blade
-```
-
-Then, you should be able, when modifying your config to install it with the following command :
-
-```bash
-nixos-rebuild switch --flake <your-flake-url>
-```
-
-or if needed to test it with the following command :
-
-```bash
-nixos-rebuild test --flake <your-flake-url>
-```
+Impermanence allows to boot en tmpfs and easily bind files and folders for apps that I use. This way, I only persist what I need for my apps to work, nothing more.
 
 ## Usage
 
@@ -145,29 +120,32 @@ What I would advise you to do is to fork this repo, and to change the configurat
 
 ## Objectives
 
-Here are a few things left to do in this repository:
+Hosts:
+
+- [x] Framework: working laptop (Framework 13" laptop, go buy one NOW)
+- [x] Blade: gaming laptop (mid-2019 Razer Blade 15)
+- [x] Dedistonks: multi-purpose on-premise server in some data-center
+- [ ] Idkyet: home made server (some old 2012 Toshiba satelite lol)
+
+Tasks:
 
 - [x] Create every configuration options (god this is gonna take long)
 - [x] Scatter files better in the configuration
 - [x] A way to manage secrets using a password manager (Bitwarden)
-- [ ] Ssh server functionnality for my servers
+- [x] Ssh server functionnality for my servers
 - [ ] Podman configuration (I've been told it's better than docker on nixos)
-- [ ] Kubernetes installation for my kubernetes master node
 - [x] Preconfigured Lens for kubernetes
 - [x] scatter users groups
 - [x] Reproducible VIM configuration
 - [x] Reproducible Firefox configuration
-- [ ] Add my hosts:
-  - [x] Blade
-  - [ ] Kubernetes server
-  - [ ] Home server
+- [ ] Make an ISO with a script or something that makes it very easy to install this setup and bootstrap a host.
 
 ## Special mentions
 
-- Special thanks to [NotAShelf](https://github.com/NotAShelf) for his [nyx](https://github.com/NotAShelf/nyx) and his [neovim-flake](https://github.com/NotAShelf/neovim-flake) repos that help lots of people win precious time and energy.
+- Special thanks to [NotAShelf](https://github.com/NotAShelf) for his [nyx](https://github.com/NotAShelf/nyx) and his [neovim-flake](https://github.com/NotAShelf/neovim-flake) repos that help lots of people win precious time and energy. Although Raf is a cunt and I wish that he trips on a tree root and eat dirt.
 
 - Thanks to people on Hyprland and NixOS discord servers for their help and support.
 
-- Thanks [Vaxry](https://github.com/vaxerski) for all his work on Hyprland and its community.
+- Thanks [Vaxry](https://github.com/vaxerski) for all his work on his wayland compositor Hyprland and its community.
 
 If you're starting with Arch and rices, maybe my [previous rice](https://github.com/Vagahbond/reyece) could help you. It's a bit outdated but it's a good start.
