@@ -231,6 +231,8 @@ in ''
     windowrule=opaque,title:^(.*Visual Studio Code.*)$
     windowrule=opaque,title:^(.*Oracle VM VirtualBox.*)$
 
+    windowrulev2 = opaque,fullscreen:1
+
     windowrule = float, title:^(Firefox — Sharing Indicator)$
     windowrule = move 0 0, title:^(Firefox — Sharing Indicator)$
     windowrule = size 30 30, title:^(Firefox - Sharing Indicator)$
