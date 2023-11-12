@@ -36,8 +36,8 @@ in {
     environment.persistence.${impermanence.storageLocation} = {
       users.${username} = {
         directories = [
-          #  ".mozilla"
-          #  ".cache/mozilla"
+          ".mozilla"
+          ".cache/mozilla"
         ];
       };
     };
@@ -59,13 +59,13 @@ in {
         theme = {
           background-darker = "11111b";
           background = "1e1e2e";
-          foreground = "cba6f7";
+          foreground = "D8CEF5";
           font = "Terminess Nerd Font";
           simplefox = {
             enable = true;
             #  showUrlBar = true;
           };
-          darkreader.enable = false;
+          darkreader.enable = true;
           # extraCss = '''';
         };
 
@@ -131,7 +131,7 @@ in {
           "uBlock0@raymondhill.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
           "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
           "DontFuckWithPaste@raim.ist".install_url = "https://addons.mozilla.org/firefox/downloads/latest/don-t-fuck-with-paste/latest.xpi";
-          "skipredirect@sblask".install_url = "https://addons.mozilla.org/firefox/downloads/latest/skip-redirect/latest.xpi";
+          # "skipredirect@sblask".install_url = "https://addons.mozilla.org/firefox/downloads/latest/skip-redirect/latest.xpi";
           "sponsorBlocker@ajay.app".install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
           "7esoorv3@alefvanoon.anonaddy.me".install_url = "https://addons.mozilla.org/firefox/downloads/latest/libredirect/latest.xpi";
           # "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4160414/styl_us-1.5.35.xpi";
