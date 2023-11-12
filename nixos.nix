@@ -53,7 +53,7 @@ in {
         hostName = "vagahbond.com";
         sshUser = username;
         system = "x86_64-linux";
-        protocol = "ssh-ng";
+        protocol = "ssh";
         maxJobs = 4;
         speedFactor = 2;
         supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
