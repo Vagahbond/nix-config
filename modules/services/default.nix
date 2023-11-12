@@ -48,7 +48,7 @@ in {
       mkIf cfg.postgres.enable {
         services.postgresql = {
           enable = true;
-          package = pkgs.postgresql;
+          package = pkgs.postgresql_14;
           dataDir = "/nix/postgresql";
 
           enableTCPIP = false;
