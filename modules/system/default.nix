@@ -22,6 +22,7 @@ in {
     (mkIf (cfg.processManager == "htop") {
       environment.systemPackages = with pkgs; [
         htop
+        handbrake
       ];
     })
     (mkIf cfg.ntfs.enable {

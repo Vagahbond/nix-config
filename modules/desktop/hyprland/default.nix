@@ -118,7 +118,7 @@ in {
           noto-fonts-emoji
           font-awesome
           # testign out fonts for space theme
-          (nerdfonts.override {fonts = ["3270" "HeavyData" "ProggyClean" "CascadiaCode" "FiraCode" "DroidSansMono" "Noto"];})
+          (nerdfonts.override {fonts = ["3270" "Terminus" "HeavyData" "ProggyClean" "CascadiaCode" "FiraCode" "DroidSansMono" "Noto"];})
         ];
         xdg.portal = {
           enable = true;
@@ -237,6 +237,10 @@ in {
               layer = "overlay";
             };
             extraCss = ''
+              * {
+                font-family: Terminess Nerd Font;
+              }
+
               window {
                 background-color: rgba(0, 0, 0, 0.5);
               }
@@ -245,6 +249,8 @@ in {
               #entry,
               #plugin,
               #main {
+                border-radius: 14px;
+
               }
 
               #match.activatable {
@@ -263,6 +269,7 @@ in {
               }
 
               #match.activatable:hover, #match.activatable:selected {
+                border-radius: 14px;
               }
 
               #match.activatable:selected + #match.activatable, #match.activatable:hover + #match.activatable {
@@ -272,9 +279,12 @@ in {
               }
 
               #match, #plugin {
+                border-radius: 14px;
               }
 
               #entry {
+                background-color: rgb(49, 50, 68);
+                margin-bottom: 10px;
               }
 
               box#main {
@@ -294,6 +304,7 @@ in {
               in ''
                 Config(
                   options: ${options},
+                  max_entries: 5
                 )
               '';
               "dictionary.ron".text = ''
@@ -357,6 +368,10 @@ in {
               };
             };
 
+            font = {
+              name = "Terminess Nerd Font";
+              size = 14;
+            };
             gtk4.extraConfig = {
               gtk-application-prefer-dark-theme = 1;
             };

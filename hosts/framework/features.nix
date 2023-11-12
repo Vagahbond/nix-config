@@ -108,6 +108,7 @@ in {
 
       gaming = {
         dofus.enable = true;
+        steam.enable = false;
       };
     };
   };

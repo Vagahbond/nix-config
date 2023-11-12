@@ -44,7 +44,7 @@ in {
 
       home-manager.users.${username} = {
         xdg.configFile."ArmCord/themes/mocha.theme.css" = {
-          source = "${catppuccin-mocha}/themes/mocha.theme.css";
+          source = ./mocha.theme.css; #"${catppuccin-mocha}/themes/mocha.theme.css";
         };
       };
 
