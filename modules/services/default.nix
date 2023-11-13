@@ -73,8 +73,14 @@ in {
 
     (
       mkIf cfg.nextcloud.enable {
+        ###################################################
+        # PORTS                                           #
+        ###################################################
         networking.firewall.allowedTCPPorts = [80 8000];
 
+        ###################################################
+        # IMPERMANENCE                                    #
+        ###################################################
         environment.persistence.${storageLocation} = {
           directories = [
             {
@@ -109,12 +115,20 @@ in {
             }
           ];
         };
+
+        ###################################################
+        # SECRETS                                         #
+        ###################################################
         age.secrets.nextcloudAdminPass = {
           file = ../../secrets/nextcloud_admin_pass.age;
           mode = "440";
           owner = "nextcloud";
           group = "users";
         };
+
+        ###################################################
+        # SERVICES                                        #
+        ###################################################
 
         services = {
           redis = {
@@ -171,6 +185,47 @@ in {
             };
             extraAppsEnable = true;
           };
+        };
+      }
+    )
+    (
+      mkIf (cfg.nextcloud.enable && cfg.nextcloud.backup) {
+        ###################################################
+        # BACKUP (WIP)                                    #
+        ###################################################
+        systemd = {
+          services.nextcloud-backup = {
+            unitConfig = {
+              Description = "Auto backup Nextcloud";
+            };
+            serviceConfig = {
+              Type = "oneshot";
+              ExecStartPre = ''
+                sudo -u nextcloud ${config.services.nextcloud.package}/bin/nextcloud-occ maintenance:mode --on
+              '';
+              ExecStart = ''
+                rsync -Aavx /var/lib/nextcloud /nix/persistent/nextcloud_backup_`date +"%Y%m%d"`/ > /nix/persistent/nextcloud-backup.logs
+                sudo -u postgres pg_dump nextcloud  -U postgres -f nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+              '';
+              ExecPost = ''
+                sudo -u nextcloud ${config.services.nextcloud.package}/bin/nextcloud-occ maintenance:mode --off
+                sudo -u postgres pg_dump nextcloud  -U postgres -f /nix/persistent/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+              '';
+              TimeoutStopSec = "600";
+              KillMode = "process";
+              KillSignal = "SIGINT";
+              # RemainAfterExit = true;
+            };
+            WantedBy = ["multi-user.target"];
+          };
+          timers.nextcloud-backup = {
+            description = "Automatic files backup for Nextcloud when booted up after 2 minutes then rerun every 30 minutes";
+            timerConfig = {
+              onCalendar = "weekly";
+            };
+            wantedBy = ["multi-user.target" "timers.target"];
+          };
+          # startServices = true;
         };
       }
     )
