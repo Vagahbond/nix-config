@@ -130,8 +130,8 @@ in ''
     bindm=SUPER,mouse:273,resizewindow
 
     # Screenshots
-    bind=,Print,exec, grim -g "$(slurp -c "##$color2AA" -b "##$color088")" ~/Pictures/Screenshots/$(date +'%s_grim.png')
-    bind=SHIFT,Print,exec, grim -g "$(slurp -c "##$color2AA" -b "##$color088")" - | wl-copy
+    bind=,Print,exec, grim -g "$(slurp -c "##$color2AA" -b "##$color088" -w 0)" ~/Pictures/Screenshots/$(date +'%s_grim.png')
+    bind=SHIFT,Print,exec, grim -g "$(slurp -c "##$color2AA" -b "##$color088" -w 0)" - | wl-copy
     # emojis
     bind=SUPER,I,exec,wofi-emoji
 
