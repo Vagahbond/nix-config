@@ -7,6 +7,7 @@ with lib; {
 
     nextcloud = {
       enable = mkEnableOption "nextcloud";
+      backup = mkEnableOption "Backup your data daily";
     };
 
     postgres = {

@@ -5,7 +5,6 @@ with lib; {
     appflowy.enable = mkEnableOption "Enable appflowy"; # Notion alternative
     nextcloudSync = {
       enable = mkEnableOption "Enable next cloud syncronisation";
-      backup = mkEnableOption "Backup your data daily";
     };
   };
 }
