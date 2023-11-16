@@ -26,6 +26,13 @@ in {
         appflowy
       ];
     })
+    (
+      mkIf cfg.pomodoro.enable {
+        environment.systenPackages = with pkgs; [
+          gnome.pomodoro
+        ];
+      }
+    )
     (mkIf (cfg.nextcloudSync.enable
       && (graphics.type != null)) {
       environment.persistence.${impermanence.storageLocation} = {

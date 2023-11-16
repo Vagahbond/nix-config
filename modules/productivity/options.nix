@@ -6,5 +6,6 @@ with lib; {
     nextcloudSync = {
       enable = mkEnableOption "Enable next cloud syncronisation";
     };
+    pomodoro.enable = mkEnableOption "Enable pomodoro app";
   };
 }
