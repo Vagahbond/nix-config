@@ -28,7 +28,7 @@ in {
     })
     (
       mkIf cfg.pomodoro.enable {
-        environment.systenPackages = with pkgs; [
+        environment.systemPackages = with pkgs; [
           gnome.pomodoro
         ];
       }
