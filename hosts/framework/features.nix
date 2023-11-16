@@ -73,6 +73,7 @@ in {
       productivity = {
         notion.enable = false;
         nextcloudSync.enable = true;
+        pomodoro.enable = true;
       };
 
       security = {
