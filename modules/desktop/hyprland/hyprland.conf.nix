@@ -9,7 +9,7 @@ in ''
     # env = XDG_SESSION_TYPE,wayland
       # nvidia bullshit
     ${
-    if (isNvidiaEnabled && false) # doesnt work with all those flags (I don't understand yo)
+    if isNvidiaEnabled # doesnt work with all those flags (I don't understand yo)
     then ''
       env = LIBVA_DRIVER_NAME,nvidia
       env = GBM_BACKEND,nvidia-drm
