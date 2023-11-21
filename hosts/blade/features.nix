@@ -103,6 +103,8 @@ in {
       gaming = {
         dofus.enable = true;
         steam.enable = true;
+        optimisations.enable = true;
+        stering-wheel.enable = true;
         minecraft.enable = true;
         tlauncher.enable = true;
       };
