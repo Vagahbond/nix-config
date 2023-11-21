@@ -10,14 +10,14 @@ with lib; {
     };
 
     nvidia-path = mkOption {
-      type = types.string;
+      type = types.str;
       description = "Path to nvidia card";
       default = "";
       example = "/dev/dri/card0";
     };
 
     intel-path = mkOption {
-      type = types.string;
+      type = types.str;
       description = "Path to intel card";
       default = "";
       example = "/dev/dri/card1";

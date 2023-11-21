@@ -99,11 +99,11 @@ in {
             message = "Please provide nvidia bus ID in order to use the optimus config!";
           }
           {
-            assertion = config.module.graphics.nvidia-path != "";
+            assertion = config.modules.graphics.nvidia-path != "";
             message = "Please provide nvidia card path in order to use the optimus config!";
           }
           {
-            assertion = config.module.graphics.intel-path != "";
+            assertion = config.modules.graphics.intel-path != "";
             message = "Please provide intel card path in order to use the optimus config!";
           }
         ];
@@ -113,7 +113,7 @@ in {
         environment.systemPackages = with pkgs; [
           vulkan-tools
           vulkan-loader
-          vulkan-validation-layers
+          # vulkan-validation-layers
           libva
           libva-utils
         ];

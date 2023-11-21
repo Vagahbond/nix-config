@@ -80,7 +80,7 @@ in {
     (mkIf cfg.steering-wheel.enable {
       boot = {
         blacklistedKernelModules = ["hid-thrustmaster"];
-        extraModulePackages = with config.boot.kernelPackages; [hid-tmff2];
+        extraModulePackages = [config.boot.kernelPackages.hid-tmff2];
         kernelModules = ["hid-tmff2"];
       };
     })
