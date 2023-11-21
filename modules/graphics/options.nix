@@ -8,5 +8,19 @@ with lib; {
       default = null;
       example = "intel";
     };
+
+    nvidia-path = mkOption {
+      type = types.string;
+      description = "Path to nvidia card";
+      default = "";
+      example = "/dev/dri/card0";
+    };
+
+    intel-path = mkOption {
+      type = types.string;
+      description = "Path to intel card";
+      default = "";
+      example = "/dev/dri/card1";
+    };
   };
 }

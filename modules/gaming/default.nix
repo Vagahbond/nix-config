@@ -64,7 +64,7 @@ in {
           };
         };
 
-        kernelPackages = pkgs.linuxPackages_xanmod_latest;
+        boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
         services.pipewire = {
           lowLatency = {
@@ -72,14 +72,15 @@ in {
             quantum = 64;
             rate = 48000;
           };
-          security.rtkit.enable = true;
         };
+
+        security.rtkit.enable = true;
       })
     )
     (mkIf cfg.steering-wheel.enable {
       boot = {
         blacklistedKernelModules = ["hid-thrustmaster"];
-        extraModulePackages = [pkgs.hid-tmff2];
+        extraModulePackages = with config.boot.kernelPackages; [hid-tmff2];
         kernelModules = ["hid-tmff2"];
       };
     })

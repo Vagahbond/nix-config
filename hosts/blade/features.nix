@@ -12,7 +12,11 @@ in {
     ];
 
     modules = {
-      graphics.type = "nvidia-optimus";
+      graphics = {
+        type = "nvidia-optimus";
+        intel-path = "/dev/dri/card0";
+        nvidia-path = "/dev/dri/card1";
+      };
 
       desktop = {
         rice = "hyprland";

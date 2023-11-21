@@ -48,10 +48,8 @@ in {
 
           # Enable OpenGL
           opengl = {
-            opengl = {
-              extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl];
-              extraPackages32 = with pkgs.pkgsi686Linux; [vaapiIntel libvdpau-va-gl vaapiVdpau];
-            };
+            extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl];
+            extraPackages32 = with pkgs.pkgsi686Linux; [vaapiIntel libvdpau-va-gl vaapiVdpau];
             enable = true;
             driSupport = true;
             driSupport32Bit = true;
@@ -99,6 +97,14 @@ in {
           {
             assertion = config.hardware.nvidia.prime.nvidiaBusId != null;
             message = "Please provide nvidia bus ID in order to use the optimus config!";
+          }
+          {
+            assertion = config.module.graphics.nvidia-path != "";
+            message = "Please provide nvidia card path in order to use the optimus config!";
+          }
+          {
+            assertion = config.module.graphics.intel-path != "";
+            message = "Please provide intel card path in order to use the optimus config!";
           }
         ];
 

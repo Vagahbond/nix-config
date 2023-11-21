@@ -22,7 +22,7 @@ in ''
   ${
     if config.modules.graphics.type == "nvidia-optimus"
     then ''
-      # env = WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+      env = WLR_DRM_DEVICES,${config.modules.graphics.nvidia-path}:${config.modules.graphics.nvidia-path}
     ''
     else ""
   }
