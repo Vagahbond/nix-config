@@ -48,6 +48,10 @@ in {
 
           # Enable OpenGL
           opengl = {
+            opengl = {
+              extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl];
+              extraPackages32 = with pkgs.pkgsi686Linux; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+            };
             enable = true;
             driSupport = true;
             driSupport32Bit = true;
