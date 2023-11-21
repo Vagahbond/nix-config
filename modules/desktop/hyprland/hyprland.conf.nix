@@ -8,13 +8,21 @@
 in ''
     # env = XDG_SESSION_TYPE,wayland
       # nvidia bullshit
-    ${
+  ${
     if isNvidiaEnabled # doesnt work with all those flags (I don't understand yo)
     then ''
       env = LIBVA_DRIVER_NAME,nvidia
       env = GBM_BACKEND,nvidia-drm
       env = __GLX_VENDOR_LIBRARY_NAME,nvidia
       env = WLR_NO_HARDWARE_CURSORS,1
+    ''
+    else ""
+  }
+  # https://wiki.hyprland.org/Configuring/Multi-GPU/#telling-hyprland-which-gpu-to-use
+  ${
+    if config.modules.graphics.type == "nvidia-optimus"
+    then ''
+      # env = WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
     ''
     else ""
   }

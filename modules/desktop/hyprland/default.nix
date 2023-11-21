@@ -28,7 +28,7 @@ with lib; let
   #  ];
   #};
 
-  # isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
+  isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 
   # pywalfox = pkgs.python310Packages.callPackage "${pywalfox-nixpkgs}/pkgs/development/python-modules/pywalfox/default.nix" {};
   sddm-themes = pkgs.callPackage ./sddm-themes.nix {};
@@ -37,7 +37,10 @@ with lib; let
 
   cfg = config.modules.desktop;
 in {
-  imports = [hyprland.nixosModules.default];
+  imports = [
+    hyprland.nixosModules.default
+    #     hyprland.homeManagerModules.default
+  ];
   config = mkMerge [
     (
       mkIf (cfg.rice == "hyprland") {
@@ -124,6 +127,7 @@ in {
           enable = true;
           extraPortals = [pkgs.xdg-desktop-portal-gtk];
         };
+
         programs = {
           light.enable = true;
 
@@ -135,7 +139,7 @@ in {
               enable = true;
             };
 
-            # enableNvidiaPatches = isNvidiaEnabled;
+            enableNvidiaPatches = isNvidiaEnabled;
 
             package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
           };
@@ -167,10 +171,12 @@ in {
           substituters = [
             "https://hyprland.cachix.org"
             "https://anyrun.cachix.org"
+            "https://nix-gaming.cachix.org"
           ];
           trusted-public-keys = [
             "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
             "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+            "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
           ];
         };
         # Latest version of Hyprland
