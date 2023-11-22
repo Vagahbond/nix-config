@@ -51,6 +51,7 @@ in ''
 
     bind = SUPER, T, exec, foot
     bind=SUPER, SPACE, togglespecialworkspace, scratchpad
+    bind=SUPER, P, togglespecialworkspace, pomodoro
     bind = SUPERSHIFT, Q, killactive
     bind = SUPERSHIFT, E, exec,  kill -9 -1
     bind=SUPER,E,exec,thunar
@@ -220,7 +221,7 @@ in ''
     	  size = 10
     	  passes = 3
         ignore_opacity = true
-        special = true
+        special = false
       }
     	drop_shadow = true
       shadow_range = 8
@@ -280,6 +281,7 @@ in ''
     workspace=5, monitor:eDP-1, default:false
 
     workspace = special:scratchpad, on-created-empty:foot zsh -c 'nitch; zsh -i'
+    workspace = special:pomodoro, on-created-empty:gnome-pomodoro
 
     exec = hyprpaper
 
