@@ -2,6 +2,7 @@
 {
   pkgs,
   self,
+  inputs,
   ...
 }: let
   #   docs = import ./doc {inherit (pkgs) lib runCommand nixosOptionsDoc;};
@@ -12,6 +13,7 @@ in {
 
     systemPackages = with pkgs; [
       cachix
+      inputs.agenix.packages.${system}.default
       #   sed
     ];
 
