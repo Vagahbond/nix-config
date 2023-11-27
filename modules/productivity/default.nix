@@ -65,7 +65,7 @@ in {
             };
             Service = {
               Type = "simple";
-              ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path /Documents /home/${username}/Documents https://cloud.vagahbond.com";
+              ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd --non-interactive -s -h -n --path /Documents /home/${username}/Documents https://cloud.vagahbond.com";
               TimeoutStopSec = "180";
               KillMode = "process";
               KillSignal = "SIGINT";
