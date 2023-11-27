@@ -138,9 +138,6 @@ in {
             xwayland = {
               enable = true;
             };
-
-            enableNvidiaPatches = isNvidiaEnabled;
-
             package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
           };
           thunar = {
