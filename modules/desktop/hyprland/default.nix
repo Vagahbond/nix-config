@@ -123,9 +123,15 @@ in {
           # testign out fonts for space theme
           (nerdfonts.override {fonts = ["3270" "Terminus" "HeavyData" "ProggyClean" "CascadiaCode" "FiraCode" "DroidSansMono" "Noto"];})
         ];
+
         xdg.portal = {
           enable = true;
           extraPortals = [pkgs.xdg-desktop-portal-gtk];
+          config.common = {
+            default = "gtk";
+            "org.freedesktop.impl.portal.Screencast" = "hyprland";
+            "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+          };
         };
 
         programs = {
