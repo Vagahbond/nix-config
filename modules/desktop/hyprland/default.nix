@@ -126,11 +126,15 @@ in {
 
         xdg.portal = {
           enable = true;
-          extraPortals = [pkgs.xdg-desktop-portal-gtk];
+          extraPortals = [
+            pkgs.xdg-desktop-portal-gtk
+            inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+          ];
           config.common = {
             default = "gtk";
             "org.freedesktop.impl.portal.Screencast" = "hyprland";
             "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+            # "org.freedesktop.portal.FileChooser" = "hyprland";
           };
         };
 
