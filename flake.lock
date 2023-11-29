@@ -66,11 +66,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1696926085,
-        "narHash": "sha256-PuaKdM4Nems/wQ2B+K7hI2UJYld/+64NdkcsYD1YJwM=",
+        "lastModified": 1701201993,
+        "narHash": "sha256-gxkCX8u+vkSFjYklNuY/6mch91n9TLvfAHqPvyrA/hA=",
         "owner": "Kirottu",
         "repo": "anyrun",
-        "rev": "f9073a6184f61a07bb584ecc47fbb8eb997e9216",
+        "rev": "52cec0a39350cc4e79fc4009c64e56a93b9150ba",
         "type": "github"
       },
       "original": {
@@ -997,11 +997,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1701023633,
-        "narHash": "sha256-lX/PsZrKEtdk/cUIET/UYhQKPJRkNq2hlbLH6VQSpWc=",
+        "lastModified": 1701198182,
+        "narHash": "sha256-gw6L45n6J/DdQRWKZJbnJVPs6rx+eDMkyjsKS92fBVw=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "99ca26d4eb84e0071264713902e5b287fcab392e",
+        "rev": "e2f18f8c7f95e4094acb94c5a06dc6d75d7fc9c1",
         "type": "github"
       },
       "original": {
@@ -1386,11 +1386,11 @@
         "zig": "zig"
       },
       "locked": {
-        "lastModified": 1701116580,
-        "narHash": "sha256-7w5XHLNPKwLVpCQcYIKHpAxwe/5m9QCas3hGhgAs9oA=",
+        "lastModified": 1701170324,
+        "narHash": "sha256-F53rs95FBhIegt5RDmaGUbc4F75C3rvRnW1xwkrKYdw=",
         "owner": "NotAShelf",
         "repo": "neovim-flake",
-        "rev": "6fbcb59edf561f027e59bdb0b9d854af0f6620f1",
+        "rev": "86a637e65c422fd474b7c3ec076f9295afc15e54",
         "type": "github"
       },
       "original": {
