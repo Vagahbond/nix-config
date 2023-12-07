@@ -56,7 +56,7 @@ in ''
     bind = SUPERSHIFT, E, exec,  kill -9 -1
     bind=SUPER,E,exec,thunar
     bind=SUPER,F,togglefloating,
-    bind=SUPERSHIFT,Escape,exec, gtklock
+    bind=SUPERSHIFT,Escape,exec, gtklock -i
 
     bind=ALT,SPACE,exec,killall anyrun || anyrun
 
@@ -257,9 +257,9 @@ in ''
 
 
     monitor=desc:Hewlett Packard HP E241i CN442414T9,highres, ${toString (screenWidth / screenScalingRatio)}x0, 1
-    monitor=desc:Microstep MAG342CQRV DB6H070C00454,highres, ${toString (screenWidth / screenScalingRatio)}x0, 1
+    monitor=desc:Microstep MAG342CQRV DB6H070C00454,highres, 0x0, 1
 
-    monitor=eDP-1, ${toString screenWidth}x${toString screenHeight}@${toString screenRefreshRate}, 0x0, ${toString screenScalingRatio}
+    monitor=eDP-1, ${toString screenWidth}x${toString screenHeight}@${toString screenRefreshRate}, 3441x0, ${toString screenScalingRatio}
     ${
     if (screenScalingRatio != 1)
     then ''
