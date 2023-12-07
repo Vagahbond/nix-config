@@ -43,6 +43,16 @@ in {
     })
     (
       mkIf cfg.office {
+        environment.persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".config/libreoffice"
+            ];
+            files = [
+            ];
+          };
+        };
+
         environment.systemPackages = with pkgs; [
           libreoffice
         ];
@@ -130,8 +140,8 @@ in {
                 # broky
                 sql.enable = false;
                 rust = {
-                  enable = false;
-                  crates.enable = false;
+                  enable = true;
+                  crates.enable = true;
                 };
                 ts.enable = true;
                 go.enable = true;
