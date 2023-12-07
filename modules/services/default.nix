@@ -181,7 +181,7 @@ in {
             };
 
             extraApps = with config.services.nextcloud.package.packages.apps; {
-              inherit files_markdown contacts calendar tasks onlyoffice;
+              inherit files_markdown contacts calendar tasks onlyoffice notes;
             };
             extraAppsEnable = true;
           };
