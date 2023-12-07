@@ -49,7 +49,7 @@ in {
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
-            "Kooha"
+            ".config/obs-studio"
           ];
         };
       };
