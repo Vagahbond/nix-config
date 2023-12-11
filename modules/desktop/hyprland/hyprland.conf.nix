@@ -6,6 +6,9 @@
   inherit (config.modules.desktop) screenWidth screenHeight screenScalingRatio screenRefreshRate;
   isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 in ''
+  debug:disable_logs = false
+
+
     # env = XDG_SESSION_TYPE,wayland
       # nvidia bullshit
   ${
@@ -51,7 +54,6 @@ in ''
 
     bind = SUPER, T, exec, foot
     bind=SUPER, SPACE, togglespecialworkspace, scratchpad
-    bind=SUPER, P, togglespecialworkspace, pomodoro
     bind = SUPERSHIFT, Q, killactive
     bind = SUPERSHIFT, E, exec,  kill -9 -1
     bind=SUPER,E,exec,thunar
@@ -280,8 +282,7 @@ in ''
     workspace=4, monitor:eDP-1, default:false
     workspace=5, monitor:eDP-1, default:false
 
-    workspace = special:scratchpad, on-created-empty:foot zsh -c 'nitch; zsh -i'
-    workspace = special:pomodoro, on-created-empty:gnome-pomodoro
+    workspace = special:scratchpad, on-created-empty:foot zsh -c 'nitch; zsh -i' & gnome-pomodoro,gapsout:50
 
     exec = hyprpaper
 

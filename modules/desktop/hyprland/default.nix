@@ -37,10 +37,6 @@ with lib; let
 
   cfg = config.modules.desktop;
 in {
-  imports = [
-    hyprland.nixosModules.default
-    #     hyprland.homeManagerModules.default
-  ];
   config = mkMerge [
     (
       mkIf (cfg.rice == "hyprland") {
@@ -128,7 +124,7 @@ in {
           enable = true;
           extraPortals = [
             pkgs.xdg-desktop-portal-gtk
-            inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+            #    hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
           ];
           config.common = {
             default = "gtk";
