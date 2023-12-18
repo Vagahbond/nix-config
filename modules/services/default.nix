@@ -148,11 +148,6 @@ in {
             recommendedProxySettings = true;
           };
 
-          onlyoffice = {
-            enable = true;
-            hostname = "office.vagahbond.com";
-          };
-
           nextcloud = {
             enable = true;
             package = pkgs.nextcloud27;
@@ -181,7 +176,7 @@ in {
             };
 
             extraApps = with config.services.nextcloud.package.packages.apps; {
-              inherit files_markdown contacts calendar tasks onlyoffice notes;
+              inherit files_markdown contacts calendar tasks notes;
             };
             extraAppsEnable = true;
           };
