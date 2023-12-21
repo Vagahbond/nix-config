@@ -12,6 +12,7 @@ in {
     {
       environment.systemPackages = with pkgs; [
         tree
+        killall
       ];
     }
     (mkIf (cfg.processManager == "btop") {
