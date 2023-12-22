@@ -30,8 +30,7 @@ in {
 
         enableGeo = false;
         enableNetwork = true;
-
-        languages = ["c-cpp" "nodejs" "nix"];
+        languages = ["c-cpp" "nodejs" "nix" "android"];
       };
 
       editor = {
