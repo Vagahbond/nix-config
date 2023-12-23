@@ -25,7 +25,11 @@ in ''
   ${
     if config.modules.graphics.type == "nvidia-optimus"
     then ''
+<<<<<<< HEAD
       #  env = WLR_DRM_DEVICES,${config.modules.graphics.nvidia-path}:${config.modules.graphics.intel-path}
+=======
+      # env = WLR_DRM_DEVICES,${config.modules.graphics.nvidia-path}:${config.modules.graphics.intel-path}
+>>>>>>> f976b71 (remove clamshell mod lol)
     ''
     else ""
   }
