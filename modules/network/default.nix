@@ -50,6 +50,9 @@ in {
           "@JEREM_SSID@" = {
             psk = "@JEREM_PSK@";
           };
+          "@MAMIE_SSID@" = {
+            psk = "@MAMIE_PSK@";
+          };
           /*
           "@WORK2_SSID@" = {
             psk = "@WORK2_PSK@";
