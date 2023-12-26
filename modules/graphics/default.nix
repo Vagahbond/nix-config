@@ -116,24 +116,25 @@ in {
           # vulkan-validation-layers
           libva
           libva-utils
+          nvtop
         ];
 
         services.xserver.videoDrivers = ["nvidia"];
 
-        specialisation = {
-          on-the-go.configuration = {
-            system.nixos.tags = ["on-the-go"];
-            hardware.nvidia = {
-              prime = {
-                offload = {
-                  enable = lib.mkForce true;
-                  enableOffloadCmd = lib.mkForce true;
-                };
-                sync.enable = lib.mkForce false;
-              };
-            };
-          };
-        };
+        # specialisation = {
+        # on-the-go.configuration = {
+        #   system.nixos.tags = ["on-the-go"];
+        #   hardware.nvidia = {
+        #     prime = {
+        #       offload = {
+        #         enable = lib.mkForce true;
+        #         enableOffloadCmd = lib.mkForce true;
+        #       };
+        #       sync.enable = lib.mkForce false;
+        #     };
+        #   };
+        # };
+        # };
       }
     )
   ];

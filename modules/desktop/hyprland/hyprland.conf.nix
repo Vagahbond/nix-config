@@ -141,11 +141,13 @@ in ''
     bindm=SUPER,mouse:273,resizewindow
 
     # Screenshots
-    bind=,Print,exec, grim -g "$(slurp -c "##$color2AA" -b "##$color088" -w 0)" ~/Pictures/Screenshots/$(date +'%s_grim.png')
-    bind=SHIFT,Print,exec, grim -g "$(slurp -c "##$color2AA" -b "##$color088" -w 0)" - | wl-copy
-    # emojis
-    bind=SUPER,I,exec,wofi-emoji
 
+    # Screenshot a window
+    bind = SUPER, PRINT, exec, hyprshot -m window -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+    # Screenshot a monitor
+    bind = , PRINT, exec, hyprshot -m output -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+    # Screenshot a region
+    bind = SHIFT, PRINT, exec, hyprshot -m region -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
 
     input {
     	kb_layout=us
@@ -243,6 +245,7 @@ in ''
     windowrule=opaque,title:^(.*Oracle VM VirtualBox.*)$
 
     windowrulev2 = opaque,fullscreen:1
+    windowrulev2 = fullscreen, title:(.*)(satty)$
 
     windowrule = float, title:^(Firefox — Sharing Indicator)$
     windowrule = move 0 0, title:^(Firefox — Sharing Indicator)$

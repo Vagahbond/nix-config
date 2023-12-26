@@ -59,8 +59,8 @@ in {
             wireplumber
             qt6.qtwayland
             libsForQt5.qt5.qtwayland
-            grim
-            slurp
+            hyprshot
+            satty
             cliphist
             wl-clipboard
 
