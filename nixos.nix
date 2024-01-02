@@ -50,6 +50,7 @@ in {
       auto-optimise-store = true;
       trusted-users = [
         "root"
+        "builder"
         username
       ];
     };

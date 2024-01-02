@@ -57,8 +57,8 @@ in {
 
         users.groups.builder = {};
         users.users.builder = {
-          isNormalUser = false;
-          isSystemUser = true;
+          isNormalUser = true;
+          # isSystemUser = true;
           group = "builder";
           extraGroups = ["wheel"];
           home = "/home/builder";
