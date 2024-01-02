@@ -193,12 +193,12 @@ in {
             maxUploadSize = "4G";
             config = {
               dbtype = "pgsql";
-              trustedProxies = ["192.168.0.3"];
               adminpassFile = config.age.secrets.nextcloudAdminPass.path;
-              defaultPhoneRegion = "FR";
               # objectstore.s3.sseCKeyFile = "some file generated with openssl rand 32"
             };
             extraOptions = {
+              trusted_proxies = ["192.168.0.3"];
+              default_phone_region = "FR";
               redis = {
                 host = "/run/redis-default/redis.sock";
                 dbindex = 0;
