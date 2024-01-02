@@ -12,5 +12,6 @@ in {
   "nextcloud_admin_pass.age".publicKeys = [dedistonks];
   "nextcloud_client_account.age".publicKeys = [framework];
   # TODO: Remove dedistonks from that, mom I over-engineered again
+  "builder_access.age".publicKeys = [dedistonks framework];
   "builder_access_private.age".publicKeys = [dedistonks blade framework];
 }
