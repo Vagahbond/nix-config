@@ -44,6 +44,25 @@ in {
         };
       }
     )
+
+    (
+      mkIf cfg.builder.enable {
+        # age.secrets."builder_access" = {
+        #   file = ../../secrets/builder_access.age;
+        #   path = "${config.users.users.${username}.home}/.ssh/authorized_keys";
+        #   mode = "600";
+        #   owner = username;
+        #   group = "users";
+        # };
+
+        users.users.builder = {
+          isNormalUser = false;
+          extraGroups = ["wheel"];
+          home = "/home/builder";
+          description = "This user is gonna be used especially for the remote building for security reasons";
+        };
+      }
+    )
     (
       mkIf cfg.postgres.enable {
         services.postgresql = {

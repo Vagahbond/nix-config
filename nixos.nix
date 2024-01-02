@@ -2,6 +2,7 @@
 {
   pkgs,
   self,
+  config,
   inputs,
   ...
 }: let
@@ -25,6 +26,7 @@ in {
       NIX_SSHOPTS = "-p 45 -t ";
     };
   };
+
   age.identityPaths = [
     "/nix/persistent/home/${username}/.ssh/id_ed25519"
     # "/nix/persistent/home/${username}/.ssh/id_rsa"
@@ -32,6 +34,14 @@ in {
 
   nixpkgs.config = {
     allowUnfree = true;
+  };
+
+  age.secrets.builder_access_private = {
+    file = ../../secrets/builder_access_private.age;
+    path = "${config.users.users.${username}.home}/.ssh/builder_access";
+    mode = "600";
+    owner = username;
+    group = "users";
   };
 
   nix = {
@@ -50,10 +60,14 @@ in {
       options = "--delete-older-than 2d";
     };
 
+    ###############################################################
+    # Setup distributed builds                                    #
+    ###############################################################
     buildMachines = [
       {
         hostName = "vagahbond.com";
-        sshUser = username;
+        sshUser = "builder";
+        sshKey = config.age.secrets.builder_access_private;
         system = "x86_64-linux";
         protocol = "ssh";
         maxJobs = 4;
@@ -62,6 +76,7 @@ in {
         mandatoryFeatures = [];
       }
     ];
+
     distributedBuilds = true;
     extraOptions = ''
       builders-use-substitutes = true

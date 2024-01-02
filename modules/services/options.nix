@@ -17,5 +17,9 @@ with lib; {
     postgres = {
       enable = mkEnableOption "postgres";
     };
+
+    builder = {
+      enable = mkEnableOption "builder";
+    };
   };
 }
