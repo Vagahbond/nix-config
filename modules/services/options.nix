@@ -10,6 +10,10 @@ with lib; {
       backup = mkEnableOption "Backup your data daily";
     };
 
+    vaultwarden = {
+      enable = mkEnableOption "Vaultwarden";
+    };
+
     postgres = {
       enable = mkEnableOption "postgres";
     };
