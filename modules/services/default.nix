@@ -55,8 +55,11 @@ in {
         #   group = "users";
         # };
 
+        users.groups.builder = {};
         users.users.builder = {
           isNormalUser = false;
+          isSystemUser = true;
+          group = "builder";
           extraGroups = ["wheel"];
           home = "/home/builder";
           description = "This user is gonna be used especially for the remote building for security reasons";
