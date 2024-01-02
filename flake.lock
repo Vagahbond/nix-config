@@ -1411,11 +1411,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1704072190,
-        "narHash": "sha256-mFPGdmkwWRuRQ1WZ0ZoM5PROLHnzV1BDM6oRKxZoHro=",
+        "lastModified": 1704158066,
+        "narHash": "sha256-o2Jv3xF08/iNK1hTZxMifjlMEkln+exst3QsV+wF6b0=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "ce0a28bdd09d04e85a4a49c6f6e64f2a0411b521",
+        "rev": "6c44aa8bde2c48c99d354cac2e6a62a2395f43f2",
         "type": "github"
       },
       "original": {
@@ -2460,11 +2460,11 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1699986787,
-        "narHash": "sha256-eYlLWibKtHN/uWJQLzOMRXpoTbO6VcFTfVY4dpgdJcQ=",
+        "lastModified": 1704167711,
+        "narHash": "sha256-kFDq+kf/Di/P8bq5sUP8pVwRkrSVrABksBjMPmLic3s=",
         "owner": "the-argus",
         "repo": "spicetify-nix",
-        "rev": "3c702af1f717b7876fac08809201b1368d0d956c",
+        "rev": "1325416f951d6a82cfddb1289864ad782e2b87c4",
         "type": "github"
       },
       "original": {
