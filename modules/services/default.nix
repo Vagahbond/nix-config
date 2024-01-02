@@ -47,14 +47,6 @@ in {
 
     (
       mkIf cfg.builder.enable {
-        # age.secrets."builder_access" = {
-        #   file = ../../secrets/builder_access.age;
-        #   path = "${config.users.users.${username}.home}/.ssh/authorized_keys";
-        #   mode = "600";
-        #   owner = username;
-        #   group = "users";
-        # };
-
         users.groups.builder = {};
         users.users.builder = {
           isNormalUser = false;
