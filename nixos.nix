@@ -37,7 +37,7 @@ in {
   };
 
   age.secrets.builder_access_private = {
-    file = ../../secrets/builder_access_private.age;
+    file = ./secrets/builder_access_private.age;
     path = "${config.users.users.${username}.home}/.ssh/builder_access";
     mode = "600";
     owner = username;
@@ -67,7 +67,7 @@ in {
       {
         hostName = "vagahbond.com";
         sshUser = "builder";
-        sshKey = config.age.secrets.builder_access_private;
+        sshKey = config.age.secrets.builder_access_private.path;
         system = "x86_64-linux";
         protocol = "ssh";
         maxJobs = 4;
