@@ -227,7 +227,7 @@ in {
                 timeout = 1.5;
               };
             };
-            phpOptions = lib.mkForce {
+            phpOptions = {
               output_buffering = "off";
             };
             caching = {
