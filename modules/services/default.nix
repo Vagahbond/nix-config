@@ -227,6 +227,9 @@ in {
                 timeout = 1.5;
               };
             };
+            phpOptions = lib.mkForce {
+              output_buffering = "off";
+            };
             caching = {
               redis = true;
             };
