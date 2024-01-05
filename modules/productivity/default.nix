@@ -33,17 +33,23 @@ in {
         ];
       }
     )
+    (
+      mkIf cfg.logseq.enable {
+        environment.systemPackages = with pkgs; [
+          logseq
+        ];
+      }
+    )
+    (
+      mkIf cfg.anytype.enable {
+        environment.systemPackages = with pkgs; [
+          anytype
+        ];
+      }
+    )
+
     (mkIf (cfg.nextcloudSync.enable
       && (graphics.type != null)) {
-      environment.persistence.${impermanence.storageLocation} = {
-        users.${username} = {
-          directories = [
-          ];
-          files = [
-          ];
-        };
-      };
-
       age.secrets.nextcloud-client-user = {
         file = ../../secrets/nextcloud_client_account.age;
         path = "${config.users.users.${username}.home}/.netrc";

@@ -73,6 +73,7 @@ in {
         notion.enable = false;
         nextcloudSync.enable = true;
         pomodoro.enable = true;
+        anytype.enable = true;
       };
 
       security = {

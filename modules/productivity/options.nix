@@ -7,5 +7,7 @@ with lib; {
       enable = mkEnableOption "Enable next cloud syncronisation";
     };
     pomodoro.enable = mkEnableOption "Enable pomodoro app";
+    anytype.enable = mkEnableOption "Enable Anytype";
+    logseq.enable = mkEnableOption "Enable LogSeq";
   };
 }
