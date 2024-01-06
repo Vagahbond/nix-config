@@ -124,10 +124,9 @@ in {
           enable = true;
           extraPortals = [
             pkgs.xdg-desktop-portal-gtk
-            #    hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
           ];
           config.common = {
-            default = "gtk";
+            default = "hyprland";
             "org.freedesktop.impl.portal.Screencast" = "hyprland";
             "org.freedesktop.impl.portal.Screenshot" = "hyprland";
             # "org.freedesktop.portal.FileChooser" = "hyprland";
@@ -144,7 +143,7 @@ in {
             xwayland = {
               enable = true;
             };
-            package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+            package = hyprland.packages.${pkgs.system}.hyprland;
           };
           thunar = {
             enable = true;
