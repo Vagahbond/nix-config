@@ -139,6 +139,7 @@ Tasks:
 - [x] Reproducible VIM configuration
 - [x] Reproducible Firefox configuration
 - [ ] Make an ISO with a script or something that makes it very easy to install this setup and bootstrap a host.
+- [ ] make only one ISO fit all hosts with needed functionalities and available config
 
 ## Special mentions
 
