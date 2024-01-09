@@ -41,6 +41,10 @@ in {
         shell = "zsh";
       };
 
+      virtualisation = {
+        docker.enable = true;
+      };
+
       services = {
         ssh.enable = true;
         nextcloud.enable = true;
