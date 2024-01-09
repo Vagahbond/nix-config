@@ -26,6 +26,12 @@ in {
         appflowy
       ];
     })
+    (mkIf (cfg.activityWatch.enable
+      && (graphics.type != null)) {
+      environment.systemPackages = with pkgs; [
+        activitywatch
+      ];
+    })
     (
       mkIf cfg.pomodoro.enable {
         environment.systemPackages = with pkgs; [
