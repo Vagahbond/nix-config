@@ -238,7 +238,16 @@ in {
             };
 
             extraApps = with config.services.nextcloud.package.packages.apps; {
-              inherit contacts calendar tasks notes;
+              inherit contacts calendar tasks notes maps;
+              time_manager = pkgs.fetchNextcloudApp {
+                appName = "time_manager";
+                sha256 = "sha256-XBq46Fq7Xdv5KYr9qAymSjWIGJ1jutDvt5TcOQUfvfU=";
+                url = "https://raw.githubusercontent.com/te-online/nextcloud-app-releases/main/timemanager/v0.3.11/timemanager.tar.gz";
+                appVersion = "0.3.11";
+                license = "agpl3Plus";
+                description = "Time tracking in Nextcloud!";
+                homepage = "https://github.com/te-online/timemanager";
+              };
             };
             extraAppsEnable = true;
           };
