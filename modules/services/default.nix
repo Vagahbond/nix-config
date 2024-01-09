@@ -13,6 +13,37 @@ in {
   imports = [./options.nix];
 
   config = mkMerge [
+    /*
+        This does not work because traggo does not build
+       (
+      mkIf true (let
+        traggo = pkgs.buildGoModule rec {
+          pname = "traggo";
+          version = "0.3.0";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "traggo";
+            repo = "server";
+            rev = "v${version}";
+            hash = "sha256-zWPuAtP6H/ZpG6NomMEypy0JYF3LNI4bWBmkAjTTX8U=";
+          };
+
+          vendorHash = "";
+
+          meta = with lib; {
+            description = "Simple time tracker based on tags";
+            homepage = "https://github.com/tragger/server";
+            license = licenses.gpl3;
+            # maintainers = with maintainers; [kalbasit];
+          };
+        };
+      in {
+        environment.systemPackages = [
+          traggo
+        ];
+      })
+    )
+    */
     (
       mkIf cfg.ssh.enable {
         age.secrets."${hostname}_access" = {
