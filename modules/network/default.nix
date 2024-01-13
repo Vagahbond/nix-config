@@ -53,11 +53,12 @@ in {
           "@MAMIE_SSID@" = {
             psk = "@MAMIE_PSK@";
           };
-          /*
-          "@WORK2_SSID@" = {
-            psk = "@WORK2_PSK@";
+
+          "@ZERREF_SSID@" = {
+            psk = "@ZERREF_PSK@";
           };
 
+          /*
           "@WORK3_SSID@" = {};
 
           #oof, better change scheme there
