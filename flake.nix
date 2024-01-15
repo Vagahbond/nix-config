@@ -42,7 +42,7 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
-    xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
     neovim-flake = {
