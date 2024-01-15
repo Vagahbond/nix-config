@@ -124,15 +124,26 @@ in {
           enable = true;
           extraPortals = [
             pkgs.xdg-desktop-portal-gtk
+            # inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+          ];
+          # TODO look into and make use of this
+          config.common.default = "*";
+        };
+        /*
+           xdg.portal = {
+          enable = true;
+          extraPortals = [
+            pkgs.xdg-desktop-portal-gtk
           ];
           config.common = {
             default = "hyprland";
             "org.freedesktop.impl.portal.Screencast" = "hyprland";
             "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+            "org.freedesktop.impl.portal.Settings" = "gtk";
             # "org.freedesktop.portal.FileChooser" = "hyprland";
           };
         };
-
+        */
         programs = {
           light.enable = true;
 
@@ -226,16 +237,17 @@ in {
               plugins = with inputs.anyrun.packages.${pkgs.system}; [
                 applications
                 rink
-                translate
                 randr
                 websearch
                 shell
                 # symbols
                 translate
                 dictionary
-                inputs.anyrun-nixos-options.packages.${pkgs.system}.default
+                # inputs.anyrun-nixos-options.packages.${pkgs.system}.default
               ];
+              # position = "top";
               y.fraction = 0.3;
+              width.fraction = 0.3;
               closeOnClick = true;
               hidePluginInfo = true;
               showResultsImmediately = true;
