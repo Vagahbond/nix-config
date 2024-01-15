@@ -17,5 +17,9 @@ with lib; {
         example = false;
       };
     };
+
+    bitwarden = {
+      enable = mkEnableOption "Bitwarden Client";
+    };
   };
 }

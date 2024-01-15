@@ -1,10 +1,13 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib; let
   inherit (config.modules.impermanence) storageLocation;
+
+  username = import ../../username.nix;
 
   cfg = config.modules.security;
 in {
@@ -34,6 +37,19 @@ in {
     })
     (mkIf cfg.polkit.enable {
       security.polkit.enable = true;
+    })
+    (mkIf cfg.bitwarden.enable {
+      environment.systemPackages = with pkgs; [
+        bitwarden
+      ];
+
+      environment.persistence.${storageLocation} = {
+        users.${username} = {
+          directories = [
+            #  ""
+          ];
+        };
+      };
     })
   ];
 }
