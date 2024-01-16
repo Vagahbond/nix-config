@@ -44,7 +44,7 @@ in {
           player = true;
           downloader = true;
           encoder = true;
-          recorder = true;
+          recorder = false;
         };
 
         audio = {
