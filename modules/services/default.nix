@@ -92,7 +92,7 @@ in {
           virtualHosts."vagahbond.com" = {
             addSSL = false;
             enableACME = false;
-            root = website;
+            root = "${website}/src";
           };
         };
       })
