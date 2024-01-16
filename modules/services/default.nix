@@ -75,7 +75,30 @@ in {
         };
       }
     )
-
+    (
+      mkIf cfg.homePage.enable (let
+        website = pkgs.fetchFromGitHub {
+          owner = "vagahbond";
+          repo = "website";
+          rev = "master";
+          sha256 = "";
+        };
+      in {
+        /*
+          services.nginx = {
+          recommendedTlsSettings = true;
+          recommendedOptimisation = true;
+          recommendedGzipSettings = true;
+          recommendedProxySettings = true;
+          virtualHosts."vagahbond.com" = {
+            addSSL = false;
+            enableACME = false;
+            root = website;
+          };
+        };
+        */
+      })
+    )
     (
       mkIf cfg.builder.enable {
         age.secrets."builder_access" = {

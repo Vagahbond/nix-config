@@ -21,5 +21,7 @@ with lib; {
     builder = {
       enable = mkEnableOption "builder";
     };
+
+    homePage.enable = mkEnableOption "Home page";
   };
 }
