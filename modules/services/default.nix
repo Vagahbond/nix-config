@@ -84,8 +84,7 @@ in {
           sha256 = "";
         };
       in {
-        /*
-          services.nginx = {
+        services.nginx = {
           recommendedTlsSettings = true;
           recommendedOptimisation = true;
           recommendedGzipSettings = true;
@@ -96,7 +95,6 @@ in {
             root = website;
           };
         };
-        */
       })
     )
     (
