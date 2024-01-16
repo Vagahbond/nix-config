@@ -50,6 +50,7 @@ in {
         nextcloud.enable = true;
         vaultwarden.enable = true;
         builder.enable = true;
+        homePage.enable = true;
       };
     };
   };
