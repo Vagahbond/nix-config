@@ -291,7 +291,8 @@ in {
                 comment-nvim.enable = true;
               };
 
-              presence = {
+              /*
+                 presence = {
                 presence-nvim = {
                   enable = true;
                   auto_update = true;
@@ -303,6 +304,7 @@ in {
                   };
                 };
               };
+              */
 
               utility.vim-wakatime = {
                 enable = true;
