@@ -46,6 +46,41 @@ in {
     */
     (
       mkIf cfg.ssh.enable {
+        environment.persistence.${storageLocation} = {
+          directories = [
+            {
+              directory = "/var/lib/writefreely";
+              user = "writefreely";
+              group = "writefreely";
+              mode = "u=rwx,g=rx,o=";
+            }
+          ];
+        };
+
+        networking.firewall.allowedTCPPorts = [8088];
+
+        services.writefreely = {
+          # Create a WriteFreely instance.
+          enable = true;
+
+          # Create a WriteFreely admin account.
+          admin = {
+            name = "root";
+          };
+
+          settings = {
+            server = {
+              port = 8088;
+            };
+          };
+
+          # The public host name to serve.
+          host = "blog.vagahbond.com";
+        };
+      }
+    )
+    (
+      mkIf cfg.ssh.enable {
         age.secrets."${hostname}_access" = {
           file = ../../secrets/${hostname}_access.age;
           path = "${config.users.users.${username}.home}/.ssh/authorized_keys";

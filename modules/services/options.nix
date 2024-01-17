@@ -23,5 +23,7 @@ with lib; {
     };
 
     homePage.enable = mkEnableOption "Home page";
+
+    blog.enable = mkEnableOption "blog";
   };
 }
