@@ -81,7 +81,7 @@ in {
           owner = "vagahbond";
           repo = "website";
           rev = "master";
-          sha256 = "sha256-nIZjnOBROQ5TdTZzkrqw2drHGtM71UYQtZ3ZyMcHqlA=";
+          sha256 = "sha256-drepWJ7u5zjWgpL/tyj5ddZXEAm4JuFOt4L0P42VIwg="; # sha256-nIZjnOBROQ5TdTZzkrqw2drHGtM71UYQtZ3ZyMcHqlA=";
         };
       in {
         services.nginx = {
@@ -92,7 +92,7 @@ in {
           virtualHosts."vagahbond.com" = {
             addSSL = false;
             enableACME = false;
-            root = "${website}/src/";
+            root = "${website}/src";
           };
         };
       })
