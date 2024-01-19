@@ -12,12 +12,13 @@ in ''
     # env = XDG_SESSION_TYPE,wayland
       # nvidia bullshit
   ${
-    if isNvidiaEnabled # doesnt work with all those flags (I don't understand yo)
+    if isNvidiaEnabled
     then ''
       env = LIBVA_DRIVER_NAME,nvidia
       env = GBM_BACKEND,nvidia-drm
       env = __GLX_VENDOR_LIBRARY_NAME,nvidia
       env = WLR_NO_HARDWARE_CURSORS,1
+      env = WLR_DRM_NO_ATOMIC,1
     ''
     else ""
   }
@@ -184,6 +185,15 @@ in ''
 
     general {
           max_fps=${toString screenRefreshRate}
+          ${
+    if isNvidiaEnabled
+    then ''
+
+      allow_tearing = true
+    ''
+    else ''
+    ''
+  }
 
           # col.inactive_border = rgb(1C4070) rgb(684056) rgb(00263C) rgb(938F64) 90deg
           col.inactive_border = rgb(1C4070) rgb(684056) 45deg
@@ -245,12 +255,14 @@ in ''
     windowrule=opaque,title:^(.*Oracle VM VirtualBox.*)$
 
     windowrulev2 = opaque,fullscreen:1
-    windowrulev2 = fullscreen, title:(.*)(satty)$
+    windowrulev2 = float, title:(.*)(satty)$
 
     windowrule = float, title:^(Firefox — Sharing Indicator)$
     windowrule = move 0 0, title:^(Firefox — Sharing Indicator)$
     windowrule = size 30 30, title:^(Firefox - Sharing Indicator)$
 
+    windowrulev2 = immediate, class:^(steam_app)(.*)$
+    windowrulev2 = opaque, class:^(steam_app)(.*)$
 
 
     # monitor=desc:Hewlett Packard HP E241i CN442414T9,highres, 1504x0, 1
