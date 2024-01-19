@@ -47,7 +47,7 @@ in {
           player = true;
           downloader = true;
           encoder = true;
-          recorder = true;
+          recorder = false;
         };
 
         audio = {
@@ -99,7 +99,7 @@ in {
 
       virtualisation = {
         docker.enable = false;
-        libvirt.enable = false;
+        libvirt.enable = true;
         # virtualbox.enable = true;
         kubernetes.client.enable = false;
       };
