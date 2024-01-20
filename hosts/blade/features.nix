@@ -13,7 +13,7 @@ in {
 
     modules = {
       graphics = {
-        type = "nvidia-optimus";
+        type = "nvidia-passthrough";
         intel-path = "/dev/dri/card1";
         nvidia-path = "/dev/dri/card0";
 
