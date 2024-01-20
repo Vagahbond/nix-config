@@ -1,7 +1,7 @@
-{lib, ...}:
-with lib; {
+{...}: {
   imports = [
     ./hyprland
+    ./gamescope
     ./options.nix
   ];
 }

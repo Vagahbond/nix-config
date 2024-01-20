@@ -274,7 +274,7 @@ in ''
 
 
     monitor=desc:Hewlett Packard HP E241i CN442414T9,highres, ${toString (screenWidth / screenScalingRatio)}x0, 1
-    monitor=desc:Microstep MAG342CQRV DB6H070C00454,highres, 0x0, 1
+    monitor=desc:Microstep MAG342CQRV DB6H070C00454,3440x1440@100, 0x0, 1
 
     monitor=eDP-1, ${toString screenWidth}x${toString screenHeight}@${toString screenRefreshRate}, 3441x0, ${toString screenScalingRatio}
     ${

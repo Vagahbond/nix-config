@@ -19,7 +19,7 @@ in {
       };
 
       desktop = {
-        rice = "hyprland";
+        sessions = ["hyprland" "gamescope"];
         screenHeight = 1080;
         screenWidth = 1920;
         screenRefreshRate = 144;
