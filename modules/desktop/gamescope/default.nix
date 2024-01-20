@@ -7,7 +7,7 @@
 in {
   config = lib.mkMerge [
     (
-      lib.mkIf (lib.lists.any (e: (e == "hyprland")) cfg.sessions) {
+      lib.mkIf ("gamescope" == cfg.session) {
         programs = {
           gamescope = {
             enable = true;

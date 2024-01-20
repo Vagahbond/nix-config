@@ -39,7 +39,7 @@ with lib; let
 in {
   config = mkMerge [
     (
-      mkIf (lib.lists.any (e: (e == "hyprland")) cfg.sessions) {
+      mkIf ("hyprland" == cfg.session) {
         # keep sddm data
         environment = {
           persistence.${storageLocation} = {

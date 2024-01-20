@@ -1,13 +1,13 @@
 {lib, ...}:
 with lib; {
   options.modules.desktop = {
-    sessions = mkOption {
+    session = mkOption {
       example = ["hyprland" "gamescope"];
 
-      type = types.listOf (types.enum ["hyprland" "gamescope"]);
+      type = types.enum ["hyprland" "gamescope"];
       default = [];
       description = ''
-        List of sessions to enable (possible incompatibility between several ! )
+        The session you want to use (DE or WM with everything around)
       '';
     };
 
