@@ -16,7 +16,7 @@ in {
 
       # monitor=eDP-1, 2256x1504@60, 0x0, 1.5
       desktop = {
-        sessions = ["hyprland"];
+        session = "hyprland";
         screenHeight = 1504;
         screenWidth = 2256;
         screenRefreshRate = 60;

@@ -21,10 +21,6 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    extraModprobeConfig = ''
-      options nvidia-drm modeset=1
-    '';
-    blacklistedKernelModules = ["nouveau"];
     #  boot.loader.grub.enable = true;
     #  boot.loader.grub.device = "nodev";
     #  boot.loader.grub.useOSProber = true;

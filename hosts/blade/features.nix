@@ -16,10 +16,15 @@ in {
         type = "nvidia-optimus";
         intel-path = "/dev/dri/card1";
         nvidia-path = "/dev/dri/card0";
+
+        gpuIds = {
+          video = "10de:1f11";
+          audio = "10de:10f9";
+        };
       };
 
       desktop = {
-        sessions = ["hyprland" "gamescope"];
+        session = "hyprland";
         screenHeight = 1080;
         screenWidth = 1920;
         screenRefreshRate = 144;
@@ -109,7 +114,7 @@ in {
         steam.enable = true;
         optimisations.enable = true;
         steering-wheel.enable = true;
-        minecraft.enable = true;
+        minecraft.enable = false;
         tlauncher.enable = true;
       };
     };
