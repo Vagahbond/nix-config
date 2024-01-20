@@ -1,11 +1,13 @@
 {lib, ...}:
 with lib; {
   options.modules.desktop = {
-    rice = mkOption {
-      type = types.enum ["hyprland" null];
-      default = null;
+    sessions = mkOption {
+      example = ["hyprland" "gamescope"];
+
+      type = types.listOf (types.enum ["hyprland" "gamescope"]);
+      default = [];
       description = ''
-        Select the desktop environment to use.
+        List of sessions to enable (possible incompatibility between several ! )
       '';
     };
 
