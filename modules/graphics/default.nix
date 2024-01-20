@@ -58,10 +58,52 @@ in {
         services.xserver.videoDrivers = ["nvidia"];
       }
     )
+    (
+      mkIf
+      (config.modules.graphics.type == "nvidia-passthrough")
+      {
+        boot = {
+          initrd.kernelModules = [
+            "vfio_pci"
+            "vfio"
+            "vfio_iommu_type1"
+            "vfio_virqfd"
+
+            "nvidia"
+            "nvidia_modeset"
+            "nvidia_uvm"
+            "nvidia_drm"
+          ];
+
+          kernelParams = [
+            ("vfio-pci.ids=" + lib.concatStringsSep "," [cfg.gpuIds.video cfg.gpuIds.audio])
+            "amd_iommu=on"
+          ];
+        };
+        hardware.opengl.enable = true;
+        assertions = [
+          {
+            assertion = cfg.gpuIds.video != null;
+            message = "Please provide GPU video PCI ID for passthrough to work !";
+          }
+          {
+            assertion = cfg.gpuIds.audio != null;
+            message = "Please provide GPU audio PCI ID for passthrough to work !";
+          }
+        ];
+      }
+    )
 
     (
       mkIf
       (config.modules.graphics.type == "nvidia-optimus") {
+        boot = {
+          extraModprobeConfig = ''
+            options nvidia-drm modeset=1
+          '';
+          blacklistedKernelModules = ["nouveau"];
+        };
+
         hardware = {
           nvidia = {
             package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -120,21 +162,6 @@ in {
         ];
 
         services.xserver.videoDrivers = ["nvidia"];
-
-        # specialisation = {
-        # on-the-go.configuration = {
-        #   system.nixos.tags = ["on-the-go"];
-        #   hardware.nvidia = {
-        #     prime = {
-        #       offload = {
-        #         enable = lib.mkForce true;
-        #         enableOffloadCmd = lib.mkForce true;
-        #       };
-        #       sync.enable = lib.mkForce false;
-        #     };
-        #   };
-        # };
-        # };
       }
     )
   ];
