@@ -7,6 +7,8 @@
 with lib; let
   username = import ../../username.nix;
 
+  cfg = config.modules.graphics;
+
   isNvidiaEnabled = lib.lists.any (e: (e == config.modules.graphics.type)) ["nvidia-optimus" "nvidia"];
 in {
   imports = [./options.nix];
@@ -62,33 +64,53 @@ in {
       mkIf
       (config.modules.graphics.type == "nvidia-passthrough")
       {
+        hardware = {
+          nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+          nvidia = {
+            modesetting.enable = true;
+            powerManagement.enable = false;
+            powerManagement.finegrained = false;
+            open = true;
+            nvidiaSettings = true;
+          };
+
+          # Enable OpenGL
+          opengl = {
+            extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl];
+            extraPackages32 = with pkgs.pkgsi686Linux; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+            enable = true;
+            driSupport = true;
+            driSupport32Bit = true;
+          };
+        };
         boot = {
+          extraModprobeConfig = ''
+            options nvidia-drm modeset=1
+          '';
+          blacklistedKernelModules = ["nouveau"];
+
           initrd.kernelModules = [
             "vfio_pci"
             "vfio"
             "vfio_iommu_type1"
             "vfio_virqfd"
 
-            "nvidia"
-            "nvidia_modeset"
-            "nvidia_uvm"
-            "nvidia_drm"
+            # "nvidia"
+            # "nvidia_modeset"
+            # "nvidia_uvm"
+            # "nvidia_drm"
           ];
 
           kernelParams = [
-            ("vfio-pci.ids=" + lib.concatStringsSep "," [cfg.gpuIds.video cfg.gpuIds.audio])
-            "amd_iommu=on"
+            ("vfio-pci.ids=" + lib.concatStringsSep "," cfg.gpuIOMMUIds)
+            "intel_iommu=on"
           ];
         };
-        hardware.opengl.enable = true;
         assertions = [
           {
-            assertion = cfg.gpuIds.video != null;
+            assertion = cfg.gpuIOMMUIds != [];
             message = "Please provide GPU video PCI ID for passthrough to work !";
-          }
-          {
-            assertion = cfg.gpuIds.audio != null;
-            message = "Please provide GPU audio PCI ID for passthrough to work !";
           }
         ];
       }

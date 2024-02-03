@@ -23,20 +23,11 @@ with lib; {
       example = "/dev/dri/card1";
     };
 
-    gpuIds = {
-      video = mkOption {
-        type = types.str;
-        description = "ID of nvidia video card";
-        default = "";
-        example = "10de:2482";
-      };
-
-      audio = mkOption {
-        type = types.str;
-        description = "ID of NoVideo audio card";
-        default = "";
-        example = "10de:228b";
-      };
+    gpuIOMMUIds = mkOption {
+      type = types.listOf types.str;
+      description = "ID of nvidia video card IOMMU ids";
+      default = [];
+      example = ["10de:2482"];
     };
   };
 }

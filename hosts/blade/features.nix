@@ -1,4 +1,8 @@
-{inputs, ...}: let
+{
+  inputs,
+  lib,
+  ...
+}: let
   username = import ../../username.nix;
 in {
   imports = [
@@ -11,16 +15,27 @@ in {
       "/home/${username}/.ssh/id_rsa"
     ];
 
+    specialisation.passthrough.configuration = {
+      system.nixos.tags = ["with-vfio"];
+
+      modules.graphics = lib.mkForce {
+        type = "nvidia-passthrough";
+
+        gpuIOMMUIds = [
+          "10de:1f11"
+          "10de:10f9"
+          "8086:1901"
+          "10de:1ada"
+          "10de:1adb"
+        ];
+      };
+    };
+
     modules = {
       graphics = {
-        type = "nvidia-passthrough";
+        type = "nvidia-optimus";
         intel-path = "/dev/dri/card1";
         nvidia-path = "/dev/dri/card0";
-
-        gpuIds = {
-          video = "10de:1f11";
-          audio = "10de:10f9";
-        };
       };
 
       desktop = {
