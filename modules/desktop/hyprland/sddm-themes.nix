@@ -14,7 +14,7 @@
       owner = "catppuccin";
       repo = "sddm";
       rev = "master";
-      sha256 = "sha256-Jf4xfgJEzLM7WiVsERVkj5k80Fhh1edUl6zsSBbQi6Y=";
+      sha256 = "sha256-SZnK4IMzojdNMkyuhvi8Pw7hw/JPDVq16O824msNc1I=";
     };
   };
 }
