@@ -325,7 +325,7 @@ in {
               adminpassFile = config.age.secrets.nextcloudAdminPass.path;
               # objectstore.s3.sseCKeyFile = "some file generated with openssl rand 32"
             };
-            extraOptions = {
+            settings = {
               trusted_proxies = ["192.168.0.3"];
               default_phone_region = "FR";
               redis = {
