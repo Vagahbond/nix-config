@@ -256,6 +256,7 @@ in ''
 
     windowrulev2 = opaque,fullscreen:1
     windowrulev2 = float, title:(.*)(satty)$
+    windowrulev2 = float, class:(.*)(thunar)$
 
     windowrule = float, title:^(Firefox — Sharing Indicator)$
     windowrule = move 0 0, title:^(Firefox — Sharing Indicator)$
