@@ -16,6 +16,7 @@ in {
     ];
 
     specialisation.passthrough.configuration = {
+      modules.gaming.optimisations.enable = lib.mkForce false;
       system.nixos.tags = ["with-vfio"];
 
       modules.graphics = lib.mkForce {
@@ -128,7 +129,7 @@ in {
         dofus.enable = true;
         steam.enable = true;
         optimisations.enable = true;
-        steering-wheel.enable = true;
+        steering-wheel.enable = false;
         minecraft.enable = false;
         tlauncher.enable = true;
       };
