@@ -51,6 +51,7 @@ in {
         vaultwarden.enable = true;
         builder.enable = true;
         homePage.enable = true;
+        blog.enable = true;
       };
     };
   };

@@ -45,7 +45,7 @@ in {
     )
     */
     (
-      mkIf cfg.ssh.enable {
+      mkIf cfg.blog.enable {
         environment.persistence.${storageLocation} = {
           directories = [
             {
@@ -57,7 +57,7 @@ in {
           ];
         };
 
-        networking.firewall.allowedTCPPorts = [8088];
+        networking.firewall.allowedTCPPorts = [7090];
 
         services.writefreely = {
           # Create a WriteFreely instance.
@@ -69,9 +69,29 @@ in {
           };
 
           settings = {
-            server = {
-              port = 8088;
+            #  server = {
+            #    port = 7090;
+            #  };
+
+            app = {
+              site_name = "Ramponneau blog";
+              federation = true;
+              site_description = "Le blog des maigres";
+              min_username_len = 3;
+              private = false;
+              local_timeline = true;
+              wf_modesty = true;
+              landing = "/read";
+              open_registration = false;
+              user_invites = "admin";
             };
+          };
+          nginx = {
+            # Enable Nginx and configure it to serve WriteFreely.
+            enable = true;
+
+            # You can force users to connect with HTTPS.
+            forceSSL = false;
           };
 
           # The public host name to serve.
