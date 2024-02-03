@@ -137,7 +137,7 @@ in {
             trashbin
             playlistIcons
             songStats
-            genre
+            # genre
           ];
         };
       };
