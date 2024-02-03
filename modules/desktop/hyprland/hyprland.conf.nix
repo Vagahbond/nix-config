@@ -263,6 +263,7 @@ in ''
 
     windowrulev2 = immediate, class:^(steam_app)(.*)$
     windowrulev2 = opaque, class:^(steam_app)(.*)$
+    windowrulev2 = opaque, class:^(libreoffice)(.*)$
 
 
     # monitor=desc:Hewlett Packard HP E241i CN442414T9,highres, 1504x0, 1
