@@ -178,6 +178,14 @@ in ''
     }
 
     misc {
+             ${
+    if isNvidiaEnabled
+    then ''
+      no_direct_scanout=true
+    ''
+    else ''
+    ''
+  }
     	disable_autoreload = true
     	layers_hog_keyboard_focus = true
         disable_hyprland_logo = true
@@ -263,6 +271,7 @@ in ''
     windowrule = size 30 30, title:^(Firefox - Sharing Indicator)$
 
     windowrulev2 = immediate, class:^(steam_app)(.*)$
+    windowrulev2 = immediate, title:^(glxgears)(.*)$
     windowrulev2 = opaque, class:^(steam_app)(.*)$
     windowrulev2 = opaque, class:^(libreoffice)(.*)$
 
@@ -276,7 +285,7 @@ in ''
 
 
     monitor=desc:Hewlett Packard HP E241i CN442414T9,highres, ${toString (screenWidth / screenScalingRatio)}x0, 1
-    monitor=desc:Microstep MAG342CQRV DB6H070C00454,highres, 0x0, 1
+    monitor=desc:Microstep MAG342CQRV DB6H070C00454,highres, 0x0, 1, vrr, 1
 
     monitor=eDP-1, ${toString screenWidth}x${toString screenHeight}@${toString screenRefreshRate}, 3441x0, ${toString screenScalingRatio}
     ${

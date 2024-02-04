@@ -120,6 +120,13 @@ in {
       mkIf
       (config.modules.graphics.type == "nvidia-optimus") {
         boot = {
+          initrd.kernelModules = [
+            "nvidia"
+            "nvidia_modeset"
+            "nvidia_uvm"
+            "nvidia_drm"
+          ];
+
           extraModprobeConfig = ''
             options nvidia-drm modeset=1
           '';
@@ -128,7 +135,7 @@ in {
 
         hardware = {
           nvidia = {
-            package = config.boot.kernelPackages.nvidiaPackages.beta;
+            package = config.boot.kernelPackages.nvidiaPackages.stable;
 
             open = true;
             modesetting.enable = true;
@@ -139,17 +146,24 @@ in {
 
             powerManagement = {
               enable = false;
-              # finegrained = true;
-              # offload.enableOffloadCmd = true;
+            };
+
+            prime = {
+              offload = {
+                enable = true;
+                enableOffloadCmd = true;
+              };
+              sync.enable = false;
             };
           };
+
           # Enable OpenGL
           opengl = {
             enable = true;
             driSupport = true;
             driSupport32Bit = true;
-            # extraPackages = with pkgs; [nvidia-vaapi-driver];
-            # extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
+            extraPackages = with pkgs; [nvidia-vaapi-driver libvdpau-va-gl vaapiVdpau];
+            extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver libvdpau-va-gl vaapiVdpau];
           };
         };
 
@@ -171,8 +185,6 @@ in {
             message = "Please provide intel card path in order to use the optimus config!";
           }
         ];
-
-        hardware.nvidia.prime.sync.enable = true;
 
         environment.systemPackages = with pkgs; [
           vulkan-tools
