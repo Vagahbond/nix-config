@@ -4,7 +4,7 @@ with lib; {
     session = mkOption {
       example = ["hyprland" "gamescope"];
 
-      type = types.enum ["hyprland" "gamescope" null];
+      type = types.enum ["hyprland" "gamescope" "gnome" null];
       default = null;
       description = ''
         The session you want to use (DE or WM with everything around)

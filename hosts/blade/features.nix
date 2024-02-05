@@ -40,7 +40,7 @@ in {
       };
 
       desktop = {
-        session = "hyprland";
+        session = "gnome";
         screenHeight = 1080;
         screenWidth = 1920;
         screenRefreshRate = 144;
