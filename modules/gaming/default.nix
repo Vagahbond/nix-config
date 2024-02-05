@@ -37,7 +37,7 @@ in {
           export PATH=$PATH:${path}
           export HYPRLAND_INSTANCE_SIGNATURE=$(ls -1 /tmp/hypr | tail -1)
           hyprctl --batch 'keyword decoration:blur 0 ; keyword animations:enabled 0 ; keyword misc:vfr 0'
-
+          xrandr --output HDMI-A-1 --primary
           notify-send "Enjoy gaming !"
 
         '';
