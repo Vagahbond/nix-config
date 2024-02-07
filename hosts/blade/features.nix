@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  pkgs,
   ...
 }: let
   username = import ../../username.nix;
@@ -16,19 +17,26 @@ in {
     ];
 
     specialisation.passthrough.configuration = {
+      #       boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_7;
+      # boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_10;
+
       modules.gaming.optimisations.enable = lib.mkForce false;
       system.nixos.tags = ["with-vfio"];
 
-      modules.graphics = lib.mkForce {
-        type = "nvidia-passthrough";
+      modules = {
+        #hyprland still worky enough if intel
+        desktop.session = lib.mkForce "hyprland";
+        graphics = lib.mkForce {
+          type = "nvidia-passthrough";
 
-        gpuIOMMUIds = [
-          "10de:1f11"
-          "10de:10f9"
-          "8086:1901"
-          "10de:1ada"
-          "10de:1adb"
-        ];
+          gpuIOMMUIds = [
+            "10de:1f11"
+            "10de:10f9"
+            "8086:1901"
+            "10de:1ada"
+            "10de:1adb"
+          ];
+        };
       };
     };
 
@@ -40,6 +48,7 @@ in {
       };
 
       desktop = {
+        # Hyprland no worky with nvidia good enough
         session = "gnome";
         screenHeight = 1080;
         screenWidth = 1920;

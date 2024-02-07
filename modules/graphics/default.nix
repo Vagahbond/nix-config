@@ -65,7 +65,7 @@ in {
       (config.modules.graphics.type == "nvidia-passthrough")
       {
         hardware = {
-          nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+          nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
           nvidia = {
             modesetting.enable = true;
@@ -90,11 +90,11 @@ in {
           '';
           blacklistedKernelModules = ["nouveau"];
 
-          initrd.kernelModules = [
+          kernelModules = [
             "vfio_pci"
             "vfio"
             "vfio_iommu_type1"
-            "vfio_virqfd"
+            # "vfio_virqfd"
 
             # "nvidia"
             # "nvidia_modeset"
@@ -135,7 +135,7 @@ in {
 
         hardware = {
           nvidia = {
-            package = config.boot.kernelPackages.nvidiaPackages.stable;
+            package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
 
             open = true;
             modesetting.enable = true;
