@@ -6,10 +6,26 @@
 }: let
   cfg = config.modules.desktop;
   username = import ../../../username.nix;
+
+  inherit (config.modules.impermanence) storageLocation;
 in {
   config = lib.mkMerge [
     (
       lib.mkIf ("gnome" == cfg.session) {
+        environment = {
+          persistence.${storageLocation} = {
+            users.${username} = {
+              directories = [
+                ".config/gnome-session"
+              ];
+
+              files = [
+                ".config/monitors.xml"
+              ];
+            };
+          };
+        };
+
         hardware.pulseaudio.enable = lib.mkForce false;
 
         networking.wireless.enable = lib.mkForce false;
