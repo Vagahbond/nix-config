@@ -31,7 +31,6 @@ in ''
     else ""
   }
 
-
     # Special
     $background=1e1e2e
     $foreground=cdd6f4
@@ -192,7 +191,6 @@ in ''
     }
 
     general {
-          max_fps=${toString screenRefreshRate}
           ${
     if isNvidiaEnabled
     then ''
