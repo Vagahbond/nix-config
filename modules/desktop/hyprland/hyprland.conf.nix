@@ -256,7 +256,6 @@ in ''
 
     # Special rules
     windowrule=opaque,title:^(.*Firefox.*)$
-    windowrule=opaque,title:^(.*Vlc.*)$
     windowrule=opaque,title:^(.*Visual Studio Code.*)$
     windowrule=opaque,title:^(.*Oracle VM VirtualBox.*)$
 
@@ -272,7 +271,7 @@ in ''
     windowrulev2 = immediate, title:^(glxgears)(.*)$
     windowrulev2 = opaque, class:^(steam_app)(.*)$
     windowrulev2 = opaque, class:^(libreoffice)(.*)$
-
+    windowrulev2 = opaque, class:^(.*vlc.*)$
 
     # monitor=desc:Hewlett Packard HP E241i CN442414T9,highres, 1504x0, 1
     # monitor=desc:Microstep MAG342CQRV DB6H070C00454,highres, 1504x0, 1
