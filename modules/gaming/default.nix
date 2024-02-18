@@ -111,7 +111,7 @@ in {
     })
     (
       mkIf (cfg.wine.enable && (graphics.type != null)) {
-        environment.systemPackages = [
+        environment.systemPackages = with pkgs; [
           wine-wayland
         ];
       }
