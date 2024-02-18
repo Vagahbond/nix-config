@@ -4,11 +4,14 @@
   self,
   config,
   inputs,
+  lib,
   ...
 }: let
   #   docs = import ./doc {inherit (pkgs) lib runCommand nixosOptionsDoc;};
   username = import ./username.nix;
 in {
+  nix.registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+
   environment = {
     etc."current-flake".source = self;
 
