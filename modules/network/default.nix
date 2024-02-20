@@ -99,6 +99,8 @@ in {
         powerOnBoot = false;
       };
 
+      services.blueman.enable = true;
+
       # keep paired peripherals
       environment.persistence.${impermanence.storageLocation} = {
         directories = [
