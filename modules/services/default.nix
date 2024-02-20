@@ -74,7 +74,7 @@ in {
             #  };
 
             app = {
-              site_name = "Ramponneau blog";
+              site_name = "Vagahbond tech blog";
               federation = true;
               site_description = "Le blog des maigres";
               min_username_len = 3;
