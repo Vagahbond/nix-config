@@ -136,7 +136,7 @@ in {
           owner = "vagahbond";
           repo = "website";
           rev = "master";
-          sha256 = "sha256-drepWJ7u5zjWgpL/tyj5ddZXEAm4JuFOt4L0P42VIwg="; # sha256-nIZjnOBROQ5TdTZzkrqw2drHGtM71UYQtZ3ZyMcHqlA=";
+          sha256 = "sha256-U8JEnN4VsEnhp8W3qd9mmUaNY/Lqwyw+IIyvi9aUUwE="; # sha256-nIZjnOBROQ5TdTZzkrqw2drHGtM71UYQtZ3ZyMcHqlA=";
         };
       in {
         services.nginx = {
@@ -346,14 +346,12 @@ in {
 
             extraApps = with config.services.nextcloud.package.packages.apps; {
               inherit contacts calendar tasks notes maps;
-              timemanager = pkgs.fetchNextcloudApp {
-                appName = "timemanager";
-                sha256 = "sha256-XBq46Fq7Xdv5KYr9qAymSjWIGJ1jutDvt5TcOQUfvfU=";
-                url = "https://raw.githubusercontent.com/te-online/nextcloud-app-releases/main/timemanager/v0.3.11/timemanager.tar.gz";
-                appVersion = "0.3.11";
+              news = pkgs.fetchNextcloudApp {
+                appName = "news";
+                sha256 = "sha256-U8JEnN4VsEnhp8W3qd9mmUaNY/Lqwyw+IIyvi9aUUwE=";
+                url = "https://github.com/nextcloud/news/releases/download/25.0.0-alpha4/news.tar.gz";
+                appVersion = "25.0.0";
                 license = "agpl3Plus";
-                description = "Time tracking in Nextcloud!";
-                homepage = "https://github.com/te-online/timemanager";
               };
             };
             extraAppsEnable = true;
