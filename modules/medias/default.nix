@@ -18,6 +18,7 @@ in {
       && (graphics.type != null)) {
       environment.systemPackages = with pkgs; [
         vlc
+        mpv
       ];
     })
     (mkIf (cfg.video.editor
