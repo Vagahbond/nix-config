@@ -74,7 +74,7 @@ in {
             ffmpegthumbnailer
             ark # GUI archiver for thunar archive plugin
 
-            eww-wayland
+            eww
 
             hyprpaper
 
