@@ -145,13 +145,12 @@ in {
         ];
       })
     (mkIf
-      (cfg.enable && builtins.elem "nodejs" cfg.languages)
+      (cfg.enable && builtins.elem "js" cfg.languages)
       {
         environment.persistence.${impermanence.storageLocation} = {
           users.${username} = {
             directories = [
               ".npm"
-              ".solargraph"
             ];
             files = [
               "rubocop.yml"
@@ -159,8 +158,7 @@ in {
           };
         };
         environment.systemPackages = with pkgs; [
-          nodenv
-          nodePackages.npm
+          bun
         ];
       })
     (mkIf
