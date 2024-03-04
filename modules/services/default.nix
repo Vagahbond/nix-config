@@ -348,7 +348,7 @@ in {
               inherit contacts calendar tasks notes maps;
               news = pkgs.fetchNextcloudApp {
                 appName = "news";
-                sha256 = "sha256-U8JEnN4VsEnhp8W3qd9mmUaNY/Lqwyw+IIyvi9aUUwE=";
+                sha256 = "sha256-aePXUn57U+1e01dntxFuzWZ8ILzwbnsAOs60Yz/6zUU=";
                 url = "https://github.com/nextcloud/news/releases/download/25.0.0-alpha4/news.tar.gz";
                 appVersion = "25.0.0";
                 license = "agpl3Plus";
