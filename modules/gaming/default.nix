@@ -20,7 +20,7 @@ in {
   imports = [
     ./options.nix
     inputs.nix-gaming.nixosModules.pipewireLowLatency
-    inputs.nix-gaming.nixosModules.steamCompat
+    # inputs.nix-gaming.nixosModules.steamCompat
   ];
 
   config = mkMerge [
@@ -135,11 +135,11 @@ in {
           remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
           dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
 
-          extraCompatPackages = with pkgs; [
-            steamtinkerlaunch
-            gamescope
-            inputs.nix-gaming.packages.${pkgs.system}.proton-ge
-          ];
+          # extraCompatPackages = with pkgs; [
+          #   steamtinkerlaunch
+          #   gamescope
+          #   inputs.nix-gaming.packages.${pkgs.system}.proton-ge
+          # ];
         };
         hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
       }
