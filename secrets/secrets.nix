@@ -6,12 +6,10 @@ in {
   # Wifi passwords
   "wifi.age".publicKeys = [framework blade];
   "kubeconfig.age".publicKeys = [framework blade];
-  "dedistonks_access.age".publicKeys = [framework blade dedistonks];
   "ssh_config.age".publicKeys = [framework blade];
   "wakatime_config.age".publicKeys = [framework blade dedistonks];
   "nextcloud_admin_pass.age".publicKeys = [dedistonks];
   "nextcloud_client_account.age".publicKeys = [framework];
   # TODO: Remove dedistonks from that, mom I over-engineered again
-  "builder_access.age".publicKeys = [dedistonks];
   "builder_access_private.age".publicKeys = [blade framework];
 }
