@@ -64,8 +64,6 @@ in {
             cliphist
             wl-clipboard
 
-            gtklock
-
             colorz
             iio-sensor-proxy
 
@@ -97,19 +95,6 @@ in {
 
             nitch
           ];
-
-          etc = {
-            # Creates /etc/nanorc
-            "pam.d/gtklock" = {
-              text = ''
-                auth            sufficient      pam_unix.so try_first_pass likeauth nullok
-                auth            sufficient      pam_fprintd.so
-              '';
-
-              # The UNIX file mode bits
-              # mode = "0440";
-            };
-          };
         };
         fonts.packages = with pkgs; [
           noto-fonts
