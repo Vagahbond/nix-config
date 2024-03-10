@@ -50,6 +50,7 @@ in {
             update = "sudo nixos-rebuild switch --no-write-lock-file --flake github:vagahbond/nix-config";
             build = "sudo nixos-rebuild build --no-write-lock-file --flake github:vagahbond/nix-config";
             nix-shell = "nix-shell --command zsh";
+            cat = "bat";
             ls = "lsd";
             l = "lsd";
             gc = "git commit";
