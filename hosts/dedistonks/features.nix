@@ -31,7 +31,6 @@ in {
       };
 
       system = {
-        processManager = "htop";
         ntfs.enable = true;
         compression.enable = true;
       };
