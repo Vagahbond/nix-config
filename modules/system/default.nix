@@ -12,7 +12,7 @@ in {
     {
       environment.systemPackages = with pkgs; [
         fzf
-        tealdear
+        tealdeer
         bat
         dust
         powertop
