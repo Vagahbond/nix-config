@@ -101,14 +101,6 @@ in {
     )
     (
       mkIf cfg.ssh.enable {
-        age.secrets."${hostname}_access" = {
-          file = ../../secrets/${hostname}_access.age;
-          path = "${config.users.users.${username}.home}/.ssh/authorized_keys";
-          mode = "600";
-          owner = username;
-          group = "users";
-        };
-
         services.openssh = {
           enable = true;
           settings = {
@@ -154,14 +146,6 @@ in {
     )
     (
       mkIf cfg.builder.enable {
-        age.secrets."builder_access" = {
-          file = ../../secrets/builder_access.age;
-          path = "/home/builder/.ssh/authorized_keys";
-          mode = "600";
-          owner = "builder";
-          group = "users";
-        };
-
         users.groups.builder = {};
         users.users.builder = {
           isNormalUser = true;
@@ -170,6 +154,9 @@ in {
           extraGroups = ["wheel"];
           home = "/home/builder";
           description = "This user is gonna be used especially for the remote building for security reasons";
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII15sFe9kG/r6idBuf4IDUOvgdTZ9wsL+KwA76AcJh9g vagahbond@framework"
+          ];
         };
       }
     )

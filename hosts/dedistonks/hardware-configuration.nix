@@ -26,6 +26,10 @@
     };
   };
 
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFusXTBhXLpViUVKjfHRJnjVb6WZFrxYq2/0Kh7MKwN pro@yoni-firroloni.com"
+  ];
+
   # Impermanencing my whole system cause I like to suffer
   fileSystems = {
     "/" = {
