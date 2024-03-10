@@ -102,7 +102,6 @@ in {
       {
         environment.systemPackages = with pkgs; [
           jmtpfs
-          lz4
           android-tools
           android-file-transfer
           android-backup-extractor
