@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
   username = import ./username.nix;
   inherit (config.modules.impermanence) storageLocation;
 in {
@@ -10,7 +6,6 @@ in {
     mutableUsers = false;
     users = {
       root = {
-        initialPassword = "root";
       };
 
       ${username} = {
