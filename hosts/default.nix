@@ -5,7 +5,7 @@
 }: let
   inherit (inputs) home-manager nixpkgs;
 
-  systemNames = ["blade" "framework" "dedistonks"];
+  systemNames = ["blade" "framework" "dedistonks" "dedistonks2"];
 
   base-options = {
     specialArgs = {inherit inputs self;};
