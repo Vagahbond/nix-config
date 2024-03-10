@@ -11,7 +11,6 @@
     specialArgs = {inherit inputs self;};
     modules = [
       home-manager.nixosModules.home-manager
-      ../impermanence.nix
       ../nixos.nix
       ../user.nix
     ];
@@ -21,7 +20,6 @@
     specialArgs = {inherit inputs self;};
     modules = [
       home-manager.nixosModules.home-manager
-      ../impermanence.nix
       ../nixos.nix
       ../user.nix
       ../live.nix

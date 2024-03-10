@@ -41,6 +41,8 @@ in {
     };
 
     modules = {
+      impermanence.enable = true;
+
       graphics = {
         type = "nvidia-optimus";
         intel-path = "/dev/dri/card1";
