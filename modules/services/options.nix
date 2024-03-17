@@ -5,9 +5,13 @@ with lib; {
       enable = mkEnableOption "ssh";
     };
 
+    proxy = {
+      enable = mkEnableOption "proxy";
+    };
+
     nextcloud = {
       enable = mkEnableOption "nextcloud";
-      backup = mkEnableOption "Backup your data daily";
+      #   backup = mkEnableOption "Backup your data daily";
     };
 
     vaultwarden = {

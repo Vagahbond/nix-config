@@ -45,6 +45,86 @@ in {
     )
     */
     (
+      mkIf cfg.proxy.enable {
+
+        networking.firewall.allowedTCPPorts = [80 443];
+
+        networking.nat = {
+          enable = true;
+          internalInterfaces = ["ve-+"];
+          externalInterface = "ens3";
+          # Lazy IPv6 connectivity for the container
+          enableIPv6 = true;
+        };
+
+        containers.proxy = {
+          autoStart = true;
+          privateNetwork = true;
+          hostAddress = "192.168.100.10";
+          localAddress = "192.168.100.11";
+          hostAddress6 = "fc00::1";
+          localAddress6 = "fc00::2";
+          config = {
+            config,
+            pkgs,
+            lib,
+            ...
+          }: {
+            security.acme = {
+              defaults.email = "vagahbond@pm.me";
+              acceptTerms = true;
+            };
+
+            services.nginx = {
+              enable = true;
+              recommendedProxySettings = true;
+              recommendedTlsSettings = true;
+              virtualHosts = {
+                "yoni-firroloni.com" = {
+                  enableACME = true;
+                  forceSSL = true;
+                  locations."/" = {
+                    proxyPass = "http://192.168.100.10";
+                    proxyWebsockets = true; # needed if you need to use WebSocket
+                  };
+                };
+                "cloud.yoni-firroloni.com" = {
+                  enableACME = true;
+                  forceSSL = true;
+                  locations."/" = {
+                    proxyPass = "http://192.168.100.10";
+                    proxyWebsockets = true; # needed if you need to use WebSocket
+                  };
+                };
+                "blog.yoni-firroloni.com" = {
+                  enableACME = true;
+                  forceSSL = true;
+                  locations."/" = {
+                    proxyPass = "http://192.168.100.10";
+                    proxyWebsockets = true; # needed if you need to use WebSocket
+                  };
+                };
+              };
+            };
+
+            system.stateVersion = "23.11";
+
+            networking = {
+              firewall = {
+                enable = true;
+                allowedTCPPorts = [80 443];
+              };
+              # Use systemd-resolved inside the container
+              # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+              useHostResolvConf = lib.mkForce false;
+            };
+
+            services.resolved.enable = true;
+          };
+        };
+      }
+    )
+    (
       mkIf cfg.blog.enable {
         environment.persistence.${storageLocation} = {
           directories = [
@@ -91,7 +171,7 @@ in {
             enable = true;
 
             # You can force users to connect with HTTPS.
-            forceSSL = true;
+            forceSSL = false;
           };
 
           # The public host name to serve.
@@ -141,8 +221,8 @@ in {
           recommendedGzipSettings = true;
           recommendedProxySettings = true;
           virtualHosts."vagahbond.com" = {
-            addSSL = true;
-            enableACME = true;
+            addSSL = false;
+            enableACME = false;
             root = "${website}/src";
           };
         };
@@ -233,7 +313,7 @@ in {
         ###################################################
         # PORTS                                           #
         ###################################################
-        networking.firewall.allowedTCPPorts = [80 8000];
+        networking.firewall.allowedTCPPorts = [8000];
 
         ###################################################
         # IMPERMANENCE                                    #
@@ -349,46 +429,46 @@ in {
         };
       }
     )
-    (
-      mkIf (cfg.nextcloud.enable && cfg.nextcloud.backup) {
-        ###################################################
-        # BACKUP (WIP)                                    #
-        ###################################################
-        systemd = {
-          services.nextcloud-backup = {
-            unitConfig = {
-              Description = "Auto backup Nextcloud";
-            };
-            serviceConfig = {
-              Type = "oneshot";
-              ExecStartPre = ''
-                sudo -u nextcloud ${config.services.nextcloud.package}/bin/nextcloud-occ maintenance:mode --on
-              '';
-              ExecStart = ''
-                rsync -Aavx /var/lib/nextcloud /nix/persistent/nextcloud_backup_`date +"%Y%m%d"`/ > /nix/persistent/nextcloud-backup.logs
-                sudo -u postgres pg_dump nextcloud  -U postgres -f nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
-              '';
-              ExecPost = ''
-                sudo -u nextcloud ${config.services.nextcloud.package}/bin/nextcloud-occ maintenance:mode --off
-                sudo -u postgres pg_dump nextcloud  -U postgres -f /nix/persistent/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
-              '';
-              TimeoutStopSec = "600";
-              KillMode = "process";
-              KillSignal = "SIGINT";
-              # RemainAfterExit = true;
-            };
-            WantedBy = ["multi-user.target"];
-          };
-          timers.nextcloud-backup = {
-            description = "Automatic files backup for Nextcloud when booted up after 2 minutes then rerun every 30 minutes";
-            timerConfig = {
-              onCalendar = "weekly";
-            };
-            wantedBy = ["multi-user.target" "timers.target"];
-          };
-          # startServices = true;
-        };
-      }
-    )
+    # (
+    #   mkIf (cfg.nextcloud.enable && cfg.nextcloud.backup) {
+    #     ###################################################
+    #     # BACKUP (WIP)                                    #
+    #     ###################################################
+    #     systemd = {
+    #       services.nextcloud-backup = {
+    #         unitConfig = {
+    #           Description = "Auto backup Nextcloud";
+    #         };
+    #         serviceConfig = {
+    #           Type = "oneshot";
+    #           ExecStartPre = ''
+    #             sudo -u nextcloud ${config.services.nextcloud.package}/bin/nextcloud-occ maintenance:mode --on
+    #           '';
+    #           ExecStart = ''
+    #             rsync -Aavx /var/lib/nextcloud /nix/persistent/nextcloud_backup_`date +"%Y%m%d"`/ > /nix/persistent/nextcloud-backup.logs
+    #             sudo -u postgres pg_dump nextcloud  -U postgres -f nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+    #           '';
+    #           ExecPost = ''
+    #             sudo -u nextcloud ${config.services.nextcloud.package}/bin/nextcloud-occ maintenance:mode --off
+    #             sudo -u postgres pg_dump nextcloud  -U postgres -f /nix/persistent/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+    #           '';
+    #           TimeoutStopSec = "600";
+    #           KillMode = "process";
+    #           KillSignal = "SIGINT";
+    #           # RemainAfterExit = true;
+    #         };
+    #         WantedBy = ["multi-user.target"];
+    #       };
+    #       timers.nextcloud-backup = {
+    #         description = "Automatic files backup for Nextcloud when booted up after 2 minutes then rerun every 30 minutes";
+    #         timerConfig = {
+    #           onCalendar = "weekly";
+    #         };
+    #         wantedBy = ["multi-user.target" "timers.target"];
+    #       };
+    #       # startServices = true;
+    #     };
+    #   }
+    # )
   ];
 }
