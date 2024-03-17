@@ -25,7 +25,10 @@ in {
         screenScalingRatio = 1.175;
       };
 
-      browser.firefox.enable = true;
+      browser = {
+        firefox.enable = true;
+        chromium.enable = true;
+      };
 
       dev = {
         enable = true;
