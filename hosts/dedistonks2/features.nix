@@ -12,6 +12,8 @@ in {
     ];
 
     modules = {
+      impermanence.enable = true;
+
       dev = {
         enable = true;
         languages = ["nix"];
@@ -47,8 +49,8 @@ in {
       services = {
         proxy.enable = true;
         ssh.enable = true;
-        nextcloud.enable = true;
-        vaultwarden.enable = true;
+        nextcloud.enable = false;
+        vaultwarden.enable = false;
         builder.enable = true;
         homePage.enable = true;
         blog.enable = true;
