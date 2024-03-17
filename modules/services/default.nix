@@ -59,7 +59,7 @@ in {
 
         containers.proxy = {
           autoStart = true;
-          privateNetwork = true;
+          privateNetwork = false;
           hostAddress = "192.168.100.10";
           localAddress = "192.168.100.11";
           hostAddress6 = "fc00::1";
