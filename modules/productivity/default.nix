@@ -64,10 +64,6 @@ in {
       };
 
       home-manager.users.${username} = {
-        # home.file.".netrc".text = ''          default
-        #                  login example
-        #                  password test123
-        # '';
 
         systemd.user = {
           services.nextcloud-autosync = {
