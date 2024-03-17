@@ -220,7 +220,7 @@ in {
           recommendedOptimisation = true;
           recommendedGzipSettings = true;
           recommendedProxySettings = true;
-          virtualHosts."vagahbond.com" = {
+          virtualHosts."yoni-firroloni.com" = {
             addSSL = false;
             enableACME = false;
             root = "${website}/src";
