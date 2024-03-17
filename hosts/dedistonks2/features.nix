@@ -49,8 +49,8 @@ in {
       services = {
         proxy.enable = true;
         ssh.enable = true;
-        nextcloud.enable = false;
-        vaultwarden.enable = false;
+        nextcloud.enable = true;
+        vaultwarden.enable = true;
         builder.enable = true;
         homePage.enable = true;
         blog.enable = true;
