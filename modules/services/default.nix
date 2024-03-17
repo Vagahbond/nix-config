@@ -91,11 +91,11 @@ in {
             enable = true;
 
             # You can force users to connect with HTTPS.
-            forceSSL = false;
+            forceSSL = true;
           };
 
           # The public host name to serve.
-          host = "blog.vagahbond.com";
+          host = "blog.yoni-firroloni.com";
         };
       }
     )
@@ -141,8 +141,8 @@ in {
           recommendedGzipSettings = true;
           recommendedProxySettings = true;
           virtualHosts."vagahbond.com" = {
-            addSSL = false;
-            enableACME = false;
+            addSSL = true;
+            enableACME = true;
             root = "${website}/src";
           };
         };
@@ -308,13 +308,12 @@ in {
           nextcloud = {
             enable = true;
             package = pkgs.nextcloud28;
-            hostName = "cloud.vagahbond.com";
+            hostName = "cloud.yoni-firroloni.com";
             https = true;
             maxUploadSize = "4G";
             config = {
               dbtype = "pgsql";
               adminpassFile = config.age.secrets.nextcloudAdminPass.path;
-              # objectstore.s3.sseCKeyFile = "some file generated with openssl rand 32"
             };
             settings = {
               trusted_proxies = ["192.168.0.3"];
