@@ -96,6 +96,7 @@ in {
           enable = true;
           settings = {
             vim = {
+              tabWidth = 2;
               viAlias = false;
               vimAlias = true;
               lsp.enable = true;
@@ -115,7 +116,7 @@ in {
               };
 
               lsp = {
-                formatOnSave = true;
+                formatOnSave = false;
                 lspkind.enable = false;
                 lightbulb.enable = true;
                 lspsaga.enable = false;
@@ -143,7 +144,9 @@ in {
                   enable = true;
                   crates.enable = true;
                 };
-                ts.enable = true;
+                ts = {
+                  enable = true;
+                };
                 go.enable = true;
                 zig.enable = true;
                 python.enable = true;
