@@ -14,7 +14,6 @@
         mountOptions = [
           "relatime"
           "mode=755"
-          "size=200M"
         ];
       };
     };
