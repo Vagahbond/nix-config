@@ -12,6 +12,8 @@ in {
     time.timeZone = cfg.zone;
     i18n.defaultLocale = cfg.language;
     i18n.extraLocaleSettings = {
+      LANGUAGE = cfg.language;
+      LC_ALL = cfg.detailsLanguage;
       LC_ADDRESS = cfg.detailsLanguage;
       LC_IDENTIFICATION = cfg.detailsLanguage;
       LC_MEASUREMENT = cfg.detailsLanguage;

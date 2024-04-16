@@ -58,6 +58,9 @@ in {
             psk = "@ZERREF_PSK@";
           };
 
+          "@EARL_ST_SSID@" = {
+            psk = "@EARL_ST_PSK@";
+          };
           /*
           "@WORK3_SSID@" = {};
 
