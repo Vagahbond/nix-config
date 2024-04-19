@@ -19,7 +19,7 @@ with lib; {
 
     detailsLanguage = mkOption {
       type = types.str;
-      default = "fr_FR.utf8";
+      default = "en_US.utf8";
       description = ''        The language to use for formatting specific things :
               - dates
               - numbers
