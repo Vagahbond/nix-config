@@ -58,6 +58,7 @@ in {
             gp = "git push";
             c = "clear";
             dc = "docker compose";
+            unzip-all = "for file in ./* ;do unzip -d \"\${file%.*}\" $file; done";
           }
           // cfg.shellAliases;
 
