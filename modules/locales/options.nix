@@ -3,7 +3,7 @@ with lib; {
   options.modules.locales = {
     zone = mkOption {
       type = types.str;
-      default = "Europe/Paris";
+      default = "Australia/Sydney";
       description = ''        The time zone to use. 
               Your real location is relevant for SSL certificates, 
               so you should set this to your real location.'';
@@ -19,7 +19,7 @@ with lib; {
 
     detailsLanguage = mkOption {
       type = types.str;
-      default = "fr_FR.utf8";
+      default = "en_US.utf8";
       description = ''        The language to use for formatting specific things :
               - dates
               - numbers
