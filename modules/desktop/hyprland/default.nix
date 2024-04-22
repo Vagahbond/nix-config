@@ -114,21 +114,6 @@ in {
           # TODO look into and make use of this
           config.common.default = "*";
         };
-        /*
-           xdg.portal = {
-          enable = true;
-          extraPortals = [
-            pkgs.xdg-desktop-portal-gtk
-          ];
-          config.common = {
-            default = "hyprland";
-            "org.freedesktop.impl.portal.Screencast" = "hyprland";
-            "org.freedesktop.impl.portal.Screenshot" = "hyprland";
-            "org.freedesktop.impl.portal.Settings" = "gtk";
-            # "org.freedesktop.portal.FileChooser" = "hyprland";
-          };
-        };
-        */
         programs = {
           light.enable = true;
 
@@ -136,11 +121,9 @@ in {
 
           hyprland = {
             enable = true;
-            xwayland = {
-              enable = true;
-            };
             package = hyprland.packages.${pkgs.system}.hyprland;
           };
+
           thunar = {
             enable = true;
             plugins = with pkgs.xfce; [
@@ -154,15 +137,16 @@ in {
 
         services = {
           dbus.enable = true;
-          xserver = {
+          displayManager.defaultSession = "hyprland";
+          displayManager.sddm = {
             enable = true;
-            displayManager.defaultSession = "hyprland";
-            displayManager.sddm = {
-              enable = true;
-              theme = "catppuccin-mocha";
-              autoNumlock = true;
-            };
+            theme = "catppuccin-mocha";
+            autoNumlock = true;
+            wayland.enable = true;
           };
+          # xserver = {
+          #   enable = true;
+          # };
         };
 
         nix.settings = {
@@ -439,7 +423,7 @@ in {
           };
           qt = {
             enable = true;
-            platformTheme = "gtk"; # just an override for QT_QPA_PLATFORMTHEME, takes “gtk”, “gnome”, “qtct” or “kde”
+            platformTheme.name = "gtk"; # just an override for QT_QPA_PLATFORMTHEME, takes “gtk”, “gnome”, “qtct” or “kde”
             style = {
               name = "Catppuccin-Mocha-Dark";
               package = pkgs.catppuccin-kde.override {
