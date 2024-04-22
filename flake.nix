@@ -48,5 +48,7 @@
     anyrun.url = "github:Kirottu/anyrun";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
+
+    nix-cooker.url = "../nix-cooker/";
   };
 }
