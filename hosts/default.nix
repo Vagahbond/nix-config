@@ -13,6 +13,7 @@
       home-manager.nixosModules.home-manager
       ../nixos.nix
       ../user.nix
+      ../homes
     ];
   };
 
