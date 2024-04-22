@@ -136,7 +136,7 @@ in {
             };
 
             misc = {
-              drmFix = false;
+              drm.enable = false;
               disableWebgl = false;
               startPageURL = "https://cloud.vagahbond.com";
             };
