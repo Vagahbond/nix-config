@@ -36,7 +36,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/ed69502ff6e79a6dad213333b0bc3a15e2247942";
     };
 
     spicetify-nix.url = "github:the-argus/spicetify-nix";
@@ -49,8 +49,7 @@
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
-    nix-cooker.url = "../nix-cooker/";
+    nix-cooker.url = "/home/vagahbond/Projects/nix-cooker/";
 
-    nh.url = "https://github.com/viperML/nh";
   };
 }
