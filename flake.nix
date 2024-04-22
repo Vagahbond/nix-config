@@ -50,5 +50,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     nix-cooker.url = "../nix-cooker/";
+
+    nh.url = "https://github.com/viperML/nh";
   };
 }
