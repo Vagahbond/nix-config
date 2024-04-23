@@ -11,7 +11,7 @@ in {
       "/home/${username}/.ssh/id_rsa"
     ];
 
-    rice = "turtle-snail";
+    rice = "turtl-snail";
 
     modules = {
       impermanence.enable = true;

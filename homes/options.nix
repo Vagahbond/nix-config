@@ -1,18 +1,12 @@
-{
-  lib,
-  types,
-}: let
+{lib, ...}: let
   rices = [
-    import
-    ./hypr-turtl-snail
+    "turtl-snail"
   ];
-
-  ricesNames = lib.map (r: r.name) rices;
 in {
   options = {
     rice = lib.mkOption {
-      type = types.enum ricesNames;
-      default = {};
+      type = lib.types.enum rices;
+      default = null;
       description = "Selected rice to use with nix-cooker";
     };
   };
