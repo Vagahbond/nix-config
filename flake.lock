@@ -1507,8 +1507,8 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1713848509,
-        "narHash": "sha256-PII6orDEUI6VBvX+LLsz2SVyjudDW89RBWSMMULIAtc=",
+        "lastModified": 1713860200,
+        "narHash": "sha256-oNzuG2euC4JSnD8CwQimqoKRDvWG9K4xtP96h08oYao=",
         "path": "/home/vagahbond/Projects/nix-cooker",
         "type": "path"
       },

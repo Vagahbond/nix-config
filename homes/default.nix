@@ -15,7 +15,7 @@ in {
     inherit
       (import ./${rice} {
         inherit lib;
-        nixCooker = inputs.nix-cooker.nixosModules.default;
+        nixCooker = inputs.nix-cooker.lib;
       })
       theme
       ;
