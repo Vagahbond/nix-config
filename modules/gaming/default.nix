@@ -91,6 +91,7 @@ in {
           directories = [
             ".config/Ankama"
             ".config/Ankama Launcher"
+            ".config/zaap"
           ];
         };
       };
