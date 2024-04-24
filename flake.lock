@@ -1507,14 +1507,16 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1713860200,
-        "narHash": "sha256-oNzuG2euC4JSnD8CwQimqoKRDvWG9K4xtP96h08oYao=",
-        "path": "/home/vagahbond/Projects/nix-cooker",
-        "type": "path"
+        "dirtyRev": "fdbcdba76e49a2ca303d130d41ae0c569b98c0af-dirty",
+        "dirtyShortRev": "fdbcdba-dirty",
+        "lastModified": 1713915903,
+        "narHash": "sha256-oN3/3xRAowFyGTuSmaGHiTrcXGPM5jOJiRA1huL4+JM=",
+        "type": "git",
+        "url": "file:///home/vagahbond/Projects/nix-cooker"
       },
       "original": {
-        "path": "/home/vagahbond/Projects/nix-cooker",
-        "type": "path"
+        "type": "git",
+        "url": "file:///home/vagahbond/Projects/nix-cooker"
       }
     },
     "nix-gaming": {

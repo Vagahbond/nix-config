@@ -386,6 +386,7 @@ in {
           };
 
           xdg.configFile = {
+            "test.txt".text = config.theme.templates.test;
             "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config lib;};
 
             # Scripts for eww bar
