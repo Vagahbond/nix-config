@@ -1,5 +1,6 @@
 {
   description = "My modular NixOS configuration that totally did not take countless horus to make.";
+
   outputs = {self, ...} @ inputs: {
     nixosConfigurations =
       import ./hosts

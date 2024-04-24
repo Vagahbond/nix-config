@@ -1507,10 +1507,10 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "dirtyRev": "fdbcdba76e49a2ca303d130d41ae0c569b98c0af-dirty",
-        "dirtyShortRev": "fdbcdba-dirty",
-        "lastModified": 1713915903,
-        "narHash": "sha256-oN3/3xRAowFyGTuSmaGHiTrcXGPM5jOJiRA1huL4+JM=",
+        "dirtyRev": "c5942336b6c6e5595c5804ca9ac3b8bdce0e165b-dirty",
+        "dirtyShortRev": "c594233-dirty",
+        "lastModified": 1713933689,
+        "narHash": "sha256-VK2U27dRLdaQ+Z6TpC2bTJx8/BmGVYmWOD1XAapARZU=",
         "type": "git",
         "url": "file:///home/vagahbond/Projects/nix-cooker"
       },
