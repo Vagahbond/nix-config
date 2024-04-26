@@ -2,44 +2,79 @@
 with lib; {
   options.modules.desktop = {
     session = mkOption {
-      example = ["hyprland" "gamescope"];
-
-      type = types.enum ["hyprland" "gamescope" "gnome" null];
+      example = "hyprland";
+      type = types.enum ["hyprland" null];
       default = null;
       description = ''
-        The session you want to use (DE or WM with everything around)
+        The session you want to use (null means no graphics environment.)
       '';
     };
 
-    screenWidth = mkOption {
-      type = types.int;
-      default = 1920;
+    widgets = {
+      eww.enable = mkEnableOption "Eww";
+      ags.enable = mkEnableOption "AGS";
+    };
+
+    file-explorer = mkOption {
+      example = "thunar";
+      type = types.enum ["thunar"];
+      default = "thunar";
       description = ''
-        Width for your screen
+        The file explorer you want to use.
       '';
     };
 
-    screenHeight = mkOption {
-      type = types.int;
-      default = 1080;
+    notifications = mkOption {
+      example = "dunst";
+      type = types.enum ["mako"];
+      default = "mako";
       description = ''
-        Width for your screen
+        The notifications daemon you want to use.
       '';
     };
 
-    screenScalingRatio = mkOption {
-      type = types.float;
-      default = 1.0;
+    terminal = mkOption {
+      example = "foot";
+      type = types.enum ["foot"];
+      default = "foot";
       description = ''
-        Zoom ratio for your screen
+        The terminal emulator you want to use.
       '';
     };
 
-    screenRefreshRate = mkOption {
-      type = types.int;
-      default = 60;
+    display-manager = mkOption {
+      example = "sddm";
+      type = types.enum ["sddm"];
+      default = "sddm";
       description = ''
-        Refresh ratio for your screen
+        The display manager you want to use.
+      '';
+    };
+
+    launcher = mkOption {
+      example = "wofi";
+      type = types.enum ["anyrun"];
+      default = "anyrun";
+      description = ''
+        The launcher you want to use.
+      '';
+    };
+
+    lockscreen = mkOption {
+      example = "hyprlock";
+      type = types.enum ["hyprlock" null];
+      default = "hyprlock";
+      description = ''
+        The lockscreen you want to use.
+      '';
+    };
+
+    wallpaper = mkOption {
+      example = "hyprpaper";
+      type = types.enum ["hyprpaper" null];
+      default = "hyprpaper";
+      description = ''
+        The wallpaper daemon you want to use.
       '';
     };
   };
