@@ -19,6 +19,9 @@ in {
         tree
         killall
         htop
+        jq
+        nitch
+        socat
       ];
     }
     (mkIf cfg.ntfs.enable {
