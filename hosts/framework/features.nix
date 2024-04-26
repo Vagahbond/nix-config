@@ -115,7 +115,7 @@ in {
 
       gaming = {
         wine.enable = true;
-        dofus.enable = true;
+        dofus.enable = false;
         steam.enable = false;
       };
     };
