@@ -21,6 +21,18 @@ in {
       # monitor=eDP-1, 2256x1504@60, 0x0, 1.5
       desktop = {
         session = "hyprland";
+
+        widgets = {
+          eww.enable = true;
+          ags.enable = true;
+        };
+
+        fileExplorer = "thunar";
+        notifications = "mako";
+        terminal = "foot";
+        displayManager = "sddm";
+        launcher = "anyrun";
+        wallpaper = "hyprpaper";
       };
 
       browser = {
