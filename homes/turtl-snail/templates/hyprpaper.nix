@@ -1,11 +1,8 @@
-{
-  wallpaper,
-  ...
-}: ''
+{wallpaper, ...}: ''
   ipc = off
   splash = false
 
-  preload=${wallpaper}/wallpaper.jpg
+  preload=${wallpaper.package}/${wallpaper.name}
 
-  wallpaper=,${wallpaper}/wallpaper.jpg
+  wallpaper=,${wallpaper.package}/${wallpaper.name}
 ''

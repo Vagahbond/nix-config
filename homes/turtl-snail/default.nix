@@ -34,9 +34,51 @@ in {
       accent = base08;
     };
 
+    gtkTheme = {
+      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
+      package = m-catppuccin-gtk;
+    };
+
+    qtTheme = {
+      name = "Catppuccin-Mocha-Dark";
+      package = pkgs.catppuccin-kde.override {
+        flavour = ["mocha"];
+        accents = ["mauve"];
+        winDecStyles = ["modern"];
+      };
+    };
+
+    wallpaper = {
+      package = fetchGit {url = "https://github.com/rose-pine/wallpapers";};
+      name = "rose_pine_contourline.png";
+    };
+
+    cursor = {
+      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
+    };
+
+    iconsTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        accent = "mauve";
+        flavor = "mocha";
+      };
+    };
+
+    displayManagerTheme = {
+      name = "catppuccin-mocha";
+      package = (pkgs.callPackage ./sddm-themes.nix {}).catppuccino-sddm;
+    };
+
     font = {
       package = pkgs.nerdfonts.override {fonts = ["Terminus"];};
       name = "Terminess Nerd Font";
+    };
+
+    symbolsFont = {
+      # package = pkgs.nerdfonts.override {fonts = ["Terminus"];};
+      # name = "Terminess Nerd Font";
     };
 
     templates = {

@@ -9,8 +9,15 @@
   username = import ../../username.nix;
 
   inherit (config.modules.impermanence) storageLocation;
-  inherit (inputs.nix-cooker.lib) mkHHex;
   inherit (config.theme) displayManagerTheme colors radius templates;
+
+  inherit
+    (inputs.nix-cooker.lib {
+      inherit lib;
+      inherit (config) theme;
+    })
+    mkHHex
+    ;
 in {
   imports = [
     ./options.nix
@@ -94,19 +101,18 @@ in {
             directories = [
               "/var/lib/sddm"
             ];
+          };
 
-            systemPackages = [
-              displayManagerTheme.package
-            ];
-
-            services = {
-              displayManager.sddm = {
-                enable = true;
-                theme = displayManagerTheme.name;
-                autoNumlock = true;
-                wayland.enable = true;
-              };
-            };
+          systemPackages = [
+            displayManagerTheme.package
+          ];
+        };
+        services = {
+          displayManager.sddm = {
+            enable = true;
+            theme = displayManagerTheme.name;
+            autoNumlock = true;
+            wayland.enable = true;
           };
         };
       }
