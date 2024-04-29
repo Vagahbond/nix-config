@@ -27,6 +27,16 @@ with lib; let
     "application/x-extension-xhtml" = browser;
     "application/x-extension-xht" = browser;
   };
+
+  inherit (config.theme) colors;
+
+  inherit
+    (inputs.nix-cooker.lib {
+      inherit lib;
+      inherit (config) theme;
+    })
+    mkHex
+    ;
 in {
   imports = [
     ./options.nix
@@ -78,9 +88,9 @@ in {
 
             theme = {
               colors = {
-                background-darker = "11111b";
-                background = "1e1e2e";
-                foreground = "D8CEF5";
+                background-darker = mkHex colors.base01;
+                background = mkHex colors.background;
+                foreground = mkHex colors.accent;
               };
               font = "Terminess Nerd Font";
             };
