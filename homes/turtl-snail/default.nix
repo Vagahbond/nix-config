@@ -3,6 +3,12 @@
   nixCooker,
 }: let
   inherit (nixCooker) mkTemplateContent;
+  m-catppuccin-gtk = pkgs.catppuccin-gtk.override {
+    accents = ["mauve"];
+    size = "standard";
+    variant = "mocha";
+    tweaks = ["normal"];
+  };
 in {
   theme = {
     colors = rec {
@@ -33,7 +39,11 @@ in {
       name = "Terminess Nerd Font";
     };
 
-    templates.test = mkTemplateContent (import ./templates/test.nix);
-    templates.hyprland = mkTemplateContent (import ./templates/hyprland.nix);
+    templates = {
+      test = mkTemplateContent (import ./templates/test.nix);
+      hyprland = mkTemplateContent (import ./templates/hyprland.nix);
+      foot = mkTemplateContent (import ./templates/foot.nix);
+      anyrunCss = mkTemplateContent (import ./templates/anyrun-css.nix);
+    };
   };
 }

@@ -15,7 +15,7 @@
     };
   };
 
-  systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     # Screenshoting
     hyprshot
     satty
@@ -68,9 +68,12 @@
       enable = true;
       theme = config.theme.gtkTheme;
 
-      iconTheme = config.theme.icons;
+      iconTheme = config.theme.iconsTheme;
 
-      font = config.theme.font.name;
+      font = {
+        inherit (config.theme.font) name;
+        size = 14;
+      };
 
       gtk4.extraConfig = {
         gtk-application-prefer-dark-theme = 1;
@@ -80,20 +83,18 @@
         gtk-xft-antialias = 1;
         gtk-application-prefer-dark-theme = 1;
       };
-
-      qt = {
-        enable = true;
-        platformTheme.name = "gtk"; # just an override for QT_QPA_PLATFORMTHEME, takes “gtk”, “gnome”, “qtct” or “kde”
-        style = config.theme.qtTheme;
-      };
-
-      # TODO: change and put scripts in nix-cooker templates themselves for further flex
-      home.file = {
-        ".config/hypr/hyprland.conf".text = config.thme.templates.hyprland;
-        ".config/hypr/volume.sh".source = ./volume.sh;
-        ".config/hypr/brightness.sh".source = ./brightness.sh;
-        ".config/hypr/eww_widgets.sh".source = ./eww_widgets.sh;
-      };
+    };
+    qt = {
+      enable = true;
+      platformTheme.name = "gtk"; # just an override for QT_QPA_PLATFORMTHEME, takes “gtk”, “gnome”, “qtct” or “kde”
+      style = config.theme.qtTheme;
+    };
+    # TODO: change and put scripts in nix-cooker templates themselves for further flex
+    home.file = {
+      ".config/hypr/hyprland.conf".text = config.theme.templates.hyprland;
+      ".config/hypr/volume.sh".source = ./volume.sh;
+      ".config/hypr/brightness.sh".source = ./brightness.sh;
+      ".config/hypr/eww_widgets.sh".source = ./eww_widgets.sh;
     };
   };
 }
