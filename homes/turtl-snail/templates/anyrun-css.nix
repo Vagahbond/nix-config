@@ -17,7 +17,7 @@
   #entry,
   #plugin,
   #main {
-    border-radius: ${builtins.toString radius}radius}px;
+    border-radius: ${builtins.toString radius}px;
 
   }
 
