@@ -8,6 +8,7 @@
   mkHexA,
   mkHHexA,
   mkFontName,
+  ...
 }: ''
   Hello this is a test
 

@@ -15,10 +15,10 @@ with lib; {
       ags.enable = mkEnableOption "AGS";
     };
 
-    file-explorer = mkOption {
+    fileExplorer = mkOption {
       example = "thunar";
-      type = types.enum ["thunar"];
-      default = "thunar";
+      type = types.enum ["thunar" null];
+      default = null;
       description = ''
         The file explorer you want to use.
       '';
@@ -26,8 +26,8 @@ with lib; {
 
     notifications = mkOption {
       example = "dunst";
-      type = types.enum ["mako"];
-      default = "mako";
+      type = types.enum ["mako" null];
+      default = null;
       description = ''
         The notifications daemon you want to use.
       '';
@@ -35,17 +35,17 @@ with lib; {
 
     terminal = mkOption {
       example = "foot";
-      type = types.enum ["foot"];
-      default = "foot";
+      type = types.enum ["foot" null];
+      default = null;
       description = ''
         The terminal emulator you want to use.
       '';
     };
 
-    display-manager = mkOption {
+    displayManager = mkOption {
       example = "sddm";
-      type = types.enum ["sddm"];
-      default = "sddm";
+      type = types.enum ["sddm" null];
+      default = null;
       description = ''
         The display manager you want to use.
       '';
@@ -53,8 +53,8 @@ with lib; {
 
     launcher = mkOption {
       example = "wofi";
-      type = types.enum ["anyrun"];
-      default = "anyrun";
+      type = types.enum ["anyrun" null];
+      default = null;
       description = ''
         The launcher you want to use.
       '';
@@ -63,7 +63,7 @@ with lib; {
     lockscreen = mkOption {
       example = "hyprlock";
       type = types.enum ["hyprlock" null];
-      default = "hyprlock";
+      default = null;
       description = ''
         The lockscreen you want to use.
       '';
@@ -72,7 +72,7 @@ with lib; {
     wallpaper = mkOption {
       example = "hyprpaper";
       type = types.enum ["hyprpaper" null];
-      default = "hyprpaper";
+      default = null;
       description = ''
         The wallpaper daemon you want to use.
       '';
