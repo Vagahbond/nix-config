@@ -36,8 +36,13 @@
       flake = false;
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland/ed69502ff6e79a6dad213333b0bc3a15e2247942";
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprpaper.url = "github:hyprwm/hyprpaper";
+
+    rose-pine-hyprcursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     spicetify-nix.url = "github:the-argus/spicetify-nix";

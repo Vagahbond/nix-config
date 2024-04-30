@@ -4,20 +4,22 @@
   gtkTheme,
   mkHex,
   mkHexA,
+  cursor,
   ...
 }: ''
   debug:disable_logs = false
 
   # ENV
-  env = GDK_BACKEND,wayland;x11
-  env = QT_QPA_PLATFORM,wayland;xcb
+  env = GDK_SCALE,1.5
+  env = GDK_BACKEND,wayland,x11
+  env = QT_QPA_PLATFORM,wayland,xcb
   env = SDL_VIDEODRIVER,wayland
 
   env = XDG_CURRENT_DESKTOP,Hyprland
   env = XDG_SESSION_TYPE,wayland
   env = XDG_SESSION_DESKTOP,Hyprland
 
-  env = QT_AUTO_SCREEN_SCALE_FACTOR,1
+  env = QT_AUTO_SCREEN_SCALE_FACTOR,1.5
   env = QT_QPA_PLATFORM,wayland;xcb
   env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
   env = DISABLE_QT5_COMPAT,0
@@ -27,8 +29,10 @@
   env = GTK_THEME,${gtkTheme.name}
   env = GTK_USE_PORTAL,1
 
+  env = HYPRCURSOR_THEME,${cursor.name}
+  env = HYPRCURSOR_SIZE,24
+
   #exec=gsettings set org.gnome.desktop.interface font-name '${font.name} 14'
-  #  exec-once=hyprctl setcursor "Catppuccin-Mocha-Dark-Cursors" 24
 
 
   # BINDS
@@ -109,6 +113,7 @@
   bindr=SUPERCONTROL,up,focusmonitor,l
   bindr=SUPERCONTROL,down,focusmonitor,r
   bindr=SUPER,Tab,workspace,previous
+
   binde=SUPERALT,left,resizeactive,-20 0
   binde=SUPERALT,right,resizeactive,20 0
   binde=SUPERALT,up,resizeactive,0 -20
@@ -161,19 +166,20 @@
   misc {
     disable_autoreload = true
     layers_hog_keyboard_focus = true
-    disable_hyprland_logo = true
+    force_default_wallpaper = 1
+    splash_font_family = ${font.name}
   }
 
   general {
-    col.inactive_border = rgb(${mkHex colors.accent}) rgb(${mkHex colors.base07}) 45deg
+    col.inactive_border = rgba(${mkHexA colors.base0C "CF"}) rgba(${mkHexA colors.base0B "CF"}) 45deg
     col.active_border = rgb(${mkHex colors.accent})
 
     layout = dwindle
     resize_on_border = true
-    extend_border_grab_area = 15
+    extend_border_grab_area = 10
     gaps_in = 5
-    gaps_out = 5
-    border_size = 2
+    gaps_out = 10
+    border_size = 1
 
     bezier=overdone,0.68, -0.40, 0.200, 1.30
     bezier=overdone2,0.175, 0.885, 0.32, 1.275
@@ -201,14 +207,15 @@
       enabled = true
       size = 10
       passes = 3
-      ignore_opacity = false
+      ignore_opacity = true
       special = true
     }
     drop_shadow = true
-    # shadow_range = 8
-    # shadow_render_power = 4
-    col.shadow = rgba(${mkHexA colors.accent "FF"})
-    col.shadow_inactive = rgba(${mkHexA colors.base00 "FF"})
+    shadow_range = 5
+    shadow_render_power = 4
+    shadow_offset =  5 5
+    col.shadow = rgba(${mkHexA colors.base01 "aa"})
+    col.shadow_inactive = rgba(${mkHexA colors.base01 "aa"})
   }
 
   dwindle {
@@ -219,12 +226,13 @@
   windowrule=opaque,title:^(.*Firefox.*)$
   windowrule=opaque,title:^(.*Visual Studio Code.*)$
   windowrule=opaque,title:^(.*Oracle VM VirtualBox.*)$
+  windowrule=opaque,title:^(.*foot.*)$
 
   windowrulev2 = opaque,fullscreen:1
   windowrulev2 = float, title:(.*)(satty)$
   windowrulev2 = float, class:(.*)(thunar)$
 
-  firefox's sharing indicator
+  # firefox's sharing indicator
   windowrule = float, title:^(Firefox — Sharing Indicator)$
   windowrule = move 0 0, title:^(Firefox — Sharing Indicator)$
   windowrule = size 30 30, title:^(Firefox - Sharing Indicator)$
@@ -249,11 +257,13 @@
 
   exec = hyprpaper
 
-  monitor=eDP-1,addreserved,0,0,60,0
+  # monitor=eDP-1,addreserved,0,0,60,0
+  monitor=eDP-1,highres,auto,1.566666
+  monitor=,preferred,auto,1
 
   layerrule = ignorealpha 0.6,gtk-layer-shell
   layerrule = blur,gtk-layer-shell
 
-  exec = eww kill
-  exec = zsh $HOME/.config/hypr/eww_widgets.sh
+  # exec = eww kill
+  # exec = zsh $HOME/.config/hypr/eww_widgets.sh
 ''

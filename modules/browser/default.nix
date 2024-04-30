@@ -28,7 +28,7 @@ with lib; let
     "application/x-extension-xht" = browser;
   };
 
-  inherit (config.theme) colors;
+  inherit (config.theme) colors font;
 
   inherit
     (inputs.nix-cooker.lib {
@@ -90,9 +90,9 @@ in {
               colors = {
                 background-darker = mkHex colors.base01;
                 background = mkHex colors.background;
-                foreground = mkHex colors.accent;
+                foreground = mkHex colors.text;
               };
-              font = "Terminess Nerd Font";
+              font = font.name;
             };
 
             search = {

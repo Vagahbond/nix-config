@@ -110,9 +110,10 @@ in {
         programs.spicetify = {
           enable = true;
           theme = spicePkgs.themes.Ziro;
-          colorScheme = "custom";
+          colorScheme = "rose-pine";
 
-          customColorScheme = {
+          /*
+             customColorScheme = {
             text = "CBA6F7";
             subtext = "CDD6F4";
             # sidebar-text = "";
@@ -130,6 +131,7 @@ in {
             notification-error = "F28FAD";
             misc = "f38ba8";
           };
+          */
 
           enabledExtensions = with spicePkgs.extensions; [
             fullAppDisplay

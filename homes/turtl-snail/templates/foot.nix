@@ -1,12 +1,7 @@
 {
   colors,
   font,
-  mkRGB,
-  mkRGBA,
   mkHex,
-  mkHHex,
-  mkHexA,
-  mkHHexA,
   mkFontName,
   ...
 }: ''
@@ -21,7 +16,7 @@
   title=foot
   # locked-title=no
 
-  font=Terminess Nerd Font Propo:size=14
+  font=${builtins.toString (mkFontName {mono = true;})}:size=14
   # font-bold=<bold variant of regular font>
   # font-italic=<italic variant of regular font>
   # font-bold-italic=<bold+italic variant of regular font>
@@ -83,7 +78,7 @@
   # alternate-scroll-mode=yes
 
   [colors]
-  # alpha=1.0
+  alpha=0.9
   background=${mkHex colors.background}
   foreground=${mkHex colors.base05}
 

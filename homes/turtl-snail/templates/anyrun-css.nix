@@ -3,10 +3,11 @@
   radius,
   mkRGB,
   mkRGBA,
+  font,
   ...
 }: ''
   * {
-    font-family: Terminess Nerd Font;
+    font-family: ${font.name};
   }
 
   window {

@@ -23,7 +23,7 @@ in {
         session = "hyprland";
 
         widgets = {
-          eww.enable = true;
+          eww.enable = false;
           ags.enable = true;
         };
 
