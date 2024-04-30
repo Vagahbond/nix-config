@@ -23,15 +23,12 @@
         plugins = with inputs.anyrun.packages.${pkgs.system}; [
           applications
           rink
-          randr
           websearch
           shell
-          # symbols
           translate
           dictionary
-          #         inputs.anyrun-nixos-options.packages.${pkgs.system}.default
         ];
-        # position = "top";
+
         y.fraction = 0.3;
         width.fraction = 0.3;
         closeOnClick = true;
@@ -42,32 +39,12 @@
         ignoreExclusiveZones = false;
         layer = "overlay";
       };
+
       extraCss = config.theme.templates.anyrunCss;
       extraConfigFiles = {
-        /*
-          "nixos-options.ron".text = let
-          nixos-options = config.system.build.manual.optionsJSON + "/share/doc/nixos/options.json";
-          hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json + "/share/doc/home-manager/options.json";
-          options = builtins.toJSON {
-            ":nix" = [nixos-options];
-            ":hm" = [hm-options];
-          };
-        in ''
-          Config(
-            options: ${options},
-            max_entries: 5
-          )
-        '';
-        */
-
         "dictionary.ron".text = ''
           Config(
             prefix: ":def",
-          )
-        '';
-        "randr.ron".text = ''
-          Config(
-            prefix: ":dp",
           )
         '';
         "applications.ron".text = ''

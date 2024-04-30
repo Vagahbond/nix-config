@@ -23,6 +23,7 @@
     # QT
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
+    libsForQt5.qtstyleplugin-kvantum
 
     # Audio
     wireplumber
@@ -30,6 +31,11 @@
     # Clip
     cliphist
     wl-clipboard
+
+    config.theme.qtTheme.package
+    config.theme.gtkTheme.package
+    config.theme.iconsTheme.package
+    config.theme.cursor.package
   ];
 
   programs = {
@@ -63,6 +69,15 @@
     ];
   };
 
+  # File picker
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config.common.default = "*";
+  };
+
   home-manager.users.${username} = {
     gtk = {
       enable = true;
@@ -86,15 +101,29 @@
     };
     qt = {
       enable = true;
-      platformTheme.name = "gtk"; # just an override for QT_QPA_PLATFORMTHEME, takes “gtk”, “gnome”, “qtct” or “kde”
+      platformTheme.name = "gtk2"; # just an override for QT_QPA_PLATFORMTHEME, takes “gtk”, “gnome”, “qtct” or “kde”
       style = config.theme.qtTheme;
     };
+
     # TODO: change and put scripts in nix-cooker templates themselves for further flex
-    home.file = {
-      ".config/hypr/hyprland.conf".text = config.theme.templates.hyprland;
-      ".config/hypr/volume.sh".source = ./volume.sh;
-      ".config/hypr/brightness.sh".source = ./brightness.sh;
-      ".config/hypr/eww_widgets.sh".source = ./eww_widgets.sh;
+    home = {
+      pointerCursor = {
+        size = 24;
+        inherit (config.theme.cursor) name package;
+      };
+      packages = [
+        config.theme.qtTheme.package
+        config.theme.gtkTheme.package
+        config.theme.iconsTheme.package
+        config.theme.cursor.package
+      ];
+
+      file = {
+        ".config/hypr/hyprland.conf".text = config.theme.templates.hyprland;
+        ".config/hypr/volume.sh".source = ./volume.sh;
+        ".config/hypr/brightness.sh".source = ./brightness.sh;
+        ".config/hypr/eww_widgets.sh".source = ./eww_widgets.sh;
+      };
     };
   };
 }

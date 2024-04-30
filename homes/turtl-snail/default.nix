@@ -1,14 +1,9 @@
 {
   pkgs,
   nixCooker,
+  inputs,
 }: let
   inherit (nixCooker) mkTemplateContent;
-  m-catppuccin-gtk = pkgs.catppuccin-gtk.override {
-    accents = ["mauve"];
-    size = "standard";
-    variant = "mocha";
-    tweaks = ["normal"];
-  };
 in {
   theme = {
     colors = rec {
@@ -35,45 +30,38 @@ in {
     };
 
     gtkTheme = {
-      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
-      package = m-catppuccin-gtk;
+      name = "rose-pine";
+      package = pkgs.rose-pine-gtk-theme;
     };
 
     qtTheme = {
-      name = "Catppuccin-Mocha-Dark";
-      package = pkgs.catppuccin-kde.override {
-        flavour = ["mocha"];
-        accents = ["mauve"];
-        winDecStyles = ["modern"];
-      };
+      name = "rose-pine";
+      package = pkgs.rose-pine-gtk-theme;
     };
 
     wallpaper = {
-      package = fetchGit {url = "https://github.com/rose-pine/wallpapers";};
-      name = "rose_pine_contourline.png";
+      package = (pkgs.callPackage ./wallpaper.nix {}).wallpaper;
+      name = "wallpaper.jpg";
     };
 
     cursor = {
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "BreezeX-RosePine-Linux";
+      package = pkgs.rose-pine-cursor;
     };
 
     iconsTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        accent = "mauve";
-        flavor = "mocha";
-      };
+      name = "rose-pine";
+      package = pkgs.rose-pine-icon-theme;
     };
 
     displayManagerTheme = {
-      name = "catppuccin-mocha";
-      package = (pkgs.callPackage ./sddm-themes.nix {}).catppuccino-sddm;
+      name = "where-is-my-sddm-theme";
+      package = pkgs.where-is-my-sddm-theme;
     };
 
     font = {
-      package = pkgs.nerdfonts.override {fonts = ["Terminus"];};
-      name = "Terminess Nerd Font";
+      package = pkgs.inconsolata-nerdfont;
+      name = "Inconsolata Nerd Font";
     };
 
     symbolsFont = {
@@ -86,6 +74,8 @@ in {
       hyprland = mkTemplateContent (import ./templates/hyprland.nix);
       foot = mkTemplateContent (import ./templates/foot.nix);
       anyrunCss = mkTemplateContent (import ./templates/anyrun-css.nix);
+      hyprpaper = mkTemplateContent (import ./templates/hyprpaper.nix);
+      discord = mkTemplateContent (import ./templates/discord.nix);
     };
   };
 }

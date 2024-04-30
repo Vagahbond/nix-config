@@ -107,6 +107,7 @@ in {
             displayManagerTheme.package
           ];
         };
+
         services = {
           displayManager.sddm = {
             enable = true;
@@ -118,13 +119,13 @@ in {
       }
     )
 
-    (lib.mkIf (cfg.terminal == "wallpaper") {
+    (lib.mkIf (cfg.wallpaper == "hyprpaper") {
       environment.systemPackages = with pkgs; [
         hyprpaper
       ];
 
       home-manager.users.${username} = {
-        home.file.".config/hypr/hyprpaper.com".text = templates.hyprpaper;
+        home.file.".config/hypr/hyprpaper.conf".text = templates.hyprpaper;
         home.file.".config/hypr/wallpaper.jpg".text = templates.foot;
       };
     })

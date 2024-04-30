@@ -112,7 +112,7 @@ in {
 
               statusline.lualine = {
                 enable = true;
-                theme = "catppuccin";
+                # theme = "rose-pine";
               };
 
               lsp = {
@@ -177,9 +177,9 @@ in {
 
               theme = {
                 enable = true;
-                name = "catppuccin";
-                style = "mocha";
-                transparent = false;
+                name = "rose-pine";
+                style = "main";
+                transparent = true;
               };
 
               autopairs.enable = true;
@@ -195,9 +195,9 @@ in {
                   filters = {
                     dotfiles = false;
                     exclude = [".git"];
-                    gitClean = false;
-                    gitIgnored = false;
-                    noBuffer = false;
+                    # gitClean = false;
+                    # gitIgnored = false;
+                    # noBuffer = false;
                   };
                   hijackCursor = true;
                   view = {
@@ -224,7 +224,7 @@ in {
               git = {
                 enable = true;
                 gitsigns.enable = true;
-                gitsigns.codeActions = false; # throws an annoying debug message
+                # gitsigns.codeActions = false; # throws an annoying debug message
               };
 
               minimap = {
