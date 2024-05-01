@@ -33,6 +33,7 @@ in {
         displayManager = "sddm";
         launcher = "anyrun";
         wallpaper = "hyprpaper";
+        lockscreen = "hyprlock";
       };
 
       browser = {
