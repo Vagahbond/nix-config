@@ -15,9 +15,9 @@ in {
   config = {
     inherit
       (import ./${rice} {
-      inherit pkgs inputs;
+        inherit pkgs inputs;
         nixCooker = inputs.nix-cooker.lib {
-          inherit lib ;
+          inherit lib;
           inherit (config) theme;
         };
       })
