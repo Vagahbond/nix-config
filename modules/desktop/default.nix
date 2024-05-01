@@ -9,7 +9,7 @@
   username = import ../../username.nix;
 
   inherit (config.modules.impermanence) storageLocation;
-  inherit (config.theme) displayManagerTheme colors radius templates;
+  inherit (config.theme) font displayManagerTheme colors radius templates;
 
   inherit
     (inputs.nix-cooker.lib {
@@ -17,6 +17,7 @@
       inherit (config) theme;
     })
     mkHHex
+    mkHHexA
     ;
 in {
   imports = [
@@ -69,14 +70,26 @@ in {
       home-manager.users.${username} = {
         services.mako = {
           enable = true;
+          font = "${font.name} 10}";
           anchor = "top-right";
           defaultTimeout = 4000;
           ignoreTimeout = true;
-          backgroundColor = mkHHex colors.background;
+          backgroundColor = mkHHexA colors.background "DD";
           borderColor = mkHHex colors.accent;
-          textColor = mkHHex colors.text;
+          textColor = mkHHex colors.base05;
           borderRadius = radius;
-          progressColor = mkHHex colors.accent;
+          progressColor = "source ${mkHHex colors.accent}";
+          groupBy = "app-name";
+          padding = "8";
+
+          # TODO: Script to enable do-not-disturb I guess
+          extraConfig = ''
+            outer-margin=10
+
+            [mode=do-not-disturb]
+            invisible=1
+
+          '';
         };
       };
     })
@@ -93,7 +106,10 @@ in {
     (
       lib.mkIf (cfg.launcher == "anyrun") (import ./anyrun.nix {inherit config username storageLocation pkgs inputs;})
     )
-
+    (
+      lib.mkIf (cfg.displayManager == "sddm") {
+      }
+    )
     (
       lib.mkIf (cfg.displayManager == "sddm") {
         environment = {
