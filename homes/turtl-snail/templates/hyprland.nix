@@ -33,7 +33,7 @@
   env = HYPRCURSOR_SIZE,24
 
   #exec=gsettings set org.gnome.desktop.interface font-name '${font.name} 14'
-
+  exec=hypridle
 
   # BINDS
 
@@ -43,7 +43,7 @@
   bind = SUPERSHIFT, E, exec,  kill -9 -1
   bind=SUPER,E,exec,thunar
   bind=SUPER,F,togglefloating,
-  bind=SUPERSHIFT,Escape,exec, gtklock -i
+  bind=SUPERSHIFT,Escape,exec, loginctl lock-session
 
   # launcher
   bind=ALT,SPACE,exec,killall anyrun || anyrun
