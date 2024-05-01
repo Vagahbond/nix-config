@@ -16,7 +16,7 @@
   title=foot
   # locked-title=no
 
-  font=${builtins.toString (mkFontName {mono = true;})}:size=14
+  font=${builtins.toString (font.name)}:size=14
   # font-bold=<bold variant of regular font>
   # font-italic=<italic variant of regular font>
   # font-bold-italic=<bold+italic variant of regular font>
