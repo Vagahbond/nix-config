@@ -56,11 +56,29 @@ in {
       # TODO: Install AGS lol
     })
     (lib.mkIf (cfg.fileExplorer == "thunar") {
+      environment.systemPackages = with pkgs; [
+        libgsf # odf files
+        ffmpegthumbnailer
+      ];
+
+      services.gvfs.enable = true; # Mount, trash, and other functionalities
+      services.tumbler.enable = true; # Thumbnail support for images
+
+      environment.persistence.${storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".config/Thunar"
+          ];
+        };
+      };
+
       programs = {
         thunar = {
           enable = true;
           plugins = with pkgs.xfce; [
             thunar-archive-plugin
+            thunar-media-tags-plugin
+            thunar-volman
             thunar-media-tags-plugin
           ];
         };
@@ -107,7 +125,37 @@ in {
       lib.mkIf (cfg.launcher == "anyrun") (import ./anyrun.nix {inherit config username storageLocation pkgs inputs;})
     )
     (
-      lib.mkIf (cfg.displayManager == "sddm") {
+      lib.mkIf (cfg.lockscreen == "hyprlock") {
+        environment.systemPackages = [
+          inputs.hyprlock.packages.${pkgs.system}.default
+          inputs.hypridle.packages.${pkgs.system}.default
+        ];
+
+        home-manager.users.${username} = {
+          imports = [
+            inputs.hypridle.homeManagerModules.default
+          ];
+
+          services.hypridle = {
+            enable = true;
+            beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
+            lockCmd = "hyprlock";
+            afterSleepCmd = "notify-send \"Back from idle.\" \"Welcome back!\"";
+
+            listeners = [
+              {
+                timeout = 330;
+                onTimeout = "playerctl pause";
+              }
+              {
+                timeout = 300;
+                onTimeout = "notify-send \"Idle\" \"You're idle... locking in 30s.\"";
+              }
+            ];
+          };
+
+          home.file.".config/hypr/hyprlock.conf".text = templates.hyprlock;
+        };
       }
     )
     (
