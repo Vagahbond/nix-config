@@ -40,6 +40,8 @@
 
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
+    hyprlock.url = "github:hyprwm/hyprlock";
+
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";

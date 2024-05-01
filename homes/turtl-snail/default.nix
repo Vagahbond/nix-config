@@ -30,13 +30,18 @@ in {
     };
 
     gtkTheme = {
-      name = "rose-pine";
-      package = pkgs.rose-pine-gtk-theme;
+      name = "RosePine-Main-BL";
+      package = (pkgs.callPackage ./rose-pine.nix {}).gtk-theme;
+    };
+
+    iconsTheme = {
+      name = "Rose-Pine";
+      package = pkgs.rose-pine-icon-theme;
     };
 
     qtTheme = {
-      name = "rose-pine";
-      package = pkgs.rose-pine-gtk-theme;
+      name = "RosePine-Main-BL";
+      package = (pkgs.callPackage ./rose-pine.nix {}).gtk-theme;
     };
 
     wallpaper = {
@@ -47,11 +52,6 @@ in {
     cursor = {
       name = "BreezeX-RosePine-Linux";
       package = pkgs.rose-pine-cursor;
-    };
-
-    iconsTheme = {
-      name = "rose-pine";
-      package = pkgs.rose-pine-icon-theme;
     };
 
     displayManagerTheme = {
