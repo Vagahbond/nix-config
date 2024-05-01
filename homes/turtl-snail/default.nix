@@ -76,6 +76,7 @@ in {
       anyrunCss = mkTemplateContent (import ./templates/anyrun-css.nix);
       hyprpaper = mkTemplateContent (import ./templates/hyprpaper.nix);
       discord = mkTemplateContent (import ./templates/discord.nix);
+      hyprlock = mkTemplateContent (import ./templates/hyprlock.nix);
     };
   };
 }
