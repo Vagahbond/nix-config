@@ -42,6 +42,8 @@
 
     hyprlock.url = "github:hyprwm/hyprlock";
 
+    hypridle.url = "github:hyprwm/hypridle";
+
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +61,6 @@
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
-    nix-cooker.url = "/home/vagahbond/Projects/nix-cooker/";
+    nix-cooker.url = "github:vagahbond/nix-cooker";
   };
 }
