@@ -61,7 +61,10 @@
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = lib.mkDefault "powersave";
+  };
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   systemd.services.nix-daemon = {
@@ -82,4 +85,17 @@
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
   '';
+
+  ## laptop stuff
+  services = {
+    tlp.enable = true;
+    thermald.enable = true;
+
+    logind = {
+      # extraConfig = "HandlePowerKey=suspend";
+
+      lidSwitch = "suspend";
+      lidSwitchExternalPower = "lock";
+    };
+  };
 }
