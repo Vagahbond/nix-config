@@ -79,6 +79,19 @@
   };
 
   home-manager.users.${username} = {
+    imports = [
+      inputs.hyprland.homeManagerModules.default
+    ];
+
+    # hypring my land
+    wayland.windowManager.hyprland = {
+      enable = true;
+      extraConfig = config.theme.templates.hyprland;
+      plugins = [
+        inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      ];
+    };
+
     gtk = {
       enable = true;
       theme = config.theme.gtkTheme;
@@ -119,7 +132,7 @@
       ];
 
       file = {
-        ".config/hypr/hyprland.conf".text = config.theme.templates.hyprland;
+        # ".config/hypr/hyprland.conf".text = config.theme.templates.hyprland;
         ".config/hypr/volume.sh".source = ./volume.sh;
         ".config/hypr/brightness.sh".source = ./brightness.sh;
         ".config/hypr/eww_widgets.sh".source = ./eww_widgets.sh;
