@@ -10,7 +10,7 @@
     debug:disable_logs = false
 
     # ENV
-    env = GDK_SCALE,1.5
+    env = GDK_SCALE,1.6
     env = GDK_BACKEND,wayland,x11
     env = QT_QPA_PLATFORM,wayland,xcb
     env = SDL_VIDEODRIVER,wayland
@@ -19,7 +19,7 @@
     env = XDG_SESSION_TYPE,wayland
     env = XDG_SESSION_DESKTOP,Hyprland
 
-    env = QT_AUTO_SCREEN_SCALE_FACTOR,1.5
+    env = QT_AUTO_SCREEN_SCALE_FACTOR,1.6
     env = QT_QPA_PLATFORM,wayland;xcb
     env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
     env = DISABLE_QT5_COMPAT,0
@@ -33,7 +33,7 @@
     env = HYPRCURSOR_SIZE,24
 
     #exec=gsettings set org.gnome.desktop.interface font-name '${font.name} 14'
-    exec-once=hypridle
+    exec-once=killall hypridle; hypridle
 
     # BINDS
 
@@ -73,11 +73,14 @@
     # Screenshots
 
     # Screenshot a window
-    bind = SUPER, PRINT, exec, hyprshot -m window -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+    # bind = SUPER, PRINT, exec, hyprshot -m window -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+    bind = SUPER, PRINT, exec, grimblast --notify --cursor copysave active
     # Screenshot a monitor
-    bind = , PRINT, exec, hyprshot -m output -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+    # bind = , PRINT, exec, hyprshot -m output -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+    bind = , PRINT, exec, grimblast --notify --cursor copysave output
     # Screenshot a region
-    bind = SHIFT, PRINT, exec, hyprshot -m region -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+    # bind = SHIFT, PRINT, exec, hyprshot -m region -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+    bind = SHIFT, PRINT, exec, grimblast --notify --cursor copysave area
 
 
     bind=SUPER,1,workspace,1
@@ -261,7 +264,7 @@
     exec = hyprpaper
 
     # monitor=eDP-1,addreserved,0,0,60,0
-    monitor=eDP-1,highres,auto,1.566666
+    monitor=eDP-1,highres,auto,1.6
     monitor=,preferred,auto,1
 
     layerrule = ignorealpha 0.6,gtk-layer-shell
