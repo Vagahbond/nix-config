@@ -97,7 +97,7 @@ in {
           textColor = mkHHex colors.base05;
           borderRadius = radius;
           progressColor = "source ${mkHHex colors.accent}";
-          groupBy = "app-name";
+          # groupBy = "app-name";
           padding = "8";
 
           # TODO: Script to enable do-not-disturb I guess
@@ -139,17 +139,38 @@ in {
           services.hypridle = {
             enable = true;
             beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
-            lockCmd = "hyprlock";
-            afterSleepCmd = "notify-send \"Back from idle.\" \"Welcome back!\"";
+            lockCmd = "pidof hyprlock || hyprlock";
+            afterSleepCmd = "hyprctl dispatch dpms on && notify-send \"Back from idle.\" \"Welcome back!\"";
 
             listeners = [
               {
-                timeout = 330;
-                onTimeout = "playerctl pause";
+                timeout = 150; # 2.5min.
+                onTimeout = "light -S set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+                onResume = "light -I"; # monitor backlight restore.
               }
               {
                 timeout = 300;
+                onTimeout = "playerctl pause";
+                onResume = "playerctl play";
+              }
+              {
+                timeout = 270;
                 onTimeout = "notify-send \"Idle\" \"You're idle... locking in 30s.\"";
+              }
+              {
+                timeout = 300; # 5min
+                onTimeout = "loginctl lock-session"; # lock screen when timeout has passed
+              }
+
+              {
+                timeout = 330; # 5.5min
+                onTimeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
+                onResume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+              }
+
+              {
+                timeout = 1800; # 30min
+                onTimeout = "systemctl suspend"; # suspend pc
               }
             ];
           };
