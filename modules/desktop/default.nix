@@ -138,8 +138,8 @@ in {
 
           services.hypridle = {
             enable = true;
-            beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
-            lockCmd = "pidof hyprlock || hyprlock";
+            beforeSleepCmd = "loginctl lock-session";
+            lockCmd = "pidof hyprlock || hyprlock -q";
             afterSleepCmd = "hyprctl dispatch dpms on && notify-send \"Back from idle.\" \"Welcome back!\"";
 
             listeners = [
