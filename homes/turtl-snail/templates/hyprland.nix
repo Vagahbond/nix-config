@@ -172,7 +172,7 @@
     misc {
       disable_autoreload = true
       layers_hog_keyboard_focus = true
-      force_default_wallpaper = 1
+      force_default_wallpaper = 0
       splash_font_family = ${font.name}
     }
 
