@@ -35,6 +35,8 @@
     #exec=gsettings set org.gnome.desktop.interface font-name '${font.name} 14'
     exec-once=killall hypridle; hypridle
 
+    exec-once=thunar --daemon
+
     # BINDS
 
     bind = SUPER, T, exec, foot
