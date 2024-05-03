@@ -182,12 +182,6 @@ in {
     (
       lib.mkIf (cfg.displayManager == "sddm") {
         environment = {
-          persistence.${storageLocation} = {
-            directories = [
-              "/var/lib/sddm"
-            ];
-          };
-
           systemPackages = [
             displayManagerTheme.package
           ];
