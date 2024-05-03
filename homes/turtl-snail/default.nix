@@ -45,7 +45,7 @@ in {
     };
 
     wallpaper = {
-      package = (pkgs.callPackage ./wallpaper.nix {}).wallpaper;
+      package = (pkgs.callPackage ./rose-pine.nix {}).wallpaper;
       name = "wallpaper.jpg";
     };
 
@@ -55,8 +55,8 @@ in {
     };
 
     displayManagerTheme = {
-      name = "where-is-my-sddm-theme";
-      package = pkgs.where-is-my-sddm-theme;
+      name = "rose-pine";
+      package = (pkgs.callPackage ./rose-pine.nix {}).sddm-theme;
     };
 
     font = {
