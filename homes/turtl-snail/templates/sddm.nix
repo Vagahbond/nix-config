@@ -127,13 +127,13 @@
 
   DateTimeSpacing=0
 
-  DateColor="${mkHHex colors.base05}"
+  DateColor="${mkHHex colors.accent}"
   DateSize=82
   DateIsBold=false
   DateOpacity=1.0
   DateFormat="dddd MMMM d yyyy"
 
-  TimeColor="${mkHHex colors.base04}"
+  TimeColor="${mkHHex colors.text}"
   TimeSize=96
   TimeIsBold=true
   TimeOpacity=1.0
