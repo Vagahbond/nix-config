@@ -33,9 +33,8 @@
     env = HYPRCURSOR_SIZE,24
 
     #exec=gsettings set org.gnome.desktop.interface font-name '${font.name} 14'
-    exec-once=killall hypridle; hypridle
 
-    exec-once=thunar --daemon
+    exec=thunar --daemon
 
     # BINDS
 
