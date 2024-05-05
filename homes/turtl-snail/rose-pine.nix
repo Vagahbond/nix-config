@@ -37,8 +37,8 @@
     '';
 
     src = fetchurl {
-      url = "https://images4.alphacoders.com/235/thumb-1920-235538.jpg";
-      sha256 = "sha256-6sOlxZ3etn7zvv7R+OC+KY63sUsU/SiV/ZOeNugl1to=";
+      url = "https://raw.githubusercontent.com/Vagahbond/nix-config/65cd25072eece546b61850febbc4495c1e128768/modules/desktop/hyprland/wallpaper.jpg";
+      sha256 = "sha256-/mCMnwbcJZNHOMPJz0bmrlbV4H7gG+0cNX7u7cJldsE=";
     };
   };
 
