@@ -22,6 +22,7 @@ in {
         jq
         nitch
         socat
+        systemctl-tui
       ];
     }
     (mkIf cfg.ntfs.enable {
