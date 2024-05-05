@@ -5,7 +5,7 @@
 }: let
   inherit (nixCooker) mkTemplateContent;
 in {
-  theme = {
+  theme = rec {
     colors = rec {
       base00 = "#191724";
       base01 = "#1f1d2e";
@@ -56,7 +56,7 @@ in {
 
     displayManagerTheme = {
       name = "rose-pine";
-      package = (pkgs.callPackage ./rose-pine.nix {}).sddm-theme;
+      package = (pkgs.callPackage ./rose-pine.nix {}).sddm-theme {config = templates.sddm;};
     };
 
     font = {
@@ -77,6 +77,7 @@ in {
       hyprpaper = mkTemplateContent (import ./templates/hyprpaper.nix);
       discord = mkTemplateContent (import ./templates/discord.nix);
       hyprlock = mkTemplateContent (import ./templates/hyprlock.nix);
+      sddm = mkTemplateContent (import ./templates/sddm.nix);
     };
   };
 }
