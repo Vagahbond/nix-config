@@ -32,11 +32,6 @@
     # Clip
     cliphist
     wl-clipboard
-
-    config.theme.qtTheme.package
-    config.theme.gtkTheme.package
-    config.theme.iconsTheme.package
-    config.theme.cursor.package
   ];
 
   programs = {
