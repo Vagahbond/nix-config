@@ -46,7 +46,6 @@ in {
     */
     (
       mkIf cfg.proxy.enable {
-
         networking.firewall.allowedTCPPorts = [443];
 
         networking.nat = {
