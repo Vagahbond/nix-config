@@ -124,47 +124,47 @@ in {
         ];
 
         home-manager.users.${username} = {
-          imports = [
-            inputs.hypridle.homeManagerModules.default
-          ];
-
           services.hypridle = {
             enable = true;
-            beforeSleepCmd = "loginctl lock-session";
-            lockCmd = "pidof hyprlock || hyprlock -q";
-            afterSleepCmd = "hyprctl dispatch dpms on && notify-send \"Back from idle.\" \"Welcome back!\"";
+            package = inputs.hypridle.packages.${pkgs.system}.default;
+            settings = {
+              beforeSleepCmd = "loginctl lock-session";
+              lockCmd = "pidof hyprlock || hyprlock -q";
 
-            listeners = [
-              {
-                timeout = 150; # 2.5min.
-                onTimeout = "light -S set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
-                onResume = "light -I"; # monitor backlight restore.
-              }
-              {
-                timeout = 300;
-                onTimeout = "playerctl pause";
-                onResume = "playerctl play";
-              }
-              {
-                timeout = 270;
-                onTimeout = "notify-send \"Idle\" \"You're idle... locking in 30s.\"";
-              }
-              {
-                timeout = 300; # 5min
-                onTimeout = "loginctl lock-session"; # lock screen when timeout has passed
-              }
+              afterSleepCmd = "hyprctl dispatch dpms on && notify-send \"Back from idle.\" \"Welcome back!\"";
 
-              {
-                timeout = 330; # 5.5min
-                onTimeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
-                onResume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
-              }
+              listeners = [
+                {
+                  timeout = 150; # 2.5min.
+                  onTimeout = "light -S set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+                  onResume = "light -I"; # monitor backlight restore.
+                }
+                {
+                  timeout = 300;
+                  onTimeout = "playerctl pause";
+                  onResume = "playerctl play";
+                }
+                {
+                  timeout = 270;
+                  onTimeout = "notify-send \"Idle\" \"You're idle... locking in 30s.\"";
+                }
+                {
+                  timeout = 300; # 5min
+                  onTimeout = "loginctl lock-session"; # lock screen when timeout has passed
+                }
 
-              {
-                timeout = 1800; # 30min
-                onTimeout = "systemctl suspend"; # suspend pc
-              }
-            ];
+                {
+                  timeout = 330; # 5.5min
+                  onTimeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
+                  onResume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+                }
+
+                {
+                  timeout = 1800; # 30min
+                  onTimeout = "systemctl suspend"; # suspend pc
+                }
+              ];
+            };
           };
 
           home.file.".config/hypr/hyprlock.conf".text = templates.hyprlock;
