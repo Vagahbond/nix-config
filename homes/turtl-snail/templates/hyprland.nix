@@ -34,8 +34,6 @@
 
     #exec=gsettings set org.gnome.desktop.interface font-name '${font.name} 14'
 
-    exec=thunar --daemon
-
     # BINDS
 
     bind = SUPER, T, exec, foot
