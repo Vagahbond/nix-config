@@ -19,7 +19,6 @@ with lib; let
 in {
   imports = [
     ./options.nix
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
     # inputs.nix-gaming.nixosModules.steamCompat
   ];
 
@@ -65,14 +64,6 @@ in {
         };
 
         boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
-        services.pipewire = {
-          lowLatency = {
-            enable = true;
-            quantum = 64;
-            rate = 48000;
-          };
-        };
 
         security.rtkit.enable = true;
       })
