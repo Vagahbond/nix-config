@@ -39,7 +39,7 @@ in {
 
   age.identityPaths = [
     "/nix/persistent/home/${username}/.ssh/id_ed25519"
-    # "/nix/persistent/home/${username}/.ssh/id_rsa"
+    "/home/${username}/.ssh/id_rsa"
   ];
 
   nixpkgs.config = {
