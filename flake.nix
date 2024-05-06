@@ -64,8 +64,6 @@
 
     anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
-
     nix-cooker.url = "github:vagahbond/nix-cooker";
   };
 }
