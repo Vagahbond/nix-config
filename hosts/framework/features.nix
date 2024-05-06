@@ -1,11 +1,6 @@
 {inputs, ...}: let
   username = import ../../username.nix;
 in {
-  imports = [
-    ../../modules
-    inputs.agenix.nixosModules.default
-  ];
-
   config = {
     age.identityPaths = [
       "/home/${username}/.ssh/id_rsa"
