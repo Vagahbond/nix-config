@@ -192,19 +192,20 @@ in {
               filetree = {
                 nvimTree = {
                   enable = true;
-                  filters = {
-                    dotfiles = false;
-                    exclude = [".git"];
-                    # gitClean = false;
-                    # gitIgnored = false;
-                    # noBuffer = false;
-                  };
-                  hijackCursor = true;
-                  view = {
-                    width = 25;
-                  };
+                  setupOpts = {
+                    filters = {
+                      dotfiles = false;
+                      exclude = [".git" "node_modules" "node_modules/**/*"];
+                      # gitClean = false;
+                      # noBuffer = false;
+                    };
+                    hijackCursor = true;
+                    view = {
+                      width = 25;
+                    };
 
-                  git.enable = true;
+                    git.enable = true;
+                  };
                 };
               };
 
@@ -240,8 +241,10 @@ in {
               notify = {
                 nvim-notify = {
                   enable = true;
-                  timeout = 500;
-                  position = "bottom_left";
+                  setupOpts = {
+                    timeout = 500;
+                    position = "bottom_left";
+                  };
                 };
               };
 
