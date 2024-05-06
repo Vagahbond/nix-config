@@ -36,7 +36,7 @@
       flake = false;
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?rev=da839f20f1b1a57ec78d6b041f8d1369150d253e&submodules=1";
 
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
