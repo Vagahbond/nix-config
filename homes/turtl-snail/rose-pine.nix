@@ -4,6 +4,7 @@
   fetchurl,
   stdenvNoCC,
   libsForQt5,
+  sddm-config,
 }: rec {
   rose-pine-hyprcursor = stdenv.mkDerivation {
     pname = "rose-pine-hyprcursor";
@@ -42,36 +43,35 @@
     };
   };
 
-  sddm-theme = {config}:
-    stdenvNoCC.mkDerivation {
-      pname = "sddm-theme";
-      version = "1";
+  sddm-theme = stdenvNoCC.mkDerivation {
+    pname = "sddm-theme";
+    version = "1";
 
-      propagatedUserEnvPkgs = [
-        libsForQt5.qt5.qtgraphicaleffects
-      ];
+    propagatedUserEnvPkgs = [
+      libsForQt5.qt5.qtgraphicaleffects
+    ];
 
-      src = fetchFromGitHub {
-        owner = "aczw";
-        repo = "sddm-theme-corners";
-        rev = "main";
-        sha256 = "sha256-CPK3kbc8lroPU8MAeNP8JSStzDCKCvAHhj6yQ1fWKkY=";
-      };
-
-      buildPhase = ''
-        cp ${wallpaper}/wallpaper.jpg ./corners/backgrounds/background.jpg
-        echo '${config}' > ./corners/theme.conf
-      '';
-
-      installPhase = ''
-        runHook preInstall
-
-        mkdir -p $out/share/sddm/themes
-        cp -R ./corners $out/share/sddm/themes/rose-pine
-
-        runHook postInstall
-      '';
+    src = fetchFromGitHub {
+      owner = "aczw";
+      repo = "sddm-theme-corners";
+      rev = "main";
+      sha256 = "sha256-CPK3kbc8lroPU8MAeNP8JSStzDCKCvAHhj6yQ1fWKkY=";
     };
+
+    buildPhase = ''
+      cp ${wallpaper}/wallpaper.jpg ./corners/backgrounds/background.jpg
+      echo '${sddm-config}' > ./corners/theme.conf
+    '';
+
+    installPhase = ''
+      runHook preInstall
+
+      mkdir -p $out/share/sddm/themes
+      cp -R ./corners $out/share/sddm/themes/rose-pine
+
+      runHook postInstall
+    '';
+  };
 
   gtk-theme = stdenv.mkDerivation {
     pname = "rose-pine-gtk";
