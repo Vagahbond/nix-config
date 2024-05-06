@@ -64,7 +64,6 @@ in {
       };
 
       home-manager.users.${username} = {
-
         systemd.user = {
           services.nextcloud-autosync = {
             Unit = {
