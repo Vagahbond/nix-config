@@ -86,7 +86,7 @@
 
   LoginButtonTextColor="${mkHHex colors.text}"
   LoginButtonText="Login"
-  LoginButtonColor="${mkHHex colors.background}"
+  LoginButtonColor="${mkHHex colors.base0B}"
 
   # PopupColor:               color. Background color of popup window.
   #
@@ -108,7 +108,7 @@
   # PowerIconColor:       color. Color of the icon inside the power button.
 
   SessionButtonColor="${mkHHex colors.background}"
-  SessionIconColor="${mkHHex colors.accent}"
+  SessionIconColor="${mkHHex colors.base0B}"
   PowerButtonColor="${mkHHex colors.background}"
   PowerIconColor="${mkHHex colors.accent}"
 
@@ -127,13 +127,13 @@
 
   DateTimeSpacing=0
 
-  DateColor="${mkHHex colors.accent}"
+  DateColor="${mkHHex colors.base05}"
   DateSize=82
   DateIsBold=false
   DateOpacity=1.0
   DateFormat="dddd MMMM d yyyy"
 
-  TimeColor="${mkHHex colors.text}"
+  TimeColor="${mkHHex colors.base0B}"
   TimeSize=96
   TimeIsBold=true
   TimeOpacity=1.0
