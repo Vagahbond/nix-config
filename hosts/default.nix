@@ -5,34 +5,28 @@
 }: let
   inherit (inputs) home-manager nixpkgs;
 
-  systemNames = ["blade" "framework" "dedistonks" "dedistonks2"];
+  systemNames = ["framework" "dedistonks"];
 
-  base-options = {
-    specialArgs = {inherit inputs self;};
-    modules = [
-      home-manager.nixosModules.home-manager
-      ../nixos.nix
-      ../user.nix
-      ../homes
-    ];
-  };
+  mkSystem = sysName:
+    nixpkgs.lib.nixosSystem {
+      # TODO: move this to the host itself
+      system = "x86_64-linux";
+      specialArgs = {inherit inputs self;};
 
-  #live-options = {
-  #  specialArgs = {inherit inputs self;};
-  #  modules = [
-  #    home-manager.nixosModules.home-manager
-  #    ../nixos.nix
-  #    ../user.nix
-  #    ../live.nix
-  #  ];
-  #};
+      modules = [
+        home-manager.nixosModules.home-manager
+        inputs.agenix.nixosModules.default
+        ../nixos.nix
+        ../user.nix
+        ../homes
+        ../modules
 
-  mkSystem = sysName: nixpkgs.lib.nixosSystem ((import ./${sysName}) {inherit base-options;});
-
-  #   mkLiveSystem = sysName: nixpkgs.lib.nixosSystem ((import ./${sysName}) {base-options = live-options;});
+        ./${sysName}/hardware-configuration.nix
+        ./${sysName}/features.nix
+      ];
+    };
 
   systems = map (sysName: {${sysName} = mkSystem sysName;}) systemNames;
-  #  liveSystems = map (sysName: {"${sysName}-live" = mkLiveSystem sysName;}) systemNames;
 
   mergedSystems = nixpkgs.lib.foldr (coming: final: final // coming) {} systems;
 in
