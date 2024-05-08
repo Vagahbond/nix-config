@@ -55,11 +55,6 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    rose-pine-hyprcursor = {
-      url = "github:ndom91/rose-pine-hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
     neovim-flake = {
