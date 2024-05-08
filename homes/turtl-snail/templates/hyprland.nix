@@ -262,6 +262,7 @@
       workspace = special:scratchpad, on-created-empty:foot zsh -c 'nitch; zsh -i' ,gapsout:50
 
       exec = hyprpaper
+      exec-once=hypridle
 
       # monitor=eDP-1,addreserved,0,0,60,0
       monitor=eDP-1,highres,auto,1.6
@@ -288,10 +289,10 @@
 
       overview {
            workspaceActiveBackground = rgb(${mkHex colors.base01})
-           workspaceInactiveBorder = 	rgb(${mkHex colors.base0C})
-           workspaceActiveBorder = 	rgb(${mkHex colors.accent})
-           panelColor = 				rgba(${mkHexA colors.background "CF"})
-           panelBorderColor = 			rgba(${mkHexA colors.background "00"})
+           workspaceInactiveBorder = rgb(${mkHex colors.base0C})
+           workspaceActiveBorder = rgb(${mkHex colors.accent})
+           panelColor = rgb(${mkHex colors.background})
+           panelBorderColor = rgb(${mkHex colors.accent})
 
            exitOnClick =  1
            overrideGaps =  1
