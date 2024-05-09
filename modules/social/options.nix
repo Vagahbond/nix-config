@@ -1,9 +1,9 @@
 {lib, ...}:
 with lib; {
   options.modules.social = {
-    whatsapp.enable = mkEnableOption "Enable whatsapp";
-    teams.enable = mkEnableOption "Enable teams";
-    discord.enable = mkEnableOption "Enable discord";
-    matrix.enable = mkEnableOption "Enable matrix";
+    whatsapp.enable = mkEnableOption "whatsapp";
+    teams.enable = mkEnableOption "teams";
+    discord.enable = mkEnableOption "discord";
+    matrix.enable = mkEnableOption "matrix";
   };
 }
