@@ -18,6 +18,10 @@
       name = "live";
       archi = "x86_64-linux";
     }
+    {
+      name = "platypute";
+      archi = "x86_64-linux";
+    }
   ];
 
   mkSystem = sysName: sysArch:

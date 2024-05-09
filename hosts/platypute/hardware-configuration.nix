@@ -12,10 +12,14 @@
     ./disk-config.nix
   ];
 
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIfo/yexMTRxKoHdjUdcHAD3I4rJfGHOVG4MDvqXj4G vagahbond@framework"
+  ];
   boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk"];
 
   # Impermanencing my whole system cause I like to suffer
-  fileSystems = {
+  /*
+    (fileSystems = {
     "/" = {
       device = "none";
       fsType = "tmpfs";
@@ -43,6 +47,7 @@
       size = 8 * 1024;
     }
   ];
+  */
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
