@@ -5,12 +5,25 @@
 }: let
   inherit (inputs) home-manager nixpkgs;
 
-  systemNames = ["framework" "dedistonks"];
+  systemNames = [
+    {
+      name = "framework";
+      archi = "x86_64-linux";
+    }
+    {
+      name = "dedistonks";
+      archi = "x86_64-linux";
+    }
+    {
+      name = "live";
+      archi = "x86_64-linux";
+    }
+  ];
 
-  mkSystem = sysName:
+  mkSystem = sysName: sysArch:
     nixpkgs.lib.nixosSystem {
       # TODO: move this to the host itself
-      system = "x86_64-linux";
+      system = sysArch;
       specialArgs = {inherit inputs self;};
 
       modules = [
@@ -26,7 +39,7 @@
       ];
     };
 
-  systems = map (sysName: {${sysName} = mkSystem sysName;}) systemNames;
+  systems = map (sys: {${sys.name} = mkSystem sys.name sys.archi;}) systemNames;
 
   mergedSystems = nixpkgs.lib.foldr (coming: final: final // coming) {} systems;
 in
