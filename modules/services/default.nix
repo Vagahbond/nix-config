@@ -1,3 +1,4 @@
+# https://blog.beardhatcode.be/2020/12/Declarative-Nixos-Containers.html
 {
   lib,
   config,
@@ -48,17 +49,11 @@ in {
       mkIf cfg.proxy.enable {
         networking.firewall.allowedTCPPorts = [443];
 
-        networking.nat = {
-          enable = true;
-          internalInterfaces = ["ve-+"];
-          externalInterface = "ens3";
-          # Lazy IPv6 connectivity for the container
-          enableIPv6 = true;
-        };
-
-        containers.proxy = {
+        containers.proxy = rec {
           autoStart = true;
-          privateNetwork = false;
+          ephemeral = true;
+          privateNetwork = true;
+
           hostAddress = "192.168.100.10";
           localAddress = "192.168.100.11";
           hostAddress6 = "fc00::1";
@@ -83,7 +78,7 @@ in {
                   enableACME = true;
                   forceSSL = true;
                   locations."/" = {
-                    proxyPass = "http://192.168.100.10";
+                    proxyPass = "http://${hostAddress}";
                     proxyWebsockets = true; # needed if you need to use WebSocket
                   };
                 };
@@ -91,7 +86,7 @@ in {
                   enableACME = true;
                   forceSSL = true;
                   locations."/" = {
-                    proxyPass = "http://192.168.100.10";
+                    proxyPass = "http://${hostAddress}";
                     proxyWebsockets = true; # needed if you need to use WebSocket
                   };
                 };
@@ -99,7 +94,7 @@ in {
                   enableACME = true;
                   forceSSL = true;
                   locations."/" = {
-                    proxyPass = "http://192.168.100.10";
+                    proxyPass = "http://${hostAddress}";
                     proxyWebsockets = true; # needed if you need to use WebSocket
                   };
                 };
@@ -180,10 +175,6 @@ in {
     )
     (
       mkIf cfg.ssh.enable {
-        users.users.${username}.openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPuP+GtAAxcazFzWDVqzV+CLTJXi1IqM4/QfNFukjFXr vagahbond@pm.me"
-        ];
-
         services.openssh = {
           enable = true;
           settings = {
