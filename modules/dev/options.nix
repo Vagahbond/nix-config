@@ -1,7 +1,7 @@
 {lib, ...}:
 with lib; {
   options.modules.dev = {
-    enable = mkEnableOption "Enable dev tools";
+    enable = mkEnableOption "dev tools";
 
     languages = mkOption {
       example = ["android" "c-cpp" "csharp" "nodejs" "rust" "ruby" "nix" "php"];
@@ -14,8 +14,8 @@ with lib; {
       '';
     };
 
-    enableGeo = mkEnableOption "Enable geo tools";
+    enableGeo = mkEnableOption "geo tools";
 
-    enableNetwork = mkEnableOption "Enable network tools";
+    enableNetwork = mkEnableOption "network tools";
   };
 }

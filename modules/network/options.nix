@@ -2,19 +2,19 @@
 with lib; {
   options.modules.network = {
     wifi = {
-      enable = mkEnableOption "Enable wifi";
+      enable = mkEnableOption "wifi";
     };
 
     bluetooth = {
-      enable = mkEnableOption "Enable bluetooth";
+      enable = mkEnableOption "bluetooth";
     };
 
     ssh = {
-      enable = mkEnableOption "Enable ssh client";
+      enable = mkEnableOption "ssh client";
     };
 
     debug = {
-      enable = mkEnableOption "Enable debugging";
+      enable = mkEnableOption "debugging";
     };
   };
 }

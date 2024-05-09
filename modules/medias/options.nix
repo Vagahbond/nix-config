@@ -4,7 +4,7 @@ with lib; {
     video = {
       player = mkOption {
         type = types.bool;
-        default = true;
+        default = false;
         description = "Enable video player (VLC)";
         example = false;
       };
@@ -57,7 +57,7 @@ with lib; {
     image = {
       viewer = mkOption {
         type = types.bool;
-        default = true;
+        default = false;
         description = "Enable image viewer (Nomacs)";
         example = false;
       };

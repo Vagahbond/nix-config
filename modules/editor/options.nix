@@ -1,5 +1,6 @@
 {lib, ...}:
 with lib; {
+  # TODO: Change types for enums
   options.modules.editor = {
     gui = mkOption {
       type = types.listOf types.str;
@@ -23,6 +24,6 @@ with lib; {
       example = ["neovim"];
     };
 
-    office = mkEnableOption "enable LibreOffice";
+    office = mkEnableOption "LibreOffice";
   };
 }
