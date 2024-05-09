@@ -16,11 +16,11 @@ in {
 
   users.users = {
     root.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIfo/yexMTRxKoHdjUdcHAD3I4rJfGHOVG4MDvqXj4G vagahbond@framework"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHltlf+mdcWwHJ7bKcPB+V5xd2aqGLSwd1VSTV8v4Su vagahbond@framework"
     ];
 
     ${username}.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIfo/yexMTRxKoHdjUdcHAD3I4rJfGHOVG4MDvqXj4G vagahbond@framework"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHltlf+mdcWwHJ7bKcPB+V5xd2aqGLSwd1VSTV8v4Su vagahbond@framework"
     ];
   };
 
