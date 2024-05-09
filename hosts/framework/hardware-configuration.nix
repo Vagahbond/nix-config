@@ -28,7 +28,7 @@
       device = "none";
       fsType = "tmpfs";
       # Set mode to 755 instead of 777 or openssh no worky
-      options = ["relatime" "mode=755"];
+      options = ["relatime" "mode=755" "size=14G"];
     };
 
     "/nix" = {

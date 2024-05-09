@@ -42,10 +42,12 @@
     xwayland.enable = true;
 
     # hypring my land
-    hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    };
+    hyprland =
+      pkgs.lib.mkIf (config.specialisation != {})
+      {
+        enable = true;
+        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      };
   };
 
   services = {
@@ -74,65 +76,94 @@
     config.common.default = "*";
   };
 
-  home-manager.users.${username} = {
-    imports = [
-      inputs.hyprland.homeManagerModules.default
-    ];
-
+  specialisation.hyprtest.configuration = {
     # hypring my land
-    wayland.windowManager.hyprland = {
+    programs.hyprland = {
       enable = true;
-      extraConfig = config.theme.templates.hyprland;
-      plugins = [
-        inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      ];
+      package = inputs.hyprland-testing.packages.${pkgs.system}.hyprland;
     };
 
-    gtk = {
-      enable = true;
-      theme = config.theme.gtkTheme;
-
-      iconTheme = config.theme.iconsTheme;
-
-      font = {
-        inherit (config.theme.font) name;
-        size = 14;
-      };
-
-      gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
-
-      gtk3.extraConfig = {
-        gtk-xft-antialias = 1;
-        gtk-application-prefer-dark-theme = 1;
-      };
-    };
-    qt = {
-      enable = true;
-      platformTheme.name = "gtk2"; # just an override for QT_QPA_PLATFORMTHEME, takes “gtk”, “gnome”, “qtct” or “kde”
-      style = config.theme.qtTheme;
-    };
-
-    # TODO: change and put scripts in nix-cooker templates themselves for further flex
-    home = {
-      pointerCursor = {
-        size = 24;
-        inherit (config.theme.cursor) name package;
-      };
-      packages = [
-        config.theme.qtTheme.package
-        config.theme.gtkTheme.package
-        config.theme.iconsTheme.package
-        config.theme.cursor.package
+    # For easy testing to help Vaxery in the future
+    home-manager.users.${username} = {
+      imports = [
+        inputs.hyprland-testing.homeManagerModules.default
       ];
 
-      file = {
-        # ".config/hypr/hyprland.conf".text = config.theme.templates.hyprland;
-        ".config/hypr/volume.sh".source = ./volume.sh;
-        ".config/hypr/brightness.sh".source = ./brightness.sh;
-        ".config/hypr/eww_widgets.sh".source = ./eww_widgets.sh;
+      # hypring my land
+      wayland.windowManager.hyprland = {
+        enable = true;
+        extraConfig = config.theme.templates.hyprland;
+        plugins =
+          pkgs.lib.mkForce [
+          ];
       };
     };
   };
+
+  home-manager.users.${username} = pkgs.lib.mkMerge [
+    {
+      gtk = {
+        enable = true;
+        theme = config.theme.gtkTheme;
+
+        iconTheme = config.theme.iconsTheme;
+
+        font = {
+          inherit (config.theme.font) name;
+          size = 14;
+        };
+
+        gtk4.extraConfig = {
+          gtk-application-prefer-dark-theme = 1;
+        };
+
+        gtk3.extraConfig = {
+          gtk-xft-antialias = 1;
+          gtk-application-prefer-dark-theme = 1;
+        };
+      };
+
+      qt = {
+        enable = true;
+        platformTheme.name = "gtk2"; # just an override for QT_QPA_PLATFORMTHEME, takes “gtk”, “gnome”, “qtct” or “kde”
+        style = config.theme.qtTheme;
+      };
+
+      # TODO: change and put scripts in nix-cooker templates themselves for further flex
+      home = {
+        pointerCursor = {
+          size = 24;
+          inherit (config.theme.cursor) name package;
+        };
+        packages = [
+          config.theme.qtTheme.package
+          config.theme.gtkTheme.package
+          config.theme.iconsTheme.package
+          config.theme.cursor.package
+        ];
+
+        file = {
+          # ".config/hypr/hyprland.conf".text = config.theme.templates.hyprland;
+          ".config/hypr/volume.sh".source = ./volume.sh;
+          ".config/hypr/brightness.sh".source = ./brightness.sh;
+          ".config/hypr/eww_widgets.sh".source = ./eww_widgets.sh;
+        };
+      };
+    }
+    (pkgs.lib.mkIf (config.specialisation != {}) {
+      imports = [
+        inputs.hyprland.homeManagerModules.default
+      ];
+
+      # hypring my land
+      wayland.windowManager.hyprland = {
+        enable = true;
+        extraConfig = config.theme.templates.hyprland;
+        plugins = [
+          # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+          inputs.hyprspace.packages.${pkgs.system}.Hyprspace
+        ];
+      };
+    })
+  ];
 }

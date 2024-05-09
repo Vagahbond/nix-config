@@ -36,7 +36,8 @@
       flake = false;
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?rev=da839f20f1b1a57ec78d6b041f8d1369150d253e&submodules=1";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?rev=cba1ade848feac44b2eda677503900639581c3f4&submodules=1";
+    hyprland-testing.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
@@ -49,9 +50,9 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    rose-pine-hyprcursor = {
-      url = "github:ndom91/rose-pine-hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
+    hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
     };
 
     spicetify-nix.url = "github:the-argus/spicetify-nix";
