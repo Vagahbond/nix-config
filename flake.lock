@@ -1108,16 +1108,17 @@
         "nixpkgs": "nixpkgs_16"
       },
       "locked": {
-        "dirtyRev": "2367b78f4e9813036239c18f39579da61870e20b-dirty",
-        "dirtyShortRev": "2367b78-dirty",
         "lastModified": 1715044045,
-        "narHash": "sha256-D9yuNSmcoPNSj6LcyCwuBLPviEQ2La0dEmm46ri33PE=",
-        "type": "git",
-        "url": "file:///home/vagahbond/Projects/nix-cooker"
+        "narHash": "sha256-ce80d1ldYtdcqYiBVad9GwSz1u4A3nPw+cGo2XyQhVI=",
+        "owner": "vagahbond",
+        "repo": "nix-cooker",
+        "rev": "2367b78f4e9813036239c18f39579da61870e20b",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/vagahbond/Projects/nix-cooker"
+        "owner": "vagahbond",
+        "repo": "nix-cooker",
+        "type": "github"
       }
     },
     "nixpak": {
