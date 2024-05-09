@@ -7,14 +7,23 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}: let
+  username = import ../../username.nix;
+in {
   imports = [
     ./disk-config.nix
   ];
 
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIfo/yexMTRxKoHdjUdcHAD3I4rJfGHOVG4MDvqXj4G vagahbond@framework"
-  ];
+  users.users = {
+    root.openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIfo/yexMTRxKoHdjUdcHAD3I4rJfGHOVG4MDvqXj4G vagahbond@framework"
+    ];
+
+    ${username}.openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIfo/yexMTRxKoHdjUdcHAD3I4rJfGHOVG4MDvqXj4G vagahbond@framework"
+    ];
+  };
+
   boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk"];
 
   # Impermanencing my whole system cause I like to suffer
