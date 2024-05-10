@@ -51,7 +51,7 @@
     };
 
     hyprspace = {
-      url = "github:KZDKM/Hyprspace";
+      url = "github:KZDKM/Hyprspace/1b3e07c7ac9ecb4e3486467a2bfb3267ee5043a2";
       inputs.hyprland.follows = "hyprland";
     };
 

@@ -8,6 +8,8 @@
 with lib; let
   username = import ../../username.nix;
   hostname = config.networking.hostName;
+
+  keys = import ../../secrets/sshKeys.nix {inherit config lib;};
   inherit (config.modules.impermanence) storageLocation;
   cfg = config.modules.services;
 in {
@@ -175,6 +177,9 @@ in {
     )
     (
       mkIf cfg.ssh.enable {
+        users.users.${username}.openssh.authorizedKeys.keys = [
+          keys."${hostname}_access".pub
+        ];
         services.openssh = {
           enable = true;
           settings = {
@@ -228,8 +233,8 @@ in {
           extraGroups = ["wheel"];
           home = "/home/builder";
           description = "This user is gonna be used especially for the remote building for security reasons";
-          openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII15sFe9kG/r6idBuf4IDUOvgdTZ9wsL+KwA76AcJh9g vagahbond@framework"
+          openssh.authorizedKeys.keys = with keys; [
+            builder_access.pub
           ];
         };
       }

@@ -111,18 +111,10 @@ in {
         ];
       };
     })
-    (mkIf cfg.ssh.enable {
-      environment.systemPackages = with pkgs; [
-        sshs
-      ];
-
-      age.secrets.sshConfig = {
-        file = ../../secrets/ssh_config.age;
-        path = "${config.users.users.${username}.home}/.ssh/config";
-        owner = username;
-        group = "users";
-      };
-    })
+    (
+      mkIf cfg.ssh.enable
+      (import ./ssh.nix {inherit lib config pkgs username;})
+    )
     (mkIf cfg.debug.enable {
       environment.systemPackages = with pkgs; [
         socat

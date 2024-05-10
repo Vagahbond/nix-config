@@ -14,16 +14,6 @@ in {
     ./disk-config.nix
   ];
 
-  users.users = {
-    root.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHltlf+mdcWwHJ7bKcPB+V5xd2aqGLSwd1VSTV8v4Su vagahbond@framework"
-    ];
-
-    ${username}.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHltlf+mdcWwHJ7bKcPB+V5xd2aqGLSwd1VSTV8v4Su vagahbond@framework"
-    ];
-  };
-
   boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk"];
 
   # Impermanencing my whole system cause I like to suffer

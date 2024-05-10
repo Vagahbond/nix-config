@@ -46,13 +46,15 @@ in {
     allowUnfree = true;
   };
 
-  age.secrets.builder_access_private = {
-    file = ./secrets/builder_access_private.age;
+  /*
+     age.secrets.builder_access = {
+    file = ./secrets/builder_access.age;
     path = "${config.users.users.${username}.home}/.ssh/builder_access";
     mode = "600";
     owner = username;
     group = "users";
   };
+  */
 
   nix = {
     settings = {
@@ -78,7 +80,7 @@ in {
       {
         hostName = "vagahbond.com";
         sshUser = "builder";
-        sshKey = config.age.secrets.builder_access_private.path;
+        sshKey = config.age.secrets.builder_access.path;
         system = "x86_64-linux";
         protocol = "ssh";
         maxJobs = 4;
