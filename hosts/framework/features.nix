@@ -1,11 +1,13 @@
-{inputs, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   username = import ../../username.nix;
+
+  keys = import ../../secrets/sshKeys.nix {inherit config lib;};
 in {
   config = {
-    age.identityPaths = [
-      "/home/${username}/.ssh/id_rsa"
-    ];
-
     rice = "turtl-snail";
 
     modules = {
@@ -71,7 +73,15 @@ in {
       network = {
         wifi.enable = true;
         bluetooth.enable = true;
-        ssh.enable = true;
+        ssh = {
+          enable = true;
+          keys = with keys; [
+            builder_access
+            platypute_access
+            github_access
+            dedistonks_access
+          ];
+        };
       };
 
       output = {
