@@ -19,5 +19,6 @@
     ./virtualisation
     ./gaming
     ./services
+    ./nix
   ];
 }
