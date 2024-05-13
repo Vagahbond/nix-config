@@ -47,79 +47,19 @@ in {
       })
     )
     */
-    (
-      mkIf cfg.proxy.enable {
-        networking.firewall.allowedTCPPorts = [443];
+    {
+      security.acme = {
+        defaults.email = "vagahbond@pm.me";
+        acceptTerms = true;
+      };
 
-        containers.proxy = rec {
-          autoStart = true;
-          ephemeral = true;
-          privateNetwork = true;
-
-          hostAddress = "192.168.100.10";
-          localAddress = "192.168.100.11";
-          hostAddress6 = "fc00::1";
-          localAddress6 = "fc00::2";
-          config = {
-            config,
-            pkgs,
-            lib,
-            ...
-          }: {
-            security.acme = {
-              defaults.email = "vagahbond@pm.me";
-              acceptTerms = true;
-            };
-
-            services.nginx = {
-              enable = true;
-              recommendedProxySettings = true;
-              recommendedTlsSettings = true;
-              virtualHosts = {
-                "yoni-firroloni.com" = {
-                  enableACME = true;
-                  forceSSL = true;
-                  locations."/" = {
-                    proxyPass = "http://${hostAddress}";
-                    proxyWebsockets = true; # needed if you need to use WebSocket
-                  };
-                };
-                "cloud.yoni-firroloni.com" = {
-                  enableACME = true;
-                  forceSSL = true;
-                  locations."/" = {
-                    proxyPass = "http://${hostAddress}";
-                    proxyWebsockets = true; # needed if you need to use WebSocket
-                  };
-                };
-                "blog.yoni-firroloni.com" = {
-                  enableACME = true;
-                  forceSSL = true;
-                  locations."/" = {
-                    proxyPass = "http://${hostAddress}";
-                    proxyWebsockets = true; # needed if you need to use WebSocket
-                  };
-                };
-              };
-            };
-
-            system.stateVersion = "23.11";
-
-            networking = {
-              firewall = {
-                enable = true;
-                allowedTCPPorts = [80 443];
-              };
-              # Use systemd-resolved inside the container
-              # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-              useHostResolvConf = lib.mkForce false;
-            };
-
-            services.resolved.enable = true;
-          };
-        };
-      }
-    )
+      services.nginx = {
+        recommendedTlsSettings = true;
+        recommendedOptimisation = true;
+        recommendedGzipSettings = true;
+        recommendedProxySettings = true;
+      };
+    }
     (
       mkIf cfg.blog.enable {
         environment.persistence.${storageLocation} = {
@@ -167,7 +107,7 @@ in {
             enable = true;
 
             # You can force users to connect with HTTPS.
-            forceSSL = false;
+            forceSSL = true;
           };
 
           # The public host name to serve.
@@ -180,24 +120,27 @@ in {
         users.users.${username}.openssh.authorizedKeys.keys = [
           keys."${hostname}_access".pub
         ];
-        services.openssh = {
-          enable = true;
-          settings = {
-            PasswordAuthentication = false;
+        services = {
+          fail2ban.enable = true;
+          openssh = {
+            enable = true;
+            settings = {
+              PasswordAuthentication = false;
+            };
+            banner = ''
+               ██████╗████████╗███████╗ ██████╗
+              ██╔════╝╚══██╔══╝██╔════╝██╔═══██╗
+              ██║  ███╗  ██║   █████╗  ██║   ██║
+              ██║   ██║  ██║   ██╔══╝  ██║   ██║
+              ╚██████╔╝  ██║   ██║     ╚██████╔╝
+               ╚═════╝   ╚═╝   ╚═╝      ╚═════╝
+
+
+              This is a private system. Unauthorized access is prohibited.
+              All actions will be logged.
+              Seriously get the fuck out.
+            '';
           };
-          banner = ''
-             ██████╗████████╗███████╗ ██████╗
-            ██╔════╝╚══██╔══╝██╔════╝██╔═══██╗
-            ██║  ███╗  ██║   █████╗  ██║   ██║
-            ██║   ██║  ██║   ██╔══╝  ██║   ██║
-            ╚██████╔╝  ██║   ██║     ╚██████╔╝
-             ╚═════╝   ╚═╝   ╚═╝      ╚═════╝
-
-
-            This is a private system. Unauthorized access is prohibited.
-            All actions will be logged.
-            Seriously get the fuck out.
-          '';
         };
       }
     )
@@ -211,13 +154,9 @@ in {
         };
       in {
         services.nginx = {
-          recommendedTlsSettings = true;
-          recommendedOptimisation = true;
-          recommendedGzipSettings = true;
-          recommendedProxySettings = true;
           virtualHosts."yoni-firroloni.com" = {
-            addSSL = false;
-            enableACME = false;
+            forceSSL = true;
+            enableACME = true;
             root = "${website}/src";
           };
         };
@@ -371,13 +310,6 @@ in {
                 port = 0;
               };
             };
-          };
-
-          nginx = {
-            recommendedTlsSettings = true;
-            recommendedOptimisation = true;
-            recommendedGzipSettings = true;
-            recommendedProxySettings = true;
           };
 
           nextcloud = {
