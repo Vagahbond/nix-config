@@ -2,6 +2,8 @@
   pkgs,
   lib,
   config,
+  self,
+  inputs,
   ...
 }:
 with lib; let
@@ -71,7 +73,7 @@ in {
         };
       };
     }
-    (mkIf cfg.remoteBuild {
+    (mkIf cfg.remoteBuild.enable {
       /*
          age.secrets.builder_access = {
         file = ./secrets/builder_access.age;
