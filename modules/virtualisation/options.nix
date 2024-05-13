@@ -2,6 +2,7 @@
 with lib; {
   options.modules.virtualisation = {
     docker.enable = mkEnableOption "Docker";
+    containers.enable = mkEnableOption "native containers";
 
     libvirt.enable = mkEnableOption "libvirt";
 

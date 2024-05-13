@@ -2,6 +2,8 @@
   pkgs,
   lib,
   config,
+  self,
+  inputs,
   ...
 }:
 with lib; let
@@ -71,7 +73,7 @@ in {
         };
       };
     }
-    (mkIf cfg.remoteBuild {
+    (mkIf cfg.remoteBuild.enable {
       /*
          age.secrets.builder_access = {
         file = ./secrets/builder_access.age;
@@ -91,7 +93,7 @@ in {
         ###############################################################
         buildMachines = [
           {
-            hostName = "vagahbond.com";
+            hostName = "yoni-firroloni.com";
             sshUser = "builder";
             sshKey = config.age.secrets.builder_access.path;
             system = "x86_64-linux";

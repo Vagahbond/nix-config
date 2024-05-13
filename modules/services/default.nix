@@ -12,103 +12,33 @@ with lib; let
   keys = import ../../secrets/sshKeys.nix {inherit config lib;};
   inherit (config.modules.impermanence) storageLocation;
   cfg = config.modules.services;
-in {
-  imports = [./options.nix];
 
-  config = mkMerge [
-    /*
-        This does not work because traggo does not build
-       (
-      mkIf true (let
-        traggo = pkgs.buildGoModule rec {
-          pname = "traggo";
-          version = "0.3.0";
+  mkContainer = serviceName: serviceAddr: configCB: {
+    containers.${serviceName} = let
+      hostConfig = config;
+    in {
+      autoStart = true;
+      ephemeral = true;
+      privateNetwork = true;
 
-          src = pkgs.fetchFromGitHub {
-            owner = "traggo";
-            repo = "server";
-            rev = "v${version}";
-            hash = "sha256-zWPuAtP6H/ZpG6NomMEypy0JYF3LNI4bWBmkAjTTX8U=";
-          };
-
-          vendorHash = "";
-
-          meta = with lib; {
-            description = "Simple time tracker based on tags";
-            homepage = "https://github.com/tragger/server";
-            license = licenses.gpl3;
-            # maintainers = with maintainers; [kalbasit];
-          };
-        };
-      in {
-        environment.systemPackages = [
-          traggo
-        ];
-      })
-    )
-    */
-    (
-      mkIf cfg.proxy.enable {
-        networking.firewall.allowedTCPPorts = [443];
-
-        containers.proxy = rec {
-          autoStart = true;
-          ephemeral = true;
-          privateNetwork = true;
-
-          hostAddress = "192.168.100.10";
-          localAddress = "192.168.100.11";
-          hostAddress6 = "fc00::1";
-          localAddress6 = "fc00::2";
-          config = {
-            config,
-            pkgs,
-            lib,
-            ...
-          }: {
-            security.acme = {
-              defaults.email = "vagahbond@pm.me";
-              acceptTerms = true;
-            };
-
-            services.nginx = {
-              enable = true;
-              recommendedProxySettings = true;
-              recommendedTlsSettings = true;
-              virtualHosts = {
-                "yoni-firroloni.com" = {
-                  enableACME = true;
-                  forceSSL = true;
-                  locations."/" = {
-                    proxyPass = "http://${hostAddress}";
-                    proxyWebsockets = true; # needed if you need to use WebSocket
-                  };
-                };
-                "cloud.yoni-firroloni.com" = {
-                  enableACME = true;
-                  forceSSL = true;
-                  locations."/" = {
-                    proxyPass = "http://${hostAddress}";
-                    proxyWebsockets = true; # needed if you need to use WebSocket
-                  };
-                };
-                "blog.yoni-firroloni.com" = {
-                  enableACME = true;
-                  forceSSL = true;
-                  locations."/" = {
-                    proxyPass = "http://${hostAddress}";
-                    proxyWebsockets = true; # needed if you need to use WebSocket
-                  };
-                };
-              };
-            };
-
+      hostAddress = "192.168.100.1";
+      localAddress = serviceAddr;
+      #hostAddress6 = "fc00::1";
+      #localAddress6 = "fc00::2";
+      config = {
+        config,
+        pkgs,
+        lib,
+        ...
+      }:
+        lib.mkMerge [
+          (configCB {inherit config pkgs lib hostConfig;})
+          {
             system.stateVersion = "23.11";
 
             networking = {
               firewall = {
                 enable = true;
-                allowedTCPPorts = [80 443];
               };
               # Use systemd-resolved inside the container
               # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
@@ -116,9 +46,37 @@ in {
             };
 
             services.resolved.enable = true;
-          };
-        };
-      }
+          }
+        ];
+    };
+  };
+in {
+  imports = [./options.nix];
+
+  config = mkMerge [
+    (
+      mkIf cfg.proxy.enable (
+        let
+          ip = "192.168.100.2";
+        in
+          {
+            networking = {
+              firewall.allowedTCPPorts = [80 443];
+              nat.forwardPorts = [
+                {
+                  destination = "${ip}:80";
+                  sourcePort = 80;
+                }
+                {
+                  destination = "${ip}:443";
+                  sourcePort = 443;
+                }
+              ];
+            };
+          }
+          // (mkContainer "proxy"
+            ip (import ./proxy.nix))
+      )
     )
     (
       mkIf cfg.blog.enable {
@@ -180,48 +138,32 @@ in {
         users.users.${username}.openssh.authorizedKeys.keys = [
           keys."${hostname}_access".pub
         ];
-        services.openssh = {
-          enable = true;
-          settings = {
-            PasswordAuthentication = false;
+        services = {
+          fail2ban.enable = true;
+          openssh = {
+            enable = true;
+            settings = {
+              PasswordAuthentication = false;
+            };
+            banner = ''
+               ██████╗████████╗███████╗ ██████╗
+              ██╔════╝╚══██╔══╝██╔════╝██╔═══██╗
+              ██║  ███╗  ██║   █████╗  ██║   ██║
+              ██║   ██║  ██║   ██╔══╝  ██║   ██║
+              ╚██████╔╝  ██║   ██║     ╚██████╔╝
+               ╚═════╝   ╚═╝   ╚═╝      ╚═════╝
+
+
+              This is a private system. Unauthorized access is prohibited.
+              All actions will be logged.
+              Seriously get the fuck out.
+            '';
           };
-          banner = ''
-             ██████╗████████╗███████╗ ██████╗
-            ██╔════╝╚══██╔══╝██╔════╝██╔═══██╗
-            ██║  ███╗  ██║   █████╗  ██║   ██║
-            ██║   ██║  ██║   ██╔══╝  ██║   ██║
-            ╚██████╔╝  ██║   ██║     ╚██████╔╝
-             ╚═════╝   ╚═╝   ╚═╝      ╚═════╝
-
-
-            This is a private system. Unauthorized access is prohibited.
-            All actions will be logged.
-            Seriously get the fuck out.
-          '';
         };
       }
     )
     (
-      mkIf cfg.homePage.enable (let
-        website = pkgs.fetchFromGitHub {
-          owner = "vagahbond";
-          repo = "website";
-          rev = "master";
-          sha256 = "sha256-U8JEnN4VsEnhp8W3qd9mmUaNY/Lqwyw+IIyvi9aUUwE="; # sha256-nIZjnOBROQ5TdTZzkrqw2drHGtM71UYQtZ3ZyMcHqlA=";
-        };
-      in {
-        services.nginx = {
-          recommendedTlsSettings = true;
-          recommendedOptimisation = true;
-          recommendedGzipSettings = true;
-          recommendedProxySettings = true;
-          virtualHosts."yoni-firroloni.com" = {
-            addSSL = false;
-            enableACME = false;
-            root = "${website}/src";
-          };
-        };
-      })
+      mkIf cfg.homePage.enable (mkContainer "homepage" "192.168.100.3" (import ./website.nix))
     )
     (
       mkIf cfg.builder.enable {
