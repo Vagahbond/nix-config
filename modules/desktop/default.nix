@@ -127,11 +127,12 @@ in {
           services.hypridle = {
             enable = true;
             settings = {
-              before_sleep_cmd = "loginctl lock-session";
-              lock_cmd = "pidof hyprlock || hyprlock -q";
-              unlock_cmd = "loginctl unlock-session";
-              after_sleep_cmd = "hyprctl dispatch dpms on && notify-send \"Back from idle.\" \"Welcome back!\"";
-
+              general = {
+                before_sleep_cmd = "loginctl lock-session";
+                lock_cmd = "pidof hyprlock || hyprlock -q";
+                unlock_cmd = "loginctl unlock-session";
+                after_sleep_cmd = "hyprctl dispatch dpms on && notify-send \"Back from idle.\" \"Welcome back!\"";
+              };
               listeners = [
                 {
                   timeout = 150; # 2.5min.
