@@ -1,4 +1,8 @@
-{lib, ...}:
+{
+  lib,
+  config,
+  ...
+}:
 with lib; {
   options.modules.services = {
     ssh = {
@@ -11,7 +15,7 @@ with lib; {
 
     nextcloud = {
       enable = mkEnableOption "nextcloud";
-      #   backup = mkEnableOption "Backup your data daily";
+      backup = mkEnableOption "Backup your data";
     };
 
     vaultwarden = {
@@ -19,7 +23,11 @@ with lib; {
     };
 
     postgres = {
-      enable = mkEnableOption "postgres";
+      enable = mkOption {
+        description = "Whether to enable postgres";
+        default = config.modules.services.nextcloud.enable;
+        type = types.bool;
+      };
     };
 
     builder = {
