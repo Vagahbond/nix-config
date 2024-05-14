@@ -13,7 +13,8 @@ with lib; let
 in {
   imports = [./options.nix];
   config = mkMerge [
-    {
+    /*
+      {
       # network used by containers
       networking.nat = {
         enable = true;
@@ -23,6 +24,7 @@ in {
         enableIPv6 = true;
       };
     }
+    */
     (mkIf cfg.docker.enable {
       environment.systemPackages = with pkgs; [
         docker-compose
