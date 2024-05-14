@@ -118,11 +118,12 @@ in {
     )
     (
       lib.mkIf (cfg.lockscreen == "hyprlock") {
-        environment.systemPackages = [
-          inputs.hyprlock.packages.${pkgs.system}.default
-        ];
-
         home-manager.users.${username} = {
+          programs.hyprlock = {
+            enable = true;
+            extraConfig = templates.hyprlock;
+          };
+
           services.hypridle = {
             enable = true;
             settings = {
@@ -164,8 +165,6 @@ in {
               ];
             };
           };
-
-          home.file.".config/hypr/hyprlock.conf".text = templates.hyprlock;
         };
       }
     )
