@@ -37,8 +37,7 @@ in {
       nix.registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
       age.identityPaths = [
-        "/home/${username}/.ssh/id_ed25519"
-        "/home/${username}/.ssh/id_rsa"
+        "/nix/persistent/home/${username}/.ssh/id_ed25519"
       ];
 
       nix = {
