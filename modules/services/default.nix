@@ -49,16 +49,17 @@ in {
     */
     {
       security.acme = {
-        defaults.email = "vagahbond@pm.me";
         acceptTerms = true;
+        defaults.email = "vagahbond@pm.me";
       };
 
       services.nginx = {
-        recommendedTlsSettings = true;
-        recommendedOptimisation = true;
         recommendedGzipSettings = true;
+        recommendedOptimisation = true;
         recommendedProxySettings = true;
+        recommendedTlsSettings = true;
       };
+      networking.firewall.allowedTCPPorts = [443 80];
     }
     (
       mkIf cfg.blog.enable {
@@ -109,6 +110,10 @@ in {
             # You can force users to connect with HTTPS.
             forceSSL = true;
           };
+          acme = {
+            # Automatically fetch and configure SSL certs.
+            enable = true;
+          };
 
           # The public host name to serve.
           host = "blog.yoni-firroloni.com";
@@ -154,9 +159,10 @@ in {
         };
       in {
         services.nginx = {
+          enable = true;
           virtualHosts."yoni-firroloni.com" = {
-            forceSSL = true;
             enableACME = true;
+            forceSSL = true;
             root = "${website}/src";
           };
         };
@@ -236,8 +242,20 @@ in {
           config = {
             ROCKET_ADDRESS = "0.0.0.0";
             ROCKET_PORT = 7060;
-            DOMAIN = "https://pass.vagahbond.com";
+            DOMAIN = "https://pass.yoni-firroloni.com";
             ROCKET_LOG = "critical";
+          };
+        };
+
+        ###################################################
+        # SSL                                             #
+        ###################################################
+        services.nginx.virtualHosts."pass.yoni-firroloni.com" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:7060";
+            proxyWebsockets = true; # needed if you need to use WebSocket
           };
         };
       }
@@ -266,12 +284,6 @@ in {
               group = "nextcloud";
               mode = "u=rwx,g=rx,o=";
             }
-            # {
-            #   directory = "/var/lib/onlyoffice";
-            #   user = "onlyoffice";
-            #   group = "onlyoffice";
-            #  mode = "u=rwx,g=rx,o=";
-            # }
             {
               directory = "/var/lib/postgresql";
               user = "postgres";
@@ -295,6 +307,15 @@ in {
           mode = "440";
           owner = "nextcloud";
           group = "users";
+        };
+
+        ###################################################
+        # SSL                                             #
+        ###################################################
+
+        services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
+          forceSSL = true;
+          enableACME = true;
         };
 
         ###################################################
@@ -323,7 +344,7 @@ in {
               adminpassFile = config.age.secrets.nextcloudAdminPass.path;
             };
             settings = {
-              trusted_proxies = ["192.168.0.3"];
+              # trusted_proxies = ["192.168.0.3"];
               default_phone_region = "FR";
               redis = {
                 host = "/run/redis-default/redis.sock";
