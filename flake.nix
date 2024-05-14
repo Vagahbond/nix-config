@@ -41,10 +41,6 @@
 
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
-    hyprlock.url = "github:hyprwm/hyprlock";
-
-    hypridle.url = "github:hyprwm/hypridle";
-
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
