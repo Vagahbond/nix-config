@@ -61,32 +61,6 @@ in {
           "@EARL_ST_SSID@" = {
             psk = "@EARL_ST_PSK@";
           };
-          /*
-          "@WORK3_SSID@" = {};
-
-          #oof, better change scheme there
-          "@GF_SSID0@" = {
-            psk = "@GF_PSK0@";
-          };
-
-          "@GF_SSID1@" = {};
-
-          "@GF_SSID2@" = {
-            psk = "@GF_PSK2@";
-          };
-
-          "@GF_SSID3@" = {
-            psk = "@GF_PSK3@";
-          };
-
-          "@IDK_SSID1@" = {
-            psk = "@IDK_PSK1@";
-          };
-
-          "@IDK_SSID2@" = {
-            psk = "@IDK_PSK2@";
-          };
-          */
         };
       };
     })
