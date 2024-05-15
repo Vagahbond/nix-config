@@ -41,6 +41,7 @@ in {
       };
 
       services = {
+        proxy.enable = true;
         ssh.enable = true;
         nextcloud.enable = true;
         vaultwarden.enable = true;
