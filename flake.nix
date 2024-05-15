@@ -47,7 +47,7 @@
     };
 
     hyprspace = {
-      url = "github:KZDKM/Hyprspace/1b3e07c7ac9ecb4e3486467a2bfb3267ee5043a2";
+      url = "github:KZDKM/Hyprspace/8049b2794ca19d49320093426677d8c2911e7327";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -62,5 +62,7 @@
     anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
 
     nix-cooker.url = "github:vagahbond/nix-cooker";
+
+    ags.url = "github:Aylur/ags";
   };
 }
