@@ -1,3 +1,4 @@
+# TODO: inject PKGS
 {
   colors,
   font,
@@ -263,6 +264,7 @@
 
       exec = hyprpaper
       exec-once=hypridle
+      exec= ags
 
       # monitor=eDP-1,addreserved,0,0,60,0
       monitor=eDP-1,highres,auto,1.6

@@ -53,7 +53,25 @@ in {
       };
     })
     (lib.mkIf cfg.widgets.ags.enable {
-      # TODO: Install AGS lol
+      services.upower.enable = true;
+
+      home-manager.users.${username} = {
+        imports = [inputs.ags.homeManagerModules.default];
+
+        programs.ags = {
+          enable = true;
+
+          # null or path, leave as null if you don't want hm to manage the config
+          configDir = ./ags;
+
+          # additional packages to add to gjs's runtime
+          extraPackages = with pkgs; [
+            gtksourceview
+            webkitgtk
+            accountsservice
+          ];
+        };
+      };
     })
     (lib.mkIf (cfg.fileExplorer == "thunar") {
       environment.systemPackages = with pkgs; [
