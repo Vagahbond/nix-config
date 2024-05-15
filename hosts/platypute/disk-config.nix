@@ -19,46 +19,68 @@
       };
     };
 
-    disk.main = {
-      device = lib.mkDefault "/dev/vda";
-      type = "disk";
+    disk = {
+      main = {
+        device = lib.mkDefault "/dev/vda";
+        type = "disk";
 
-      content = {
-        type = "gpt";
+        content = {
+          type = "gpt";
 
-        partitions = {
-          boot = {
-            name = "boot";
-            size = "200M";
-            type = "EF02";
-          };
+          partitions = {
+            boot = {
+              name = "boot";
+              size = "200M";
+              type = "EF02";
+            };
 
-          esp = {
-            name = "ESP";
-            size = "500M";
-            type = "EF00";
+            esp = {
+              name = "ESP";
+              size = "500M";
+              type = "EF00";
 
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+              };
+            };
+
+            root = {
+              name = "root";
+              size = "100%";
+              content = {
+                format = "ext4";
+                mountpoint = "/nix";
+                type = "filesystem";
+              };
+            };
+            encryptedSwap = {
+              size = "4G";
+              content = {
+                type = "swap";
+                randomEncryption = true;
+              };
             };
           };
+        };
+      };
+      secondary = {
+        device = lib.mkDefault "/dev/vdb";
+        type = "disk";
 
-          root = {
-            name = "root";
-            size = "100%";
-            content = {
-              format = "ext4";
-              mountpoint = "/nix";
-              type = "filesystem";
-            };
-          };
-          encryptedSwap = {
-            size = "4G";
-            content = {
-              type = "swap";
-              randomEncryption = true;
+        content = {
+          type = "gpt";
+
+          partitions = {
+            data = {
+              name = "data";
+              size = "100%";
+              content = {
+                format = "ext4";
+                mountpoint = "/data";
+                type = "filesystem";
+              };
             };
           };
         };
