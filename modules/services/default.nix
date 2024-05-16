@@ -32,7 +32,7 @@ in {
       mkIf cfg.builder.enable (import ./builder.nix {inherit keys;})
     )
     (
-      mkIf cfg.postgres.enable (import ./postgres.nix {inherit lib pkgs;})
+      mkIf cfg.postgres.enable (import ./postgres.nix {inherit lib pkgs storageLocation;})
     )
     (
       mkIf cfg.vaultwarden.enable (import ./vaultwarden.nix {inherit storageLocation;})

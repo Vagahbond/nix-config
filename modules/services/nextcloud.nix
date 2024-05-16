@@ -8,10 +8,11 @@
   ###################################################
   networking.firewall.allowedTCPPorts = [8000];
 
-  ###################################################
-  # IMPERMANENCE                                    #
-  ###################################################
+  ###################################################################
+  # IMPERMANENCE (Not needed naymore, moved to using custom volume) #
+  ###################################################################
   environment.persistence.${storageLocation} = {
+    # TODO: independent redis and rabbitmq with special volume
     directories = [
       {
         directory = "/var/lib/nextcloud";
@@ -23,12 +24,6 @@
         directory = "/var/lib/redis-nextcloud";
         user = "nextcloud";
         group = "nextcloud";
-        mode = "u=rwx,g=rx,o=";
-      }
-      {
-        directory = "/var/lib/postgresql";
-        user = "postgres";
-        group = "postgres";
         mode = "u=rwx,g=rx,o=";
       }
       {
@@ -76,6 +71,7 @@
 
     nextcloud = {
       enable = true;
+      home = "/data/nextcloud";
       package = pkgs.nextcloud29;
       hostName = "cloud.vagahbond.com";
       https = true;

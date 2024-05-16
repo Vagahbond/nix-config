@@ -1,11 +1,23 @@
 {
   pkgs,
   lib,
+  storageLocation,
 }: {
+  environment.persistence.${storageLocation} = {
+    directories = [
+      {
+        directory = "/var/lib/postgresql";
+        user = "postgres";
+        group = "postgres";
+        mode = "u=rwx,g=rx,o=";
+      }
+    ];
+  };
+
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_14;
-    # dataDir = "/nix/postgresql";
+    dataDir = "/data/postgresql";
 
     enableTCPIP = false;
 
