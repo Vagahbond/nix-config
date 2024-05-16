@@ -10,20 +10,6 @@ const className = Utils.merge(
   },
 );
 
-const icon = Utils.merge(
-  [battery.bind("percent"), battery.bind("charging")],
-  (percent, charging) => {
-    let padding = "";
-    if (percent < 100) {
-      padding = "0";
-    } else if (percent < 10) {
-      padding = "00";
-    }
-
-    return `battery-${padding}${percent - (percent % 20)}${charging ? "-charging" : ""}`;
-  },
-);
-
 export default Widget.Box({
   vertical: true,
   className,
