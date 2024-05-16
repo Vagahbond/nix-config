@@ -2,9 +2,14 @@ const time = Variable("", {
   poll: [60000, 'date "+%H\n%M"'],
 });
 
-export default Widget.Label({
+export default Widget.Box({
+  vertical: true,
   className: "clock",
-  hpack: "center",
   vpack: "start",
-  label: time.bind(),
+  children: [
+    Widget.Label({
+      justification: "center",
+      label: time.bind(),
+    }),
+  ],
 });

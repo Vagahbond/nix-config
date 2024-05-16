@@ -10,17 +10,17 @@ const items = systemtray.bind("items").as((items) =>
       on_primary_click: (_, event) => item.activate(event),
       on_secondary_click: (_, event) => item.openMenu(event),
       tooltip_markup: item.bind("tooltip_markup"),
-      margin_bottom: 5,
     }),
   ),
 );
 
 export default Widget.Box({
-  className: "systemtray",
+  className: "system",
   vertical: true,
   vpack: "end",
   children: [
     Widget.Box({
+      className: "systemtray",
       vertical: true,
       children: items,
     }),

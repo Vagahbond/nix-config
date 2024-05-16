@@ -1,6 +1,6 @@
 const battery = await Service.import("battery");
 
-const class_name = Utils.merge(
+const className = Utils.merge(
   [battery.bind("percent"), battery.bind("charging")],
   (percent, charging) => {
     if (charging) return "battery charging";
@@ -25,17 +25,17 @@ const icon = Utils.merge(
 );
 
 export default Widget.Box({
-  vertical: false,
-  class_name,
+  vertical: true,
+  className,
   visible: battery.bind("available"),
   children: [
     Widget.Icon({
-      icon,
-      size: 25,
+      className: "battery-icon",
+      icon: battery.bind("icon_name"),
     }),
     Widget.Label({
-      // Avoid having 100% cuz it makes different width
-      label: battery.bind("percent").as((p) => `${p - 1}`),
+      className: "battery-label",
+      label: battery.bind("percent").as((p) => `${p}`),
       justification: "center",
     }),
   ],

@@ -215,7 +215,6 @@
           size = 10
           passes = 3
           ignore_opacity = true
-          special = true
         }
         drop_shadow = true
         shadow_range = 5
@@ -270,8 +269,8 @@
       monitor=eDP-1,highres,auto,1.6
       monitor=,preferred,auto,1
 
-      layerrule = ignorealpha 0.6,gtk-layer-shell
-      layerrule = blur,gtk-layer-shell
+      layerrule = ignorealpha 0,bar0
+      layerrule = blur,bar0
 
       # exec = eww kill
       # exec = zsh $HOME/.config/hypr/eww_widgets.sh

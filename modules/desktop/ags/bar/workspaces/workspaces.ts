@@ -12,20 +12,34 @@ const workspaces = hyprland.bind("clients").as((w) => {
     const windows = grouped[k];
 
     const mbuttons = windows.map(({ workspace, initialClass }) =>
-      Widget.Button({
-        on_clicked: () =>
-          hyprland.messageAsync(`dispatch workspace ${workspace.name}`),
+      Widget.Box({
+        className: "window",
+        margin: 0,
         child: Widget.Icon({ icon: initialClass }),
       }),
     );
 
-    return Widget.Box({
+    return Widget.Button({
       class_names: activeId.as((i) => [
         i.toString() === k ? "focused" : "",
         "workspace",
       ]),
-      vertical: true,
-      children: [Widget.Label({ label: k.substring(0, 1) }), ...mbuttons],
+      on_clicked: () => hyprland.messageAsync(`dispatch workspace ${k}`),
+      tooltipText: k,
+      child: Widget.Box({
+        vertical: true,
+        hpack: "center",
+        vpack: "center",
+        className: "windows-container",
+        children: [
+          Widget.Label({
+            label: `${k.substring(0, 1)}`,
+            hexpand: true,
+            justification: "left",
+          }),
+          ...mbuttons,
+        ],
+      }),
       margin_bottom: 5,
     });
   });

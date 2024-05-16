@@ -1,0 +1,113 @@
+* {
+  font-family: Inconsolata Nerd Font Propo Bold;
+}
+
+window {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+button {
+}
+
+.tooltip {
+  font-size: 8;
+}
+
+.bar {
+  background-color: rgba(0, 0, 0, 0);
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.systemtray {
+  background-color: rgba(25, 23, 36, 0.15);
+  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
+  border: 1px #ebbcba solid;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.systemtray-item {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 12px;
+}
+tooltip {
+  font-size: 8px;
+}
+
+.battery {
+  background-color: rgba(25, 23, 36, 0.15);
+  border-radius: 6px;
+  color: #31748f;
+  padding: 5px 0px;
+  padding-top: 10px;
+  transition: all ease-out 0.25s;
+  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
+  border: 1px #31748f solid;
+}
+
+.battery.danger {
+  color: #f6c177;
+  border: 1px #f6c177 solid;
+}
+
+.battery.critical {
+  color: #eb6f92;
+  border: 1px #eb6f92 solid;
+}
+
+.battery.charging {
+  color: #9ccfd8;
+  border: 1px #9ccfd8 solid;
+}
+
+.battery-label {
+  font-size: 13px;
+}
+
+.workspaces {
+  border-radius: 6px;
+}
+
+.workspace {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 15px;
+  padding-bottom: 5px;
+}
+
+.workspace:hover {
+  background-color: #1f1d2e;
+  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
+  border: 1px #eb6f92 solid;
+}
+
+.workspace.focused {
+  background-color: rgba(25, 23, 36, 0.15);
+  font-weight: bold;
+  color: #c4a7e7;
+  border-radius: 6px;
+  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
+  border: 1px #c4a7e7 solid;
+}
+
+.windows-container {
+  padding: 5px 0px;
+}
+
+.window {
+  border-radius: 100%;
+  background-color: rgba(25, 23, 36, 0.15);
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.clock {
+  background-color: rgba(25, 23, 36, 0.15);
+  padding: 5px 0px;
+  color: #9ccfd8;
+  border-radius: 6px;
+  border: 1px #9ccfd8 solid;
+  font-size: 18px;
+  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
+}

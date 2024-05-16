@@ -9,7 +9,7 @@ export default (monitor: number) =>
     anchor: ["right", "top", "bottom"],
     exclusivity: "exclusive",
     child: Widget.CenterBox({
-      margin: 10,
+      className: "bar",
       vertical: true,
       start_widget: Time,
       center_widget: Workspaces,
