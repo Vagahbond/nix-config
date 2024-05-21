@@ -50,11 +50,11 @@ in {
           (pkgs.vesktop.overrideAttrs {
             desktopItems = [
               (pkgs.makeDesktopItem {
-                name = "vesktop";
+                name = "discord";
                 desktopName = "Discord";
                 exec = "vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland";
                 icon = "discord";
-                startupWMClass = "Vesktop";
+                startupWMClass = "Discord";
                 genericName = "Internet Messenger";
                 keywords = ["discord" "vencord" "electron" "chat"];
                 categories = ["Network" "InstantMessaging" "Chat"];
