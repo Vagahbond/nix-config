@@ -20,7 +20,7 @@ in {
       mkIf cfg.proxy.enable (import ./proxy.nix {})
     )
     (
-      mkIf cfg.blog.enable (import ./blog.nix {inherit storageLocation;})
+      mkIf cfg.blog.enable (import ./blog.nix {inherit storageLocation config;})
     )
     (
       mkIf cfg.ssh.enable (import ./ssh.nix {inherit username hostname keys;})
