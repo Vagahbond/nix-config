@@ -20,7 +20,9 @@ export default Widget.Box({
   vpack: "end",
   children: [
     Widget.Box({
-      className: "systemtray",
+      className: items.as((items) =>
+        items.length == 0 ? "systemtray empty" : "systemtray",
+      ),
       vertical: true,
       children: items,
     }),

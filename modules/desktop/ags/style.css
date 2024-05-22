@@ -21,6 +21,11 @@ window {
   margin-bottom: 10px;
 }
 
+.systemtray.empty {
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px #ebbcba solid;
+}
+
 .systemtray-item {
   background-color: rgba(0, 0, 0, 0);
   font-size: 12px;
