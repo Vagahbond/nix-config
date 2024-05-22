@@ -226,6 +226,7 @@
 
       dwindle {
         # no_gaps_when_only = true
+        smart_split = true
       }
 
       # Special rules
