@@ -213,7 +213,13 @@ in {
                 nvimBufferline.enable = true;
               };
 
-              treesitter.context.enable = true;
+              treesitter = {
+                grammars = [
+                  pkgs.vimPlugins.nvim-treesitter.builtGrammars.yaml
+                ];
+
+                context.enable = true;
+              };
 
               binds = {
                 whichKey.enable = true;
