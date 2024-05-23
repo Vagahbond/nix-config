@@ -25,6 +25,25 @@ in {
       };
     }
     */
+    (mkIf cfg.wine.enable {
+      environment.systemPackages = with pkgs; [
+        wine
+        winetricks
+        winePackages.fonts
+        bottles
+        wineasio
+      ];
+
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            #      share dir is already persisted
+            #       ".local/share/bottles"
+          ];
+        };
+      };
+    })
+
     (mkIf cfg.docker.enable {
       environment.systemPackages = with pkgs; [
         docker-compose
