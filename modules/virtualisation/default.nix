@@ -27,11 +27,7 @@ in {
     */
     (mkIf cfg.wine.enable {
       environment.systemPackages = with pkgs; [
-        wine
-        winetricks
-        winePackages.fonts
         bottles
-        wineasio
       ];
 
       environment.persistence.${impermanence.storageLocation} = {
