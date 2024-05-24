@@ -3,8 +3,8 @@
     owner = "vagahbond";
     repo = "website";
     #     rev = "master";
-    rev = "1b055917c59a";
-    sha256 = "sha256-1rzda5SZQ7YWVpFgRWf8M5xhzF20vd9wLz/fj6pThRI=";
+    rev = "65ad1e3a8ab4";
+    sha256 = "";
   };
 in {
   services.nginx = {
