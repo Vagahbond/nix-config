@@ -336,7 +336,7 @@
       path = ${wallpaper.package}/${wallpaper.name}   # supports png, jpg, webp (no animations, though)
       color = ${mkRGBA colors.background 1.0}
 
-      blur_passes = 3 # 0 disables blurring
+      blur_passes = 1 # 0 disables blurring
       blur_size = 7
       noise = 0.0117
       contrast = 0.8916
@@ -365,11 +365,11 @@
   # avatar picture
   image {
       monitor =
-      path = /home/vagahbond/Pictures/avatar.jpeg
+      path = /home/vagahbond/Pictures/avatar.png
       size = 600 # lesser side if not 1:1 ratio
       rounding = -1 # negative values mean circle
-      border_size = 4
-      border_color =${mkRGB colors.background}
+      border_size = 0
+      border_color =${mkRGB colors.accent}
       reload_time = -1 # seconds between reloading, 0 to reload with SIGUSR2
 
       position = 650, 0
@@ -471,7 +471,7 @@
   # Funni note
   label {
       monitor =
-      text = cmd[update:-1] hyprctl splash
+      text = cmd[update:0] hyprctl splash
       text_align = right # center/right or any value for default left. multi-line text alignment inside label container
       color = ${mkRGB colors.text}
       font_size = 25
