@@ -124,7 +124,7 @@ in {
                      nixos-rebuild switch --use-remote-sudo \
                      --flake .#"$1" --target-host $1 \
                      --build-host $1 --show-trace \
-                     }; f
+                     }; f\
           '';
         };
       };
