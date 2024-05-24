@@ -49,8 +49,7 @@ in {
           {
             build-iso-remote = "nix build github:vagahbond/nix-config#nixosConfigurations.live.config.system.build.isoImage";
             build-iso = "nix build .#nixosConfigurations.live.config.system.build.isoImage";
-            update = "sudo nixos-rebuild switch --no-write-lock-file --flake github:vagahbond/nix-config";
-            build = "sudo nixos-rebuild build --no-write-lock-file --flake github:vagahbond/nix-config";
+            run = "f() {nix run nixpkgs#$1}; f";
             nix-shell = "nix-shell --command zsh";
             cat = "bat";
             ls = "lsd";
