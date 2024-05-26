@@ -980,17 +980,17 @@
         "zig": "zig"
       },
       "locked": {
-        "lastModified": 1716069055,
-        "narHash": "sha256-6r2gG8oa6q8XIIFwXZzO/jGdWGsCPxnOFVVilDsCzNU=",
-        "owner": "NotAShelf",
-        "repo": "neovim-flake",
-        "rev": "f59a915da9786721a07f2e410d3ba90d765468a4",
-        "type": "github"
+        "lastModified": 1716622465,
+        "narHash": "sha256-z0OGKiX1T80SNAeFI5FW90wryVygBndShEx/Iu51MBg=",
+        "ref": "refs/heads/lualine-configuration",
+        "rev": "b2a207bbf746fe09917675ea566b5c9672dece6f",
+        "revCount": 1264,
+        "type": "git",
+        "url": "file:///home/vagahbond/Projects/neovim-flake"
       },
       "original": {
-        "owner": "NotAShelf",
-        "repo": "neovim-flake",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/vagahbond/Projects/neovim-flake"
       }
     },
     "nil": {
