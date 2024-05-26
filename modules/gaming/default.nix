@@ -87,7 +87,8 @@ in {
         };
       };
 
-      environment.systemPackages = [
+      /*
+         environment.systemPackages = [
         dofus
         (
           pkgs.writeTextDir "share/applications/dofus.desktop" ''
@@ -100,6 +101,7 @@ in {
           ''
         )
       ];
+      */
     })
     (
       mkIf (cfg.wine.enable && (graphics.type != null)) {
