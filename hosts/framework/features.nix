@@ -139,7 +139,7 @@ in {
 
       gaming = {
         wine.enable = true;
-        dofus.enable = false;
+        dofus.enable = true;
         steam.enable = false;
       };
     };
