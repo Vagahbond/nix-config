@@ -272,6 +272,8 @@
 
       layerrule = ignorealpha 0,bar0
       layerrule = blur,bar0
+      layerrule = ignorealpha 0,notifications
+      layerrule = blur,notifications
 
       # exec = eww kill
       # exec = zsh $HOME/.config/hypr/eww_widgets.sh
