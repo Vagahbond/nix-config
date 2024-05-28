@@ -154,6 +154,7 @@ in {
                 elixir.enable = false;
                 php.enable = true;
                 lua.enable = true;
+                svelte.enable = true;
               };
 
               visuals = {
