@@ -155,6 +155,7 @@ in {
                 php.enable = true;
                 lua.enable = true;
                 svelte.enable = true;
+                css.enable = true;
               };
 
               visuals = {
