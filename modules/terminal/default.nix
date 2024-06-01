@@ -30,7 +30,7 @@ in {
       environment.persistence.${storageLocation} = {
         users.${username} = {
           files = [
-            #".zsh_history"
+            ".zsh_history"
             ".zshrc"
           ];
         };
