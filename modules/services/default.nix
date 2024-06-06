@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
@@ -13,7 +14,11 @@ with lib; let
   inherit (config.modules.impermanence) storageLocation;
   cfg = config.modules.services;
 in {
-  imports = [./options.nix];
+  # TODO: move this import to the uni-verse part somehow.
+  imports = [
+    inputs.universe.nixosModules.default
+    ./options.nix
+  ];
 
   config = mkMerge [
     (
@@ -41,7 +46,12 @@ in {
       mkIf cfg.nextcloud.enable (import ./nextcloud.nix {inherit storageLocation config pkgs;})
     )
     (
-      mkIf (cfg.nextcloud.enable && cfg.nextcloud.backup) (import ./nextcloud_backup.nix {inherit config;})
+      # DISABLED FOR NOW, DATA IS NOT BACKED UP
+      mkIf (cfg.nextcloud.enable && cfg.nextcloud.backup)
+      (import ./nextcloud_backup.nix {inherit config;})
+    )
+    (
+      mkIf cfg.universe.enable (import ./universe.nix {inherit config pkgs inputs;})
     )
   ];
 }

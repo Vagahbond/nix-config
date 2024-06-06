@@ -10,6 +10,7 @@ in {
   services.nginx = {
     enable = true;
     virtualHosts."yoni-firroloni.com" = {
+      default = true;
       enableACME = true;
       forceSSL = true;
       root = "${website}/src";

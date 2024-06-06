@@ -37,5 +37,7 @@ with lib; {
     homePage.enable = mkEnableOption "Home page";
 
     blog.enable = mkEnableOption "blog";
+
+    universe.enable = mkEnableOption "Uni-verse";
   };
 }

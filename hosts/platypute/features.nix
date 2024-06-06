@@ -35,6 +35,7 @@ in {
         builder.enable = true;
         homePage.enable = true;
         blog.enable = true;
+        universe.enable = true;
       };
     };
   };

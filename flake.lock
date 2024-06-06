@@ -1256,6 +1256,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_18": {
+      "locked": {
+        "lastModified": 1717196966,
+        "narHash": "sha256-yZKhxVIKd2lsbOqYd5iDoUIwsRZFqE87smE2Vzf6Ck0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "57610d2f8f0937f39dbd72251e9614b1561942d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1708475490,
@@ -2973,7 +2989,8 @@
         "nix-cooker": "nix-cooker",
         "nixpkgs": "nixpkgs_15",
         "schizofox": "schizofox",
-        "spicetify-nix": "spicetify-nix"
+        "spicetify-nix": "spicetify-nix",
+        "universe": "universe"
       }
     },
     "rust-overlay": {
@@ -3257,6 +3274,57 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "uni-verse-backend": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717586287,
+        "narHash": "sha256-PmHdHUnf+fpT9ql/6N6w8W+3f1NXJ5tIPIUiW8YCi9U=",
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-api",
+        "rev": "921b98b5a053f59bad9ca913cf681ffbd29e7ac9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-api",
+        "type": "github"
+      }
+    },
+    "uni-verse-frontend": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658309983,
+        "narHash": "sha256-+TsKk7Ea2YpdE4D/DdXLDXaAqVCOTPUleYRqQiJ9mhg=",
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-frontend",
+        "rev": "6cbd5ec4f21d4c988a7bb9853f52483ac8329b28",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-frontend",
+        "type": "github"
+      }
+    },
+    "universe": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_18",
+        "uni-verse-backend": "uni-verse-backend",
+        "uni-verse-frontend": "uni-verse-frontend"
+      },
+      "locked": {
+        "dirtyRev": "0416dd2b22cbd1db3e3192fd1e62644ea651ccd2-dirty",
+        "dirtyShortRev": "0416dd2-dirty",
+        "lastModified": 1717641724,
+        "narHash": "sha256-MLDd7njcaS25xEONEuoliW/uOTQMMVKoNjVxDSGxWtU=",
+        "type": "git",
+        "url": "file:///home/vagahbond/Projects/uni-verse-production"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/vagahbond/Projects/uni-verse-production"
       }
     },
     "utils": {

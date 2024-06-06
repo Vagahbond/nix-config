@@ -64,5 +64,7 @@
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
     ags.url = "github:Aylur/ags";
+
+    universe.url = "/home/vagahbond/Projects/uni-verse-production/";
   };
 }

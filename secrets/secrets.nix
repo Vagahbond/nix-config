@@ -17,6 +17,8 @@ in {
   "ghost_env.age".publicKeys = [mk platypute];
   "joan_ghost_env.age".publicKeys = [mk platypute];
 
+  "universe.age".publicKeys = [mk platypute];
+
   # SSH Keys
   "ssh_config.age".publicKeys = [mk];
 
