@@ -43,6 +43,7 @@
       bind = SUPERSHIFT, E, exec,  kill -9 -1
       bind=SUPER,E,exec,thunar
       bind=SUPER,F,togglefloating,
+      bind=SUPER,F11,fullscreen,
       bind=SUPERSHIFT,Escape,exec, loginctl lock-session
 
       # launcher
@@ -250,6 +251,12 @@
       windowrulev2 = opaque, class:^(libreoffice)(.*)$
       windowrulev2 = opaque, class:^(.*vlc.*)$
       windowrulev2 = opaque, class:^(.*mpv.*)$
+
+      # Dofus keeps crashing
+      windowrulev2 = fullscreen, class:^(dofus.exe)(.*)$
+
+      # Issues with scaling in FL
+      windowrulev2 = fullscreen, class:^(fl64.exe)(.*)$
 
       xwayland:force_zero_scaling = true
 
