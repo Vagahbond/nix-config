@@ -1258,11 +1258,11 @@
     },
     "nixpkgs_18": {
       "locked": {
-        "lastModified": 1717196966,
-        "narHash": "sha256-yZKhxVIKd2lsbOqYd5iDoUIwsRZFqE87smE2Vzf6Ck0=",
+        "lastModified": 1717602782,
+        "narHash": "sha256-pL9jeus5QpX5R+9rsp3hhZ+uplVHscNJh8n8VpqscM0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "57610d2f8f0937f39dbd72251e9614b1561942d8",
+        "rev": "e8057b67ebf307f01bdcc8fba94d94f75039d1f6",
         "type": "github"
       },
       "original": {
@@ -3279,11 +3279,11 @@
     "uni-verse-backend": {
       "flake": false,
       "locked": {
-        "lastModified": 1717586287,
-        "narHash": "sha256-PmHdHUnf+fpT9ql/6N6w8W+3f1NXJ5tIPIUiW8YCi9U=",
+        "lastModified": 1717679325,
+        "narHash": "sha256-F33tCl4Itt+tAZWLZBcTF2bsVnLOoPIguTsvPjuyEvk=",
         "owner": "uni-verse-fm",
         "repo": "uni-verse-api",
-        "rev": "921b98b5a053f59bad9ca913cf681ffbd29e7ac9",
+        "rev": "06eb57cf818d7e6c8671f40cbb71512e3dae4b14",
         "type": "github"
       },
       "original": {
@@ -3295,11 +3295,11 @@
     "uni-verse-frontend": {
       "flake": false,
       "locked": {
-        "lastModified": 1658309983,
-        "narHash": "sha256-+TsKk7Ea2YpdE4D/DdXLDXaAqVCOTPUleYRqQiJ9mhg=",
+        "lastModified": 1717721595,
+        "narHash": "sha256-L5OSvS8eDrj6XXTf5b8telvv7cLbmoIsupp1BeK0QDo=",
         "owner": "uni-verse-fm",
         "repo": "uni-verse-frontend",
-        "rev": "6cbd5ec4f21d4c988a7bb9853f52483ac8329b28",
+        "rev": "4d3e570d376146228387bbede042f6d75a512e21",
         "type": "github"
       },
       "original": {
@@ -3318,7 +3318,7 @@
         "dirtyRev": "0416dd2b22cbd1db3e3192fd1e62644ea651ccd2-dirty",
         "dirtyShortRev": "0416dd2-dirty",
         "lastModified": 1717641724,
-        "narHash": "sha256-MLDd7njcaS25xEONEuoliW/uOTQMMVKoNjVxDSGxWtU=",
+        "narHash": "sha256-dkOeI7ZZcLnJ0u6FIQl9vz3KIHdNLEYQiaI2R1FNl1M=",
         "type": "git",
         "url": "file:///home/vagahbond/Projects/uni-verse-production"
       },
