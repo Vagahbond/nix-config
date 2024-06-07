@@ -53,5 +53,27 @@ in {
     (
       mkIf cfg.universe.enable (import ./universe.nix {inherit config pkgs inputs;})
     )
+    (
+      mkIf cfg.cockpit.enable {
+        services.cockpit = {
+          enable = true;
+          settings = {
+            WebService = {
+              Origins = "https://cockpit.vagahbond.com wss://cockpit.vagahbond.com";
+              ProtocolHeader = "X-Forwarded-Proto";
+            };
+          };
+        };
+
+        services.nginx.virtualHosts."cockpit.vagahbond.com" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:9090";
+            proxyWebsockets = true; # needed if you need to use WebSocket
+          };
+        };
+      }
+    )
   ];
 }

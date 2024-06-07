@@ -66,6 +66,6 @@
     ags.url = "github:Aylur/ags";
 
     # universe.url = "/home/vagahbond/Projects/uni-verse-production/";
-    universe.url = "github:uni-verse-fm/uni-verse-frontend";
+    universe.url = "github:uni-verse-fm/uni-verse-production";
   };
 }

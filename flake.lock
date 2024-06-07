@@ -3315,16 +3315,17 @@
         "uni-verse-frontend": "uni-verse-frontend"
       },
       "locked": {
-        "dirtyRev": "0416dd2b22cbd1db3e3192fd1e62644ea651ccd2-dirty",
-        "dirtyShortRev": "0416dd2-dirty",
-        "lastModified": 1717641724,
+        "lastModified": 1717730124,
         "narHash": "sha256-dkOeI7ZZcLnJ0u6FIQl9vz3KIHdNLEYQiaI2R1FNl1M=",
-        "type": "git",
-        "url": "file:///home/vagahbond/Projects/uni-verse-production"
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-production",
+        "rev": "765d218978910df7a8b4e963bbba9200ce8e02c8",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/vagahbond/Projects/uni-verse-production"
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-production",
+        "type": "github"
       }
     },
     "utils": {

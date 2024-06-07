@@ -36,6 +36,7 @@ in {
         homePage.enable = true;
         blog.enable = true;
         universe.enable = true;
+        cockpit.enable = false;
       };
     };
   };

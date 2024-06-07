@@ -39,5 +39,7 @@ with lib; {
     blog.enable = mkEnableOption "blog";
 
     universe.enable = mkEnableOption "Uni-verse";
+
+    cockpit.enable = mkEnableOption "Cockpit";
   };
 }
