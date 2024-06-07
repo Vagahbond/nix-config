@@ -27,7 +27,6 @@
           {
             timeout = 300;
             on-timeout = "playerctl pause";
-            on-resume = "playerctl play";
           }
           {
             timeout = 270;
