@@ -51,7 +51,7 @@
 
       # Expo
       # bind = ALT, Tab, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
-      bind = ALT, Tab, overview:toggle # can be: toggle, off/disable or on/enable
+      # bind = ALT, Tab, overview:toggle # can be: toggle, off/disable or on/enable
 
       # Brightness
       binde=,XF86MonBrightnessUp,exec,/home/$USER/.config/hypr/brightness.sh A
