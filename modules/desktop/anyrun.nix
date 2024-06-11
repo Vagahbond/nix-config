@@ -23,10 +23,11 @@
         plugins = with inputs.anyrun.packages.${pkgs.system}; [
           applications
           rink
-          websearch
+          # websearch
           shell
           translate
           dictionary
+          inputs.anyrun-websearch.packages.${pkgs.system}.default
         ];
 
         y.fraction = 0.3;
@@ -60,7 +61,7 @@
               DuckDuckGo,
               Custom(
                 name: "nix packages",
-                url: "search.nixos.org/packages?query={}&channel=unstable",
+                url: "search.nixos.org/packages?channel=unstable&query={}",
               ),
             ],
           )

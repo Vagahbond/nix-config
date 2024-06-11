@@ -51,7 +51,9 @@
       url = "github:NotAShelf/neovim-flake";
     };
 
-    anyrun.url = "github:Kirottu/anyrun";
+    anyrun.url = "github:anyrun-org/anyrun";
+
+    anyrun-websearch.url = "github:FromWau/plugin-websearch";
 
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
