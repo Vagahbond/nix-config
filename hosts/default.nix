@@ -33,7 +33,6 @@
       modules = [
         home-manager.nixosModules.home-manager
         inputs.agenix.nixosModules.default
-        ../user.nix
         ../homes
         ../modules
 

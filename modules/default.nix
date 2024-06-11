@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./user
     ./impermanence
     ./graphics
     ./browser

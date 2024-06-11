@@ -1,7 +1,11 @@
 {config, ...}: let
-  username = import ./username.nix;
+  username = import ../../username.nix;
   inherit (config.modules.impermanence) storageLocation;
 in {
+  imports = [
+    ./options.nix
+  ];
+
   users = {
     mutableUsers = false;
     users = {
@@ -13,8 +17,7 @@ in {
         extraGroups = ["wheel"];
         home = "/home/${username}";
         description = "My only user. Ain't no one else using my computer. Fuck you.";
-        initialPassword = username;
-        # hashedPasswordFile = "/nix/persistent/passwords/${username}";
+        hashedPassword = config.modules.user.password;
       };
     };
   };

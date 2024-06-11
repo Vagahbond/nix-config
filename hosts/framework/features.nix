@@ -3,8 +3,6 @@
   lib,
   ...
 }: let
-  username = import ../../username.nix;
-
   keys = import ../../secrets/sshKeys.nix {inherit config lib;};
 in {
   config = {
@@ -12,6 +10,8 @@ in {
 
     modules = {
       impermanence.enable = true;
+
+      user.password = "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
 
       graphics.type = "intel";
 

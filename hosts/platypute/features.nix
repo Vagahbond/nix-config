@@ -1,9 +1,9 @@
-{inputs, ...}: let
-  username = import ../../username.nix;
-in {
+{...}: {
   config = {
     modules = {
       impermanence.enable = true;
+
+      user.password = "$y$j9T$W4KvCgdBzhRBgZDnXf9s2/$rdrtKUhstflz5ADDB/w9WZc6M/sWlwqM76vKjaG3yV/";
 
       editor = {
         terminal = ["neovim"];
