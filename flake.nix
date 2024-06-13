@@ -61,5 +61,10 @@
 
     # universe.url = "/home/vagahbond/Projects/uni-verse-production/";
     universe.url = "github:uni-verse-fm/uni-verse-production";
+
+    cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

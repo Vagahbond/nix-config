@@ -1,12 +1,51 @@
 {
   config,
   lib,
+  inputs,
   ...
 }: let
   keys = import ../../secrets/sshKeys.nix {inherit config lib;};
 in {
+  # Testing Cosmic
   config = {
+    nix.settings = {
+      substituters = ["https://cosmic.cachix.org/"];
+      trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
+    };
+
     rice = "turtl-snail";
+
+    specialisation.cosmic.configuration = {
+      imports = [
+        inputs.cosmic.nixosModules.default
+      ];
+
+      services = {
+        desktopManager.cosmic.enable = true;
+        displayManager.cosmic-greeter.enable = true;
+
+        power-profiles-daemon.enable = lib.mkForce false;
+      };
+
+      networking.wireless.enable = lib.mkForce false;
+
+      modules.desktop = {
+        session = lib.mkForce null;
+
+        widgets = {
+          eww.enable = lib.mkForce false;
+          ags.enable = lib.mkForce false;
+        };
+
+        fileExplorer = lib.mkForce null;
+        notifications = lib.mkForce null;
+        terminal = lib.mkForce null;
+        displayManager = lib.mkForce null;
+        launcher = lib.mkForce null;
+        wallpaper = lib.mkForce null;
+        lockscreen = lib.mkForce null;
+      };
+    };
 
     modules = {
       impermanence.enable = true;
