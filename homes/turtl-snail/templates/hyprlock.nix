@@ -407,7 +407,7 @@
       invert_numlock = false # change color if numlock is off
       swap_font_color = false # see below
 
-      position = -150, -200
+      position = -150, -300
       halign = center
       valign = center
 
@@ -478,9 +478,9 @@
       font_family = ${font.name}
       rotate = 0 # degrees, counter-clockwise
 
-      position = -200, -375
+      position = 0, 10
       halign = center
-      valign = center
+      valign = bottom
   }
 
 ''
