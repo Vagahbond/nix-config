@@ -21,7 +21,7 @@
         listener = [
           {
             timeout = 150; # 2.5min.
-            on-timeout = "light -S set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+            on-timeout = "light -O && light -S 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
             on-resume = "light -I"; # monitor backlight restore.
           }
           {
