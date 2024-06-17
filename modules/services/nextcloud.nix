@@ -9,17 +9,11 @@
   networking.firewall.allowedTCPPorts = [8000];
 
   ###################################################################
-  # IMPERMANENCE (Not needed naymore, moved to using custom volume) #
+  # IMPERMANENCE                                                    #
   ###################################################################
   environment.persistence.${storageLocation} = {
     # TODO: independent redis and rabbitmq with special volume
     directories = [
-      {
-        directory = "/var/lib/nextcloud";
-        user = "nextcloud";
-        group = "nextcloud";
-        mode = "u=rwx,g=rx,o=";
-      }
       {
         directory = "/var/lib/redis-nextcloud";
         user = "nextcloud";
