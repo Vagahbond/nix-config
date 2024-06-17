@@ -20,6 +20,11 @@
         };
         listener = [
           {
+            timeout = 5;
+            on-timeout = "pidof hyprlock && hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+          {
             timeout = 150; # 2.5min.
             on-timeout = "light -O && light -S 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
             on-resume = "light -I"; # monitor backlight restore.
