@@ -95,7 +95,6 @@ in {
         video = {
           player = true;
           downloader = true;
-          encoder = true;
           recorder = false;
         };
 
