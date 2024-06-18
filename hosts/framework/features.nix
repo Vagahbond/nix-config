@@ -14,7 +14,7 @@ in {
     };
 
     rice = "turtl-snail";
-
+    /*
     specialisation.cosmic.configuration = {
       imports = [
         inputs.cosmic.nixosModules.default
@@ -46,7 +46,7 @@ in {
         lockscreen = lib.mkForce null;
       };
     };
-
+    */
     modules = {
       impermanence.enable = true;
 
