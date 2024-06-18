@@ -130,11 +130,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1718590273,
-        "narHash": "sha256-KntHaKWawZyoViaeuxXQfJLqA8lhXjIpoJNVhhBgSpA=",
+        "lastModified": 1718675988,
+        "narHash": "sha256-A7/kclC/xbP8L3Q+LkoB/YBG6XLfOF9bBZ17mOLzGtM=",
         "owner": "lilyinstarlight",
         "repo": "nixos-cosmic",
-        "rev": "95f98bd59d8ab699c9a0cba2b2bb2dcbd9d069d5",
+        "rev": "119f328b8ecf0e596512e5b0b0d5532d604a1c45",
         "type": "github"
       },
       "original": {
@@ -3337,16 +3337,17 @@
         "uni-verse-frontend": "uni-verse-frontend"
       },
       "locked": {
-        "dirtyRev": "6a1dcef9233a15aeffb00fe9fe8090d7755eebce-dirty",
-        "dirtyShortRev": "6a1dcef-dirty",
-        "lastModified": 1718673902,
+        "lastModified": 1718679424,
         "narHash": "sha256-3f943fg5Ud4/CqPITYUYSQuRb1BlL//4hIMbDNzOqOc=",
-        "type": "git",
-        "url": "file:///home/vagahbond/Projects/uni-verse-production"
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-production",
+        "rev": "516dd488e509fe9e61839321a0ebd7f484d8d305",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/vagahbond/Projects/uni-verse-production"
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-production",
+        "type": "github"
       }
     },
     "utils": {
