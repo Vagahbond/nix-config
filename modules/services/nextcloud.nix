@@ -102,6 +102,27 @@
           appVersion = "0.16.0";
           license = "agpl3Plus";
         };
+        cospend = pkgs.fetchNextcloudApp {
+          appName = "cospend";
+          sha256 = "sha256-QHIxS5uubutiD9Abm/Bzv1RWG7TgL/tvixVdNEzTlxE=";
+          url = "https://github.com/julien-nc/cospend-nc/releases/download/v1.6.1/cospend-1.6.1.tar.gz";
+          appVersion = "9.0.2";
+          license = "agpl3Plus";
+        };
+        deck = pkgs.fetchNextcloudApp {
+          appName = "deck";
+          sha256 = "sha256-drx73FJOovZad1IoHXpMasfqfs46i0vMsPGH5pkfGrY=";
+          url = "https://github.com/nextcloud/deck/releases/download/v1.13.0/deck.tar.gz";
+          appVersion = "1.13.0";
+          license = "agpl3Plus";
+        };
+        quicknotes = pkgs.fetchNextcloudApp {
+          appName = "quicknotes";
+          sha256 = "sha256-ASgaYMXoULH1eQg/N+ZvZNHmzVbd4NEz2fxy9g3VvMY=";
+          url = "https://github.com/matiasdelellis/quicknotes/releases/download/v0.8.23/quicknotes.tar.gz";
+          appVersion = "0.8.23";
+          license = "agpl3Plus";
+        };
       };
       extraAppsEnable = true;
     };
