@@ -46,6 +46,9 @@ in {
       mkIf cfg.nextcloud.enable (import ./nextcloud.nix {inherit storageLocation config pkgs;})
     )
     (
+      mkIf cfg.notes.enable (import ./sulverbullet.nix {inherit storageLocation config pkgs;})
+    )
+    (
       # DISABLED FOR NOW, DATA IS NOT BACKED UP
       mkIf (cfg.nextcloud.enable && cfg.nextcloud.backup)
       (import ./nextcloud_backup.nix {inherit config;})
