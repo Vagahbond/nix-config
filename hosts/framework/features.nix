@@ -96,6 +96,7 @@ in {
           player = true;
           downloader = true;
           recorder = false;
+          editor = true;
         };
 
         audio = {
