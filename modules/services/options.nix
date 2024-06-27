@@ -41,5 +41,7 @@ with lib; {
     universe.enable = mkEnableOption "Uni-verse";
 
     cockpit.enable = mkEnableOption "Cockpit";
+
+    notes.enable = mkEnableOption "silverbullet";
   };
 }
