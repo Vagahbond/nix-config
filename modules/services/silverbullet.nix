@@ -1,7 +1,11 @@
 {
   storageLocation,
+  config,
   ...
 }: {
+  ###################################################################
+  # PERSISTENCE                                                     #
+  ###################################################################
   environment.persistence.${storageLocation} = {
     # TODO: independent redis and rabbitmq with special volume
     directories = [
@@ -14,18 +18,34 @@
     ];
   };
 
+  ###################################################################
+  # SECRETS                                                         #
+  ###################################################################
+  age.secrets.silverbulletEnv = {
+    file = ../../secrets/silverbullet_env.age;
+    mode = "440";
+    owner = "silverbullet";
+    group = "silverbullet";
+  };
+
+  ###################################################################
+  # SERVICE                                                         #
+  ###################################################################
   services.silverbullet = {
     enable = true;
     listenPort = 3888;
+    envFile = config.age.secrets.silverbulletEnv.path;
   };
 
-    services.nginx.virtualHosts."notes.vagahbond.com" = {
+  ###################################################################
+  # PROXY                                                           #
+  ###################################################################
+  services.nginx.virtualHosts."notes.vagahbond.com" = {
     forceSSL = true;
     enableACME = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:8080";
+      proxyPass = "http://127.0.0.1:3888";
       proxyWebsockets = true; # needed if you need to use WebSocket
     };
   };
-
 }
