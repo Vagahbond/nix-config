@@ -48,7 +48,7 @@
     spicetify-nix.url = "github:the-argus/spicetify-nix/7cb65f5011021fd7bacf0a66eec407d444b84ea8";
 
     neovim-flake = {
-      url = "github:NotAShelf/neovim-flake";
+      url = "github:NotAShelf/neovim-flake/1145da7a53fb4055a35986996d198909cd1e31e8";
     };
 
     anyrun.url = "github:anyrun-org/anyrun";
