@@ -80,9 +80,8 @@ in {
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
-            ".config/Ankama"
-            ".config/Ankama Launcher"
-            ".config/zaap"
+          ".config/Ankama/Dofus"
+          ".config/zaap"
           ];
         };
       };
