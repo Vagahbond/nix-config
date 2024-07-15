@@ -15,10 +15,10 @@ in {
   config = mkMerge [
     (mkIf cfg.audio.enable {
       # Enable sound with pipewire.
-      sound = {
-        enable = true;
-        mediaKeys.enable = true;
-      };
+      # sound = {
+      #   enable = true;
+      #   mediaKeys.enable = true;
+      # };
 
       services.pipewire = {
         enable = true;
