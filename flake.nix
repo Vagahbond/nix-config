@@ -45,7 +45,7 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix.url = "github:the-argus/spicetify-nix/7cb65f5011021fd7bacf0a66eec407d444b84ea8";
 
     neovim-flake = {
       url = "github:NotAShelf/neovim-flake";
