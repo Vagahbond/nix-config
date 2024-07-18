@@ -44,11 +44,14 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    spicetify-nix = {
+      url = "github:gerg-l/spicetify-nix";
 
-    spicetify-nix.url = "github:the-argus/spicetify-nix/7cb65f5011021fd7bacf0a66eec407d444b84ea8";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     neovim-flake = {
-      url = "github:NotAShelf/neovim-flake/1145da7a53fb4055a35986996d198909cd1e31e8";
+      url = "github:NotAShelf/neovim-flake";
     };
 
     anyrun.url = "github:anyrun-org/anyrun";
