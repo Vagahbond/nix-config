@@ -12,7 +12,9 @@ with lib; let
   inherit (config.modules) graphics impermanence;
   cfg = config.modules.medias;
 in {
-  imports = [./options.nix];
+  imports = [
+    ./options.nix
+  ];
   config = mkMerge [
     (mkIf (cfg.video.player
       && (graphics.type != null)) {
@@ -101,16 +103,16 @@ in {
       ];
 
       home-manager.users.${username} = {pkgs, ...}: let
-        spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
       in {
         imports = [
-          inputs.spicetify-nix.homeManagerModule
+          inputs.spicetify-nix.homeManagerModules.default
         ];
 
         programs.spicetify = {
           enable = true;
-          theme = spicePkgs.themes.Ziro;
-          colorScheme = "rose-pine";
+          theme = spicePkgs.themes.ziro;
+          # colorScheme = "rose-pine";
 
           /*
              customColorScheme = {
@@ -134,13 +136,9 @@ in {
           */
 
           enabledExtensions = with spicePkgs.extensions; [
-            fullAppDisplay
             shuffle # shuffle+ (special characters are sanitized out of ext names)
             hidePodcasts
-            trashbin
-            playlistIcons
-            songStats
-            # genre
+            adblock
           ];
         };
       };
