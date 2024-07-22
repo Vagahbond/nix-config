@@ -112,7 +112,7 @@ in {
         programs.spicetify = {
           enable = true;
           theme = spicePkgs.themes.ziro;
-          # colorScheme = "rose-pine";
+          colorScheme = "rose-pine";
 
           /*
              customColorScheme = {
