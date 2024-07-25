@@ -43,5 +43,7 @@ with lib; {
     cockpit.enable = mkEnableOption "Cockpit";
 
     notes.enable = mkEnableOption "silverbullet";
+
+    pdf.enable = mkEnableOption "PDF server";
   };
 }

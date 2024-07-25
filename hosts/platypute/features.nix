@@ -37,6 +37,7 @@
         blog.enable = true;
         universe.enable = true;
         notes.enable = true;
+        pdf.enable = true;
       };
     };
   };
