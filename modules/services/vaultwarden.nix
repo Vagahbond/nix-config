@@ -24,7 +24,7 @@
 
   services.vaultwarden = {
     enable = true;
-    backupDir = "/var/lib/bitwarden_rs/backup";
+    # backupDir = "/var/lib/bitwarden_rs/backup";
     # environmentFile =
     config = {
       ROCKET_ADDRESS = "0.0.0.0";
