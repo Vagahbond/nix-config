@@ -36,7 +36,7 @@
       flake = false;
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";
 
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
@@ -60,7 +60,7 @@
 
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
-    ags.url = "github:Aylur/ags";
+    ags.url = "github:Aylur/ags/bb91f7c8fdd2f51c79d3af3f2881cacbdff19f60";
 
     # universe.url = "/home/vagahbond/Projects/uni-verse-production/";
     universe.url = "github:uni-verse-fm/uni-verse-production";
