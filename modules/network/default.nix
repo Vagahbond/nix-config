@@ -65,6 +65,9 @@ in {
           "@EARL_ST_2_SSID@" = {
             psk = "@EARL_ST_2_PSK@";
           };
+          "@LENNOX_HEAD_SSID@" = {
+            psk = "@LENNOX_HEAD_PSK@";
+          };
         };
       };
     })
