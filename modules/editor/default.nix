@@ -149,7 +149,7 @@ in {
                 };
                 go.enable = true;
                 zig.enable = true;
-                python.enable = true;
+                python.enable = false;
                 dart.enable = true;
                 elixir.enable = false;
                 php.enable = true;
@@ -216,11 +216,12 @@ in {
               };
 
               treesitter = {
-                grammars = [
-                  pkgs.vimPlugins.nvim-treesitter.builtGrammars.yaml
-                ];
+                # grammars = [
+                #   pkgs.vimPlugins.nvim-treesitter.builtGrammars.yaml
+                # ];
 
-                context.enable = true;
+              
+                # context.enable = true;
               };
 
               binds = {
