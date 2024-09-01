@@ -40,10 +40,10 @@
 
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
     spicetify-nix = {
       url = "github:gerg-l/spicetify-nix";
 
@@ -51,7 +51,7 @@
     };
 
     neovim-flake = {
-      url = "github:NotAShelf/neovim-flake";
+      url = "github:NotAShelf/nvf/fd90cf7fd5c0457d9ceece133832aac924f48118";
     };
 
     anyrun.url = "github:anyrun-org/anyrun";
@@ -64,10 +64,5 @@
 
     # universe.url = "/home/vagahbond/Projects/uni-verse-production/";
     universe.url = "github:uni-verse-fm/uni-verse-production";
-
-    cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 }
