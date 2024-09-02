@@ -4,7 +4,7 @@ with pkgs;
     name = "dofus";
     src = fetchurl {
       url = "https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage";
-      hash = "sha256-07hinxrV8M0AyIQQXZyzJZjImi1dQDtgPmPQXY74VKw=";
+      hash = "sha256-ssCjFrQYI/pxnsjcy1xLSpuGGy0NGMOcNP9RiNDhE/w=";
     };
     extraPkgs = pkgs:
       with pkgs; [
