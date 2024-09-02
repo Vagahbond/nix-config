@@ -87,7 +87,7 @@ in {
 
       editor = {
         gui = ["vscode"];
-        terminal = [];
+        terminal = [ "neovim" ];
         office = true;
       };
 
