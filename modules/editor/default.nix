@@ -145,7 +145,7 @@ in {
                   crates.enable = true;
                 };
                 ts = {
-                  enable = true;
+                  enable = false;
                 };
                 go.enable = true;
                 zig.enable = true;
