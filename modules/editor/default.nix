@@ -145,7 +145,7 @@ in {
                   crates.enable = true;
                 };
                 ts = {
-                  enable = false;
+                  enable = true;
                 };
                 go.enable = true;
                 zig.enable = true;
@@ -216,12 +216,11 @@ in {
               };
 
               treesitter = {
-                # grammars = [
-                #   pkgs.vimPlugins.nvim-treesitter.builtGrammars.yaml
-                # ];
+                grammars = [
+                  pkgs.vimPlugins.nvim-treesitter.builtGrammars.yaml
+                ];
 
-              
-                # context.enable = true;
+                context.enable = true;
               };
 
               binds = {
