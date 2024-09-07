@@ -94,7 +94,6 @@ in {
               StartupWMClass=AppRun
             ''
           )
-          # postman
         ];
       })
     (mkIf
