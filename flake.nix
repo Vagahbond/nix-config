@@ -15,10 +15,10 @@
 
   # Imagine having no clean way to separate your system's dependencies...
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager";
     };
 
     impermanence.url = "github:nix-community/impermanence";
@@ -36,10 +36,10 @@
       flake = false;
     };
 
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=9a09eac79b85c846e3a865a9078a3f8ff65a9259";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland = {
+    #   url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    #   #inputs.nixpkgs.follows = "nixpkgs";
+    # };
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
     # hyprland-plugins = {
