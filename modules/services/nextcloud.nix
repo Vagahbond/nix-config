@@ -97,28 +97,28 @@
         inherit (config.services.nextcloud.package.packages.apps) contacts calendar notes maps;
         tasks = pkgs.fetchNextcloudApp {
           appName = "tasks";
-          sha256 = "sha256-L68ughpLad4cr5utOPwefu2yoOgRvnJibqfKmarGXLw=";
+          sha256 = "sha256-HitYQcdURUHujRNMF0jKQzvSO93bItisI0emq0yw8p4=";
           url = "https://github.com/nextcloud/tasks/releases/download/v0.16.0/tasks.tar.gz";
           appVersion = "0.16.0";
           license = "agpl3Plus";
         };
         cospend = pkgs.fetchNextcloudApp {
           appName = "cospend";
-          sha256 = "sha256-QHIxS5uubutiD9Abm/Bzv1RWG7TgL/tvixVdNEzTlxE=";
+          sha256 = "sha256-J6w+ZqFNZbJeaPuZOZ4OQ+O+VhIQ0XajqYZuHqvjL24=";
           url = "https://github.com/julien-nc/cospend-nc/releases/download/v1.6.1/cospend-1.6.1.tar.gz";
           appVersion = "9.0.2";
           license = "agpl3Plus";
         };
         deck = pkgs.fetchNextcloudApp {
           appName = "deck";
-          sha256 = "sha256-drx73FJOovZad1IoHXpMasfqfs46i0vMsPGH5pkfGrY=";
+          sha256 = "sha256-/5/NNkuBEtXAHsDkaA/PHZCBLSl5U1e/rV4nU/Ir7TI=";
           url = "https://github.com/nextcloud/deck/releases/download/v1.13.0/deck.tar.gz";
           appVersion = "1.13.0";
           license = "agpl3Plus";
         };
         quicknotes = pkgs.fetchNextcloudApp {
           appName = "quicknotes";
-          sha256 = "sha256-ASgaYMXoULH1eQg/N+ZvZNHmzVbd4NEz2fxy9g3VvMY=";
+          sha256 = "sha256-8ppIN7ITiQVsgPzbRVB6OHe4vSzdBBovHexBkr4yffY=";
           url = "https://github.com/matiasdelellis/quicknotes/releases/download/v0.8.23/quicknotes.tar.gz";
           appVersion = "0.8.23";
           license = "agpl3Plus";
