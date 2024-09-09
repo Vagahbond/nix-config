@@ -1,7 +1,4 @@
-{
-  storageLocation,
-  config,
-}: {
+{config}: {
   ###################################################
   # GHOST                                           #
   ###################################################
@@ -81,7 +78,7 @@
         config.age.secrets.joanGhostEnv.path
       ];
       volumes = [
-        "ghost_content:/var/lib/ghost/content"
+        "joan_ghost_content:/var/lib/ghost/content"
       ];
       hostname = "joan_ghost";
       ports = ["8081:2368"];
