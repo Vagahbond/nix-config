@@ -25,7 +25,7 @@ in {
       mkIf cfg.proxy.enable (import ./proxy.nix {})
     )
     (
-      mkIf cfg.blog.enable (import ./blog.nix {inherit storageLocation config;})
+      mkIf cfg.blog.enable (import ./blog.nix {inherit config;})
     )
     (
       mkIf cfg.pdf.enable (import ./pdf.nix {inherit storageLocation config;})
