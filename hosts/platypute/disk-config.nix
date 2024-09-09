@@ -7,6 +7,8 @@
     inputs.disko.nixosModules.disko
   ];
 
+  fileSystems."/data".neededForBoot = true;
+
   disko.devices = {
     nodev = {
       "/" = {

@@ -1,8 +1,10 @@
 {...}: {
   config = {
     modules = {
-      impermanence.enable = true;
-
+      impermanence = {
+        enable = true;
+        storageLocation = "/data";
+      };
       user.password = "$y$j9T$W4KvCgdBzhRBgZDnXf9s2/$rdrtKUhstflz5ADDB/w9WZc6M/sWlwqM76vKjaG3yV/";
 
       editor = {
