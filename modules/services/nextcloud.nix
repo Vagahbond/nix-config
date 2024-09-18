@@ -123,6 +123,13 @@
           appVersion = "0.8.23";
           license = "agpl3Plus";
         };
+        forms = pkgs.fetchNextcloudApp {
+          appName = "forms";
+          sha256 = "sha256-OqqorHVWCDicQKnTxEJjeXzDrsj98vWvtWYyaRmDsUs=";
+          url = "https://github.com/nextcloud-releases/forms/releases/download/v4.2.4/forms-v4.2.4.tar.gz";
+          appVersion = "4.2.4";
+          license = "agpl3Plus";
+        };
       };
       extraAppsEnable = true;
     };
