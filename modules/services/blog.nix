@@ -51,8 +51,8 @@
   ###################################################
 
   services.nginx.virtualHosts."joansareno.com" = {
-    forceSSL = true;
-    enableACME = true;
+    # forceSSL = true;
+    # enableACME = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:8081";
       proxyWebsockets = true; # needed if you need to use WebSocket
