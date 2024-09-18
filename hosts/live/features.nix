@@ -5,6 +5,7 @@ in {
     rice = null;
 
     modules = {
+      user.password = "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
       impermanence.enable = false;
 
       graphics.type = null;
