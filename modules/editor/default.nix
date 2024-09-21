@@ -120,7 +120,6 @@ in {
                 lspkind.enable = false;
                 lightbulb.enable = true;
                 lspsaga.enable = false;
-                nvimCodeActionMenu.enable = true;
                 trouble.enable = true;
                 lspSignature.enable = true;
               };
