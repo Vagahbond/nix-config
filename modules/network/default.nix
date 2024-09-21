@@ -29,44 +29,44 @@ in {
       networking.wireless = {
         enable = true;
         userControlled.enable = true;
-        environmentFile = config.age.secrets.wifi.path;
+        secretsFile = config.age.secrets.wifi.path;
         networks = {
           "@HOME_SSID@" = {
-            psk = "@HOME_PSK@";
+            pskRaw = "ext:HOME_PSK";
           };
 
           "@ESGI_SSID@" = {
-            psk = "@ESGI_PSK@";
+            pskRaw = "ext:ESGI_PSK";
           };
 
           "@ESGI2_SSID@" = {
-            psk = "@ESGI2_PSK@";
+            pskRaw = "ext:ESGI2_PSK";
           };
 
           "@VICFI_SSID@" = {
-            psk = "@VICFI_PSK@";
+            pskRaw = "ext:VICFI_PSK";
           };
 
           "@JEREM_SSID@" = {
-            psk = "@JEREM_PSK@";
+            pskRaw = "ext:JEREM_PSK";
           };
           "@MAMIE_SSID@" = {
-            psk = "@MAMIE_PSK@";
+            pskRaw = "ext:MAMIE_PSK";
           };
 
           "@ZERREF_SSID@" = {
-            psk = "@ZERREF_PSK@";
+            pskRaw = "ext:ZERREF_PSK";
           };
 
           "@EARL_ST_SSID@" = {
-            psk = "@EARL_ST_PSK@";
+            pskRaw = "ext:EARL_ST_PSK";
           };
 
           "@EARL_ST_2_SSID@" = {
-            psk = "@EARL_ST_2_PSK@";
+            pskRaw = "ext:EARL_ST_2_PSK";
           };
           "@LENNOX_HEAD_SSID@" = {
-            psk = "@LENNOX_HEAD_PSK@";
+            pskRaw = "ext:LENNOX_HEAD_PSK";
           };
         };
       };
