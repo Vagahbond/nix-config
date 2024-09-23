@@ -2,10 +2,6 @@
   username = import ../../username.nix;
 in {
   config = {
-    age.identityPaths = [
-      "/home/${username}/.ssh/id_ed25519"
-    ];
-
     modules = {
       impermanence.enable = true;
       dev = {
