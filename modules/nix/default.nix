@@ -37,7 +37,7 @@ in {
       nix.registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
       age.identityPaths = [
-        "/home/${username}/.ssh/id_ed25519"
+        "${config.modules.impermanence.storageLocation}/home/${username}/.ssh/id_ed25519"
       ];
 
       nix = {
