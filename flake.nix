@@ -25,7 +25,7 @@
 
     disko.url = "github:nix-community/disko";
 
-    agenix.url = "github:yaxitech/ragenix";
+    agenix.url = "github:ryantm/agenix";
 
     schizofox = {
       url = "github:schizofox/schizofox";
