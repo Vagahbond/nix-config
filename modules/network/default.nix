@@ -31,41 +31,27 @@ in {
         userControlled.enable = true;
         secretsFile = config.age.secrets.wifi.path;
         networks = {
-          "@HOME_SSID@" = {
-            pskRaw = "ext:HOME_PSK";
-          };
-
-          "@ESGI_SSID@" = {
+          "ESGI" = {
             pskRaw = "ext:ESGI_PSK";
           };
 
-          "@ESGI2_SSID@" = {
+          "Campus ESGI" = {
             pskRaw = "ext:ESGI2_PSK";
           };
 
-          "@VICFI_SSID@" = {
+          "Freebox-5AD873" = {
             pskRaw = "ext:VICFI_PSK";
           };
 
-          "@JEREM_SSID@" = {
+          "SFR_0A88" = {
             pskRaw = "ext:JEREM_PSK";
           };
-          "@MAMIE_SSID@" = {
-            pskRaw = "ext:MAMIE_PSK";
-          };
 
-          "@ZERREF_SSID@" = {
+          "Livebox-EC30" = {
             pskRaw = "ext:ZERREF_PSK";
           };
 
-          "@EARL_ST_SSID@" = {
-            pskRaw = "ext:EARL_ST_PSK";
-          };
-
-          "@EARL_ST_2_SSID@" = {
-            pskRaw = "ext:EARL_ST_2_PSK";
-          };
-          "@LENNOX_HEAD_SSID@" = {
+          "TelstraA3CF79" = {
             pskRaw = "ext:LENNOX_HEAD_PSK";
           };
         };
