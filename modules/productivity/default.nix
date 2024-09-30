@@ -35,7 +35,7 @@ in {
     (
       mkIf cfg.pomodoro.enable {
         environment.systemPackages = with pkgs; [
-          gnome.pomodoro
+          pomodoro
         ];
       }
     )
