@@ -15,6 +15,9 @@ in
         enable = mkEnableOption "bluetooth";
       };
 
+      vpn = {
+        enable = mkEnableOption "wgnord";
+      };
       ssh = {
         enable = mkEnableOption "ssh client";
         keys = mkOption {

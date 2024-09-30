@@ -89,5 +89,17 @@ in {
 
       programs.mtr.enable = true;
     })
+    (mkIf cfg.vpn.enable {
+      environment = {
+        persistence.${impermanence.storageLocation} = {
+          directories = [
+            "/var/lib/wgnord"
+          ];
+        };
+        systemPackages = with pkgs; [
+          wgnord
+        ];
+      };
+    })
   ];
 }
