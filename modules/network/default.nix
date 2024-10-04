@@ -90,14 +90,21 @@ in {
       programs.mtr.enable = true;
     })
     (mkIf cfg.vpn.enable {
+      # Works with wgnord and wg-quick
+      # Remember to create /var/lib/wgnord/template.conf (nix module could do that for you but I need to work rn)
+      # Remember to wg-quick down and up for it to work.
+
       environment = {
         persistence.${impermanence.storageLocation} = {
           directories = [
             "/var/lib/wgnord"
+            "/etc/wireguard/"
           ];
         };
+
         systemPackages = with pkgs; [
           wgnord
+          wireguard-tools
         ];
       };
     })

@@ -87,7 +87,7 @@ in {
 
       editor = {
         gui = ["vscode"];
-        terminal = [ "neovim" ];
+        terminal = ["neovim"];
         office = true;
       };
 
@@ -112,6 +112,7 @@ in {
       network = {
         wifi.enable = true;
         bluetooth.enable = true;
+        vpn.enable = true;
         ssh = {
           enable = true;
           keys = with keys; [
