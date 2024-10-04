@@ -13,6 +13,11 @@ with lib; let
 in {
   imports = [./options.nix];
   config = mkMerge [
+    {
+      environment.systemPackages = with pkgs; [
+        tmux
+      ];
+    }
     (mkIf cfg.theFuck.enable {
       environment.systemPackages = with pkgs; [
         thefuck
