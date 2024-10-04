@@ -3,6 +3,10 @@ with lib; {
   options.modules.terminal = {
     theFuck.enable = mkEnableOption "Enable if you have fat fingers";
 
+    tmux = {
+      enable = mkEnableOption "tmux";
+    };
+
     shell = mkOption {
       type = types.enum ["zsh" "bash"];
       default = "zsh";

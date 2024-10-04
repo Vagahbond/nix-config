@@ -157,6 +157,7 @@ in {
 
       terminal = {
         theFuck.enable = true;
+        tmux.enable = true;
         shell = "zsh";
         shellAliases = {
           rebuild-remote = ''            f() {  \
