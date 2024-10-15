@@ -20,10 +20,11 @@ Ags_Button {
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
+  min-width: 44px;
 }
 
 .systemtray {
-  margin: 5px;
+  /* margin: 5px; */
   margin-bottom: 3px;
 }
 
@@ -32,15 +33,15 @@ Ags_Button {
 }
 
 .systemtray-item {
-  background-color: rgba(250, 244, 237, 0.7);
+  background-color: rgba(250, 244, 237, 1);
   box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
   font-size: 10px;
   border-radius: 6px;
   border: 2px #d7827e solid;
   margin-top: 3px;
   margin-bottom: 3px;
-  margin-left: 16px;
-  padding: 0;
+  /* margin-left: 16px; */
+  padding: 2px;
 }
 
 tooltip {
@@ -48,15 +49,14 @@ tooltip {
 }
 
 .battery {
-  background-color: rgba(250, 244, 237, 0.7);
+  background-color: rgba(250, 244, 237, 1);
   border-radius: 6px;
   color: #56949f;
-  padding: 5px 0px;
+  padding: 2px 2px;
   padding-top: 10px;
   transition: all ease-out 0.25s;
   box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
   border: 2px #56949f solid;
-  margin: 5px;
 }
 
 .battery.danger {
@@ -89,9 +89,9 @@ tooltip {
 }
 
 .workspace {
-  box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
-  background-color: rgba(250, 244, 237, 0.7);
-  margin: 7px;
+  /* box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
+  background-color: rgba(250, 244, 237, 0.7); */
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .workspace * {
@@ -101,7 +101,8 @@ tooltip {
 .workspace:hover {
   background-color: rgba(250, 244, 237, 1);
   border: 2px #b4637a solid;
-  margin: 5px;
+  border-radius: 6px;
+  /* margin: 5px; */
 }
 
 .workspace.focused {
@@ -111,11 +112,7 @@ tooltip {
   border-radius: 6px;
   box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
   border: 2px #907aa9 solid;
-  margin: 2px;
-}
-
-.workspace.focused * {
-  font-size: 18px;
+  margin: 0px;
 }
 
 .windows-container {
@@ -127,16 +124,16 @@ tooltip {
   border-radius: 100%;
   background-color: rgba(250, 244, 237, 0.15);
   font-size: 18px;
-  margin: 2px;
+  /* margin: 2px; */
 }
 
 .clock {
-  background-color: rgba(250, 244, 237, 0.7);
-  padding: 3px 0px;
+  background-color: rgba(250, 244, 237, 1);
+  padding: 2px 2px;
   color: #56949f;
   border-radius: 6px;
   border: 2px #56949f solid;
   font-size: 18px;
   box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
-  margin: 5px;
+  /* margin: 5px; */
 }
