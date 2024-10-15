@@ -112,7 +112,6 @@ in {
 
               statusline.lualine = {
                 enable = true;
-                # theme = "rose-pine";
               };
 
               lsp = {
@@ -179,7 +178,7 @@ in {
               theme = {
                 enable = true;
                 name = "rose-pine";
-                style = "main";
+                style = "dawn";
                 transparent = true;
               };
 

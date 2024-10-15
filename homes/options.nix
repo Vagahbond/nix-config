@@ -1,6 +1,7 @@
 {lib, ...}: let
   rices = [
     "turtl-snail"
+    "eye-burner"
   ];
 in {
   options = {
