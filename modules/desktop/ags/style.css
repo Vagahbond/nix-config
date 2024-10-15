@@ -6,58 +6,72 @@ window {
   background-color: rgba(0, 0, 0, 0);
 }
 
+button,
+button *,
+box,
+GtkButton,
+Ags_Button {
+  background-color: rgba(0, 0, 0, 0);
+  background-image: none;
+}
+
 .bar {
   background-color: rgba(0, 0, 0, 0);
-  padding-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .systemtray {
-  background-color: rgba(25, 23, 36, 0.15);
-  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
-  border: 1px #ebbcba solid;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  margin: 5px;
+  margin-bottom: 3px;
 }
 
 .systemtray.empty {
   background-color: rgba(0, 0, 0, 0);
-  border: 0px #ebbcba solid;
 }
 
 .systemtray-item {
-  background-color: rgba(0, 0, 0, 0);
-  font-size: 12px;
+  background-color: rgba(250, 244, 237, 0.7);
+  box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
+  font-size: 10px;
+  border-radius: 6px;
+  border: 2px #d7827e solid;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 16px;
+  padding: 0;
 }
+
 tooltip {
   font-size: 8px;
 }
 
 .battery {
-  background-color: rgba(25, 23, 36, 0.15);
+  background-color: rgba(250, 244, 237, 0.7);
   border-radius: 6px;
-  color: #31748f;
+  color: #56949f;
   padding: 5px 0px;
   padding-top: 10px;
   transition: all ease-out 0.25s;
-  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
-  border: 1px #31748f solid;
+  box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
+  border: 2px #56949f solid;
+  margin: 5px;
 }
 
 .battery.danger {
-  color: #f6c177;
-  border: 1px #f6c177 solid;
+  color: #ea9d34;
+  border: 2px #ea9d34 solid;
 }
 
 .battery.critical {
-  color: #eb6f92;
-  border: 1px #eb6f92 solid;
+  color: #b4637a;
+  border: 2px #b4637a solid;
 }
 
 .battery.charging {
-  color: #9ccfd8;
-  border: 1px #9ccfd8 solid;
+  color: #31748f;
+  border: 2px #31748f solid;
 }
 
 .battery-label {
@@ -75,42 +89,54 @@ tooltip {
 }
 
 .workspace {
+  box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
+  background-color: rgba(250, 244, 237, 0.7);
+  margin: 7px;
+}
+
+.workspace * {
   background-color: rgba(0, 0, 0, 0);
-  padding-bottom: 5px;
 }
 
 .workspace:hover {
-  background-color: #1f1d2e;
-  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
-  border: 1px #eb6f92 solid;
+  background-color: rgba(250, 244, 237, 1);
+  border: 2px #b4637a solid;
+  margin: 5px;
 }
 
 .workspace.focused {
-  background-color: rgba(25, 23, 36, 0.15);
+  background-color: rgba(250, 244, 237, 1);
   font-weight: bold;
-  color: #c4a7e7;
+  color: #907aa9;
   border-radius: 6px;
-  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
-  border: 1px #c4a7e7 solid;
+  box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
+  border: 2px #907aa9 solid;
+  margin: 2px;
+}
+
+.workspace.focused * {
+  font-size: 18px;
 }
 
 .windows-container {
   padding: 5px 0px;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .window {
   border-radius: 100%;
-  background-color: rgba(25, 23, 36, 0.15);
+  background-color: rgba(250, 244, 237, 0.15);
   font-size: 18px;
-  margin-top: 5px;
+  margin: 2px;
 }
 
 .clock {
-  background-color: rgba(25, 23, 36, 0.15);
-  padding: 5px 0px;
-  color: #9ccfd8;
+  background-color: rgba(250, 244, 237, 0.7);
+  padding: 3px 0px;
+  color: #56949f;
   border-radius: 6px;
-  border: 1px #9ccfd8 solid;
+  border: 2px #56949f solid;
   font-size: 18px;
-  box-shadow: 5px 5px rgba(25, 23, 36, 0.7);
+  box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
+  margin: 5px;
 }

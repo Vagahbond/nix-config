@@ -6,7 +6,6 @@ export default Widget.Box({
   vertical: true,
   className: "clock",
   vpack: "start",
-  widthRequest: 40,
   children: [
     Widget.Label({
       justification: "center",

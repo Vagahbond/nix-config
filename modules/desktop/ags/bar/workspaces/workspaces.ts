@@ -31,11 +31,11 @@ const workspaces = hyprland.bind("clients").as((w) => {
         className: "windows-container",
 
         children: [
-          Widget.Label({
+          /* Widget.Label({
             label: k.substring(0, 1),
             hexpand: true,
             justification: "left",
-          }),
+          }),*/
           ...mbuttons,
         ],
       }),
@@ -45,6 +45,7 @@ const workspaces = hyprland.bind("clients").as((w) => {
 
 export default Widget.Box({
   vpack: "center",
+  vexpand: true,
   vertical: true,
   class_name: "workspaces",
   children: workspaces,

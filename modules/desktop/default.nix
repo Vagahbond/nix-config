@@ -112,7 +112,7 @@ in {
 
           # TODO: Script to enable do-not-disturb I guess
           extraConfig = ''
-            outer-margin=10
+            outer-margin=20
 
             [mode=do-not-disturb]
             invisible=1
