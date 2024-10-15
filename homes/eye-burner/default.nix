@@ -61,7 +61,7 @@ in {
   };
 
   cursor = {
-    name = "BreezeX-RosePineDawn-Linux";
+    name = "BreezeX-RosePine-Linux";
     package = pkgs.rose-pine-cursor;
   };
 
