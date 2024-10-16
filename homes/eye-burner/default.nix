@@ -38,6 +38,7 @@ in {
     warning = base09;
     bad = base08;
     accent = base0A;
+    background = base02;
   };
 
   gtkTheme = {
