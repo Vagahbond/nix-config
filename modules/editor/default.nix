@@ -162,7 +162,7 @@ in {
                 scrollBar.enable = true;
                 smoothScroll.enable = true;
                 cellularAutomaton.enable = true;
-                fidget-nvim.enable = true;
+                fidget-nvim.enable = false;
                 # indentBlankline = {
                 #enable = true;
                 # fillChar = null;
