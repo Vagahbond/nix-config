@@ -33,7 +33,7 @@ Ags_Button {
 }
 
 .systemtray-item {
-  background-color: rgba(250, 244, 237, 1);
+  background-color: rgba(242, 233, 222, 1);
   box-shadow: 3px 3px rgba(87, 82, 121, 0.7);
   font-size: 10px;
   border-radius: 6px;
@@ -49,7 +49,7 @@ tooltip {
 }
 
 .battery {
-  background-color: rgba(250, 244, 237, 1);
+  background-color: rgba(242, 233, 222, 1);
   border-radius: 6px;
   color: #56949f;
   padding: 2px 2px;
@@ -99,14 +99,14 @@ tooltip {
 }
 
 .workspace:hover {
-  background-color: rgba(250, 244, 237, 1);
+  background-color: rgba(242, 233, 222, 1);
   border: 2px #b4637a solid;
   border-radius: 6px;
   /* margin: 5px; */
 }
 
 .workspace.focused {
-  background-color: rgba(250, 244, 237, 1);
+  background-color: rgba(242, 233, 222, 1);
   font-weight: bold;
   color: #907aa9;
   border-radius: 6px;
@@ -122,13 +122,12 @@ tooltip {
 
 .window {
   border-radius: 100%;
-  background-color: rgba(250, 244, 237, 0.15);
   font-size: 18px;
   /* margin: 2px; */
 }
 
 .clock {
-  background-color: rgba(250, 244, 237, 1);
+  background-color: rgba(242, 233, 222, 1);
   padding: 2px 2px;
   color: #56949f;
   border-radius: 6px;
