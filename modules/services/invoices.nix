@@ -1,19 +1,4 @@
-{
-  storageLocation,
-  config,
-}: {
-  environment.persistence.${storageLocation} = {
-    # TODO: independent redis and rabbitmq with special volume
-    directories = [
-      {
-        directory = "/var/lib/crater";
-        user = "invoiceplane";
-        group = "invoiceplane";
-        mode = "u=rwx,g=rx,o=";
-      }
-    ];
-  };
-
+{config, ...}: {
   age.secrets.invoiceshelfEnv = {
     file = ../../secrets/invoiceshelf_env.age;
     mode = "440";
@@ -22,10 +7,31 @@
   virtualisation.oci-containers.containers = {
     invoiceshelf = {
       autoStart = true;
-      image = "docker.io/library/invoiceshelf/invoiceshelf";
+      image = "docker.io/invoiceshelf/invoiceshelf";
+      volumes = [
+        "invoiceshelf:/conf"
+        "invoiceshelf:/data"
+      ];
+      environment = {
+        # PHP timezone e.g. PHP_TZ=America/New_York
+        PHP_TZ = "Australia/Brisbane";
+        TIMEZONE = "Australia/Brisbane";
+        APP_NAME = "Laravel";
+        APP_ENV = "local";
+        APP_URL = "invoices.vagahbond.com";
+        DB_CONNECTION = "mysql";
+        DB_HOST = "invoiceshelf_db";
+        DB_PORT = "3306";
+        DB_DATABASE = "invoiceshelf";
+        SESSION_LIFETIME = "120";
+        SESSION_DOMAIN = "invoices.vagahbond.com";
+      };
+      environmentFiles = [
+        config.age.secrets.invoiceshelfEnv.path
+      ];
       dependsOn = ["invoiceshelfDb"];
-      hostname = "invoice";
-      ports = ["8069:3306"];
+      hostname = "invoiceshelf";
+      ports = ["8069:80"];
     };
 
     invoiceshelfDb = {
