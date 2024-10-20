@@ -47,5 +47,7 @@ with lib; {
     pdf.enable = mkEnableOption "PDF server";
 
     metrics.enable = mkEnableOption "Metrics with Prometeus and Grafana";
+
+    invoices.enable = mkEnableOption "Invoice managing service";
   };
 }

@@ -31,6 +31,7 @@
       };
 
       services = {
+        invoices.enable = true;
         metrics.enable = true;
         proxy.enable = true;
         ssh.enable = true;

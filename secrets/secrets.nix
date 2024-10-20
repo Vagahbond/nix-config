@@ -14,6 +14,8 @@ in {
   "nextcloud_admin_pass.age".publicKeys = [mk dedistonks platypute];
   "nextcloud_client_account.age".publicKeys = [mk];
 
+  "invoiceshelf_env.age".publicKeys = [mk platypute];
+
   "ghost_env.age".publicKeys = [mk platypute];
   "joan_ghost_env.age".publicKeys = [mk platypute];
 
