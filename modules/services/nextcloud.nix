@@ -130,6 +130,13 @@
           appVersion = "4.2.4";
           license = "agpl3Plus";
         };
+        analytics = pkgs.fetchNextcloudApp {
+          appName = "analytics";
+          sha256 = "sha256-d0kt1mGO5eVmj39aqywUBLXmI4x0FgkDqEHFBONugG0=";
+          url = "https://github.com/Rello/analytics/releases/download/5.0.1/analytics-5.0.1.tar.gz";
+          appVersion = "5.0.1";
+          license = "agpl3Plus";
+        };
       };
       extraAppsEnable = true;
     };
