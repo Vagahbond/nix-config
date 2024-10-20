@@ -45,5 +45,7 @@ with lib; {
     notes.enable = mkEnableOption "silverbullet";
 
     pdf.enable = mkEnableOption "PDF server";
+
+    metrics.enable = mkEnableOption "Metrics with Prometeus and Grafana";
   };
 }

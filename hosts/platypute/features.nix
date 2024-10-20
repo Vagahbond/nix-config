@@ -31,6 +31,7 @@
       };
 
       services = {
+        metrics.enable = true;
         proxy.enable = true;
         ssh.enable = true;
         nextcloud.enable = true;
