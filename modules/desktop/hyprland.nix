@@ -31,7 +31,7 @@
     wireplumber
 
     # Clip
-    cliphist
+    # cliphist
     wl-clipboard
   ];
 

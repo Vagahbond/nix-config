@@ -32,11 +32,13 @@ in {
         iio-sensor-proxy
         # For notifications
         libnotify
+        # File explorer in terminal
+        yazi
       ];
       # Gotta have default fonts
       fonts.packages = with pkgs; [
         noto-fonts
-        noto-fonts-cjk
+        noto-fonts-cjk-sans
         noto-fonts-emoji
       ];
     }
