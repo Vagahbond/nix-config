@@ -39,6 +39,7 @@
 
       bind = SUPER, T, exec, foot
       bind=SUPER, SPACE, togglespecialworkspace, scratchpad
+      bind=SUPER, P, togglespecialworkspace, pomodoro
       bind = SUPERSHIFT, Q, killactive
       bind = SUPERSHIFT, E, exec,  kill -9 -1
       bind=SUPER,E,exec,thunar
@@ -269,6 +270,7 @@
       workspace=5, monitor:eDP-1, default:false
 
       workspace = special:scratchpad, on-created-empty:foot zsh -c 'nitch; zsh -i' ,gapsout:50
+      workspace = special:pomodoro, on-created-empty:foot zsh -c 'tomato; zsh -i' ,gapsout:100
 
       exec = hyprpaper
       exec-once=hypridle
