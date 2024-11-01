@@ -22,7 +22,7 @@ in {
             "/var/lib/systemd/coredump"
           ];
           files = [
-            "/etc/machine-id"
+            #  "/etc/machine-id"
           ];
         };
       }
