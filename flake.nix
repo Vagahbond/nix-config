@@ -58,8 +58,6 @@
 
     anyrun.url = "github:anyrun-org/anyrun";
 
-    anyrun-websearch.url = "github:FromWau/plugin-websearch";
-
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
     ags.url = "github:Aylur/ags";

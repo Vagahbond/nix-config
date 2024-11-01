@@ -27,7 +27,6 @@
           shell
           translate
           dictionary
-          inputs.anyrun-websearch.packages.${pkgs.system}.default
         ];
 
         y.fraction = 0.3;
