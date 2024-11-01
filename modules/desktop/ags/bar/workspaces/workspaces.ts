@@ -4,9 +4,12 @@ const activeId = hyprland.active.workspace.bind("name");
 
 const workspaces = hyprland.bind("clients").as((w) => {
   const grouped = w.reduce((prev, curr) => {
-    (prev[curr.workspace.name] = prev[curr.workspace.name] || []).push(curr);
+    if (Number.parseInt(curr.workspace.name) <= 10) {
+      (prev[curr.workspace.name] = prev[curr.workspace.name] || []).push(curr);
+    }
     return prev;
   }, {});
+  console.log(grouped);
 
   return Object.keys(grouped).map((k) => {
     const mbuttons = grouped[k].map(({ initialClass }) =>
