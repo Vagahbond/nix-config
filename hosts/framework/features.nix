@@ -135,6 +135,7 @@ in {
         nextcloudSync.enable = true;
         pomodoro.enable = true;
         # activityWatch.enable = true;
+        maps.enable = true;
       };
 
       security = {

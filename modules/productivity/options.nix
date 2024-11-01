@@ -10,5 +10,6 @@ with lib; {
     anytype.enable = mkEnableOption "Enable Anytype";
     logseq.enable = mkEnableOption "Enable LogSeq";
     activityWatch.enable = mkEnableOption "Enable AW";
+    maps.enable = mkEnableOption "Organic maps";
   };
 }

@@ -32,6 +32,12 @@ in {
         activitywatch
       ];
     })
+    (mkIf (cfg.maps.enable
+      && (graphics.type != null)) {
+      environment.systemPackages = with pkgs; [
+        organicsmap
+      ];
+    })
     (
       mkIf cfg.pomodoro.enable {
         environment.systemPackages = with pkgs; [
