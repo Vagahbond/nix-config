@@ -140,7 +140,7 @@ in {
             };
 
             security = {
-              sanitizeOnShutdown = true;
+              sanitizeOnShutdown.enable = false;
               sandbox = false;
               userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
             };
@@ -153,7 +153,7 @@ in {
 
             extensions = {
               simplefox.enable = true;
-              darkreader.enable = true;
+              darkreader.enable = false;
               extraExtensions = {
                 "{446900e4-71c2-419f-a6a7-df9c091e268b}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
                 # "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
@@ -167,11 +167,6 @@ in {
               };
             };
             misc.bookmarks = [
-              {
-                Title = "Dedistonks";
-                URL = "https://sd-158943.dedibox.fr:8006/#v1:0:=node%2Fdedistonks:4:5:=contentImages::::12:5";
-                Placement = "toolbar";
-              }
               {
                 Title = "Plex";
                 URL = "https://plex.flavien-fouqueray.fr";
