@@ -104,7 +104,7 @@
       owner = "Fausto-Korpsvart";
       repo = "Rose-Pine-GTK-Theme";
       rev = "master";
-      sha256 = "sha256-057eGlV07oKo/64fMm9QVaFxfrkG5vkr+qIY7Pf8tLo=";
+      sha256 = "sha256-nEp9qHVfGMzO6QqkYk1NJ5FT+h0m/bnkrJUzAskNUac=";
     };
   };
 }
