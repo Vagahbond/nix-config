@@ -24,8 +24,8 @@
   age.secrets.silverbulletEnv = {
     file = ../../secrets/silverbullet_env.age;
     mode = "440";
-    owner = "silverbullet";
-    group = "silverbullet";
+    owner = "nginx";
+    group = "nginx";
   };
 
   ###################################################################
@@ -34,7 +34,7 @@
   services.silverbullet = {
     enable = true;
     listenPort = 3888;
-    envFile = config.age.secrets.silverbulletEnv.path;
+    # envFile = config.age.secrets.silverbulletEnv.path;
   };
 
   ###################################################################
@@ -43,6 +43,7 @@
   services.nginx.virtualHosts."notes.vagahbond.com" = {
     forceSSL = true;
     enableACME = true;
+    basicAuthFile = config.age.secrets.silverbulletEnv.path;
     locations."/" = {
       proxyPass = "http://127.0.0.1:3888";
       proxyWebsockets = true; # needed if you need to use WebSocket
