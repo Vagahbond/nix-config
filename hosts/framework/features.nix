@@ -83,6 +83,7 @@ in {
         enableGeo = false;
         enableNetwork = true;
         languages = ["c-cpp" "js" "nix" "android"];
+        dbAdmin.enable = true;
       };
 
       editor = {

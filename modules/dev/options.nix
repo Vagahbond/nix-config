@@ -14,6 +14,8 @@ with lib; {
       '';
     };
 
+    dbAdmin.enable = mkEnableOption "pgAdmin";
+
     enableGeo = mkEnableOption "geo tools";
 
     enableNetwork = mkEnableOption "network tools";

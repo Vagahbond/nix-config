@@ -64,14 +64,31 @@ in {
           qgis
         ];
       })
-    (mkIf
+    (
+      mkIf
       (cfg.enable && cfg.enableNetwork)
       {
         environment.systemPackages = with pkgs; [
           wget
           curlWithGnuTls
         ];
-      })
+      }
+    )
+    (
+      mkIf
+      (cfg.enable && cfg.dbAdmin.enable)
+      {
+        environment.persistence.${impermanence.storageLocation} = {
+          directories = [
+            {directory = "/var/lib/pgadmin";}
+          ];
+        };
+
+        environment.systemPackages = with pkgs; [
+          pgadmin4
+        ];
+      }
+    )
     (mkIf
       (cfg.enable && cfg.enableNetwork && graphics != null)
       {
