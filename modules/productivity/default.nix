@@ -34,9 +34,19 @@ in {
     })
     (mkIf (cfg.maps.enable
       && (graphics.type != null)) {
-      environment.systemPackages = with pkgs; [
-        organicsmap
-      ];
+      environment = {
+        persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".config/OMaps"
+            ];
+          };
+        };
+
+        systemPackages = with pkgs; [
+          organicmaps
+        ];
+      };
     })
     (
       mkIf cfg.pomodoro.enable {
