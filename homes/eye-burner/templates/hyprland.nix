@@ -236,6 +236,8 @@
       windowrule=opaque,title:^(.*Visual Studio Code.*)$
       windowrule=opaque,title:^(.*Oracle VM VirtualBox.*)$
       windowrule=opaque,title:^(.*foot.*)$
+      windowrulev2 = opaque,title:(.*)(REAPER)(.*)$
+      windowrulev2 = tile,title:(.*)(REAPER)(.*)$
 
       windowrulev2 = opaque,fullscreen:1
       windowrulev2 = float, title:(.*)(satty)$

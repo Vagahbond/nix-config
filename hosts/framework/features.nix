@@ -138,6 +138,7 @@ in {
         activityWatch.enable = true;
         logseq.enable = false;
         maps.enable = true;
+        musicProduction.enable = true;
       };
 
       security = {

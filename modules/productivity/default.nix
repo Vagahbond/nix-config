@@ -63,6 +63,23 @@ in {
       }
     )
     (
+      mkIf cfg.musicProduction.enable {
+        environment = {
+          systemPackages = with pkgs; [
+            reaper
+            yabridge
+          ];
+          persistence.${impermanence.storageLocation} = {
+            users.${username} = {
+              directories = [
+                ".config/REAPER"
+              ];
+            };
+          };
+        };
+      }
+    )
+    (
       mkIf cfg.anytype.enable {
         environment.systemPackages = with pkgs; [
           anytype
