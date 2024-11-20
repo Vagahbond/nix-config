@@ -60,7 +60,7 @@
 
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
-    ags.url = "github:Aylur/ags";
+    ags.url = "github:Aylur/ags/67b0e31ded361934d78bddcfc01f8c3fcf781aad";
 
     # universe.url = "/home/vagahbond/Projects/uni-verse-production/";
     universe.url = "github:uni-verse-fm/uni-verse-production";
