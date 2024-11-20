@@ -218,12 +218,16 @@
           passes = 3
           ignore_opacity = true
         }
-        drop_shadow = true
-        shadow_range = 5
-        shadow_render_power = 4
-        shadow_offset =  5 5
-        col.shadow = rgba(${mkHexA colors.base06 "aa"})
-        col.shadow_inactive = rgba(${mkHexA colors.base06 "aa"})
+
+        shadow {
+          enabled = true
+          range = 5
+          render_power = 4
+          offset =  5 5
+          color = rgba(${mkHexA colors.base06 "aa"})
+          color_inactive = rgba(${mkHexA colors.base06 "aa"})
+
+        }
       }
 
       dwindle {
@@ -277,7 +281,7 @@
       exec = hyprpaper
       exec-once=hypridle
       exec-once=ags --quit && ags
-      exec-once=aw-qt
+      exec-once=aw-qt --no-gui
 
       # monitor=eDP-1,addreserved,0,0,60,0
       monitor=eDP-1,highres,auto,1.6
