@@ -70,15 +70,35 @@
             }
           ];
         }
+        {
+          job_name = "systemd";
+          static_configs = [
+            {
+              targets = ["localhost:${toString config.services.prometheus.exporters.systemd.port}"];
+            }
+          ];
+        }
       ];
 
-      exporters.node = {
-        enable = true;
-        port = 9898;
-        # https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/monitoring/prometheus/exporters.nix
-        enabledCollectors = ["systemd"];
-        # /nix/store/zgsw0yx18v10xa58psanfabmg95nl2bb-node_exporter-1.8.1/bin/node_exporter  --help
-        extraFlags = ["--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi"];
+      exporters = {
+        nginx = {
+          enable = true;
+          port = 9896;
+          sslVerify = false;
+        };
+        systemd = {
+          enable = true;
+          port = 9897;
+        };
+
+        node = {
+          enable = true;
+          port = 9898;
+          # https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/monitoring/prometheus/exporters.nix
+          enabledCollectors = ["systemd"];
+          # /nix/store/zgsw0yx18v10xa58psanfabmg95nl2bb-node_exporter-1.8.1/bin/node_exporter  --help
+          extraFlags = ["--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi"];
+        };
       };
     };
 

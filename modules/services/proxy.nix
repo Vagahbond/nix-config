@@ -5,6 +5,7 @@ _: {
   };
 
   services.nginx = {
+    statusPage = true;
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
     recommendedProxySettings = true;
