@@ -40,7 +40,7 @@
         builder.enable = true;
         homePage.enable = true;
         blog.enable = true;
-        universe.enable = true;
+        universe.enable = false;
         notes.enable = true;
         pdf.enable = true;
       };
