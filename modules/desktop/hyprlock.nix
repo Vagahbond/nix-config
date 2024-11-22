@@ -20,7 +20,7 @@
         };
         listener = [
           {
-            timeout = 5;
+            timeout = 30;
             on-timeout = "pidof hyprlock && hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
           }

@@ -39,6 +39,7 @@ in {
     bad = base08;
     accent = base0A;
     background = base02;
+    text = base06;
   };
 
   gtkTheme = {

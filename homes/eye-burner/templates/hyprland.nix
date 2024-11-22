@@ -279,7 +279,7 @@
       workspace = special:pomodoro, on-created-empty:foot zsh -c 'tomato; zsh -i' ,gapsout:100
 
       exec = hyprpaper
-      exec-once=hypridle
+      exec-once=systemctl --user enable --now hypridle.service
       exec-once=ags --quit && ags
       exec-once=aw-qt --no-gui
 
