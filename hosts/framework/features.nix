@@ -13,7 +13,7 @@ in {
       trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
     };
 
-    rice = "eye-burner";
+    rice = "eye-burner-minimal";
     /*
     specialisation.cosmic.configuration = {
       imports = [

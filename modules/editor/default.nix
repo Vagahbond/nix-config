@@ -96,7 +96,6 @@ in {
           enable = true;
           settings = {
             vim = {
-              tabWidth = 2;
               viAlias = false;
               vimAlias = true;
               lsp.enable = true;
@@ -156,11 +155,11 @@ in {
                 css.enable = true;
               };
 
-              visuals = {
+              /*
+                 visuals = {
                 enable = true;
                 nvimWebDevicons.enable = true;
                 scrollBar.enable = true;
-                smoothScroll.enable = true;
                 cellularAutomaton.enable = true;
                 fidget-nvim.enable = false;
                 # indentBlankline = {
@@ -174,7 +173,7 @@ in {
                 #   lineTimeout = 0;
                 # };
               };
-
+              */
               theme = {
                 enable = true;
                 name = "rose-pine";
@@ -182,11 +181,10 @@ in {
                 transparent = true;
               };
 
-              autopairs.enable = true;
+              autopairs.nvim-autopairs.enable = true;
 
               autocomplete = {
-                enable = true;
-                type = "nvim-cmp";
+                nvim-cmp.enable = true;
               };
 
               filetree = {

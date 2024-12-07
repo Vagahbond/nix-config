@@ -2,6 +2,7 @@
   rices = [
     "turtl-snail"
     "eye-burner"
+    "eye-burner-minimal"
   ];
 in {
   options = {

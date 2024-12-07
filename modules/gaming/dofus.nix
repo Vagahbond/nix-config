@@ -1,10 +1,11 @@
 {pkgs}:
 with pkgs;
   appimageTools.wrapType2 {
-    name = "dofus";
+    pname = "dofus";
+    version = "1.0";
     src = fetchurl {
       url = "https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage";
-      hash = "sha256-l8yR0yPMJ6ar0YSsB8D0WS+7iuFhT4x2GMOYsHv8/jE=";
+      hash = "sha256-ii156AkxkqNCFmcMwfYn8AMX3/vJWUDKRbF6Cs0QIYw=";
     };
     extraPkgs = pkgs:
       with pkgs; [
