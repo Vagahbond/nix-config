@@ -24,7 +24,7 @@ in {
     base01 = "#efebd4";
     base02 = "#bdc3af";
     base03 = "#bdc3af";
-    base04 = "#eaedc8";
+    base04 = "#829181";
     base05 = "#5c6a72";
     base06 = "#e0dcc7";
     base07 = "#efebd4";

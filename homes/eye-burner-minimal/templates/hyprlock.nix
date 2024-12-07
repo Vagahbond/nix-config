@@ -122,7 +122,7 @@
       text_align = left # center/right or any value for default left. multi-line text alignment inside label container
       color = ${mkRGB colors.text}
       font_size = 46
-      font_family = Noto Sans
+      font_family = ${font.name}
       rotate = 0 # degrees, counter-clockwise
 
       position = 200, 100

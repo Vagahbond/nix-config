@@ -88,8 +88,8 @@ in {
 
             theme = {
               colors = {
-                background-darker = mkHex colors.base01;
-                background = mkHex colors.background;
+                background-darker = mkHex colors.background;
+                background = mkHex colors.base00;
                 foreground = mkHex colors.text;
               };
               font = font.name;
