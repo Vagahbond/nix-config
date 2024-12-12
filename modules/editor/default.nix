@@ -95,7 +95,6 @@ in {
           enable = true;
           settings = {
             vim = {
-              enableEditorConfig = false;
               options = {
                 tabstop = 2;
                 shiftwidth = 2;
@@ -149,9 +148,13 @@ in {
                 };
                 ts = {
                   enable = true;
+                  lsp = {
+                    enable = true;
+                    server = "denols";
+                  };
                   format = {
-                    enable = false;
-                    type = "prettier";
+                    enable = true;
+                    #  type = "prettier";
                   };
                 };
                 go.enable = true;
