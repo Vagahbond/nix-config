@@ -217,10 +217,11 @@
           size = 10
           passes = 3
           ignore_opacity = true
+          special=true
         }
 
         shadow {
-          enabled = false
+          enabled = true
           range = 5
           render_power = 4
           offset =  5 5
@@ -244,8 +245,11 @@
       windowrulev2 = tile,title:(.*)(REAPER)(.*)$
 
       windowrulev2 = opaque,fullscreen:1
+      windowrulev2 = noshadow, floating:0.
+
       windowrulev2 = float, title:(.*)(satty)$
       windowrulev2 = float, class:(.*)(thunar)$
+
 
       # firefox's sharing indicator
       windowrule = float, title:^(Firefox — Sharing Indicator)$

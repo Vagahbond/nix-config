@@ -53,14 +53,14 @@
     };
 
     neovim-flake = {
-      url = "github:NotAShelf/nvf";
+      url = "/home/vagahbond/Projects/nvf";
     };
 
     anyrun.url = "github:anyrun-org/anyrun";
 
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
-    ags.url = "github:Aylur/ags/67b0e31ded361934d78bddcfc01f8c3fcf781aad";
+    ags.url = "github:Aylur/ags";
 
     # universe.url = "/home/vagahbond/Projects/uni-verse-production/";
     universe.url = "github:uni-verse-fm/uni-verse-production";

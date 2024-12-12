@@ -57,7 +57,9 @@ in {
     (lib.mkIf cfg.widgets.ags.enable {
       services.upower.enable = true;
 
-      home-manager.users.${username} = {
+
+      /*
+         home-manager.users.${username} = {
         imports = [inputs.ags.homeManagerModules.default];
 
         programs.ags = {
@@ -73,6 +75,7 @@ in {
           ];
         };
       };
+      */
     })
     (lib.mkIf (cfg.fileExplorer == "thunar") {
       environment.systemPackages = with pkgs; [

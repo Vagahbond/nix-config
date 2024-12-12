@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   ...
 }: let
   keys = import ../../secrets/sshKeys.nix {inherit config lib;};
@@ -14,39 +13,6 @@ in {
     };
 
     rice = "eye-burner-minimal";
-    /*
-    specialisation.cosmic.configuration = {
-      imports = [
-        inputs.cosmic.nixosModules.default
-      ];
-
-      services = {
-        desktopManager.cosmic.enable = true;
-        displayManager.cosmic-greeter.enable = true;
-
-        power-profiles-daemon.enable = lib.mkForce false;
-      };
-
-      networking.wireless.enable = lib.mkForce false;
-
-      modules.desktop = {
-        session = lib.mkForce null;
-
-        widgets = {
-          eww.enable = lib.mkForce false;
-          ags.enable = lib.mkForce false;
-        };
-
-        fileExplorer = lib.mkForce null;
-        notifications = lib.mkForce null;
-        terminal = lib.mkForce null;
-        displayManager = lib.mkForce null;
-        launcher = lib.mkForce null;
-        wallpaper = lib.mkForce null;
-        lockscreen = lib.mkForce null;
-      };
-    };
-    */
     modules = {
       impermanence.enable = true;
 
@@ -58,9 +24,10 @@ in {
       desktop = {
         session = "hyprland";
 
+        widgets.ags.enable = true;
+
         widgets = {
           eww.enable = false;
-          ags.enable = true;
         };
 
         fileExplorer = "thunar";

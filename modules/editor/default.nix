@@ -25,7 +25,6 @@ in {
           ];
         };
       };
-
       home-manager.users.${username} = _: {
         programs.vscode = {
           enable = true;
@@ -96,6 +95,12 @@ in {
           enable = true;
           settings = {
             vim = {
+              enableEditorConfig = false;
+              options = {
+                tabstop = 2;
+                shiftwidth = 2;
+              };
+
               viAlias = false;
               vimAlias = true;
               lsp.enable = true;
@@ -103,7 +108,7 @@ in {
 
               debugMode = {
                 enable = false;
-                level = 20;
+                level = 16;
                 logFile = "/tmp/nvim.log";
               };
 
@@ -114,6 +119,7 @@ in {
               };
 
               lsp = {
+                null-ls.debug = false;
                 formatOnSave = false;
                 lspkind.enable = false;
                 lightbulb.enable = true;
@@ -143,6 +149,10 @@ in {
                 };
                 ts = {
                   enable = true;
+                  format = {
+                    enable = false;
+                    type = "prettier";
+                  };
                 };
                 go.enable = true;
                 zig.enable = true;
