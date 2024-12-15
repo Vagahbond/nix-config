@@ -119,6 +119,7 @@ in {
 
         environment.systemPackages = with pkgs; [
           protontricks
+          gamescope
         ];
 
         programs.steam = {
