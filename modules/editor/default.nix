@@ -150,7 +150,7 @@ in {
                   enable = true;
                   lsp = {
                     enable = true;
-                    server = "denols";
+                    server = "ts_ls";
                   };
                   format = {
                     enable = true;
