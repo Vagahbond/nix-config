@@ -39,8 +39,8 @@
     '';
 
     src = fetchurl {
-      url = "https://cloud.vagahbond.com/s/QpiXSSkCmi4jAsQ/download/Wallpaper.png";
-      sha256 = "sha256-Cql/nKNZ8qRXnAG+S7BfiGZcFunh8uahr6XQw2FTrb0=";
+      url = "https://cloud.vagahbond.com/s/nazTB3FrsGNrHs6/download/wallpaper.png";
+      sha256 = "sha256-2WaWJMfuY2/9jQDVH6eU82ZycrpvOSQ/0A5+pzX+47g=";
     };
   };
 

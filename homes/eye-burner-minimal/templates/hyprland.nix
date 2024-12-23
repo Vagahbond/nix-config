@@ -190,6 +190,10 @@
         gaps_out = 0
         border_size = 0
 
+      }
+
+      animations {
+
         bezier=overdone,0.68, -0.40, 0.200, 1.30
         bezier=overdone2,0.175, 0.885, 0.32, 1.275
         bezier=slowstart,0.6, 0.04, 0.98, 0.335
@@ -202,15 +206,19 @@
         animation=windowsIn,1,4,overdone2,slide
         animation=windowsOut,1,4,overdone2,slide
 
-        animation=fadeIn,1,2,slowend
-        animation=fadeOut,1,2,slowstart
+        animation=fade,1,4,slowend
+
+        animation=fadeShadow,1,4,overdone2
+       # animation=fadeOut,1,2,overdone2
+
+       # animation=fadeShadow,1,2,overdone2
       }
 
       decoration {
         # fullscreen_opacity = 0
-        inactive_opacity = 0.8
+        inactive_opacity = 0.6
         active_opacity = 1.0
-        dim_inactive=true
+        dim_inactive=false
         rounding = 0
         blur {
           enabled = true
@@ -222,11 +230,11 @@
 
         shadow {
           enabled = true
-          range = 5
-          render_power = 4
-          offset =  5 5
-          color = rgba(${mkHexA colors.base06 "aa"})
-          color_inactive = rgba(${mkHexA colors.base06 "aa"})
+          range = 10
+          render_power = 2
+          # offset =  5 5
+          color = rgba(${mkHexA colors.accent "aa"})
+          color_inactive = rgba(${mkHexA colors.base05 "aa"})
 
         }
       }
@@ -245,7 +253,8 @@
       windowrulev2 = tile,title:(.*)(REAPER)(.*)$
 
       windowrulev2 = opaque,fullscreen:1
-      windowrulev2 = noshadow, floating:0.
+      # windowrulev2 = noshadow, floating:0.
+      windowrulev2 = noshadow, focus:0.
 
       windowrulev2 = float, title:(.*)(satty)$
       windowrulev2 = float, class:(.*)(thunar)$
