@@ -41,7 +41,7 @@ in {
           users.${username} = {
             directories = [
               ".config/vesktop"
-              ".config/ArmCord"
+              # ".config/ArmCord"
             ];
           };
         };
