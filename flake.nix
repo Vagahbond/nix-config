@@ -36,16 +36,8 @@
       flake = false;
     };
 
-    # hyprland = {
-    #   url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    #   #inputs.nixpkgs.follows = "nixpkgs";
-    # };
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
     spicetify-nix = {
       url = "github:gerg-l/spicetify-nix";
 
