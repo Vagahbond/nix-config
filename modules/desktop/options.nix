@@ -10,10 +10,7 @@ with lib; {
       '';
     };
 
-    widgets = {
-      eww.enable = mkEnableOption "Eww";
-      ags.enable = mkEnableOption "AGS";
-    };
+    ags.enable = mkEnableOption "AGS";
 
     fileExplorer = mkOption {
       example = "thunar";

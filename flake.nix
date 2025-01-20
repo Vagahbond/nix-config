@@ -31,11 +31,6 @@
       url = "github:schizofox/schizofox";
     };
 
-    eww-config = {
-      url = "github:Vagahbond/eww-dotfiles";
-      flake = false;
-    };
-
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
     spicetify-nix = {
@@ -52,7 +47,7 @@
 
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
-    ags.url = "github:Aylur/ags";
+    ags.url = "/home/vagahbond/Projects/ags";
 
     # universe.url = "/home/vagahbond/Projects/uni-verse-production/";
     universe.url = "github:uni-verse-fm/uni-verse-production";

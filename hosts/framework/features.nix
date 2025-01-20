@@ -24,11 +24,7 @@ in {
       desktop = {
         session = "hyprland";
 
-        widgets.ags.enable = true;
-
-        widgets = {
-          eww.enable = false;
-        };
+        ags.enable = true;
 
         fileExplorer = "thunar";
         notifications = "mako";

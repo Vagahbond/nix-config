@@ -22,6 +22,7 @@
 in {
   imports = [
     ./options.nix
+    inputs.ags.nixosModules.default
   ];
 
   config = lib.mkMerge [
@@ -45,37 +46,17 @@ in {
     (
       lib.mkIf ("hyprland" == cfg.session) (import ./hyprland.nix {inherit config username storageLocation pkgs inputs;})
     )
-    (lib.mkIf cfg.widgets.eww.enable {
-      environment.systemPackages = with pkgs; [
-        eww
-      ];
-
-      home-manager.users.${username} = {
-        home.file.".config/eww".source = inputs.eww-config;
-      };
-    })
-    (lib.mkIf cfg.widgets.ags.enable {
+    (lib.mkIf cfg.ags.enable {
       services.upower.enable = true;
-
-
-      /*
-         home-manager.users.${username} = {
-        imports = [inputs.ags.homeManagerModules.default];
-
-        programs.ags = {
-          enable = true;
-
-          # null or path, leave as null if you don't want hm to manage the config
-          configDir = ./ags;
-
-          # additional packages to add to gjs's runtime
-          extraPackages = with pkgs; [
-            gtksourceview
-            accountsservice
-          ];
+      ags = {
+        enable = true;
+        vars = {
+          bg = config.theme.colors.background;
+          fg = config.theme.colors.text;
+          inherit (config.theme.colors) good bad warning accent;
+          inherit (config.theme) radius;
         };
       };
-      */
     })
     (lib.mkIf (cfg.fileExplorer == "thunar") {
       environment.systemPackages = with pkgs; [
