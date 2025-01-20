@@ -78,7 +78,7 @@
   # alternate-scroll-mode=yes
 
   [colors]
-  alpha=0.9
+  alpha=1
   background=${mkHex colors.background}
   foreground=${mkHex colors.text}
 
