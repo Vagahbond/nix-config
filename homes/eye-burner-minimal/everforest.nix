@@ -38,10 +38,7 @@
       cp $src $out/wallpaper.png
     '';
 
-    src = fetchurl {
-      url = "https://cloud.vagahbond.com/s/nazTB3FrsGNrHs6/download/wallpaper.png";
-      sha256 = "sha256-2WaWJMfuY2/9jQDVH6eU82ZycrpvOSQ/0A5+pzX+47g=";
-    };
+    src = ./wallpaper.png;
   };
 
   sddm-theme = stdenvNoCC.mkDerivation {
@@ -60,7 +57,7 @@
     };
 
     buildPhase = ''
-      cp ${wallpaper}/wallpaper.png ./corners/backgrounds/background.png
+      cp ${wallpaper}/wallpaper.png ./corners/backgrounds/background
       echo '${sddm-config}' > ./corners/theme.conf
     '';
 
@@ -68,14 +65,14 @@
       runHook preInstall
 
       mkdir -p $out/share/sddm/themes
-      cp -R ./corners $out/share/sddm/themes/rose-pine
+      cp -R ./corners $out/share/sddm/themes/theme
 
       runHook postInstall
     '';
   };
 
   gtk-theme = stdenv.mkDerivation {
-    pname = "rose-pine-gtk";
+    pname = "everforest-gtk";
     version = "1.0";
     buildInputs = with pkgs; [sassc dos2unix];
     dontBuild = true;
@@ -88,10 +85,10 @@
 
       mkdir -p $out/share/themes/
       bash ./themes/install.sh  \
-        -n Rose-Pine            \
         -c light                \
+        -t green                \
         -d $out/share/themes/   \
-        --tweaks macos
+        --tweaks medium
 
       mkdir -p $out/share/icons/
 
@@ -102,9 +99,9 @@
 
     src = fetchFromGitHub {
       owner = "Fausto-Korpsvart";
-      repo = "Rose-Pine-GTK-Theme";
+      repo = "Everforest-GTK-Theme";
       rev = "master";
-      sha256 = "sha256-nEp9qHVfGMzO6QqkYk1NJ5FT+h0m/bnkrJUzAskNUac=";
+      sha256 = "sha256-Z46i0Ihpzo4LhFvzKsvnzcHFzeYxJMvQmg2k6lmjGH0=";
     };
   };
 }

@@ -45,17 +45,17 @@ in {
   };
 
   gtkTheme = {
-    name = "Rose-Pine-Light";
+    name = "everforest-gtk-1.0-Green-Light-Medium";
     package = themePackages.gtk-theme;
   };
 
   iconsTheme = {
-    name = "rose-pine-dawn";
-    package = pkgs.rose-pine-icon-theme;
+    name = "Everforest-Light";
+    package = themePackages.gtk-theme;
   };
 
   qtTheme = {
-    name = "Rose-Pine-Light";
+    name = "everforest-gtk-1.0-Green-Light-Medium";
     package = themePackages.gtk-theme;
   };
 
@@ -70,7 +70,7 @@ in {
   };
 
   displayManagerTheme = {
-    name = "rose-pine";
+    name = "theme";
     package = themePackages.sddm-theme;
   };
 
