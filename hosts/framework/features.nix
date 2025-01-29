@@ -100,7 +100,7 @@ in {
         pomodoro.enable = true;
         activityWatch.enable = true;
         logseq.enable = false;
-        maps.enable = true;
+        maps.enable = false;
         musicProduction.enable = true;
       };
 
