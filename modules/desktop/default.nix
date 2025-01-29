@@ -150,7 +150,6 @@ in {
 
       home-manager.users.${username} = {
         home.file.".config/hypr/hyprpaper.conf".text = templates.hyprpaper;
-        home.file.".config/hypr/wallpaper.jpg".text = templates.foot;
       };
     })
   ];
