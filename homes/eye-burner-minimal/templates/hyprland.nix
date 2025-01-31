@@ -195,6 +195,7 @@
       }
 
       animations {
+        enabled=false
 
         bezier=overdone,0.68, -0.40, 0.200, 1.30
         bezier=overdone2,0.175, 0.885, 0.32, 1.275
@@ -218,9 +219,9 @@
 
       decoration {
         # fullscreen_opacity = 0
-        inactive_opacity = 0.6
+        inactive_opacity = 1.0
         active_opacity = 1.0
-        dim_inactive=false
+        dim_inactive=true
         rounding = 0
         blur {
           enabled = true
