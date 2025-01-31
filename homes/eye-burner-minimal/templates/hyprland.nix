@@ -255,7 +255,7 @@
       windowrulev2 = tile,title:(.*)(REAPER)(.*)$
 
       windowrulev2 = opaque,fullscreen:1
-      # windowrulev2 = noshadow, floating:0.
+      windowrulev2 = noshadow, floating:0.
       windowrulev2 = noshadow, focus:0.
 
       windowrulev2 = float, title:(.*)(satty)$
