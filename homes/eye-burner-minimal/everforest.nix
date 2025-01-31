@@ -57,7 +57,7 @@
     };
 
     buildPhase = ''
-      cp ${wallpaper}/wallpaper.png ./corners/backgrounds/background
+      cp ${wallpaper}/wallpaper.png ./corners/backgrounds/background.png
       echo '${sddm-config}' > ./corners/theme.conf
     '';
 
