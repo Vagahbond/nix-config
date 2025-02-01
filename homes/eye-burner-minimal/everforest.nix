@@ -87,8 +87,7 @@
       bash ./themes/install.sh  \
         -c light                \
         -t green                \
-        -d $out/share/themes/   \
-        --tweaks medium
+        -d $out/share/themes/
 
       mkdir -p $out/share/icons/
 

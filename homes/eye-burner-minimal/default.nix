@@ -46,7 +46,7 @@ in {
   };
 
   gtkTheme = {
-    name = "everforest-gtk-1.0-Green-Light-Medium";
+    name = "everforest-gtk-1.0-Green-Light";
     package = themePackages.gtk-theme;
   };
 
@@ -56,7 +56,7 @@ in {
   };
 
   qtTheme = {
-    name = "everforest-gtk-1.0-Green-Light-Medium";
+    name = "everforest-gtk-1.0-Green-Light";
     package = themePackages.gtk-theme;
   };
 
