@@ -29,23 +29,6 @@
       vibrancy_darkness = 0.0
   }
 
-  shape {
-      monitor =
-      size = 1200, 800
-      color = ${mkRGBA colors.background 0.8}
-      rounding = ${builtins.toString radius}
-      border_size = 0
-      rotate = 0
-      xray = false # if true, make a "hole" in the background (rectangle of specified size, no rotation)
-
-      position = 150, 0
-      halign = left
-      valign = center
-
-      shadow_passes = 3
-  }
-
-
   # avatar picture
   image {
       monitor =
@@ -91,9 +74,9 @@
       invert_numlock = false # change color if numlock is off
       swap_font_color = false # see below
 
-      position = -150, -300
-      halign = center
-      valign = center
+      position = 100, -706
+      halign = left
+      valign = top
 
       shadow_passes = 3
 
@@ -105,31 +88,29 @@
       text =Hi there, <span foreground='#${mkHHex colors.accent}'>$USER</span>.
       text_align = left # center/right or any value for default left. multi-line text alignment inside label container
       color = ${mkRGB colors.text}
-      font_size = 46
+      font_size = 64
       font_family = ${font.name}
       rotate = 0 # degrees, counter-clockwise
 
-      position = 200, 300
+      position = 100, -100
       halign = left
-      valign = center
+      valign = top
 
   }
 
   # Date
   label {
       monitor =
-      text =cmd[update:3600000] echo "It's <span foreground='#${mkHHex colors.accent}'>$(date +%A)</span>, <span foreground='#${mkHHex colors.accent}'>$(date +%B)</span> the <span foreground='#${mkHHex colors.accent}'>$(date +%d)</span> <br/> of <span foreground='#${mkHHex colors.accent}'>$(date +%Y)</span>."
+      text =cmd[update:3600000] echo "It's <span foreground='#${mkHHex colors.accent}'>$(date +%A)</span><br/><span foreground='#${mkHHex colors.accent}'>$(date +%B)</span> the <span foreground='#${mkHHex colors.accent}'>$(date +%d)</span> of <span foreground='#${mkHHex colors.accent}'>$(date +%Y)</span>."
       text_align = left # center/right or any value for default left. multi-line text alignment inside label container
       color = ${mkRGB colors.text}
       font_size = 46
       font_family = ${font.name}
       rotate = 0 # degrees, counter-clockwise
 
-      position = 200, 100
+      position = 100, -346
       halign = left
-      valign = center
-
-
+      valign = top
   }
 
   # time
@@ -142,9 +123,9 @@
       font_family = ${font.name}
       rotate = 0 # degrees, counter-clockwise
 
-      position = 200, -50
+      position = 100, -558
       halign = left
-      valign = center
+      valign = top
 
 
   }
@@ -159,8 +140,8 @@
       font_family = ${font.name}
       rotate = 0 # degrees, counter-clockwise
 
-      position = 0, 10
-      halign = center
+      position = 100, 10
+      halign = left
       valign = bottom
   }
 
