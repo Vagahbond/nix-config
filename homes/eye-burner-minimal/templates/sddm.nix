@@ -73,7 +73,7 @@
   InputColor="${mkHHex colors.background}"
   InputTextColor="${mkHHex colors.text}"
   InputBorderWidth=2
-  InputBorderColor="${mkHHex colors.accent}"
+  InputBorderColor="${mkHHex colors.base08}"
   UserPlaceholderText="user"
   PassPlaceholderText="password"
   HidePassword=true
@@ -108,7 +108,7 @@
   # PowerIconColor:       color. Color of the icon inside the power button.
 
   SessionButtonColor="${mkHHex colors.background}"
-  SessionIconColor="${mkHHex colors.base0B}"
+  SessionIconColor="${mkHHex colors.base08}"
   PowerButtonColor="${mkHHex colors.background}"
   PowerIconColor="${mkHHex colors.accent}"
 
@@ -127,13 +127,13 @@
 
   DateTimeSpacing=0
 
-  DateColor="${mkHHex colors.base02}"
+  DateColor="${mkHHex colors.base08}"
   DateSize=82
   DateIsBold=false
   DateOpacity=1.0
   DateFormat="dddd MMMM d yyyy"
 
-  TimeColor="${mkHHex colors.accent}"
+  TimeColor="${mkHHex colors.text}"
   TimeSize=96
   TimeIsBold=true
   TimeOpacity=1.0
