@@ -13,6 +13,7 @@
     discord = mkTemplateContent (import ./templates/discord.nix);
     hyprlock = mkTemplateContent (import ./templates/hyprlock.nix);
     sddm = mkTemplateContent (import ./templates/sddm.nix);
+    spicetify = mkTemplateContent (import ./templates/spicetify.nix);
   };
 
   themePackages = pkgs.callPackage ./everforest.nix {sddm-config = templates.sddm;};
