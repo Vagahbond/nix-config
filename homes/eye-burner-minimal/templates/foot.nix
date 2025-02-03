@@ -33,7 +33,7 @@
   # initial-window-size-pixels=700x500  # Or,
   # initial-window-size-chars=<COLSxROWS>
   # initial-window-mode=windowed
-  pad=20x20                             # optionally append 'center'
+  pad=10x10                             # optionally append 'center'
   # resize-delay-ms=100
 
   # notify=notify-send -a \$\{app-id} -i \$\{app-id} \$\{title} \$\{body}
