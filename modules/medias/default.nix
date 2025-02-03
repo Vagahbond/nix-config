@@ -111,17 +111,16 @@ in {
 
         programs.spicetify = {
           enable = true;
-          theme = spicePkgs.themes.text;
-          /*
+          theme =
+            spicePkgs.themes.text
             // {
-            additonalCss = ''
-              * {
-                font-family: ${config.theme.font.name};
-                font-size: 16px;
-              }
-            ''
-          };
-          */
+              additonalCss = ''
+                * {
+                  font-family: ${config.theme.font.name}; !important
+                  font-size: 16px; !important
+                }
+              '';
+            };
           customColorScheme = config.theme.templates.spicetify;
           enabledExtensions = with spicePkgs.extensions; [
             shuffle # shuffle+ (special characters are sanitized out of ext names)
