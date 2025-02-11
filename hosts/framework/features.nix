@@ -142,7 +142,7 @@ in {
         libvirt.enable = true;
         wine.enable = true;
         # virtualbox.enable = true;
-        kubernetes.client.enable = true;
+        kubernetes.client.enable = false;
       };
 
       gaming = {
