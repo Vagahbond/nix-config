@@ -66,7 +66,7 @@
     nextcloud = {
       enable = true;
       home = "/data/nextcloud";
-      package = pkgs.nextcloud29;
+      package = pkgs.nextcloud30;
       hostName = "cloud.vagahbond.com";
       https = true;
       maxUploadSize = "4G";
@@ -97,44 +97,38 @@
         inherit (config.services.nextcloud.package.packages.apps) contacts calendar notes maps;
         tasks = pkgs.fetchNextcloudApp {
           appName = "tasks";
-          sha256 = "sha256-HitYQcdURUHujRNMF0jKQzvSO93bItisI0emq0yw8p4=";
-          url = "https://github.com/nextcloud/tasks/releases/download/v0.16.0/tasks.tar.gz";
-          appVersion = "0.16.0";
+          sha256 = "0v1yzaa41zglafvyfny82hab78sbbv69bjx5vhavbxwvbxvbg5jj";
+          url = "https://github.com/nextcloud/tasks/releases/download/v0.16.1/tasks.tar.gz";
+          appVersion = "0.16.1";
           license = "agpl3Plus";
         };
         cospend = pkgs.fetchNextcloudApp {
           appName = "cospend";
-          sha256 = "sha256-J6w+ZqFNZbJeaPuZOZ4OQ+O+VhIQ0XajqYZuHqvjL24=";
-          url = "https://github.com/julien-nc/cospend-nc/releases/download/v1.6.1/cospend-1.6.1.tar.gz";
-          appVersion = "9.0.2";
+          sha256 = "1zqyylw7l3bd3wkb1i0qpaccfp3hwb7ynnfii4qw9llr32bydxmd";
+          url = "https://github.com/julien-nc/cospend-nc/releases/download/v3.0.11/cospend-3.0.11.tar.gz";
+          appVersion = "3.0.11";
           license = "agpl3Plus";
         };
-        deck = pkgs.fetchNextcloudApp {
-          appName = "deck";
-          sha256 = "sha256-/5/NNkuBEtXAHsDkaA/PHZCBLSl5U1e/rV4nU/Ir7TI=";
-          url = "https://github.com/nextcloud/deck/releases/download/v1.13.0/deck.tar.gz";
-          appVersion = "1.13.0";
-          license = "agpl3Plus";
-        };
-        quicknotes = pkgs.fetchNextcloudApp {
-          appName = "quicknotes";
-          sha256 = "sha256-8ppIN7ITiQVsgPzbRVB6OHe4vSzdBBovHexBkr4yffY=";
-          url = "https://github.com/matiasdelellis/quicknotes/releases/download/v0.8.23/quicknotes.tar.gz";
-          appVersion = "0.8.23";
-          license = "agpl3Plus";
-        };
+        # deck = pkgs.fetchNextcloudApp {
+        #   appName = "deck";
+        #   sha256 = "sha256-/5/NNkuBEtXAHsDkaA/PHZCBLSl5U1e/rV4nU/Ir7TI=";
+        #   url = "https://github.com/nextcloud/deck/releases/download/v1.13.0/deck.tar.gz";
+        #   appVersion = "1.13.0";
+        #   license = "agpl3Plus";
+        # };
+        # quicknotes = pkgs.fetchNextcloudApp {
+        #  appName = "quicknotes";
+        #  sha256 = "";
+        #  url = "https://github.com/matiasdelellis/quicknotes/releases/download/v0.8.23/quicknotes.tar.gz";
+
+        # appVersion = "0.8.23";
+        #  license = "agpl3Plus";
+        # };
         forms = pkgs.fetchNextcloudApp {
           appName = "forms";
-          sha256 = "sha256-OqqorHVWCDicQKnTxEJjeXzDrsj98vWvtWYyaRmDsUs=";
-          url = "https://github.com/nextcloud-releases/forms/releases/download/v4.2.4/forms-v4.2.4.tar.gz";
-          appVersion = "4.2.4";
-          license = "agpl3Plus";
-        };
-        analytics = pkgs.fetchNextcloudApp {
-          appName = "analytics";
-          sha256 = "sha256-d0kt1mGO5eVmj39aqywUBLXmI4x0FgkDqEHFBONugG0=";
-          url = "https://github.com/Rello/analytics/releases/download/5.0.1/analytics-5.0.1.tar.gz";
-          appVersion = "5.0.1";
+          sha256 = "067d57g9x0khggkvarnsw0qhrmg1m74kqq3ap518kyr72yzkijhn";
+          url = "https://github.com/nextcloud-releases/forms/releases/download/v4.3.6/forms-v4.3.6.tar.gz";
+          appVersion = "4.3.6";
           license = "agpl3Plus";
         };
       };
