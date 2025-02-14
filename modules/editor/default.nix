@@ -160,7 +160,7 @@ in {
                 go.enable = true;
                 zig.enable = true;
                 python.enable = false;
-                dart.enable = true;
+                dart.enable = false;
                 elixir.enable = false;
                 php.enable = true;
                 lua.enable = true;
