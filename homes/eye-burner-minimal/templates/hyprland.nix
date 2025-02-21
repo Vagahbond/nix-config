@@ -221,7 +221,7 @@
         # fullscreen_opacity = 0
         inactive_opacity = 1.0
         active_opacity = 1.0
-        dim_inactive=true
+        dim_inactive=false
         rounding = 0
         blur {
           enabled = true
@@ -280,7 +280,7 @@
       windowrulev2 = fullscreen, initialTitle:^(Dofus)(.*)$
 
       # Issues with scaling in FL
-      windowrulev2 = fullscreen, class:^(fl64.exe)(.*)$
+      windowrulev2 = fullscreen, initialTitle:^(FL Studio 20)(.*)$
 
       xwayland:force_zero_scaling = true
 
