@@ -40,6 +40,8 @@ with lib; {
 
     universe.enable = mkEnableOption "Uni-verse";
 
+    learnify.enable = mkEnableOption "learnify";
+
     cockpit.enable = mkEnableOption "Cockpit";
 
     notes.enable = mkEnableOption "silverbullet";

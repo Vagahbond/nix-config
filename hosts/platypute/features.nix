@@ -41,6 +41,7 @@
         homePage.enable = true;
         blog.enable = true;
         universe.enable = false;
+        learnify.enable = true;
         notes.enable = true;
         pdf.enable = true;
       };

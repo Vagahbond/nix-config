@@ -63,6 +63,9 @@ in {
       mkIf cfg.universe.enable (import ./universe.nix {inherit config pkgs inputs;})
     )
     (
+      mkIf cfg.learnify.enable (import ./learnify.nix {inherit config pkgs inputs;})
+    )
+    (
       mkIf cfg.metrics.enable (import ./metrics.nix {inherit storageLocation config pkgs inputs;})
     )
     (

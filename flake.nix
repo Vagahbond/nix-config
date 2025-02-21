@@ -51,5 +51,10 @@
 
     # universe.url = "/home/vagahbond/Projects/uni-verse-production/";
     universe.url = "github:uni-verse-fm/uni-verse-production";
+
+    learnify = {
+      url = "git+ssh://git@github.com/vagahbond/learnify-homepage";
+      flake = false;
+    };
   };
 }
