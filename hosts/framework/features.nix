@@ -149,6 +149,7 @@ in {
         wine.enable = true;
         dofus.enable = true;
         steam.enable = true;
+        lutris.enable = false;
       };
     };
   };

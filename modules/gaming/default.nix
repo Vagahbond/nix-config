@@ -75,14 +75,35 @@ in {
         kernelModules = ["hid-tmff2"];
       };
     })
+    (mkIf (cfg.lutris.enable
+      && (graphics.type != null)) {
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            "Games"
+          ];
+        };
+      };
+
+      environment.systemPackages = with pkgs; [
+        (lutris.override {
+          extraLibraries = pkgs:
+            with pkgs; [
+              nspr
+              gdk-pixbuf
+              xorg.libXdamage
+            ];
+        })
+      ];
+    })
     (mkIf (cfg.dofus.enable
       && (graphics.type != null)) {
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
             ".config/Ankama/Dofus"
-            ".config/zaap"
-            ".wine"
+            ".config/Ankama/Dofus-dofus3"
+            # ".wine"
           ];
         };
       };

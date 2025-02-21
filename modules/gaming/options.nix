@@ -3,6 +3,7 @@ with lib; {
   options.modules.gaming = {
     optimisations.enable = mkEnableOption "Various optimisations";
     steering-wheel.enable = mkEnableOption "Steering wheel modules";
+    lutris.enable = mkEnableOption "Lutris";
     wine.enable = mkEnableOption "Enable vanilla wine";
     dofus.enable = mkEnableOption "Enable Dofus";
     steam.enable = mkEnableOption "Enable Steam";

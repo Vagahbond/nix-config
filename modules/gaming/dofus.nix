@@ -5,10 +5,11 @@ with pkgs;
     version = "1.0";
     src = fetchurl {
       url = "https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage";
-      hash = "sha256-NT4tIQKJr1P+bpDMmRwi63aEsB+CKyU+B4SF68eLU4k=";
+      hash = "sha256-D1SYKY7hnkUjTrxlsKyvFpw9SXTSuPn2XPrh+6CnOfk=";
     };
     extraPkgs = pkgs:
       with pkgs; [
         wine-wayland
+        sentry-native
       ];
   }
