@@ -54,6 +54,10 @@ in {
           "TelstraA3CF79" = {
             pskRaw = "ext:LENNOX_HEAD_PSK";
           };
+
+          "Raymondo's WiFi" = {
+            pskRaw = "ext:RAYMOND_PSK";
+          };
         };
       };
     })
