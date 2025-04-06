@@ -11,5 +11,7 @@ with lib; {
       '';
       example = false;
     };
+
+    rclone.enable = mkEnableOption "rclone";
   };
 }

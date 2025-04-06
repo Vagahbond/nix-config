@@ -16,6 +16,7 @@
       };
 
       system = {
+        rclone.enable = true;
         ntfs.enable = true;
         compression.enable = true;
       };
