@@ -20,6 +20,7 @@ in {
   "joan_ghost_env.age".publicKeys = [mk platypute];
 
   "universe.age".publicKeys = [mk platypute];
+  "learnify.age".publicKeys = [mk platypute];
 
   "silverbullet_env.age".publicKeys = [mk platypute];
 
