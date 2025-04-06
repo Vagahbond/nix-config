@@ -276,8 +276,7 @@
       windowrulev2 = opaque, class:^(.*mpv.*)$
 
       # Dofus keeps crashing
-      windowrulev2 = float, class:^(dofus.exe)(.*)$
-      windowrulev2 = fullscreen, initialTitle:^(Dofus)(.*)$
+      windowrulev2 = float, class:^(gamescope)(.*)$
 
       # Issues with scaling in FL
       windowrulev2 = fullscreen, initialTitle:^(FL Studio 20)(.*)$
