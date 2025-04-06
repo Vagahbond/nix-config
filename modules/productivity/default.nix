@@ -67,7 +67,6 @@ in {
         environment = {
           systemPackages = with pkgs; [
             reaper
-            yabridge
           ];
           persistence.${impermanence.storageLocation} = {
             users.${username} = {
