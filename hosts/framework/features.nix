@@ -42,6 +42,7 @@ in {
 
       dev = {
         enable = true;
+        godot.enable = true;
 
         enableGeo = false;
         enableNetwork = true;
