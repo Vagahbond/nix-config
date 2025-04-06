@@ -105,10 +105,16 @@ in {
             ".config/Ankama/Dofus-dofus3"
             # ".wine"
           ];
+          files = [
+            ".config/zaap/Preferences"
+            ".config/zaap/Settings"
+          ];
         };
       };
       environment.systemPackages = [
         dofus
+        pkgs.sentry-native
+
         (
           pkgs.writeTextDir "share/applications/dofus.desktop" ''
             [Desktop Entry]
