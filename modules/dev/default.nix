@@ -57,6 +57,25 @@ in {
         # };
       };
     }
+    (
+      mkIf
+      (cfg.enable && cfg.godot.enable && graphics != null)
+      {
+        environment.persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              # "Unity"
+            ];
+          };
+        };
+
+        environment.systemPackages = with pkgs; [
+          godot
+          blender
+        ];
+      }
+    )
+
     (mkIf
       (cfg.enable && cfg.enableGeo && graphics != null)
       {

@@ -18,6 +18,8 @@ with lib; {
 
     enableGeo = mkEnableOption "geo tools";
 
+    godot.enable = mkEnableOption "godot";
+
     enableNetwork = mkEnableOption "network tools";
   };
 }
