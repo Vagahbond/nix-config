@@ -1,11 +1,11 @@
-{inputs, ...}: let
-in {
-  services.nginx = {
+{config, ...}: {
+  age.secrets.learnify = {
+    file = ../../secrets/learnify.age;
+    mode = "440";
+  };
+
+  services.learnify = {
     enable = true;
-    virtualHosts."learnify.vagahbond.com" = {
-      enableACME = true;
-      forceSSL = true;
-      root = inputs.learnify;
-    };
+    envFile = config.age.secrets.learnify.path;
   };
 }

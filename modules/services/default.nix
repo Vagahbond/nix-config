@@ -17,6 +17,7 @@ in {
   # TODO: move this import to the uni-verse part somehow.
   imports = [
     inputs.universe.nixosModules.default
+    inputs.learnify.nixosModules.default
     ./options.nix
   ];
 
