@@ -39,6 +39,12 @@
     group = "users";
   };
 
+  age.secrets.nextcloudS3Secret = {
+    file = ../../secrets/nextcloud_s3_secret.age;
+    mode = "440";
+    owner = "nextcloud";
+    group = "users";
+  };
   ###################################################
   # SSL                                             #
   ###################################################
@@ -65,7 +71,7 @@
 
     nextcloud = {
       enable = true;
-      home = "/data/nextcloud";
+      # home = "/var/lib/nextcloud";
       package = pkgs.nextcloud30;
       hostName = "cloud.vagahbond.com";
       https = true;
@@ -73,6 +79,14 @@
       config = {
         dbtype = "pgsql";
         adminpassFile = config.age.secrets.nextcloudAdminPass.path;
+        objectstore.s3 = {
+          enable = true;
+          autocreate = false;
+          bucket = "vagahbond-nextcloud-s3";
+          key = "AKIAZI2LIHXHGU2IFURD";
+          secretFile = config.age.secrets.nextcloudS3Secret.path;
+          region = "ap-southeast-2";
+        };
       };
       settings = {
         # trusted_proxies = ["192.168.0.3"];
