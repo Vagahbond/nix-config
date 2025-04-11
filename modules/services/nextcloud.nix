@@ -15,6 +15,13 @@
     # TODO: independent redis and rabbitmq with special volume
     directories = [
       {
+        directory = "/var/lib/nextcloud";
+        user = "nextcloud";
+        group = "nextcloud";
+        mode = "u=rwx,g=rx,o=";
+      }
+
+      {
         directory = "/var/lib/redis-nextcloud";
         user = "nextcloud";
         group = "nextcloud";
