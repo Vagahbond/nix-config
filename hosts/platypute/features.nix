@@ -3,7 +3,7 @@
     modules = {
       impermanence = {
         enable = true;
-        storageLocation = "/data";
+        #storageLocation = "/data";
       };
       user.password = "$y$j9T$W4KvCgdBzhRBgZDnXf9s2/$rdrtKUhstflz5ADDB/w9WZc6M/sWlwqM76vKjaG3yV/";
 

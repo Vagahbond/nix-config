@@ -7,7 +7,7 @@
     inputs.disko.nixosModules.disko
   ];
 
-  fileSystems."/data".neededForBoot = true;
+  # fileSystems."/data".neededForBoot = true;
 
   disko.devices = {
     nodev = {
@@ -67,7 +67,8 @@
           };
         };
       };
-      secondary = {
+      /*
+        secondary = {
         device = lib.mkDefault "/dev/vdb";
         type = "disk";
 
@@ -87,6 +88,7 @@
           };
         };
       };
+      */
     };
   };
 }

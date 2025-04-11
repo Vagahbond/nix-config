@@ -8,7 +8,7 @@
 
   boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk"];
 
-  systemd.services.nix-daemon.environment.TMPDIR = "/data/tmp";
+  # systemd.services.nix-daemon.environment.TMPDIR = "/data/tmp";
 
   # Impermanencing my whole system cause I like to suffer
   /*

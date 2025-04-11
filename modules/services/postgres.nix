@@ -17,7 +17,7 @@
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_14;
-    dataDir = "/data/postgresql";
+    dataDir = "/var/lib/postgresql";
 
     enableTCPIP = false;
 
