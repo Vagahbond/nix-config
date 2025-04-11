@@ -11,7 +11,8 @@ in {
   "kubeconfig.age".publicKeys = [mk];
   "wakatime_config.age".publicKeys = [mk dedistonks platypute];
 
-  "nextcloud_admin_pass.age".publicKeys = [mk dedistonks platypute];
+  "nextcloud_admin_pass.age".publicKeys = [mk platypute];
+  "nextcloud_s3_secret.age".publicKeys = [mk platypute];
   "nextcloud_client_account.age".publicKeys = [mk];
 
   "invoiceshelf_env.age".publicKeys = [mk platypute];
