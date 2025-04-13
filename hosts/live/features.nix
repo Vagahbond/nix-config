@@ -1,8 +1,16 @@
-{inputs, ...}: let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   username = import ../../username.nix;
 in {
   config = {
     rice = null;
+
+    environment.systemPackages = [
+      inputs.disko.packages.${pkgs.system}.default
+    ];
 
     modules = {
       user.password = "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
