@@ -58,7 +58,7 @@
               };
             };
             encryptedSwap = {
-              size = "4G";
+              size = "8G";
               content = {
                 type = "swap";
                 randomEncryption = true;
