@@ -15,10 +15,11 @@
   };
 
   home-manager.users.${username} = {
-    imports = [inputs.anyrun.homeManagerModules.default];
+    #     imports = [inputs.anyrun.homeManagerModules.default];
 
     programs.anyrun = {
       enable = true;
+      package = inputs.anyrun.packages.${pkgs.system}.default;
       config = {
         plugins = with inputs.anyrun.packages.${pkgs.system}; [
           applications
