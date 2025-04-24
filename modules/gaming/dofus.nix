@@ -29,7 +29,7 @@ with pkgs;
     version = "1.0";
     src = fetchurl {
       url = "https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage";
-      hash = "sha256-TraYeapdsCURQZBuibI8PS22HS/gu0gQ5LBTesQ1sEw=";
+      hash = "sha256-ghDzxiimXe3IJfUl44kxARp3GhIslMmfvbru1PklVzk=";
     };
     extraPkgs = pkgs:
       with pkgs; [
