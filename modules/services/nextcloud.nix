@@ -6,7 +6,7 @@
   ###################################################
   # PORTS                                           #
   ###################################################
-  networking.firewall.allowedTCPPorts = [8000];
+  #  networking.firewall.allowedTCPPorts = [8000];
 
   ###################################################################
   # IMPERMANENCE                                                    #
@@ -79,8 +79,8 @@
     nextcloud = {
       enable = true;
       # home = "/var/lib/nextcloud";
-      package = pkgs.nextcloud30;
-      hostName = "cloud.vagahbond.com";
+      package = pkgs.nextcloud31;
+      hostName = "nuage.vagahbond.com";
       https = true;
       maxUploadSize = "4G";
       config = {
@@ -115,7 +115,7 @@
       };
 
       extraApps = {
-        inherit (config.services.nextcloud.package.packages.apps) contacts calendar notes maps;
+        inherit (config.services.nextcloud.package.packages.apps) contacts calendar notes;
         tasks = pkgs.fetchNextcloudApp {
           appName = "tasks";
           sha256 = "0v1yzaa41zglafvyfny82hab78sbbv69bjx5vhavbxwvbxvbg5jj";
@@ -130,13 +130,14 @@
           appVersion = "3.0.11";
           license = "agpl3Plus";
         };
-        # deck = pkgs.fetchNextcloudApp {
-        #   appName = "deck";
-        #   sha256 = "sha256-/5/NNkuBEtXAHsDkaA/PHZCBLSl5U1e/rV4nU/Ir7TI=";
-        #   url = "https://github.com/nextcloud/deck/releases/download/v1.13.0/deck.tar.gz";
-        #   appVersion = "1.13.0";
-        #   license = "agpl3Plus";
-        # };
+        maps = pkgs.fetchNextcloudApp {
+          appName = "maps";
+          sha256 = "sha256-E0S/CwXyye19lcuiONEQCyHJqlL0ZG1A9Q7oOTEZH1g=";
+          url = "https://github.com/nextcloud/maps/releases/download/v1.6.0-3-nightly/maps-1.6.0-3-nightly.tar.gz";
+
+          appVersion = "1.6.0";
+          license = "agpl3Plus";
+        };
         # quicknotes = pkgs.fetchNextcloudApp {
         #  appName = "quicknotes";
         #  sha256 = "";
@@ -147,9 +148,9 @@
         # };
         forms = pkgs.fetchNextcloudApp {
           appName = "forms";
-          sha256 = "067d57g9x0khggkvarnsw0qhrmg1m74kqq3ap518kyr72yzkijhn";
-          url = "https://github.com/nextcloud-releases/forms/releases/download/v4.3.6/forms-v4.3.6.tar.gz";
-          appVersion = "4.3.6";
+          sha256 = "1rhgxyw46f529n8ixrig4rnpig9z75mp5jvwwfh7ym3xmx3gb3xp";
+          url = "https://github.com/nextcloud-releases/forms/releases/download/v5.1.0/forms-v5.1.0.tar.gz";
+          appVersion = "5.1.0";
           license = "agpl3Plus";
         };
       };

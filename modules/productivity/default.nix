@@ -103,7 +103,7 @@ in {
             };
             Service = {
               Type = "simple";
-              ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -u $(sed -n 1p ${config.age.secrets.nextcloud-client-user.path}) -p $(sed -n 2p ${config.age.secrets.nextcloud-client-user.path}) --non-interactive -s -h  --path /Documents /home/${username}/Documents https://cloud.vagahbond.com";
+              ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -u $(sed -n 1p ${config.age.secrets.nextcloud-client-user.path}) -p $(sed -n 2p ${config.age.secrets.nextcloud-client-user.path}) --non-interactive -s -h  --path /Documents /home/${username}/Documents https://nuage.vagahbond.com";
               TimeoutStopSec = "180";
               KillMode = "process";
               KillSignal = "SIGINT";

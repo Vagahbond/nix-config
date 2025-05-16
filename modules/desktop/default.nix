@@ -94,15 +94,6 @@ in {
           progressColor = "source ${mkHHex colors.accent}";
           # groupBy = "app-name";
           padding = "8";
-
-          # TODO: Script to enable do-not-disturb I guess
-          extraConfig = ''
-            outer-margin=20
-
-            [mode=do-not-disturb]
-            invisible=1
-
-          '';
         };
       };
     })

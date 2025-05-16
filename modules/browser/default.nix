@@ -148,7 +148,7 @@ in {
             misc = {
               drm.enable = false;
               disableWebgl = false;
-              startPageURL = "https://cloud.vagahbond.com";
+              startPageURL = "https://nuage.vagahbond.com";
             };
 
             extensions = {

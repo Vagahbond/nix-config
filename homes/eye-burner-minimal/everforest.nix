@@ -100,7 +100,7 @@
       owner = "Fausto-Korpsvart";
       repo = "Everforest-GTK-Theme";
       rev = "master";
-      sha256 = "sha256-4py5HiAfyVAaMZ0vUzjNyGgEXByItqp1wPMh070YOYY=";
+      sha256 = "sha256-U5Qsr5RH+MfKuPgexAiyQiQfLfLS4cpSJqc/+jX/53s=";
     };
   };
 }
