@@ -23,7 +23,6 @@
 
       terminal = {
         tmux.enable = true;
-        theFuck.enable = true;
         shell = "zsh";
       };
 

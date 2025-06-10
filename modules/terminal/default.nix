@@ -13,15 +13,9 @@ with lib; let
 in {
   imports = [./options.nix];
   config = mkMerge [
-    (
-      mkIf cfg.tmux.enable
-      (import ./tmux.nix {
-        inherit pkgs;
-      })
-    )
-    (mkIf cfg.theFuck.enable {
+    {
       environment.systemPackages = with pkgs; [
-        thefuck
+        pay-respects
       ];
 
       environment.persistence.${storageLocation} = {
@@ -31,7 +25,13 @@ in {
           ];
         };
       };
-    })
+    }
+    (
+      mkIf cfg.tmux.enable
+      (import ./tmux.nix {
+        inherit pkgs;
+      })
+    )
     (mkIf (cfg.shell == "zsh") {
       environment.persistence.${storageLocation} = {
         users.${username} = {

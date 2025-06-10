@@ -32,7 +32,6 @@ in {
       };
 
       terminal = {
-        theFuck.enable = true;
         shell = "zsh";
         shellAliases = {
           clone-config = "git clone https://github.com/vagahbond/nix-config";

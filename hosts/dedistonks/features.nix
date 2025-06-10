@@ -28,7 +28,6 @@ in {
       };
 
       terminal = {
-        theFuck.enable = true;
         shell = "zsh";
       };
 
