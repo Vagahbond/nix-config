@@ -83,17 +83,19 @@ in {
       home-manager.users.${username} = {
         services.mako = {
           enable = true;
-          font = "${font.name} 10}";
-          anchor = "top-right";
-          defaultTimeout = 4000;
-          ignoreTimeout = true;
-          backgroundColor = mkHHexA colors.background "DD";
-          borderColor = mkHHex colors.accent;
-          textColor = mkHHex colors.base05;
-          borderRadius = radius;
-          progressColor = "source ${mkHHex colors.accent}";
-          # groupBy = "app-name";
-          padding = "8";
+          settings = {
+            font = "${font.name} 10}";
+            anchor = "top-right";
+            default-timeout = 4000;
+            ignore-timeout = true;
+            background-color = mkHHexA colors.background "DD";
+            border-color = mkHHex colors.accent;
+            text-color = mkHHex colors.base05;
+            border-radius = radius;
+            progress-color = "source ${mkHHex colors.accent}";
+            # groupBy = "app-name";
+            padding = "8";
+          };
         };
       };
     })
@@ -118,6 +120,14 @@ in {
     (
       lib.mkIf (cfg.displayManager == "sddm") {
         environment = {
+          # persistence.${impermanence.storageLocation} = {
+          #   users.${username} = {
+          #     directories = [
+          # ".local/share/sddm"
+          #     ];
+          #   };
+          # };
+
           systemPackages = [
             displayManagerTheme.package
           ];
