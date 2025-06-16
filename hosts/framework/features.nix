@@ -42,7 +42,7 @@ in {
 
       dev = {
         enable = true;
-        godot.enable = true;
+        godot.enable = false;
 
         enableGeo = false;
         enableNetwork = true;
@@ -51,7 +51,7 @@ in {
       };
 
       editor = {
-        gui = ["vscode"];
+        gui = [];
         terminal = ["neovim"];
         office = true;
       };
@@ -61,7 +61,7 @@ in {
           player = true;
           downloader = true;
           recorder = false;
-          editor = true;
+          editor = false;
         };
 
         audio = {
@@ -97,12 +97,12 @@ in {
       # Notion on nix broken for now, too busy to look into it
       productivity = {
         notion.enable = false;
-        nextcloudSync.enable = true;
+        nextcloudSync.enable = false;
         pomodoro.enable = true;
         activityWatch.enable = true;
         logseq.enable = false;
         maps.enable = false;
-        musicProduction.enable = true;
+        musicProduction.enable = false;
       };
 
       security = {
@@ -112,7 +112,7 @@ in {
       };
 
       social = {
-        whatsapp.enable = true;
+        whatsapp.enable = false;
         discord.enable = true;
         # teams.enable = true;
         # matrix.enable = true;
@@ -121,10 +121,10 @@ in {
       system = {
         ntfs.enable = true;
         compression.enable = true;
+        flatpak.enable = false;
       };
 
       terminal = {
-        theFuck.enable = true;
         tmux.enable = true;
         shell = "zsh";
         shellAliases = {
@@ -141,15 +141,15 @@ in {
       virtualisation = {
         docker.enable = true;
         libvirt.enable = true;
-        wine.enable = true;
+        wine.enable = false;
         # virtualbox.enable = true;
         kubernetes.client.enable = false;
       };
 
       gaming = {
-        wine.enable = true;
-        dofus.enable = true;
-        steam.enable = true;
+        wine.enable = false;
+        dofus.enable = false;
+        steam.enable = false;
         lutris.enable = false;
       };
     };
