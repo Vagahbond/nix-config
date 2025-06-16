@@ -42,10 +42,10 @@
       bind = SUPER, T, exec, foot
       bind=SUPER, SPACE, togglespecialworkspace, scratchpad
       bind=SUPER, P, togglespecialworkspace, pomodoro
-      bind = SUPERSHIFT, Q, killactive
+      bind = SUPER, Q, killactive
       bind = SUPERSHIFT, E, exec,  kill -9 -1
-      bind=SUPER,E,exec,thunar
-      bind=SUPER,F,togglefloating,
+      bind=SUPER,F,exec,thunar
+      bind=SUPER,G,togglefloating,
       bind=SUPER,F11,fullscreen,
       bind=SUPERSHIFT,Escape,exec, loginctl lock-session
 
@@ -166,6 +166,7 @@
       gestures {
       	workspace_swipe = true
         # workspace_swipe_numbered = true
+        workspace_swipe_fingers = 3
 
       }
 
