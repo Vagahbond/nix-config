@@ -140,6 +140,7 @@ in {
           users.${username} = {
             directories = [
               ".steam"
+              ".local/share/Valve Corporation"
             ];
           };
         };
@@ -160,7 +161,7 @@ in {
           #   inputs.nix-gaming.packages.${pkgs.system}.proton-ge
           # ];
         };
-        hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
+        hardware.graphics.enable32Bit = true; # Enables support for 32bit libs that steam uses
       }
     )
     (
