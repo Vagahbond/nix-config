@@ -121,7 +121,6 @@ in {
       system = {
         ntfs.enable = true;
         compression.enable = true;
-        flatpak.enable = false;
       };
 
       terminal = {
