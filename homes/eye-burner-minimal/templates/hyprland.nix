@@ -78,14 +78,11 @@
       # Screenshots
 
       # Screenshot a window
-      # bind = SUPER, PRINT, exec, hyprshot -m window -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
       bind = SUPER, PRINT, exec, grimblast --notify --cursor copysave active
       # Screenshot a monitor
-      # bind = , PRINT, exec, hyprshot -m output -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
       bind = , PRINT, exec, grimblast --notify --cursor copysave output
       # Screenshot a region
-      # bind = SHIFT, PRINT, exec, hyprshot -m region -r | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
-      bind = SHIFT, PRINT, exec, grimblast --notify --cursor copysave area
+      bind = SHIFT, PRINT, exec, grimblast --notify copysave area
 
 
       bind=SUPER,1,workspace,1
@@ -166,7 +163,7 @@
       gestures {
       	workspace_swipe = true
         # workspace_swipe_numbered = true
-        workspace_swipe_fingers = 3
+        workspace_swipe_fingers = 4
 
       }
 
