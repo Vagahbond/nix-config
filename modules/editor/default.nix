@@ -95,17 +95,19 @@ in {
           enable = true;
           settings = {
             vim = {
+              vimAlias = true;
               options = {
                 tabstop = 2;
                 shiftwidth = 2;
               };
 
-              viAlias = false;
-              vimAlias = true;
-              lsp.enable = true;
-              # useSystemClipboard = true;
-              clipboard.registers = true;
+              clipboard = {
+                enable = true;
+                providers.wl-copy.enable = true;
+                registers = "unnamedplus";
+              };
 
+              # vimAlias = true;
               debugMode = {
                 enable = false;
                 level = 16;
@@ -119,7 +121,7 @@ in {
               };
 
               lsp = {
-                null-ls.debug = false;
+                enable = true;
                 formatOnSave = false;
                 lspkind.enable = false;
                 lightbulb.enable = true;
@@ -130,7 +132,6 @@ in {
               # LANGUAGES
 
               languages = {
-                enableLSP = true;
                 enableFormat = true;
                 enableTreesitter = true;
                 enableExtraDiagnostics = true;
