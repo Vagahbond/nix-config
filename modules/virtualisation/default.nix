@@ -33,8 +33,7 @@ in {
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
-            #      share dir is already persisted
-            #       ".local/share/bottles"
+            ".local/share/bottles"
           ];
         };
       };
@@ -77,6 +76,8 @@ in {
         users.${username} = {
           directories = [
             ".docker"
+            ".local/share/docker"
+            ".local/share/containers"
           ];
         };
       };
