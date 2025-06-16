@@ -28,9 +28,18 @@ in {
     })
     (mkIf (cfg.activityWatch.enable
       && (graphics.type != null)) {
-      environment.systemPackages = with pkgs; [
-        activitywatch
-      ];
+      environment = {
+        persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".local/share/activitywatch"
+            ];
+          };
+        };
+        systemPackages = with pkgs; [
+          activitywatch
+        ];
+      };
     })
     (mkIf (cfg.maps.enable
       && (graphics.type != null)) {
@@ -39,6 +48,7 @@ in {
           users.${username} = {
             directories = [
               ".config/OMaps"
+              ".local/share/OMaps"
             ];
           };
         };
@@ -50,9 +60,18 @@ in {
     })
     (
       mkIf cfg.pomodoro.enable {
-        environment.systemPackages = with pkgs; [
-          tomato-c
-        ];
+        environment = {
+          persistence.${impermanence.storageLocation} = {
+            users.${username} = {
+              directories = [
+                ".local/share/tomato"
+              ];
+            };
+          };
+          systemPackages = with pkgs; [
+            tomato-c
+          ];
+        };
       }
     )
     (
@@ -67,11 +86,13 @@ in {
         environment = {
           systemPackages = with pkgs; [
             reaper
+            bitwig-studio
           ];
           persistence.${impermanence.storageLocation} = {
             users.${username} = {
               directories = [
                 ".config/REAPER"
+                "Bitwig Studio"
               ];
             };
           };
