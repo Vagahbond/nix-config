@@ -12,14 +12,14 @@ with lib; {
 
     language = mkOption {
       type = types.str;
-      default = "en_US.utf8";
+      default = "en_US.UTF-8";
       description = ''The default language to use.'';
-      example = "en_US.utf8";
+      example = "en_US.UTF-8";
     };
 
     detailsLanguage = mkOption {
       type = types.str;
-      default = "en_US.utf8";
+      default = "en_US.UTF-8";
       description = ''        The language to use for formatting specific things :
               - dates
               - numbers
