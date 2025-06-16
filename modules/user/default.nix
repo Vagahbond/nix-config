@@ -68,7 +68,8 @@ in {
           directory = ".local/share/keyrings";
           mode = "0700";
         }
-        ".local/share"
+
+        ".local/share/nix"
         ".pki"
       ];
 
