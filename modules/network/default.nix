@@ -31,6 +31,10 @@ in {
         userControlled.enable = true;
         secretsFile = config.age.secrets.wifi.path;
         networks = {
+
+          "Trezise Nursery" = {
+            pskRaw = "ext:BRANCHES_PSK";
+          };
           "ESGI" = {
             pskRaw = "ext:ESGI_PSK";
           };
