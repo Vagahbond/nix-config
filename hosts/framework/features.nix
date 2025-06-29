@@ -129,7 +129,7 @@ in {
         shellAliases = {
           rebuild-remote = ''            f() {  \
                      NIX_SSHOPTS="-i ~/.ssh/$1_access " \
-                     nixos-rebuild switch --use-remote-sudo \
+                     nixos-rebuild switch --sudo --ask-sudo-password \
                      --flake .#"$1" --target-host $1 \
                      --build-host $1 --show-trace \
                      }; f\
