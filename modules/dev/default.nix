@@ -10,8 +10,6 @@ with lib; let
   inherit (config.modules) graphics impermanence;
 
   cfg = config.modules.dev;
-
-  insomnia = import ./insomnia.nix {inherit pkgs;};
 in {
   imports = [./options.nix];
 
@@ -111,26 +109,20 @@ in {
     (mkIf
       (cfg.enable && cfg.enableNetwork && graphics != null)
       {
-        environment.persistence.${impermanence.storageLocation} = {
-          users.${username} = {
-            directories = [
-              ".config/Insomnia"
-            ];
+        environment = {
+          systemPackages = with pkgs; [
+            slumber
+          ];
+
+          persistence.${impermanence.storageLocation} = {
+            users.${username} = {
+              directories = [
+                ".config/slumber/"
+                ".local/share/slumber/"
+              ];
+            };
           };
         };
-        environment.systemPackages = [
-          insomnia
-          (
-            pkgs.writeTextDir "share/applications/insomnia.desktop" ''
-              [Desktop Entry]
-              Version=2.68
-              Type=Application
-              Name=Insomnia
-              Exec=insomnia
-              StartupWMClass=AppRun
-            ''
-          )
-        ];
       })
     (mkIf
       (cfg.enable && builtins.elem "android" cfg.languages)
