@@ -64,8 +64,8 @@
               defaultRegion = "ap-southeast-2";
             };
             secureJsonData = {
-              accessKey = "$__file{${config.age.secrets.awsAccess.path}";
-              secretKey = "$__file{${config.age.secrets.awsSecret.path}";
+              accessKey = "$__file{${config.age.secrets.awsAccess.path}}";
+              secretKey = "$__file{${config.age.secrets.awsSecret.path}}";
             };
           }
         ];
@@ -86,7 +86,8 @@
 
     prometheus = {
       enable = true;
-      globalConfig.scrape_interval = "10s"; # "1m"
+      globalConfig.scrape_interval = "5m"; # "1m"
+      retentionTime = "31d";
       scrapeConfigs = [
         {
           job_name = "node";
