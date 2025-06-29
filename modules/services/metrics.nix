@@ -1,9 +1,23 @@
 {
   config,
-  pkgs,
   storageLocation,
   ...
 }: {
+  age.secrets = {
+    awsSecret = {
+      file = ../../secrets/aws_ro_secret.age;
+      owner = "grafana";
+      mode = "600";
+      group = "grafana";
+    };
+    awsAccess = {
+      file = ../../secrets/aws_ro_access.age;
+      owner = "grafana";
+      mode = "600";
+      group = "grafana";
+    };
+  };
+
   environment.persistence.${storageLocation} = {
     # TODO: independent redis and rabbitmq with special volume
     directories = [
@@ -41,6 +55,18 @@
             name = "Prometheus";
             type = "prometheus";
             url = "http://${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
+          }
+          {
+            name = "CloudWatch";
+            type = "cloudwatch";
+            jsonData = {
+              authType = "keys";
+              defaultRegion = "ap-southeast-2";
+            };
+            secureJsonData = {
+              accessKey = "$__file{${config.age.secrets.awsAccess.path}";
+              secretKey = "$__file{${config.age.secrets.awsSecret.path}";
+            };
           }
         ];
       };

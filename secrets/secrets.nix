@@ -28,11 +28,15 @@ in {
   # SSH Keys
   "ssh_config.age".publicKeys = [mk];
 
-  "builder_access.age".publicKeys = [mk dedistonks];
+  "builder_access.age".publicKeys = [mk];
 
   "platypute_access.age".publicKeys = [mk];
 
   "github_access.age".publicKeys = [mk];
 
   "dedistonks_access.age".publicKeys = [mk];
+
+  "aws_ro_access.age".publicKeys = [platypute mk];
+
+  "aws_ro_secret.age".publicKeys = [platypute mk];
 }
