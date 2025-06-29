@@ -39,4 +39,6 @@ in {
   "aws_ro_access.age".publicKeys = [platypute mk];
 
   "aws_ro_secret.age".publicKeys = [platypute mk];
+
+  "vultr_api_key.age".publicKeys = [platypute mk];
 }

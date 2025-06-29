@@ -1,11 +1,18 @@
 {
   config,
   storageLocation,
+  pkgs,
   ...
 }: {
   age.secrets = {
     awsSecret = {
       file = ../../secrets/aws_ro_secret.age;
+      owner = "grafana";
+      mode = "600";
+      group = "grafana";
+    };
+    vultrApiKey = {
+      file = ../../secrets/vultr_api_key.age;
       owner = "grafana";
       mode = "600";
       group = "grafana";
@@ -40,35 +47,54 @@
     grafana = {
       enable = true;
 
-      # declarativePlugins = with pkgs.grafanaPlugins; [ ... ];
+      declarativePlugins = with pkgs.grafanaPlugins; [yesoreyeram-infinity-datasource];
 
       provision = {
         enable = true;
 
-        # dashboards.settings.providers = [{
-        # name = "my dashboards";
-        # options.path = "/etc/grafana-dashboards";
-        # }];
+        datasources.settings = {
+          deleteDatasources = [
+            {
+              name = "Vultr Client";
+              orgId = 1;
+            }
+          ];
 
-        datasources.settings.datasources = [
-          {
-            name = "Prometheus";
-            type = "prometheus";
-            url = "http://${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
-          }
-          {
-            name = "CloudWatch";
-            type = "cloudwatch";
-            jsonData = {
-              authType = "keys";
-              defaultRegion = "ap-southeast-2";
-            };
-            secureJsonData = {
-              accessKey = "$__file{${config.age.secrets.awsAccess.path}}";
-              secretKey = "$__file{${config.age.secrets.awsSecret.path}}";
-            };
-          }
-        ];
+          datasources = [
+            {
+              name = "Vultr HTTP client";
+              type = "yesoreyeram-infinity-datasource";
+              url = "https://api.vultr.com/";
+
+              jsonData = {
+                httpHeaderName1 = "Authorization";
+                allowedHosts = ["https://api.vultr.com/"];
+              };
+
+              secureJsonData = {
+                httpHeaderValue1 = "$__file{${config.age.secrets.vultrApiKey.path}}";
+              };
+            }
+            {
+              name = "Prometheus";
+              type = "prometheus";
+              url = "http://${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
+            }
+
+            {
+              name = "CloudWatch";
+              type = "cloudwatch";
+              jsonData = {
+                authType = "keys";
+                defaultRegion = "ap-southeast-2";
+              };
+              secureJsonData = {
+                accessKey = "$__file{${config.age.secrets.awsAccess.path}}";
+                secretKey = "$__file{${config.age.secrets.awsSecret.path}}";
+              };
+            }
+          ];
+        };
       };
 
       settings = {
@@ -86,7 +112,7 @@
 
     prometheus = {
       enable = true;
-      globalConfig.scrape_interval = "5m"; # "1m"
+      globalConfig.scrape_interval = "10s"; # "1m"
       retentionTime = "31d";
       scrapeConfigs = [
         {
