@@ -16,10 +16,10 @@
 
   body {
     /* font, change to \'\' for default discord font */
-          --font: "${font.name}";
+    --font: "${font.name}";
 
     /* change to \'\' for default discord font */
-          --code-font: "${font.name}";
+    --code-font: "${font.name}";
 
     /* change to \'\' for default discord font */
     font-weight: 300;
@@ -149,13 +149,13 @@
     /* dark buttons when clicked */
     --bg-2: #fdf6e3;
     /* dark buttons */
-    --bg-3: var(--bg-2);
+    --bg-3: var(--bg-1);
     /* spacing, secondary elements */
-    --bg-4: var(--bg-2);
+    --bg-4: var(--bg-1);
     /* main background color */
-    --hover: var(--bg-2);
+    --hover: var(--bg-1);
     /* channels and buttons when hovered */
-    --active: var(--bg-1);
+    --active: #e0dcc7;
     /* channels and buttons when clicked or selected */
     --active-2: #e0dcc7;
     /* extra state for transparent buttons */
