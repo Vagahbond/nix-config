@@ -33,8 +33,6 @@ in {
         iio-sensor-proxy
         # For notifications
         libnotify
-        # File explorer in terminal
-        yazi
       ];
       # Gotta have default fonts
       fonts.packages = with pkgs; [
@@ -58,6 +56,22 @@ in {
         };
       };
     })
+    (lib.mkIf (cfg.fileExplorer == "yazi") {
+      environment.systemPackages = with pkgs; [
+      ];
+
+      programs = {
+        yazi = {
+          enable = true;
+          plugins = with pkgs.yaziPlugins; {
+            inherit chmod mount git;
+          };
+          # flavour = {};
+          #settings = {};
+        };
+      };
+    })
+
     (lib.mkIf (cfg.fileExplorer == "thunar") {
       environment.systemPackages = with pkgs; [
         libgsf # odf files

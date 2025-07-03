@@ -26,7 +26,7 @@ in {
 
         ags.enable = true;
 
-        fileExplorer = "thunar";
+        fileExplorer = "yazi";
         notifications = "mako";
         terminal = "foot";
         displayManager = "sddm";

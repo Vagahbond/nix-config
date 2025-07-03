@@ -14,7 +14,7 @@ with lib; {
 
     fileExplorer = mkOption {
       example = "thunar";
-      type = types.enum ["thunar" null];
+      type = types.enum ["thunar" "yazi" null];
       default = null;
       description = ''
         The file explorer you want to use.
