@@ -41,4 +41,6 @@ in {
   "aws_ro_secret.age".publicKeys = [platypute mk];
 
   "vultr_api_key.age".publicKeys = [platypute mk];
+
+  "nextCloudMonitoringAccessToken.age".publicKeys = [platypute mk];
 }

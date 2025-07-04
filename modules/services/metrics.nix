@@ -23,6 +23,13 @@
       mode = "600";
       group = "grafana";
     };
+
+    nextCloudAccess = {
+      file = ../../secrets/nextCloudMonitoringAccessToken.age;
+      owner = "nextcloud-exporter";
+      mode = "600";
+      group = "nextcloud-exporter";
+    };
   };
 
   environment.persistence.${storageLocation} = {
@@ -139,6 +146,14 @@
             }
           ];
         }
+        {
+          job_name = "nextcloud";
+          static_configs = [
+            {
+              targets = ["localhost:${toString config.services.prometheus.exporters.nextcloud.port}"];
+            }
+          ];
+        }
       ];
 
       exporters = {
@@ -159,6 +174,13 @@
           enabledCollectors = ["systemd"];
           # /nix/store/zgsw0yx18v10xa58psanfabmg95nl2bb-node_exporter-1.8.1/bin/node_exporter  --help
           extraFlags = ["--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi"];
+        };
+
+        nextcloud = {
+          enable = true;
+          url = "https://${config.services.nextcloud.hostName}";
+          tokenFile = "${config.age.secrets.nextCloudAccess.path}";
+          # port = 1212;
         };
       };
     };
