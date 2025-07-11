@@ -115,7 +115,7 @@
       };
 
       extraApps = {
-        inherit (config.services.nextcloud.package.packages.apps) contacts calendar notes;
+        inherit (config.services.nextcloud.package.packages.apps) contacts calendar notes news memories recognize richdocuments;
         tasks = pkgs.fetchNextcloudApp {
           appName = "tasks";
           sha256 = "0v1yzaa41zglafvyfny82hab78sbbv69bjx5vhavbxwvbxvbg5jj";

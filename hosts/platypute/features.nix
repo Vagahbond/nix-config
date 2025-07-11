@@ -36,6 +36,7 @@
         proxy.enable = true;
         ssh.enable = true;
         nextcloud.enable = true;
+        office.enable = true;
         vaultwarden.enable = true;
         builder.enable = true;
         homePage.enable = true;

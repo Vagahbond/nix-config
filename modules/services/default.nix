@@ -53,6 +53,9 @@ in {
       mkIf cfg.nextcloud.enable (import ./nextcloud.nix {inherit storageLocation config pkgs;})
     )
     (
+      mkIf cfg.office.enable (import ./office.nix {inherit storageLocation config pkgs;})
+    )
+    (
       mkIf cfg.notes.enable (import ./silverbullet.nix {inherit storageLocation config pkgs;})
     )
     (

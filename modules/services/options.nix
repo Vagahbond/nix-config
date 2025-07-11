@@ -51,5 +51,7 @@ with lib; {
     metrics.enable = mkEnableOption "Metrics with Prometeus and Grafana";
 
     invoices.enable = mkEnableOption "Invoice managing service";
+
+    office.enable = mkEnableOption "WOPI server";
   };
 }
