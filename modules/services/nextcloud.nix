@@ -56,13 +56,23 @@
   # SSL                                             #
   ###################################################
 
-  services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
-    forceSSL = true;
-    enableACME = true;
-    locations = {
-      "/".proxyWebsockets = true;
-      # uh, equals what?
-      # "~ ^\/nextcloud\/(?:index|remote|public|cron|core\/ajax\/update|status|ocs\/v[12]|updater\/.+|oc[ms]-provider\/.+|.+\/richdocumentscode\/proxy)\.php(?:$|\/)" = {};
+  services.nginx.virtualHosts = {
+    ${config.services.nextcloud.hostName} = {
+      forceSSL = true;
+      enableACME = true;
+      locations = {
+        "/".proxyWebsockets = true;
+        # uh, equals what?
+        # "~ ^\/nextcloud\/(?:index|remote|public|cron|core\/ajax\/update|status|ocs\/v[12]|updater\/.+|oc[ms]-provider\/.+|.+\/richdocumentscode\/proxy)\.php(?:$|\/)" = {};
+      };
+    };
+    localhost = {
+      locations = {
+        "/nextcloud-users-usage-report/" = {
+          root = "/var/lib/nextcloud";
+          index = "report.csv";
+        };
+      };
     };
   };
 
@@ -171,8 +181,19 @@
 
       serviceConfig = {
         Type = "oneshot";
+        ExecStartPre = pkgs.writeShellScript "nextcloud-users-usage-report-prepare.sh" ''
+          mkdir -p /var/lib/nextcloud/nextcloud-users-usage-report;
+          chown nextcloud:nextcloud /var/lib/nextcloud/nextcloud-users-usage-report;
+          rm -rf /var/lib/nextcloud/nextcloud-users-usage-report/* ;
+        '';
+
         ExecStart = ''
-          /run/current-system/sw/bin/nextcloud-occ usage-report:generate --output json -O /tmp/nextcloud-users-usage-report'';
+          /run/current-system/sw/bin/nextcloud-occ usage-report:generate --output csv -O /var/lib/nextcloud/nextcloud-users-usage-report/report.csv
+        '';
+        ExecStartPost = pkgs.writeShellScript "nextcloud-users-usage-report-finish.sh" ''
+          chown -R nginx:nginx /var/lib/nextcloud/nextcloud-users-usage-report;
+        '';
+
         TimeoutStopSec = "600";
         KillMode = "process";
         KillSignal = "SIGINT";

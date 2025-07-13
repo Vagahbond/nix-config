@@ -60,13 +60,6 @@
         enable = true;
 
         datasources.settings = {
-          deleteDatasources = [
-            {
-              name = "Vultr Client";
-              orgId = 1;
-            }
-          ];
-
           datasources = [
             {
               name = "Vultr HTTP client";
@@ -82,6 +75,16 @@
                 httpHeaderValue1 = "$__file{${config.age.secrets.vultrApiKey.path}}";
               };
             }
+            {
+              name = "Local HTTP client";
+              type = "yesoreyeram-infinity-datasource";
+              url = "http://localhost";
+
+              jsonData = {
+                allowedHosts = ["http://localhost/"];
+              };
+            }
+
             {
               name = "Prometheus";
               type = "prometheus";
@@ -171,9 +174,9 @@
           enable = true;
           port = 9898;
           # https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/monitoring/prometheus/exporters.nix
-          enabledCollectors = ["systemd"];
+          enabledCollectors = ["systemd" "textfile"];
           # /nix/store/zgsw0yx18v10xa58psanfabmg95nl2bb-node_exporter-1.8.1/bin/node_exporter  --help
-          extraFlags = ["--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi"];
+          extraFlags = ["--collector.ethtool" "--collector.softirqs" "--collector.tcpstat"];
         };
 
         nextcloud = {
