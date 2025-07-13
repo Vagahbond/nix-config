@@ -59,6 +59,11 @@
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
+    locations = {
+      "/".proxyWebsockets = true;
+      # uh, equals what?
+      # "~ ^\/nextcloud\/(?:index|remote|public|cron|core\/ajax\/update|status|ocs\/v[12]|updater\/.+|oc[ms]-provider\/.+|.+\/richdocumentscode\/proxy)\.php(?:$|\/)" = {};
+    };
   };
 
   ###################################################
@@ -88,7 +93,7 @@
         adminpassFile = config.age.secrets.nextcloudAdminPass.path;
         objectstore.s3 = {
           enable = true;
-          autocreate = false;
+          verify_bucket_exists = false;
           bucket = "vagahbond-nextcloud-s3";
           key = "AKIAZI2LIHXHGU2IFURD";
           secretFile = config.age.secrets.nextcloudS3Secret.path;
@@ -138,14 +143,14 @@
           appVersion = "1.6.0";
           license = "agpl3Plus";
         };
-        # quicknotes = pkgs.fetchNextcloudApp {
-        #  appName = "quicknotes";
-        #  sha256 = "";
-        #  url = "https://github.com/matiasdelellis/quicknotes/releases/download/v0.8.23/quicknotes.tar.gz";
+        user_usage_report = pkgs.fetchNextcloudApp {
+          appName = "user_usage_report";
+          sha256 = "sha256-itWaJUHnBZmsBrL4O0fps/DgSm7MEt0JeIrNM1LlRUk=";
+          url = "https://github.com/nextcloud-releases/user_usage_report/releases/download/v2.0.0/user_usage_report-v2.0.0.tar.gz";
 
-        # appVersion = "0.8.23";
-        #  license = "agpl3Plus";
-        # };
+          appVersion = "25.4.202";
+          license = "agpl3Plus";
+        };
         forms = pkgs.fetchNextcloudApp {
           appName = "forms";
           sha256 = "1rhgxyw46f529n8ixrig4rnpig9z75mp5jvwwfh7ym3xmx3gb3xp";
