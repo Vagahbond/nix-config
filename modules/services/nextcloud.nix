@@ -162,4 +162,32 @@
       extraAppsEnable = true;
     };
   };
+
+  systemd = {
+    services.nextcloud-usage-report = {
+      unitConfig = {
+        Description = "Generate a report of usage per users";
+      };
+
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = ''
+          /run/current-system/sw/bin/nextcloud-occ usage-report:generate --output json -O /tmp/nextcloud-users-usage-report'';
+        TimeoutStopSec = "600";
+        KillMode = "process";
+        KillSignal = "SIGINT";
+        # RemainAfterExit = true;
+      };
+      wantedBy = ["multi-user.target"];
+    };
+    timers.nextcloud-usage-report = {
+      description = "Timer for user reports on NC";
+      timerConfig = {
+        OnBootSec = "15s";
+        OnUnitActiveSec = "10m";
+      };
+      wantedBy = ["multi-user.target" "timers.target"];
+    };
+    # startServices = true;
+  };
 }

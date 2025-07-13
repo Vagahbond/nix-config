@@ -30,6 +30,11 @@
         docker.enable = true;
       };
 
+      security = {
+        #keyring.enable = true;
+        polkit.enable = true;
+      };
+
       services = {
         invoices.enable = true;
         metrics.enable = true;
