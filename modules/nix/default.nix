@@ -82,8 +82,8 @@ in {
         group = "users";
       };
       */
-      nix.settings = {
-        trusted-users = [
+      nix = {
+        settings.trusted-users = [
           "builder"
         ];
 
@@ -100,7 +100,7 @@ in {
             maxJobs = 4;
             speedFactor = 2;
             supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-            mandatoryFeatures = [];
+            # mandatoryFeatures = [];
           }
         ];
 

@@ -151,6 +151,10 @@ in {
         steam.enable = false;
         lutris.enable = false;
       };
+
+      nix = {
+        remoteBuild.enable = true;
+      };
     };
   };
 }
