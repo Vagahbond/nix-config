@@ -60,7 +60,7 @@ in {
         video = {
           player = true;
           downloader = true;
-          recorder = false;
+          recorder = true;
           editor = false;
         };
 
@@ -70,7 +70,7 @@ in {
 
         image = {
           viewer = true;
-          editor = true; # need to make those sweet meems
+          # editor = true; # need to make those sweet meems
         };
       };
 
