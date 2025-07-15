@@ -145,7 +145,8 @@
           job_name = "nginx";
           static_configs = [
             {
-              targets = ["localhost:${toString config.services.prometheus.exporters.nginx.port}"];
+              # Works because the default path is "/metrics"
+              targets = ["localhost:${toString config.services.prometheus.exporters.nginx.port}" "localhost"];
             }
           ];
         }
@@ -164,6 +165,7 @@
           enable = true;
           port = 9896;
           sslVerify = false;
+          extraFlags = ["-nginx.scrape-uri=http://localhost/nginx-metrics"];
         };
         systemd = {
           enable = true;
@@ -188,12 +190,17 @@
       };
     };
 
-    nginx.virtualHosts."metrics.vagahbond.com" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:3988";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+    nginx = {
+      additionalModules = with pkgs.nginxModules; [vts];
+      virtualHosts = {
+        "metrics.vagahbond.com" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3988";
+            proxyWebsockets = true; # needed if you need to use WebSocket
+          };
+        };
       };
     };
   };
