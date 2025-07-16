@@ -33,17 +33,6 @@
       hostname = "ghost";
       ports = ["8080:2368"];
     };
-    ghostDb = {
-      autoStart = true;
-      image = "docker.io/library/mysql:8";
-      volumes = [
-        "ghost_db:/var/lib/mysql"
-      ];
-      environmentFiles = [
-        config.age.secrets.ghostEnv.path
-      ];
-      hostname = "ghost_db";
-    };
   };
 
   ###################################################
