@@ -29,7 +29,7 @@ in {
       mkIf cfg.invoices.enable (import ./invoices.nix {inherit storageLocation config;})
     )
     (
-      mkIf cfg.blog.enable (import ./blog.nix {inherit config;})
+      mkIf cfg.blog.enable (import ./blog.nix {inherit config pkgs;})
     )
     (
       mkIf cfg.pdf.enable (import ./pdf.nix {inherit storageLocation config;})

@@ -1,14 +1,47 @@
-{config}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  blog-contents = pkgs.fetchFromGitHub {
+    owner = "vagahbond";
+    repo = "blog";
+    rev = "master";
+    sha256 = "sha256-HUK/VqV7nvzySKgGZ1NHjYnPnDgt+TPlNnu2qn5g2EA=";
+  };
+
+  blog-theme = pkgs.fetchFromGitHub {
+    owner = "athul";
+    repo = "archie";
+    rev = "master";
+    sha256 = "sha256-4z0UEQvd9oOladBxQL9bfVHyKDi3GIdCOLGJFK33FZk=";
+  };
+
+  blog = pkgs.stdenv.mkDerivation {
+    name = "blog";
+    src = blog-contents;
+    #        cp -r ${hugo-terminal}/* "themes/terminal"
+
+    configurePhase = ''
+      mkdir -p "themes"
+      cp -r ${blog-theme} "themes/archie"
+    '';
+
+    buildPhase = ''
+      ${pkgs.hugo}/bin/hugo --minify
+    '';
+    installPhase = "cp -r public $out";
+  };
+in {
   ###################################################
-  # GHOST                                           #
+  # BLOG                                            #
   ###################################################
 
   services.nginx.virtualHosts."blog.vagahbond.com" = {
     forceSSL = true;
     enableACME = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:8080";
-      proxyWebsockets = true; # needed if you need to use WebSocket
+      root = blog;
     };
   };
 
@@ -19,7 +52,8 @@
     #     group = "docker";
   };
 
-  virtualisation.oci-containers.containers = {
+  /*
+    virtualisation.oci-containers.containers = {
     ghost = {
       autoStart = true;
       image = "docker.io/library/ghost:5-alpine";
@@ -45,6 +79,7 @@
       hostname = "ghost_db";
     };
   };
+  */
 
   ###################################################
   # Joan's GHOST                                    #
