@@ -71,7 +71,6 @@
   # blink=no
   # beam-thickness=1.5
   # underline-thickness=<font underline thickness>
-  color=${mkHex colors.base01} ${mkHex colors.base05}
 
   [mouse]
   hide-when-typing=yes
@@ -81,6 +80,8 @@
   alpha=1
   background=${mkHex colors.background}
   foreground=${mkHex colors.text}
+  cursor=${mkHex colors.base01} ${mkHex colors.base05}
+
 
   regular0=${mkHex colors.base02}  # black (Overlay)
   regular1=${mkHex colors.bad}     # red (Love)
