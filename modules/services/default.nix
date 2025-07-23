@@ -29,7 +29,7 @@ in {
       mkIf cfg.invoices.enable (import ./invoices.nix {inherit storageLocation config;})
     )
     (
-      mkIf cfg.blog.enable (import ./blog.nix {inherit config pkgs;})
+      mkIf cfg.blog.enable (import ./blog.nix {inherit config pkgs inputs;})
     )
     (
       mkIf cfg.pdf.enable (import ./pdf.nix {inherit storageLocation config;})
@@ -38,7 +38,7 @@ in {
       mkIf cfg.ssh.enable (import ./ssh.nix {inherit username hostname keys;})
     )
     (
-      mkIf cfg.homePage.enable (import ./homepage.nix {inherit pkgs;})
+      mkIf cfg.homePage.enable (import ./homepage.nix {inherit pkgs inputs;})
     )
     (
       mkIf cfg.builder.enable (import ./builder.nix {inherit keys;})

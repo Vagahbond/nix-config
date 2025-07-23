@@ -101,6 +101,38 @@
         "type": "github"
       }
     },
+    "blog-contents": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1753099076,
+        "narHash": "sha256-3kc+QxD06UReS+F/v7mLsW62Gv8V4Q7Ovy+HQ7r+LLU=",
+        "owner": "vagahbond",
+        "repo": "blog",
+        "rev": "a3b9ced0caa9e56710ef09e2941c05b47962fb1e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vagahbond",
+        "repo": "blog",
+        "type": "github"
+      }
+    },
+    "blog-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738553147,
+        "narHash": "sha256-4z0UEQvd9oOladBxQL9bfVHyKDi3GIdCOLGJFK33FZk=",
+        "owner": "athul",
+        "repo": "archie",
+        "rev": "f2f74a5d9c047b159131afef3f860b8ee53b183c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "athul",
+        "repo": "archie",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1736032295,
@@ -143,11 +175,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1752718651,
-        "narHash": "sha256-PkaR0qmyP9q/MDN3uYa+RLeBA0PjvEQiM0rTDDBXkL8=",
+        "lastModified": 1753140376,
+        "narHash": "sha256-7lrVrE0jSvZHrxEzvnfHFE/Wkk9DDqb+mYCodI5uuB8=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "d5ad4485e6f2edcc06751df65c5e16572877db88",
+        "rev": "545aba02960caa78a31bd9a8709a0ad4b6320a5c",
         "type": "github"
       },
       "original": {
@@ -217,11 +249,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749398372,
-        "narHash": "sha256-tYBdgS56eXYaWVW3fsnPQ/nFlgWi/Z2Ymhyu21zVM98=",
+        "lastModified": 1753121425,
+        "narHash": "sha256-TVcTNvOeWWk1DXljFxVRp+E0tzG1LhrVjOGGoMHuXio=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "9305fe4e5c2a6fcf5ba6a3ff155720fbe4076569",
+        "rev": "644e0fc48951a860279da645ba77fe4a6e814c5e",
         "type": "github"
       },
       "original": {
@@ -343,11 +375,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1753056897,
-        "narHash": "sha256-AVVMBFcuOXqIgmShvRv9TED3fkiZhQ0ZvlhsPoFfkNE=",
+        "lastModified": 1753181343,
+        "narHash": "sha256-CLQfNtUqirNVSYoW/kYbvL4PeeNasmZonaPnjO3+1YQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "13a83d1b6545b7f0e8f7689bad62e7a3b1d63771",
+        "rev": "0cdfcdbb525b77b951c889b6131047bc374f48fe",
         "type": "github"
       },
       "original": {
@@ -566,11 +598,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1753013169,
-        "narHash": "sha256-ZhhHGYEuBiHgWjAvFcvjiNyWDz2b3WsYoW+xw92LiYs=",
+        "lastModified": 1753181140,
+        "narHash": "sha256-daKfPQnipcRnKnXknDzv+fzNKeEY3r/10y8YMVQ10vU=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "da1fed218b2dda294190e004da4d5bec7d43ec34",
+        "rev": "8fbecab446afe3454ecce6a4b817ec4f123a4a34",
         "type": "github"
       },
       "original": {
@@ -829,11 +861,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1750215678,
-        "narHash": "sha256-Rc/ytpamXRf6z8UA2SGa4aaWxUXRbX2MAWIu2C8M+ok=",
+        "lastModified": 1752997324,
+        "narHash": "sha256-vtTM4oDke3SeDj+1ey6DjmzXdq8ZZSCLWSaApADDvIE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5395fb3ab3f97b9b7abca147249fa2e8ed27b192",
+        "rev": "7c688a0875df5a8c28a53fb55ae45e94eae0dddb",
         "type": "github"
       },
       "original": {
@@ -848,6 +880,8 @@
         "agenix": "agenix",
         "ags": "ags",
         "anyrun": "anyrun",
+        "blog-contents": "blog-contents",
+        "blog-theme": "blog-theme",
         "disko": "disko",
         "home-manager": "home-manager_2",
         "hyprpaper": "hyprpaper",
@@ -858,7 +892,8 @@
         "nixpkgs": "nixpkgs_11",
         "schizofox": "schizofox",
         "spicetify-nix": "spicetify-nix",
-        "universe": "universe"
+        "universe": "universe",
+        "website": "website"
       }
     },
     "schizofox": {
@@ -1068,6 +1103,22 @@
       "original": {
         "owner": "uni-verse-fm",
         "repo": "uni-verse-production",
+        "type": "github"
+      }
+    },
+    "website": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719081974,
+        "narHash": "sha256-x1wyZFkiTRaR0bouHJxHPbCsKkU5sbxNIF9uo9M4lqE=",
+        "owner": "vagahbond",
+        "repo": "website",
+        "rev": "302a88bf712b59da81878029ce16952e5c3947ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vagahbond",
+        "repo": "website",
         "type": "github"
       }
     }

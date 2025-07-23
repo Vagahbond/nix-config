@@ -54,5 +54,20 @@
     learnify = {
       url = "git+ssh://git@github.com/vagahbond/learnify-platform";
     };
+
+    website = {
+      url = "github:vagahbond/website";
+      flake = false;
+    };
+
+    blog-contents = {
+      url = "github:vagahbond/blog";
+      flake = false;
+    };
+
+    blog-theme = {
+      url = "github:athul/archie";
+      flake = false;
+    };
   };
 }
