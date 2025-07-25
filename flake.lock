@@ -104,11 +104,11 @@
     "blog-contents": {
       "flake": false,
       "locked": {
-        "lastModified": 1753099076,
-        "narHash": "sha256-3kc+QxD06UReS+F/v7mLsW62Gv8V4Q7Ovy+HQ7r+LLU=",
+        "lastModified": 1753256221,
+        "narHash": "sha256-3smXCaIl0NV05jpSMJYYO4mEn2YkodmFuEzxw73WWCQ=",
         "owner": "vagahbond",
         "repo": "blog",
-        "rev": "a3b9ced0caa9e56710ef09e2941c05b47962fb1e",
+        "rev": "8eb8aa74ab4e83d15e96f3daf432ceb8d519050b",
         "type": "github"
       },
       "original": {

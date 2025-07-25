@@ -23,7 +23,8 @@ in {
   "universe.age".publicKeys = [mk platypute];
   "learnify.age".publicKeys = [mk platypute];
 
-  "silverbullet_env.age".publicKeys = [mk platypute];
+  # "silverbullet_env.age".publicKeys = [mk platypute];
+  "affine_env.age".publicKeys = [mk platypute];
 
   # SSH Keys
   "ssh_config.age".publicKeys = [mk];

@@ -69,5 +69,10 @@
       url = "github:athul/archie";
       flake = false;
     };
+
+    affine = {
+      url = "github:toeverything/AFFiNE";
+      flake = false;
+    };
   };
 }
