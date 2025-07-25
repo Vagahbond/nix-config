@@ -200,6 +200,7 @@
         # RemainAfterExit = true;
       };
       wantedBy = ["multi-user.target"];
+      after = ["nextcloud-setup.service"];
     };
     timers.nextcloud-usage-report = {
       description = "Timer for user reports on NC";
