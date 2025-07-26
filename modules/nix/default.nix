@@ -32,6 +32,10 @@ in {
           inputs.agenix.packages.${system}.default
           #   sed
         ];
+
+        persistence.${config.modules.impermanence.storageLocation} = {
+          directories = ["/root/.ssh"];
+        };
       };
 
       nix.registry = lib.mapAttrs (_: value: {flake = value;}) inputs;

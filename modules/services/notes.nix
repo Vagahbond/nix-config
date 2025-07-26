@@ -19,28 +19,13 @@
   };
 
   ###################################################################
-  # DATABASE                                                        #
-  ###################################################################
-
-  services.postgresql = {
-    ensureUsers = [
-      {
-        name = "affine";
-        ensureDBOwnership = true;
-        ensureClauses.login = true;
-      }
-    ];
-    ensureDatabases = ["affine"];
-  };
-
-  ###################################################################
   # SECRETS                                                         #
   ###################################################################
   age.secrets.affineEnv = {
     file = ../../secrets/affine_env.age;
     mode = "440";
-    owner = "affine";
-    group = "affine";
+    owner = "root";
+    group = "root";
   };
 
   ###################################################################
@@ -50,30 +35,10 @@
     affine = {
       autoStart = true;
       image = "ghcr.io/toeverything/affine:stable";
-      dependsOn = [];
-      user = "affine:affine";
-      podman.user = "affine";
 
       environmentFiles = [
         config.age.secrets.affineEnv.path
       ];
-
-      environment = {
-        AFFINE_REVISION = "stable";
-        PORT = "3010";
-        AFFINE_SERVER_HTTPS = "false";
-        AFFINE_SERVER_EXTERNAL_URL = "https://notes.vagahbond.com";
-        AFFINE_SERVER_HOST = "notes.vagahbond.com";
-
-        # it uses the 4 next databases for some reason...
-        REDIS_SERVER_DATABASE = "0";
-        REDIS_SERVER_HOST = "/run/redis-default/redis.sock";
-
-        DB_USERNAME = "affine";
-        DB_DATABASE = "affine";
-
-        AFFINE_INDEXER_ENABLED = "false";
-      };
 
       volumes = [
         "affine-storage:/root/.affine/storage"
@@ -82,21 +47,41 @@
 
       hostname = "affine";
       ports = ["8086:3010"];
+      dependsOn = ["affine-database" "affine-cache"];
     };
-  };
+    affine-migration = {
+      entrypoint = "/bin/sh";
+      cmd = ["-c" "node ./scripts/self-host-predeploy.js"];
+      autoStart = true;
+      image = "ghcr.io/toeverything/affine:stable";
 
-  ###################################################################
-  # CACHING                                                         #
-  ###################################################################
-  services = {
-    redis = {
-      servers = {
-        affine = {
-          enable = true;
-          user = "affine";
-          port = 0;
-        };
-      };
+      environmentFiles = [
+        config.age.secrets.affineEnv.path
+      ];
+
+      volumes = [
+        "affine-storage:/root/.affine/storage"
+        "affine-config:/root/.affine/config"
+      ];
+
+      hostname = "affine-migration";
+      dependsOn = ["affine-database" "affine-cache"];
+    };
+    affine-database = {
+      autoStart = true;
+      image = "pgvector/pgvector:pg16";
+      volumes = [
+        "affine_db:/var/lib/postgresql/data"
+      ];
+      environmentFiles = [
+        config.age.secrets.affineEnv.path
+      ];
+      hostname = "affine_database";
+    };
+    affine-cache = {
+      autoStart = true;
+      image = "redis:latest";
+      hostname = "affine_redis";
     };
   };
 

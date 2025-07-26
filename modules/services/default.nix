@@ -56,7 +56,7 @@ in {
       mkIf cfg.office.enable (import ./office.nix {inherit storageLocation config pkgs;})
     )
     (
-      mkIf cfg.notes.enable (import ./notes.nix {inherit storageLocation config pkgs;})
+      mkIf cfg.notes.enable (import ./notes.nix {inherit storageLocation config pkgs inputs;})
     )
     (
       # DISABLED FOR NOW, DATA IS NOT BACKED UP

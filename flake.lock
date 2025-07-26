@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "affine": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1753439215,
+        "narHash": "sha256-xn9fLQCp5cFA4JFjaG9jiP67nzzCzIoQ9Zt5msj9xpM=",
+        "owner": "toeverything",
+        "repo": "AFFiNE",
+        "rev": "be55442f386e27faeaeee7bb975da67ad185619a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "toeverything",
+        "repo": "AFFiNE",
+        "type": "github"
+      }
+    },
     "agenix": {
       "inputs": {
         "darwin": "darwin",
@@ -877,6 +893,7 @@
     },
     "root": {
       "inputs": {
+        "affine": "affine",
         "agenix": "agenix",
         "ags": "ags",
         "anyrun": "anyrun",

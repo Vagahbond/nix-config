@@ -26,6 +26,8 @@ in {
   # "silverbullet_env.age".publicKeys = [mk platypute];
   "affine_env.age".publicKeys = [mk platypute];
 
+  "redis_affine_pass_file.age".publicKeys = [mk platypute];
+
   # SSH Keys
   "ssh_config.age".publicKeys = [mk];
 
