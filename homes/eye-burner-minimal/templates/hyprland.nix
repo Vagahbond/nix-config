@@ -147,8 +147,8 @@
 
       input {
         kb_layout=us
-        kb_variant=mac
-        kb_options=ctrl:rctrl_ralt
+        kb_variant=altgr-intl
+        kb_options=ctrl:nocaps,ctrl:rctrl_ralt
 
         follow_mouse=1
         natural_scroll=0
