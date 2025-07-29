@@ -2,6 +2,7 @@
   pkgs,
   lib,
   storageLocation,
+  config,
 }: {
   environment.persistence.${storageLocation} = {
     directories = [
@@ -14,10 +15,13 @@
     ];
   };
 
+  # environment.systemPackages = with pkgs; [postgresql_17];
+
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql_14;
-    dataDir = "/var/lib/postgresql";
+
+    package = pkgs.postgresql_17;
+    dataDir = "/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
 
     enableTCPIP = false;
 
