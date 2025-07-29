@@ -59,9 +59,9 @@ in {
       mkIf cfg.notes.enable (import ./notes.nix {inherit storageLocation config pkgs inputs;})
     )
     (
-      # DISABLED FOR NOW, DATA IS NOT BACKED UP
-      mkIf (cfg.nextcloud.enable && cfg.nextcloud.backup)
-      (import ./nextcloud_backup.nix {inherit config;})
+      mkIf cfg.fitness.enable (
+        import ./fitness.nix {inherit storageLocation config pkgs inputs;}
+      )
     )
     (
       mkIf cfg.universe.enable (import ./universe.nix {inherit config pkgs inputs;})

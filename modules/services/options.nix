@@ -15,7 +15,6 @@ with lib; {
 
     nextcloud = {
       enable = mkEnableOption "nextcloud";
-      backup = mkEnableOption "Backup your data";
     };
 
     vaultwarden = {
@@ -53,5 +52,7 @@ with lib; {
     invoices.enable = mkEnableOption "Invoice managing service";
 
     office.enable = mkEnableOption "WOPI server";
+
+    fitness.enable = mkEnableOption "WGER server";
   };
 }

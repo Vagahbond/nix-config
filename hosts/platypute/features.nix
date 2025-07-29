@@ -50,6 +50,7 @@
         learnify.enable = true;
         notes.enable = true;
         pdf.enable = true;
+        fitness.enable = true;
       };
     };
   };

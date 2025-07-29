@@ -46,4 +46,6 @@ in {
   "vultr_api_key.age".publicKeys = [platypute mk];
 
   "nextCloudMonitoringAccessToken.age".publicKeys = [platypute mk];
+
+  "wger_env.age".publicKeys = [platypute mk];
 }
