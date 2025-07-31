@@ -87,6 +87,8 @@
           enable = true;
           user = "nextcloud";
           port = 0;
+          unixSocketPerm = 770;
+          unixSocket = "/run/redis-nextcloud/redis.sock";
         };
       };
     };
@@ -114,16 +116,22 @@
         # trusted_proxies = ["192.168.0.3"];
         default_phone_region = "FR";
         redis = {
-          host = "/run/redis-default/redis.sock";
+          host = "/run/redis-nextcloud/redis.sock";
           dbindex = 0;
           timeout = 1.5;
         };
+        maintenance_window_start = 1;
       };
       phpOptions = {
         output_buffering = "off";
+        "opcache.interned_strings_buffer" = "23";
       };
+      phpExtraExtensions = all: [
+        all.redis
+      ];
       caching = {
         redis = true;
+        memcached = true;
       };
       database = {
         createLocally = true;
