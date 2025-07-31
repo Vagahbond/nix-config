@@ -34,6 +34,8 @@
   virtualisation.oci-containers.containers = {
     affine = {
       autoStart = true;
+      entrypoint = "/bin/sh";
+      cmd = ["-c" "node ./scripts/self-host-predeploy.js && node ./dist/main.js run"];
       image = "ghcr.io/toeverything/affine:stable";
 
       environmentFiles = [
@@ -49,9 +51,8 @@
       ports = ["8086:3010"];
       dependsOn = ["affine-database" "affine-cache"];
     };
-    affine-migration = {
-      entrypoint = "/bin/sh";
-      cmd = ["-c" "node ./scripts/self-host-predeploy.js"];
+    /*
+      affine-migration = {
       autoStart = true;
       image = "ghcr.io/toeverything/affine:stable";
 
@@ -67,6 +68,7 @@
       hostname = "affine-migration";
       dependsOn = ["affine-database" "affine-cache"];
     };
+    */
     affine-database = {
       autoStart = true;
       image = "pgvector/pgvector:pg16";
