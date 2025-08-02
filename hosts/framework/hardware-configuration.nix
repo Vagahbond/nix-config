@@ -67,24 +67,21 @@
   };
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  systemd.services.nix-daemon = {
-    environment = {
-      # Where temp files need to go to avoid filling the whole ram
-      TMPDIR = "/var/cache/nix";
+  systemd = {
+    services.nix-daemon = {
+      environment = {
+        # Where temp files need to go to avoid filling the whole ram
+        TMPDIR = "/var/cache/nix";
+      };
     };
-
-    serviceConfig = {
-      # Create /var/cache/nix on daemon start
+    settings.Manager = {
       CacheDirectory = "nix";
+      DefaultTimeoutStopSec = "10s";
     };
   };
 
   # Force even root to use our custom cache folder
   environment.variables.NIX_REMOTE = "daemon";
-
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=10s
-  '';
 
   ## laptop stuff
   services = {
