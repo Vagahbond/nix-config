@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  storageLocation,
   ...
 }: let
   blog = pkgs.stdenv.mkDerivation {
@@ -20,21 +21,48 @@
     installPhase = "cp -r public $out";
   };
 in {
+  environment = {
+    persistence.${storageLocation} = {
+      directories = [
+        "/var/lib/goatcounter"
+      ];
+    };
+  };
+
   ###################################################
   # BLOG                                            #
   ###################################################
 
-  services.nginx.virtualHosts."blog.vagahbond.com" = {
-    forceSSL = true;
-    enableACME = true;
-    locations."/" = {
-      root = blog;
+  services.nginx.virtualHosts = {
+    "blog.vagahbond.com" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        root = blog;
+      };
+    };
+    "analytics.vagahbond.com" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8087";
+        proxyWebsockets = true; # needed if you need to use WebSocket
+      };
     };
   };
 
   age.secrets.ghostEnv = {
     file = ../../secrets/ghost_env.age;
     mode = "440";
+  };
+
+  ###################################################
+  # Analytics                                       #
+  ###################################################
+  services.goatcounter = {
+    enable = true;
+    proxy = true;
+    port = 8087;
   };
 
   ###################################################
