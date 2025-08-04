@@ -170,25 +170,6 @@ in {
                 css.enable = true;
               };
 
-              /*
-                 visuals = {
-                enable = true;
-                nvimWebDevicons.enable = true;
-                scrollBar.enable = true;
-                cellularAutomaton.enable = true;
-                fidget-nvim.enable = false;
-                # indentBlankline = {
-                #enable = true;
-                # fillChar = null;
-                # eolChar = null;
-                #scope.enabled = true;
-                #};
-                # cursorWordline = {
-                #   enable = true;
-                #   lineTimeout = 0;
-                # };
-              };
-              */
               theme = {
                 enable = true;
                 name = "base16";
@@ -305,7 +286,7 @@ in {
               notes = {
                 obsidian.enable = false; # FIXME neovim fails to build if obsidian is enabled
                 orgmode.enable = false;
-                mind-nvim.enable = true;
+                mind-nvim.enable = false;
                 todo-comments.enable = true;
               };
 
