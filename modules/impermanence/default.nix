@@ -17,6 +17,7 @@ in {
       then {
         ${storageLocation} = {
           directories = [
+            "/var/cache"
             "/var/log"
             "/var/lib/nixos"
             "/var/lib/systemd/coredump"

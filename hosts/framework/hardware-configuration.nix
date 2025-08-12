@@ -68,6 +68,9 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   systemd = {
+    tmpfiles.rules = [
+      "d /var/cache/nix 1777 root root 10d"
+    ];
     services.nix-daemon = {
       environment = {
         # Where temp files need to go to avoid filling the whole ram
