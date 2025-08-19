@@ -34,14 +34,14 @@ in {
   ###################################################
 
   services.nginx.virtualHosts = {
-    "blog.vagahbond.com" = {
+    "touches-grasses.fr" = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
         root = blog;
       };
     };
-    "analytics.vagahbond.com" = {
+    "analytics.touches-grasses.fr" = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {

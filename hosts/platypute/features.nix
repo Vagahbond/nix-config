@@ -45,7 +45,7 @@
         vaultwarden.enable = true;
         builder.enable = true;
         homePage.enable = true;
-        blog.enable = false;
+        blog.enable = true;
         universe.enable = false;
         learnify.enable = true;
         notes.enable = true;
