@@ -92,8 +92,7 @@
     thermald.enable = true;
 
     logind = {
-      extraConfig = "HandlePowerKey=suspend";
-
+      powerKey = "suspend";
       lidSwitch = "suspend";
       lidSwitchExternalPower = "lock";
     };
