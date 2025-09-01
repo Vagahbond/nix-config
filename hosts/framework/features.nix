@@ -97,7 +97,7 @@ in {
       # Notion on nix broken for now, too busy to look into it
       productivity = {
         notion.enable = false;
-        nextcloudSync.enable = false;
+        nextcloudSync.enable = true;
         pomodoro.enable = true;
         activityWatch.enable = true;
         logseq.enable = false;
