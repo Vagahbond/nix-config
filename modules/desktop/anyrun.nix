@@ -15,8 +15,14 @@
   };
 
   home-manager.users.${username} = {
-    #     imports = [inputs.anyrun.homeManagerModules.default];
-
+    imports = [
+      ({modulesPath, ...}: {
+        # Important! We disable home-manager's module to avoid option
+        # definition collisions
+        disabledModules = ["${modulesPath}/programs/anyrun.nix"];
+      })
+      inputs.anyrun.homeManagerModules.default
+    ];
     programs.anyrun = {
       enable = true;
       package = inputs.anyrun.packages.${pkgs.system}.default;

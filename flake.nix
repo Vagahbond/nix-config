@@ -43,7 +43,7 @@
       url = "github:notashelf/nvf";
     };
 
-    anyrun.url = "github:anyrun-org/anyrun";
+    anyrun.url = "github:anyrun-org/anyrun/4d1bec53abce32f68542c0beb1a0df4c66008fd0";
 
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
