@@ -7,6 +7,10 @@
       };
       user.password = "$y$j9T$W4KvCgdBzhRBgZDnXf9s2/$rdrtKUhstflz5ADDB/w9WZc6M/sWlwqM76vKjaG3yV/";
 
+      desktop = {
+        fileExplorer = "yazi";
+      };
+
       editor = {
         terminal = ["neovim"];
       };
