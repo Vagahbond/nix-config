@@ -43,6 +43,8 @@
     };
     postgresqlBackup = {
       enable = true;
+      backupAll = true;
+      pgdumpOptions = "";
     };
   };
 }
