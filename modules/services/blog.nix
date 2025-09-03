@@ -24,7 +24,12 @@ in {
   environment = {
     persistence.${storageLocation} = {
       directories = [
-        "/var/lib/goatcounter"
+        {
+          directory = "/var/lib/goatcounter";
+          user = "goatcounter";
+          group = "goatcounter";
+          mode = "u=rwx,g=rx,o=";
+        }
       ];
     };
   };
@@ -45,7 +50,7 @@ in {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8087";
+        proxyPass = "http://127.0.0.1:8084";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -59,10 +64,25 @@ in {
   ###################################################
   # Analytics                                       #
   ###################################################
+
+  users.groups.goatcounter = {};
+
+  users.users.goatcounter = {
+    isNormalUser = true;
+    group = "goatcounter";
+    createHome = false;
+  };
+
   services.goatcounter = {
     enable = true;
     proxy = true;
-    port = 8087;
+    port = 8084;
+  };
+
+  # Fix incompatibility issue
+  systemd.services.goatcounter.serviceConfig = {
+    DynamicUser = pkgs.lib.mkForce false;
+    User = "goatcounter";
   };
 
   ###################################################
