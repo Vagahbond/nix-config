@@ -206,6 +206,14 @@ in {
     (mkIf
       (cfg.enable && builtins.elem "rust" cfg.languages)
       {
+        environment.persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".cargo"
+            ];
+          };
+        };
+
         environment.systemPackages = with pkgs; [
           rustc
           cargo
