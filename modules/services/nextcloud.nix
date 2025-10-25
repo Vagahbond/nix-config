@@ -141,39 +141,34 @@
         inherit (config.services.nextcloud.package.packages.apps) contacts calendar notes news memories recognize richdocuments;
         tasks = pkgs.fetchNextcloudApp {
           appName = "tasks";
-          sha256 = "0v1yzaa41zglafvyfny82hab78sbbv69bjx5vhavbxwvbxvbg5jj";
-          url = "https://github.com/nextcloud/tasks/releases/download/v0.16.1/tasks.tar.gz";
-          appVersion = "0.16.1";
+          sha256 = "0a1x9b3sf1w0f5y3vcg0vc8srvbma8iyrh35anpy50pk3p2vsyw7";
+          url = "https://github.com/nextcloud/tasks/releases/download/v0.17.0/tasks.tar.gz";
+          appVersion = "0.17.0";
           license = "agpl3Plus";
         };
         cospend = pkgs.fetchNextcloudApp {
           appName = "cospend";
-          sha256 = "1zqyylw7l3bd3wkb1i0qpaccfp3hwb7ynnfii4qw9llr32bydxmd";
-          url = "https://github.com/julien-nc/cospend-nc/releases/download/v3.0.11/cospend-3.0.11.tar.gz";
-          appVersion = "3.0.11";
+          sha256 = "0xsq3vn5hvf3kz4qwm178qwvzvvwb6rp02c8kvmh64m4lvmaag98";
+          url = "https://github.com/julien-nc/cospend-nc/releases/download/v3.1.6/cospend-3.1.6.tar.gz";
+          appVersion = "3.1.6";
           license = "agpl3Plus";
         };
-        maps = pkgs.fetchNextcloudApp {
+        /*
+           maps = pkgs.fetchNextcloudApp {
           appName = "maps";
-          sha256 = "sha256-E0S/CwXyye19lcuiONEQCyHJqlL0ZG1A9Q7oOTEZH1g=";
-          url = "https://github.com/nextcloud/maps/releases/download/v1.6.0-3-nightly/maps-1.6.0-3-nightly.tar.gz";
+          sha256 = "1pbl3yf6j0gajxsrw0k6y0si5q9isf2cxbabi59rxxzcd3553si2";
+          url = "https://github.com/nextcloud/maps/releases/download/v1.6.0/maps-1.6.0.tar.gz";
 
           appVersion = "1.6.0";
           license = "agpl3Plus";
         };
+        */
         user_usage_report = pkgs.fetchNextcloudApp {
           appName = "user_usage_report";
-          sha256 = "sha256-itWaJUHnBZmsBrL4O0fps/DgSm7MEt0JeIrNM1LlRUk=";
-          url = "https://github.com/nextcloud-releases/user_usage_report/releases/download/v2.0.0/user_usage_report-v2.0.0.tar.gz";
+          sha256 = "1sywb17k05qjmqpr0qrb1j6hpi5wlpnybicn3i50zmxi1yri7hjl";
+          url = "https://github.com/nextcloud-releases/user_usage_report/releases/download/v3.0.0/user_usage_report-v3.0.0.tar.gz";
 
-          appVersion = "25.4.202";
-          license = "agpl3Plus";
-        };
-        forms = pkgs.fetchNextcloudApp {
-          appName = "forms";
-          sha256 = "1rhgxyw46f529n8ixrig4rnpig9z75mp5jvwwfh7ym3xmx3gb3xp";
-          url = "https://github.com/nextcloud-releases/forms/releases/download/v5.1.0/forms-v5.1.0.tar.gz";
-          appVersion = "5.1.0";
+          appVersion = "3.0.0";
           license = "agpl3Plus";
         };
       };
