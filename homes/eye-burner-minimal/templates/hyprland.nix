@@ -160,12 +160,7 @@
         }
       }
 
-      gestures {
-      	workspace_swipe = true
-        # workspace_swipe_numbered = true
-        workspace_swipe_fingers = 4
-
-      }
+      gesture = 4, horizontal, workspace
 
       binds {
       	workspace_back_and_forth = true
