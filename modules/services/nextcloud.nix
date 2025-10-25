@@ -96,7 +96,7 @@
     nextcloud = {
       enable = true;
       # home = "/var/lib/nextcloud";
-      package = pkgs.nextcloud31;
+      package = pkgs.nextcloud32;
       hostName = "nuage.vagahbond.com";
       https = true;
       maxUploadSize = "4G";
