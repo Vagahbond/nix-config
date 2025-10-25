@@ -45,7 +45,8 @@
   };
   swapDevices = [
     {
-      device = "/dev/disk/by-label/swap";
+      device = "/nix/swapfile";
+      size = 16 * 1024; # 16 GB
     }
   ];
 
