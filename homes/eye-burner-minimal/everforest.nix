@@ -59,6 +59,7 @@
     buildPhase = ''
       cp ${wallpaper}/wallpaper.png ./corners/backgrounds/background.png
       echo '${sddm-config}' > ./corners/theme.conf
+      echo 'QtVersion=5' > ./corners/metadata.desktop
     '';
 
     installPhase = ''
