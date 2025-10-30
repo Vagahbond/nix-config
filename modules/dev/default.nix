@@ -128,10 +128,10 @@ in {
       (cfg.enable && builtins.elem "android" cfg.languages)
       {
         environment.systemPackages = with pkgs; [
-          jmtpfs
           android-tools
           android-file-transfer
           android-backup-extractor
+          android-studio
         ];
 
         users.users.${username}.extraGroups = ["adbusers"];
