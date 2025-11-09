@@ -75,5 +75,21 @@ in {
         element-desktop
       ];
     })
+    (mkIf cfg.slack.enable {
+      environment.systemPackages = with pkgs; [
+        slack
+      ];
+      environment = {
+        sessionVariables.NIXOS_OZONE_WL = "1";
+        persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".config/Slack"
+              # ".config/ArmCord"
+            ];
+          };
+        };
+      };
+    })
   ];
 }

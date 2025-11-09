@@ -114,6 +114,7 @@ in {
       social = {
         whatsapp.enable = false;
         discord.enable = true;
+        slack.enable = true;
         # teams.enable = true;
         # matrix.enable = true;
       };

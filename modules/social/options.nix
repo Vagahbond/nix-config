@@ -5,5 +5,6 @@ with lib; {
     teams.enable = mkEnableOption "teams";
     discord.enable = mkEnableOption "discord";
     matrix.enable = mkEnableOption "matrix";
+    slack.enable = mkEnableOption "Slack";
   };
 }
