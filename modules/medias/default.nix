@@ -124,7 +124,6 @@ in {
           customColorScheme = config.theme.templates.spicetify;
           enabledExtensions = with spicePkgs.extensions; [
             shuffle # shuffle+ (special characters are sanitized out of ext names)
-            hidePodcasts
             adblock
           ];
         };
