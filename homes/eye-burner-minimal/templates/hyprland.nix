@@ -293,7 +293,7 @@
 
       # monitor=eDP-1,addreserved,0,0,60,0
       monitor=eDP-1,highres,auto,1.6
-      monitor=,preferred,auto,1
+      monitor=,preferred,auto-center-up,1.5
 
       layerrule = ignorealpha 0,bar0
       layerrule = blur,bar0
