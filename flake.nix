@@ -34,7 +34,7 @@
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
     spicetify-nix = {
-      url = "github:gerg-l/spicetify-nix";
+      url = "github:gerg-l/spicetify-nix/0b73bd5bad8a10d5e88b0fa4a3e7a9134bfa9620";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
