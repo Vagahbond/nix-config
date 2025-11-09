@@ -33,17 +33,23 @@ in {
       })
     )
     (mkIf (cfg.shell == "zsh") {
-      environment.persistence.${storageLocation} = {
-        users.${username} = {
-          files = [
-            ".zshrc"
-          ];
+      environment = {
+        persistence.${storageLocation} = {
+          users.${username} = {
+            files = [
+              ".zshrc"
+            ];
+          };
         };
-      };
 
-      environment.systemPackages = with pkgs; [
-        lsd
-      ];
+        variables = {
+          NIX_BUILD_SHELL = "zsh";
+        };
+
+        systemPackages = with pkgs; [
+          lsd
+        ];
+      };
 
       programs.zsh = {
         enable = true;
@@ -56,6 +62,7 @@ in {
             build-iso = "nix build .#nixosConfigurations.live.config.system.build.isoImage";
             run = "f() {nix run nixpkgs#$1}; f";
             nix-shell = "nix-shell --command zsh";
+            nd = "nix develop --command zsh";
             cat = "bat";
             ls = "lsd";
             l = "lsd";
