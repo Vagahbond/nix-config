@@ -3,7 +3,7 @@ with lib; {
   options.modules.locales = {
     zone = mkOption {
       type = types.str;
-      default = "Australia/Brisbane";
+      default = "Pacific/Auckland";
       description = ''        The time zone to use. 
               Your real location is relevant for SSL certificates, 
               so you should set this to your real location.'';
