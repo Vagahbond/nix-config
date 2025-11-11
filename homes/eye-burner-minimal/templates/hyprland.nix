@@ -221,7 +221,7 @@
           size = 10
           passes = 3
           ignore_opacity = true
-          special=true
+          special=false
         }
 
         shadow {
