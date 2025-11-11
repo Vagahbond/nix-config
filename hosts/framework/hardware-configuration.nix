@@ -58,7 +58,7 @@
     useDHCP = lib.mkDefault true;
     hostName = "framework"; # Define your hostname.
     # TODO: Move spotify port conf to spotify conf
-    firewall.allowedTCPPorts = [57621];
+    firewall.allowedTCPPorts = [57621 3000];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
