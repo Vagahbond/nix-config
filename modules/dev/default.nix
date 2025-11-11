@@ -19,12 +19,14 @@ in {
         users.${username} = {
           directories = [
             ".config/lazygit"
+            ".config/lazysql"
             ".config/gh"
           ];
         };
       };
 
       environment.systemPackages = with pkgs; [
+        lazysql
         lazygit
         gh
       ];
@@ -140,6 +142,7 @@ in {
           users.${username} = {
             directories = [
               ".android"
+              "Android"
             ];
           };
         };
