@@ -31,6 +31,9 @@ in {
         userControlled.enable = true;
         secretsFile = config.age.secrets.wifi.path;
         networks = {
+          "p22" = {
+            pskRaw = "ext:P22_PSK";
+          };
           "Telstra747AFB" = {
             pskRaw = "ext:CHINESE_MANSION_PSK";
           };
