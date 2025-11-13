@@ -143,6 +143,7 @@ in {
             directories = [
               ".android"
               "Android"
+              ".config/Google"
             ];
           };
         };
