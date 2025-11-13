@@ -93,9 +93,11 @@
     thermald.enable = true;
 
     logind = {
-      powerKey = "suspend";
-      lidSwitch = "suspend";
-      lidSwitchExternalPower = "lock";
+      settings.Login = {
+        HandlePowerKey = "suspend";
+        HandleLidSwitch = "suspend";
+        HandleLidSwitchExternalPower = "lock";
+      };
     };
   };
 }
