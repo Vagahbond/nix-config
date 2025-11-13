@@ -16,6 +16,10 @@ in {
     {
       environment.systemPackages = with pkgs; [
         pay-respects
+        lsd
+        fzf
+        ripgrep
+        fd
       ];
 
       environment.persistence.${storageLocation} = {
@@ -45,10 +49,6 @@ in {
         variables = {
           NIX_BUILD_SHELL = "zsh";
         };
-
-        systemPackages = with pkgs; [
-          lsd
-        ];
       };
 
       programs.zsh = {
@@ -66,6 +66,7 @@ in {
             cat = "bat";
             ls = "lsd";
             l = "lsd";
+            ff = "fzf";
             gc = "git commit";
             gaa = "git add -A";
             gp = "git push";
