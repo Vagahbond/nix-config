@@ -14,17 +14,20 @@ in {
   imports = [./options.nix];
 
   config = mkMerge [
-    (mkIf (cfg.notion.enable
+    (mkIf (cfg.affine.enable
       && (graphics.type != null)) {
-      environment.systemPackages = with pkgs; [
-        notion-app-enhanced
-      ];
-    })
-    (mkIf (cfg.appflowy.enable
-      && (graphics.type != null)) {
-      environment.systemPackages = with pkgs; [
-        appflowy
-      ];
+      environment = {
+        systemPackages = with pkgs; [
+          affine
+        ];
+        persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".config/AFFiNE"
+            ];
+          };
+        };
+      };
     })
     (mkIf (cfg.activityWatch.enable
       && (graphics.type != null)) {
@@ -38,24 +41,11 @@ in {
         };
         systemPackages = with pkgs; [
           activitywatch
+          dnsproxy
         ];
       };
-    })
-    (mkIf (cfg.maps.enable
-      && (graphics.type != null)) {
-      environment = {
-        persistence.${impermanence.storageLocation} = {
-          users.${username} = {
-            directories = [
-              ".config/OMaps"
-              ".local/share/OMaps"
-            ];
-          };
-        };
-
-        systemPackages = with pkgs; [
-          organicmaps
-        ];
+      networking.hosts = {
+        "127.0.0.1:5600" = ["AW"];
       };
     })
     (
@@ -74,39 +64,6 @@ in {
         };
       }
     )
-    (
-      mkIf cfg.logseq.enable {
-        environment.systemPackages = with pkgs; [
-          logseq
-        ];
-      }
-    )
-    (
-      mkIf cfg.musicProduction.enable {
-        environment = {
-          systemPackages = with pkgs; [
-            reaper
-            bitwig-studio
-          ];
-          persistence.${impermanence.storageLocation} = {
-            users.${username} = {
-              directories = [
-                ".config/REAPER"
-                "Bitwig Studio"
-              ];
-            };
-          };
-        };
-      }
-    )
-    (
-      mkIf cfg.anytype.enable {
-        environment.systemPackages = with pkgs; [
-          anytype
-        ];
-      }
-    )
-
     (mkIf (cfg.nextcloudSync.enable
       && (graphics.type != null)) {
       age.secrets.nextcloud-client-user = {

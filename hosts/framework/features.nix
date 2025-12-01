@@ -96,13 +96,10 @@ in {
 
       # Notion on nix broken for now, too busy to look into it
       productivity = {
-        notion.enable = false;
+        affine.enable = true;
         nextcloudSync.enable = false;
         pomodoro.enable = true;
-        activityWatch.enable = true;
-        logseq.enable = false;
-        maps.enable = false;
-        musicProduction.enable = false;
+        activityWatch.enable = false;
       };
 
       security = {
