@@ -89,6 +89,7 @@ in {
   # Joan's GHOST                                    #
   ###################################################
 
+  /*
   services.nginx.virtualHosts."joansareno.com" = {
     # forceSSL = true;
     # enableACME = true;
@@ -134,4 +135,5 @@ in {
       hostname = "joan_ghost_db";
     };
   };
+  */
 }

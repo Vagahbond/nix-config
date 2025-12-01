@@ -51,10 +51,10 @@
         homePage.enable = true;
         blog.enable = true;
         universe.enable = false;
-        learnify.enable = true;
+        learnify.enable = false;
         notes.enable = true;
         pdf.enable = true;
-        fitness.enable = true;
+        fitness.enable = false;
       };
     };
   };
