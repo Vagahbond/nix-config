@@ -42,6 +42,7 @@
       bind = SUPER, T, exec, foot
       bind=SUPER, SPACE, togglespecialworkspace, scratchpad
       bind=SUPER, P, togglespecialworkspace, pomodoro
+      bind=SUPER, A, togglespecialworkspace, affine
       bind = SUPER, Q, killactive
       bind = SUPERSHIFT, E, exec,  kill -9 -1
       bind=SUPER,F,exec,thunar
@@ -285,6 +286,7 @@
 
       workspace = special:scratchpad, on-created-empty:foot zsh -c 'nitch; zsh -i' ,gapsout:50
       workspace = special:pomodoro, on-created-empty:foot zsh -c 'tomato; zsh -i' ,gapsout:100
+      workspace = special:affine, on-created-empty:affine ,gapsout:20
 
       exec = hyprpaper
       exec-once=systemctl --user enable --now hypridle.service
