@@ -45,10 +45,6 @@ in {
             ];
           };
         };
-
-        variables = {
-          NIX_BUILD_SHELL = "zsh";
-        };
       };
 
       programs.zsh = {
@@ -61,7 +57,7 @@ in {
             build-iso-remote = "nix build github:vagahbond/nix-config#nixosConfigurations.live.config.system.build.isoImage";
             build-iso = "nix build .#nixosConfigurations.live.config.system.build.isoImage";
             run = "f() {nix run nixpkgs#$1}; f";
-            nix-shell = "nix-shell --command zsh";
+            ns = "nix-shell --command zsh";
             nd = "nix develop --command zsh";
             cat = "bat";
             ls = "lsd";
