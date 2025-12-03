@@ -54,5 +54,7 @@ with lib; {
     office.enable = mkEnableOption "WOPI server";
 
     fitness.enable = mkEnableOption "WGER server";
+
+    mail.enable = mkEnableOption "Mail server";
   };
 }

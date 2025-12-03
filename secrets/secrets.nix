@@ -13,6 +13,7 @@ in {
 
   "nextcloud_admin_pass.age".publicKeys = [mk platypute];
   "nextcloud_s3_secret.age".publicKeys = [mk platypute];
+  "nextcloud_mail_password.age".publicKeys = [mk platypute];
   "nextcloud_client_account.age".publicKeys = [mk];
 
   "invoiceshelf_env.age".publicKeys = [mk platypute];
@@ -48,4 +49,6 @@ in {
   "nextCloudMonitoringAccessToken.age".publicKeys = [platypute mk];
 
   "wger_env.age".publicKeys = [platypute mk];
+
+  "mail_user_password.age".publicKeys = [platypute mk];
 }

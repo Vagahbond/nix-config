@@ -18,12 +18,16 @@ in {
   imports = [
     inputs.universe.nixosModules.default
     inputs.learnify.nixosModules.default
+    inputs.mail-server.nixosModules.default
     ./options.nix
   ];
 
   config = mkMerge [
     (
       mkIf cfg.proxy.enable (import ./proxy.nix {})
+    )
+    (
+      mkIf cfg.mail.enable (import ./mail.nix {inherit inputs username storageLocation config;})
     )
     (
       mkIf cfg.invoices.enable (import ./invoices.nix {inherit storageLocation config;})

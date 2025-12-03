@@ -39,19 +39,29 @@
   ###################################################
   # SECRETS                                         #
   ###################################################
-  age.secrets.nextcloudAdminPass = {
-    file = ../../secrets/nextcloud_admin_pass.age;
-    mode = "440";
-    owner = "nextcloud";
-    group = "users";
+  age.secrets = {
+    nextcloudAdminPass = {
+      file = ../../secrets/nextcloud_admin_pass.age;
+      mode = "440";
+      owner = "nextcloud";
+      group = "users";
+    };
+
+    nextcloudS3Secret = {
+      file = ../../secrets/nextcloud_s3_secret.age;
+      mode = "440";
+      owner = "nextcloud";
+      group = "users";
+    };
+
+    nextcloudMailPassword = {
+      file = ../../secrets/nextcloud_mail_password.age;
+      mode = "440";
+      owner = "nextcloud";
+      group = "users";
+    };
   };
 
-  age.secrets.nextcloudS3Secret = {
-    file = ../../secrets/nextcloud_s3_secret.age;
-    mode = "440";
-    owner = "nextcloud";
-    group = "users";
-  };
   ###################################################
   # SSL                                             #
   ###################################################
@@ -121,6 +131,20 @@
           timeout = 1.5;
         };
         maintenance_window_start = 1;
+        mail_smtptimeout = 30;
+        mail_smtpmode = "smtp";
+        mail_smtpsecure = "ssl";
+        mail_sendmailmode = "smtp";
+        mail_smtphost = ""; #config.mailserver.fqdn;
+        mail_smtpauth = true;
+        mail_smtpname = "no-reply@vagahbond.com";
+        mail_smtpport = 465;
+        mail_from_address = "no-reply";
+        mail_domain = "vagahbond.com";
+        log_type = "file";
+      };
+      secrets = {
+        mail_smtppassword = config.age.secrets.nextcloudMailPassword.path;
       };
       phpOptions = {
         output_buffering = "off";

@@ -16,7 +16,7 @@ in {
         isNormalUser = true;
         extraGroups = ["wheel" "sudo"];
         home = "/home/${username}";
-        description = "My only user. Ain't no one else using my computer. Fuck you.";
+        description = "Main user";
         hashedPassword = config.modules.user.password;
       };
     };

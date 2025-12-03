@@ -34,7 +34,7 @@
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
     spicetify-nix = {
-      url = "github:gerg-l/spicetify-nix/0b73bd5bad8a10d5e88b0fa4a3e7a9134bfa9620";
+      url = "github:gerg-l/spicetify-nix";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -43,7 +43,7 @@
       url = "github:notashelf/nvf";
     };
 
-    anyrun.url = "github:anyrun-org/anyrun/4d1bec53abce32f68542c0beb1a0df4c66008fd0";
+    anyrun.url = "github:anyrun-org/anyrun";
 
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
@@ -73,6 +73,11 @@
     affine = {
       url = "github:toeverything/AFFiNE";
       flake = false;
+    };
+
+    mail-server = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/snm-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
