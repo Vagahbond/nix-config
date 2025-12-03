@@ -1,10 +1,6 @@
 {lib, ...}:
 with lib; {
   options.modules.security = {
-    keyring = {
-      enable = mkEnableOption "Keyring";
-    };
-
     fingerprint = {
       enable = mkEnableOption "Fingerprint support";
     };

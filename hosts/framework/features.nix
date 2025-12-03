@@ -103,17 +103,14 @@ in {
       };
 
       security = {
-        keyring.enable = true;
         fingerprint.enable = true;
         polkit.enable = true;
       };
 
       social = {
-        whatsapp.enable = false;
         discord.enable = true;
         slack.enable = true;
-        # teams.enable = true;
-        # matrix.enable = true;
+        matrix.enable = true;
       };
 
       system = {
@@ -138,16 +135,6 @@ in {
       virtualisation = {
         docker.enable = true;
         libvirt.enable = true;
-        wine.enable = false;
-        # virtualbox.enable = true;
-        kubernetes.client.enable = false;
-      };
-
-      gaming = {
-        wine.enable = false;
-        dofus.enable = false;
-        steam.enable = false;
-        lutris.enable = false;
       };
 
       nix = {

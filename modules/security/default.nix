@@ -14,15 +14,26 @@ in {
   imports = [./options.nix];
   config = mkMerge [
     {
+      environment = {
+        persistence.${storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".local/share/keyring"
+            ];
+          };
+        };
+      };
+
       programs.gnupg.agent = {
         enable = true;
         enableSSHSupport = true;
       };
+
+      security.pam.services.gnupg = {
+        enable = true;
+        gnupg.enable = true;
+      };
     }
-    (mkIf cfg.keyring.enable {
-      # TODO: add seahorse
-      services.gnome.gnome-keyring.enable = true;
-    })
     (mkIf cfg.fingerprint.enable {
       services.fprintd = {
         enable = true;

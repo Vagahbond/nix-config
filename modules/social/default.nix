@@ -11,15 +11,7 @@ with lib; let
 
   inherit (config.modules) impermanence;
 
-  inherit (config.theme) templates colors font;
-
-  inherit
-    (inputs.nix-cooker.lib {
-      inherit lib;
-      inherit (config) theme;
-    })
-    mkHex
-    ;
+  inherit (config.theme) templates;
 in {
   imports = [./options.nix];
   config = mkMerge [
@@ -41,7 +33,6 @@ in {
           users.${username} = {
             directories = [
               ".config/vesktop"
-              # ".config/ArmCord"
             ];
           };
         };
@@ -71,9 +62,20 @@ in {
       };
     })
     (mkIf cfg.matrix.enable {
-      environment.systemPackages = with pkgs; [
-        element-desktop
-      ];
+      environment = {
+        persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".local/share/chat.fluffy.fluffychat"
+              # ".config/ArmCord"
+            ];
+          };
+        };
+
+        systemPackages = with pkgs; [
+          fluffychat
+        ];
+      };
     })
     (mkIf cfg.slack.enable {
       environment.systemPackages = with pkgs; [
@@ -85,7 +87,6 @@ in {
           users.${username} = {
             directories = [
               ".config/Slack"
-              # ".config/ArmCord"
             ];
           };
         };
