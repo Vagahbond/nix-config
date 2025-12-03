@@ -58,24 +58,13 @@ in {
       }
     )
     (mkIf (builtins.elem "neovim" cfg.terminal) {
-      # Wakatime key as a secret
-      age.secrets.wakatimeConfig = {
-        file = ../../secrets/wakatime_config.age;
-        path = "${config.users.users.${username}.home}/.wakatime.cfg";
-        mode = "440";
-        owner = "vagahbond";
-        group = "users";
-      };
-
       environment.persistence.${impermanence.storageLocation} = {
         users.${username} = {
           directories = [
-            ".wakatime"
             ".config/github-copilot"
           ];
           files = [
             ".viminfo"
-            ".wakatime.bdb"
           ];
         };
       };
@@ -86,10 +75,6 @@ in {
 
       home-manager.users.${username} = {...}: {
         imports = [inputs.neovim-flake.homeManagerModules.default];
-
-        # nixpkgs.overlays = [
-        #   inputs.neovim-flake.overlays.default
-        # ];
 
         programs.neovim-flake = {
           enable = true;
@@ -107,14 +92,11 @@ in {
                 registers = "unnamedplus";
               };
 
-              # vimAlias = true;
               debugMode = {
                 enable = false;
                 level = 16;
                 logFile = "/tmp/nvim.log";
               };
-
-              lineNumberMode = "number";
 
               statusline.lualine = {
                 enable = true;
@@ -123,11 +105,8 @@ in {
               lsp = {
                 enable = true;
                 formatOnSave = false;
-                lspkind.enable = false;
-                lightbulb.enable = true;
-                lspsaga.enable = false;
-                trouble.enable = true;
-                lspSignature.enable = true;
+                trouble.enable = false;
+                # lspSignature.enable = true;
               };
               # LANGUAGES
 
@@ -138,33 +117,12 @@ in {
 
                 nix.enable = true;
                 html.enable = true;
-                clang = {
-                  enable = true;
-                  lsp.server = "clangd";
-                };
-                # broky
                 sql.enable = false;
                 rust = {
                   enable = true;
                   crates.enable = true;
                 };
-                ts = {
-                  enable = true;
-                  lsp = {
-                    enable = true;
-                    server = "ts_ls";
-                  };
-                  format = {
-                    enable = true;
-                    #  type = "prettier";
-                  };
-                };
-                go.enable = true;
-                zig.enable = true;
-                python.enable = false;
-                dart.enable = false;
-                elixir.enable = false;
-                php.enable = true;
+                ts.enable = true;
                 lua.enable = true;
                 svelte.enable = true;
                 css.enable = true;
@@ -172,56 +130,30 @@ in {
 
               theme = {
                 enable = true;
-                name = "base16";
-                # style = "light-medium";
-                transparent = true;
-                base16-colors = {
-                  inherit
-                    (config.theme.colors)
-                    base00
-                    base01
-                    base02
-                    base03
-                    base04
-                    base05
-                    base06
-                    base07
-                    base08
-                    base09
-                    base0A
-                    base0B
-                    base0C
-                    base0D
-                    base0E
-                    base0F
-                    ;
-                };
+                name = "everforest";
+                style = "medium";
+                transparent = false;
               };
 
               autopairs.nvim-autopairs.enable = true;
 
               autocomplete = {
-                nvim-cmp.enable = true;
+                blink-cmp = {
+                  enable = true;
+                  setupOpts.signature.enabled = true;
+                };
               };
 
               filetree = {
-                nvimTree = {
+                /*
+                  neo-tree = {
                   enable = true;
                   setupOpts = {
-                    filters = {
-                      dotfiles = false;
-                      exclude = [".git" "node_modules" "node_modules/**/*"];
-                      # gitClean = false;
-                      # noBuffer = false;
-                    };
-                    hijackCursor = true;
-                    view = {
-                      width = 25;
-                    };
 
-                    git.enable = true;
-                  };
+                }
                 };
+                */
+                nvimTree.enable = true;
               };
 
               tabline = {
@@ -241,7 +173,9 @@ in {
                 cheatsheet.enable = true;
               };
 
-              telescope.enable = true;
+              telescope = {
+                enable = true;
+              };
 
               git = {
                 enable = true;
@@ -251,12 +185,10 @@ in {
 
               minimap = {
                 minimap-vim.enable = false;
-                codewindow.enable = true; # lighter, faster, and uses lua for configuration
-              };
-
-              dashboard = {
-                dashboard-nvim.enable = false;
-                alpha.enable = true;
+                codewindow = {
+                  enable = true; # lighter, faster, and uses lua for configuration
+                  openByDefault = true;
+                };
               };
 
               notify = {
@@ -275,7 +207,6 @@ in {
 
               utility = {
                 ccc.enable = true;
-                icon-picker.enable = true;
                 diffview-nvim.enable = true;
                 motion = {
                   hop.enable = true;
@@ -284,58 +215,32 @@ in {
               };
 
               notes = {
-                obsidian.enable = false; # FIXME neovim fails to build if obsidian is enabled
-                orgmode.enable = false;
-                mind-nvim.enable = false;
                 todo-comments.enable = true;
               };
 
               terminal = {
-                toggleterm.enable = true;
+                toggleterm = {
+                  enable = true;
+                  lazygit.enable = true;
+                };
               };
 
-              ui = {
-                noice.enable = true;
-                # smartcolumn.enable = true;
-              };
-
+              /*
+              Look into this some time later
               assistant = {
                 copilot = {
                   enable = false;
                   cmp.enable = false;
                 };
               };
-
-              session = {
-                nvim-session-manager.enable = false;
-              };
+              */
 
               gestures = {
-                gesture-nvim.enable = false;
+                gesture-nvim.enable = true;
               };
 
               comments = {
                 comment-nvim.enable = true;
-              };
-
-              /*
-                 presence = {
-                presence-nvim = {
-                  enable = true;
-                  auto_update = true;
-                  image_text = "The Superior Text Editor";
-                  client_id = "793271441293967371";
-                  main_image = "neovim";
-                  rich_presence = {
-                    editing_text = "Editing %s";
-                  };
-                };
-              };
-              */
-
-              utility.vim-wakatime = {
-                enable = true;
-                #  cli-package = null;
               };
             };
           };

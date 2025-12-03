@@ -40,7 +40,8 @@
     };
 
     neovim-flake = {
-      url = "github:notashelf/nvf";
+      #url = "github:notashelf/nvf";
+      url = "/home/vagahbond/Projects/nvf";
     };
 
     anyrun.url = "github:anyrun-org/anyrun";
