@@ -187,7 +187,6 @@ in {
                 minimap-vim.enable = false;
                 codewindow = {
                   enable = true; # lighter, faster, and uses lua for configuration
-                  openByDefault = true;
                 };
               };
 
