@@ -55,7 +55,7 @@
         notes.enable = true;
         pdf.enable = true;
         fitness.enable = false;
-        mail.enable = true;
+        mail.enable = false;
       };
     };
   };

@@ -65,28 +65,33 @@
     fqdn = "mail.vagahbond.com";
     domains = ["vagahbond.com"];
 
+    # dmarcReporting.enable = true;
+
+    enableImap = false;
+    enableSubmission = false;
+
+    enableImapSsl = true;
+    enableSubmissionSsl = true;
+
     # A list of all login accounts. To create the password hashes, use
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
       "no-reply@vagahbond.com" = {
         hashedPasswordFile = config.age.secrets.mailUserPass.path;
         # sendOnly = true;
-        # name = "no-reply@vagahbond.com";
-      };
-      "noreply@vagahbond.com" = {
-        hashedPasswordFile = config.age.secrets.mailUserPass.path;
-        # sendOnly = true;
-        # name = "no-reply@vagahbond.com";
+        name = "no-reply@vagahbond.com";
+        aliases = ["no-reply@vagahbond.com"];
       };
       "me@vagahbond.com" = {
         hashedPasswordFile = config.age.secrets.mailUserPass.path;
         # sendOnly = true;
-        # name = "no-reply@vagahbond.com";
+        name = "me@vagahbond.com";
+        aliases = ["@vagahbond.com"];
       };
     };
 
     certificateScheme = "acme-nginx";
   };
   # services.postfix.networks = ["localhost"];
-  networking.firewall.allowedTCPPorts = [993 465];
+  networking.firewall.allowedTCPPorts = [25 143 993 465];
 }
