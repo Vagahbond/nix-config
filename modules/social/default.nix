@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 with lib; let
@@ -12,6 +13,8 @@ with lib; let
   inherit (config.modules) impermanence;
 
   inherit (config.theme) templates;
+
+  matui = inputs.matui.packages.${pkgs.system}.matui;
 in {
   imports = [./options.nix];
   config = mkMerge [
@@ -67,13 +70,14 @@ in {
           users.${username} = {
             directories = [
               ".local/share/chat.fluffy.fluffychat"
-              # ".config/ArmCord"
+              ".config/matui"
             ];
           };
         };
 
         systemPackages = with pkgs; [
           fluffychat
+          matui
         ];
       };
     })
