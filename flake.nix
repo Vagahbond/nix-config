@@ -76,11 +76,6 @@
       flake = false;
     };
 
-    mail-server = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/snm-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     matui = {
       url = "github:pkulak/matui";
     };

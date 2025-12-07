@@ -2,6 +2,7 @@
   inputs,
   config,
   storageLocation,
+  pkgs,
   ...
 }: {
   age.secrets.mailUserPass = {
@@ -59,6 +60,23 @@
     ];
   };
 
+  services.roundcube = {
+    enable = true;
+    hostName = "webmail.vagahbond.com";
+    dicts = with pkgs.aspellDicts; [en fr];
+    extraConfig = ''
+      $config['imap_host'] = "ssl://${config.mailserver.fqdn}";
+      $config['smtp_host'] = "ssl://${config.mailserver.fqdn}";
+      $config['smtp_user'] = "%u";
+      $config['smtp_pass'] = "%p";
+    '';
+  };
+
+  services.nginx.virtualHosts."webmail.vagahbond.com" = {
+    forceSSL = true;
+    enableACME = true;
+  };
+
   mailserver = {
     enable = true;
     stateVersion = 3;
@@ -72,6 +90,10 @@
 
     enableImapSsl = true;
     enableSubmissionSsl = true;
+
+    dkimSigning = true;
+    dkimKeyBits = 4096;
+    dkimSelector = "mail";
 
     # A list of all login accounts. To create the password hashes, use
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
