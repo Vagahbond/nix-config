@@ -18,7 +18,6 @@ in {
   imports = [
     inputs.universe.nixosModules.default
     inputs.learnify.nixosModules.default
-    inputs.mail-server.nixosModules.default
     ./options.nix
   ];
 

@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   storageLocation,
   pkgs,
@@ -76,7 +75,7 @@
     forceSSL = true;
     enableACME = true;
   };
-
+  /*
   mailserver = {
     enable = true;
     stateVersion = 3;
@@ -114,6 +113,7 @@
 
     certificateScheme = "acme-nginx";
   };
+  */
   # services.postfix.networks = ["localhost"];
   networking.firewall.allowedTCPPorts = [25 143 993 465];
 }
