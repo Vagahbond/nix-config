@@ -94,10 +94,9 @@ in {
         printer.enable = true;
       };
 
-      # Notion on nix broken for now, too busy to look into it
       productivity = {
         affine.enable = true;
-        nextcloudSync.enable = false;
+        nextcloudSync.enable = true;
         pomodoro.enable = true;
         activityWatch.enable = false;
       };
