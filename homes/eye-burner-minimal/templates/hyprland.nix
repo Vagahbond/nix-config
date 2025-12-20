@@ -290,8 +290,8 @@
 
       exec = hyprpaper
       exec-once=systemctl --user enable --now hypridle.service
+      exec-once=anyrun daemon
       # exec-once=ags --quit && ags
-      exec-once=aw-qt --no-gui
 
       # monitor=eDP-1,addreserved,0,0,60,0
       monitor=eDP-1,highres,auto,1.6
