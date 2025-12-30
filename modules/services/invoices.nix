@@ -41,8 +41,5 @@
       };
       nginx = {};
     };
-
-    kimai.sites."invoices.vagahbond.com" = {
-    };
   };
 }
