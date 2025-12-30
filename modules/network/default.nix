@@ -21,9 +21,9 @@ in {
     (mkIf cfg.wifi.enable {
       age.secrets.wifi = {
         file = ../../secrets/wifi.age;
-        owner = username;
+        owner = "wpa_supplicant";
         mode = "600";
-        group = "users";
+        group = "wpa_supplicant";
       };
 
       networking.wireless = {
