@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   config = {
     modules = {
       impermanence = {
@@ -12,7 +13,7 @@
       };
 
       editor = {
-        terminal = ["neovim"];
+        terminal = [ "neovim" ];
       };
 
       network = {
@@ -40,6 +41,7 @@
       };
 
       services = {
+        mkReset.enable = true;
         invoices.enable = true;
         metrics.enable = true;
         proxy.enable = true;

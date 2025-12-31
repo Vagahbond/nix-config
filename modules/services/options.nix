@@ -3,7 +3,8 @@
   config,
   ...
 }:
-with lib; {
+with lib;
+{
   options.modules.services = {
     ssh = {
       enable = mkEnableOption "ssh";
@@ -56,5 +57,7 @@ with lib; {
     fitness.enable = mkEnableOption "WGER server";
 
     mail.enable = mkEnableOption "Mail server";
+
+    mkReset.enable = mkEnableOption "Mario Krade Reset";
   };
 }

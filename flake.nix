@@ -1,17 +1,17 @@
 {
   description = "My modular NixOS configuration that totally did not take countless horus to make.";
 
-  outputs = {self, ...} @ inputs: {
-    nixosConfigurations =
-      import ./hosts
-      {
+  outputs =
+    { self, ... }@inputs:
+    {
+      nixosConfigurations = import ./hosts {
         inherit inputs self;
       };
 
-    packages."x86_64-linux".doc = import ./doc {
-      inherit inputs self;
+      packages."x86_64-linux".doc = import ./doc {
+        inherit inputs self;
+      };
     };
-  };
 
   # Imagine having no clean way to separate your system's dependencies...
   inputs = {
@@ -40,8 +40,7 @@
     };
 
     neovim-flake = {
-      #url = "github:notashelf/nvf";
-      url = "/home/vagahbond/Projects/nvf";
+      url = "github:notashelf/nvf";
     };
 
     anyrun.url = "github:anyrun-org/anyrun";
@@ -78,6 +77,10 @@
 
     matui = {
       url = "github:pkulak/matui";
+    };
+
+    mkReset = {
+      url = "/home/vagahbond/Projects/mk_reset_online";
     };
   };
 }

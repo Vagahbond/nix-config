@@ -5,13 +5,7 @@
 }: let
   keys = import ../../secrets/sshKeys.nix {inherit config lib;};
 in {
-  # Testing Cosmic
   config = {
-    nix.settings = {
-      substituters = ["https://cosmic.cachix.org/"];
-      trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
-    };
-
     rice = "eye-burner-minimal";
     modules = {
       impermanence.enable = true;
