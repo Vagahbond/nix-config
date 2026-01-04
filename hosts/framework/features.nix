@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
-  keys = import ../../secrets/sshKeys.nix {inherit config lib;};
-in {
+}:
+let
+  keys = import ../../secrets/sshKeys.nix { inherit config lib; };
+in
+{
   config = {
     rice = "eye-burner-minimal";
     modules = {
@@ -30,7 +32,7 @@ in {
       };
 
       browser = {
-        firefox.enable = true;
+        librewolf.enable = true;
         chromium.enable = true;
       };
 
@@ -40,13 +42,19 @@ in {
 
         enableGeo = false;
         enableNetwork = true;
-        languages = ["c-cpp" "js" "nix" "android" "rust"];
+        languages = [
+          "c-cpp"
+          "js"
+          "nix"
+          "android"
+          "rust"
+        ];
         dbAdmin.enable = true;
       };
 
       editor = {
-        gui = [];
-        terminal = ["neovim"];
+        gui = [ ];
+        terminal = [ "neovim" ];
         office = true;
       };
 
@@ -115,7 +123,8 @@ in {
         tmux.enable = true;
         shell = "zsh";
         shellAliases = {
-          rebuild-remote = ''            f() {  \
+          rebuild-remote = ''
+            f() {  \
                      NIX_SSHOPTS="-i ~/.ssh/$1_access " \
                      nixos-rebuild switch --sudo --ask-sudo-password \
                      --flake .#"$1" --target-host $1 \

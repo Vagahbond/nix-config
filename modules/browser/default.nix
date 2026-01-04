@@ -5,7 +5,8 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   inherit (config.modules) graphics impermanence;
   cfg = config.modules.browser;
 
@@ -20,49 +21,66 @@ with lib; let
     })
     mkHex
     ;
-in {
+in
+{
   imports = [
     ./options.nix
   ];
 
   config = mkMerge [
-    (mkIf
-      (cfg.chromium.enable && (graphics.type != null))
-      {
-        environment = {
-          persistence.${impermanence.storageLocation} = {
-            users.${username} = {
-              directories = [
-                ".config/chromium"
-                ".cache/chromium"
-              ];
-            };
-          };
-          systemPackages = with pkgs; [
-            chromium
-          ];
-        };
-      })
-    (mkIf
-      (cfg.firefox.enable && (graphics.type != null))
-      {
-        xdg.mime.defaultApplications = {
-          "text/html" = "firefox.desktop";
-          "x-scheme-handler/http" = "firefox.desktop";
-          "x-scheme-handler/https" = "firefox.desktop";
-          "x-scheme-handler/about" = "firefox.desktop";
-          "x-scheme-handler/unknown" = "firefox.desktop";
-        };
-        environment.persistence.${impermanence.storageLocation} = {
+    (mkIf (cfg.chromium.enable && (graphics.type != null)) {
+      environment = {
+        persistence.${impermanence.storageLocation} = {
           users.${username} = {
             directories = [
-              ".mozilla"
-              ".cache/mozilla"
+              ".config/chromium"
+              ".cache/chromium"
             ];
           };
         };
+        systemPackages = with pkgs; [
+          chromium
+        ];
+      };
+    })
+    (mkIf (cfg.librewolf.enable && (graphics.type != null)) {
+      xdg.mime.defaultApplications = {
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "librewolf.desktop";
+        "x-scheme-handler/https" = "librewolf.desktop";
+        "x-scheme-handler/about" = "librewolf.desktop";
+        "x-scheme-handler/unknown" = "librewolf.desktop";
+      };
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".librewolf"
+            ".cache/librewolf"
+          ];
+        };
+      };
 
-        programs.firefox.enable = true;
-      })
+      environment.systemPackages = with pkgs; [ librewolf ];
+
+    })
+    (mkIf (cfg.firefox.enable && (graphics.type != null)) {
+      xdg.mime.defaultApplications = {
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+      };
+      environment.persistence.${impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".mozilla"
+            ".cache/mozilla"
+          ];
+        };
+      };
+
+      programs.firefox.enable = true;
+    })
   ];
 }
