@@ -72,12 +72,6 @@ in {
         };
       };
     })
-    (mkIf (cfg.wifi.enable
-      && (graphics.type != null)) {
-      environment.systemPackages = with pkgs; [
-        wpa_supplicant_gui
-      ];
-    })
     (mkIf cfg.bluetooth.enable {
       hardware.bluetooth = {
         enable = true;
