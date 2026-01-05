@@ -13,7 +13,7 @@ let
     inherit (pkgs) lib;
   };
 
-  upgradeScript = pkgs.writeScriptBin "upgrade" ''nh os switch --update -R --no-update-lock-file github:vagahbond/nix-config  '';
+  upgradeScript = pkgs.writeScriptBin "upgrade" ''nh os switch --update --refresh -R --no-update-lock-file github:vagahbond/nix-config  '';
 
 in
 {
