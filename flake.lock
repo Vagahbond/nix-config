@@ -3,11 +3,11 @@
     "affine": {
       "flake": false,
       "locked": {
-        "lastModified": 1767518283,
-        "narHash": "sha256-60JvAD/1WrIuDQYaTlPZceun4pHBqaY7bNxsCWLIz4I=",
+        "lastModified": 1767590096,
+        "narHash": "sha256-yU29aghwA7H0pda0Z3z54vNezYGPFYy1+blWo4bRTsg=",
         "owner": "toeverything",
         "repo": "AFFiNE",
-        "rev": "f5394b7450793b9a919ab58c1fa2e3315ec09aa1",
+        "rev": "f42246aba14ac2fb862ba22a3a5685f7b1a45022",
         "type": "github"
       },
       "original": {

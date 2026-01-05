@@ -13,7 +13,11 @@ let
     inherit (pkgs) lib;
   };
 
-  upgradeScript = pkgs.writeScriptBin "upgrade" ''nh os switch --update --refresh -R --no-update-lock-file github:vagahbond/nix-config  '';
+  upgradeScript = pkgs.writeScriptBin "upgrade" ''
+    if [ -z "$1" ]; then echo "please give a flake's name as argument";  fi
+
+    nixos-rebuild switch --flake github:vagahbond/nix-config --update-input $1 --no-update-lock-file --no-write-lock-file 
+  '';
 
 in
 {
