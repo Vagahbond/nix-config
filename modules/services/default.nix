@@ -19,7 +19,7 @@ in
   # TODO: move this import to the uni-verse part somehow.
   imports = [
     inputs.universe.nixosModules.default
-    inputs.learnify.nixosModules.default
+    # inputs.learnify.nixosModules.default
     inputs.mkReset.nixosModules.default
     ./options.nix
   ];

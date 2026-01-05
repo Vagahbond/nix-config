@@ -51,9 +51,9 @@
 
     universe.url = "github:uni-verse-fm/uni-verse-production";
 
-    learnify = {
-      url = "git+ssh://git@github.com/vagahbond/learnify-platform";
-    };
+    #learnify = {
+    #  url = "git+ssh://git@github.com/vagahbond/learnify-platform";
+    #};
 
     website = {
       url = "github:vagahbond/website";
@@ -80,7 +80,9 @@
     };
 
     mkReset = {
-      url = "/home/vagahbond/Projects/mk_reset_online";
+      # url = "/home/vagahbond/Projects/mk_reset_online";
+      url = "github:jmsk8/mk_reset_online";
+
     };
   };
 }
