@@ -19,7 +19,7 @@ let
 
     nix flake update $1 --flake /tmp/tmpflake;
 
-    nh os switch /tmp/tmpflake/.; 
+    nh os switch -R /tmp/tmpflake/.; 
   '';
 
 in
