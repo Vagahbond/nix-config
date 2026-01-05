@@ -14,9 +14,12 @@ let
   };
 
   upgradeScript = pkgs.writeScriptBin "upgrade" ''
-    if [ -z "$1" ]; then echo "please give a flake's name as argument";  fi
+    rm -r /tmp/tmpflake;
+    git clone https://github.com/vagahbond/nix-config /tmp/tmpflake;
 
-    nixos-rebuild switch --flake github:vagahbond/nix-config --update-input $1 --no-update-lock-file --no-write-lock-file 
+    nix flake update $1 --flake /tmp/tmpflake;
+
+    nh os switch /tmp/tmpflake/.; 
   '';
 
 in
