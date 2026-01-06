@@ -46,51 +46,51 @@ in
         description = "Main user";
         hashedPassword = config.modules.user.password;
       };
+      /*
+            upgrader = {
+              isNormalUser = true;
+              extraGroups = [
+                "wheel"
+                "sudo"
+              ];
+              home = "/home/upgrader";
+              description = "A user made to update stuff";
+              openssh.authorizedKeys.keys = with keys; [
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDr8QDLbHVJFcCYfbJW0sbACpX6RWrFig/nHfUbXNbx1 yoniserv"
+                platypute_access.pub
+              ];
 
-      upgrader = {
-        isNormalUser = true;
-        extraGroups = [
-          "wheel"
-          "sudo"
-        ];
-        home = "/home/upgrader";
-        description = "A user made to update stuff";
-        openssh.authorizedKeys.keys = with keys; [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDr8QDLbHVJFcCYfbJW0sbACpX6RWrFig/nHfUbXNbx1 yoniserv"
-          platypute_access.pub
-        ];
-
-      };
-
+            };
+      */
     };
   };
 
-  nix.settings.trusted-users = [ "upgrader" ];
+  # nix.settings.trusted-users = [ "upgrader" ];
+  /*
+    security.sudo = {
+      enable = true;
+      extraRules = [
+        {
+          # allow wheel group to run nixos-rebuild without password
+          # this s a less vulnerable alternative to having wheelNeedsPassword = false
+          users = [
+            "upgrader"
+          ];
+          commands = [
+            {
+              command = "${upgradeScript}/bin/upgrade";
+              options = [ "NOPASSWD" ];
+            }
+            {
+              command = "/run/current-system/sw/bin/upgrade";
+              options = [ "NOPASSWD" ];
+            }
 
-  security.sudo = {
-    enable = true;
-    extraRules = [
-      {
-        # allow wheel group to run nixos-rebuild without password
-        # this s a less vulnerable alternative to having wheelNeedsPassword = false
-        users = [
-          "upgrader"
-        ];
-        commands = [
-          {
-            command = "${upgradeScript}/bin/upgrade";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/upgrade";
-            options = [ "NOPASSWD" ];
-          }
-
-        ];
-      }
-    ];
-  };
-
+          ];
+        }
+      ];
+    };
+  */
   environment.persistence.${storageLocation} = {
     users.${username} = {
       directories = [
