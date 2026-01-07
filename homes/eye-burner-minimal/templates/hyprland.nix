@@ -241,26 +241,13 @@
         smart_split = true
       }
 
-      # Special rules
-      windowrule=opaque,title:^(.*Firefox.*)$
-      windowrule=opaque,title:^(.*Visual Studio Code.*)$
-      windowrule=opaque,title:^(.*Oracle VM VirtualBox.*)$
-      windowrule=opaque,title:^(.*foot.*)$
-      windowrulev2 = opaque,title:(.*)(REAPER)(.*)$
-      windowrulev2 = tile,title:(.*)(REAPER)(.*)$
-
-      windowrulev2 = opaque,fullscreen:1
       windowrulev2 = noshadow, floating:0.
       windowrulev2 = noshadow, focus:0.
 
-      windowrulev2 = float, title:(.*)(satty)$
-      windowrulev2 = float, class:(.*)(thunar)$
-
-
       # firefox's sharing indicator
-      windowrule = float, title:^(Firefox — Sharing Indicator)$
-      windowrule = move 0 0, title:^(Firefox — Sharing Indicator)$
-      windowrule = size 30 30, title:^(Firefox - Sharing Indicator)$
+      # windowrule = float, title:^(Firefox — Sharing Indicator)$
+      # windowrule = move 0 0, title:^(Firefox — Sharing Indicator)$
+      # windowrule = size 30 30, title:^(Firefox - Sharing Indicator)$
 
       windowrulev2 = immediate, class:^(steam_app)(.*)$
       windowrulev2 = immediate, title:^(glxgears)(.*)$
@@ -268,9 +255,6 @@
       windowrulev2 = opaque, class:^(libreoffice)(.*)$
       windowrulev2 = opaque, class:^(.*vlc.*)$
       windowrulev2 = opaque, class:^(.*mpv.*)$
-
-      # Dofus keeps crashing
-      windowrulev2 = float, class:^(gamescope)(.*)$
 
       # Issues with scaling in FL
       windowrulev2 = fullscreen, initialTitle:^(FL Studio 20)(.*)$
@@ -288,19 +272,14 @@
       workspace = special:pomodoro, on-created-empty:foot zsh -c 'tomato; zsh -i' ,gapsout:100
       workspace = special:affine, on-created-empty:affine ,gapsout:20
 
-      exec = hyprpaper
       exec-once=systemctl --user enable --now hypridle.service
+      exec-once=systemctl --user enable --now hyprpaper.service
       exec-once=anyrun daemon
       # exec-once=ags --quit && ags
 
       # monitor=eDP-1,addreserved,0,0,60,0
       monitor=eDP-1,highres,auto,1.6
       monitor=,preferred,auto-center-up,1.6
-
-      layerrule = ignorealpha 0,bar0
-      layerrule = blur,bar0
-      layerrule = ignorealpha 0,notifications
-      layerrule = blur,notifications
 
       # exec = eww kill
       # exec = zsh $HOME/.config/hypr/eww_widgets.sh

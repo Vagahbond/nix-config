@@ -40,8 +40,7 @@
     };
 
     neovim-flake = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:notashelf/nvf/1bf757685b065c5aaeaf252c02457238df42ed31";
     };
 
     anyrun.url = "github:anyrun-org/anyrun";
