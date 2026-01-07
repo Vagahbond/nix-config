@@ -41,6 +41,7 @@
 
     neovim-flake = {
       url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     anyrun.url = "github:anyrun-org/anyrun";

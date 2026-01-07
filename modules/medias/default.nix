@@ -92,6 +92,7 @@ in {
         users.${username} = {
           directories = [
             ".config/spotify"
+            ".cache/spotify"
           ];
           files = [
           ];
