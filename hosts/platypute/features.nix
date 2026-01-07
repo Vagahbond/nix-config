@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   config = {
     modules = {
       impermanence = {
@@ -13,7 +12,7 @@
       };
 
       editor = {
-        terminal = [ "neovim" ];
+        terminal = ["neovim"];
       };
 
       network = {

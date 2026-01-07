@@ -2,11 +2,9 @@
   config,
   lib,
   ...
-}:
-let
-  keys = import ../../secrets/sshKeys.nix { inherit config lib; };
-in
-{
+}: let
+  keys = import ../../secrets/sshKeys.nix {inherit config lib;};
+in {
   config = {
     rice = "eye-burner-minimal";
     modules = {
@@ -53,8 +51,8 @@ in
       };
 
       editor = {
-        gui = [ ];
-        terminal = [ "neovim" ];
+        gui = [];
+        terminal = ["neovim"];
         office = true;
       };
 

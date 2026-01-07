@@ -5,8 +5,7 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   inherit (config.modules) graphics impermanence;
   cfg = config.modules.browser;
 
@@ -21,8 +20,7 @@ let
     })
     mkHex
     ;
-in
-{
+in {
   imports = [
     ./options.nix
   ];
@@ -60,8 +58,7 @@ in
         };
       };
 
-      environment.systemPackages = with pkgs; [ librewolf ];
-
+      environment.systemPackages = with pkgs; [librewolf];
     })
     (mkIf (cfg.firefox.enable && (graphics.type != null)) {
       xdg.mime.defaultApplications = {

@@ -1,7 +1,5 @@
-{ config, ... }:
-{
+{config, ...}: {
   services.nginx.virtualHosts = {
-
     "mario-crade.touches-grasses.fr" = {
       forceSSL = true;
       enableACME = true;
@@ -35,7 +33,6 @@
       mode = "440";
       owner = "nginx";
       group = "nginx";
-
     };
   };
 

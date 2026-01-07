@@ -4,10 +4,10 @@
 
   preload=${wallpaper.package}/${wallpaper.name}
 
-  
+
   wallpaper {
-    monitor = 
-    path = ${wallpaper.package}/${wallpaper.name} 
+    monitor =
+    path = ${wallpaper.package}/${wallpaper.name}
     fit_mode = cover
   }
 ''

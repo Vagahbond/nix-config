@@ -1,5 +1,9 @@
-{inputs, ...}: let
-  inherit (inputs.nixpkgs.legacyPackages."x86_64-linux") callPackage stdenv python311Packages;
+{
+  inputs,
+  pkgs,
+  ...
+}: let
+  inherit (pkgs) callPackage stdenv python311Packages;
   options-doc = callPackage ./doc-package.nix {};
 in
   stdenv.mkDerivation {

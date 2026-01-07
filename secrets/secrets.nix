@@ -5,11 +5,10 @@ let
 
   # Master key is responsible for re-keying everything
   mk = framework;
-in
-{
+in {
   # Misc secrets
-  "wifi.age".publicKeys = [ mk ];
-  "kubeconfig.age".publicKeys = [ mk ];
+  "wifi.age".publicKeys = [mk];
+  "kubeconfig.age".publicKeys = [mk];
   "wakatime_config.age".publicKeys = [
     mk
     dedistonks
@@ -28,7 +27,7 @@ in
     mk
     platypute
   ];
-  "nextcloud_client_account.age".publicKeys = [ mk ];
+  "nextcloud_client_account.age".publicKeys = [mk];
 
   "invoiceshelf_env.age".publicKeys = [
     mk
@@ -65,15 +64,15 @@ in
   ];
 
   # SSH Keys
-  "ssh_config.age".publicKeys = [ mk ];
+  "ssh_config.age".publicKeys = [mk];
 
-  "builder_access.age".publicKeys = [ mk ];
+  "builder_access.age".publicKeys = [mk];
 
-  "platypute_access.age".publicKeys = [ mk ];
+  "platypute_access.age".publicKeys = [mk];
 
-  "github_access.age".publicKeys = [ mk ];
+  "github_access.age".publicKeys = [mk];
 
-  "dedistonks_access.age".publicKeys = [ mk ];
+  "dedistonks_access.age".publicKeys = [mk];
 
   "aws_ro_access.age".publicKeys = [
     platypute
@@ -108,7 +107,6 @@ in
   "mk_reset_pwd.age".publicKeys = [
     platypute
     mk
-
   ];
 
   "mk_reset_env.age".publicKeys = [
