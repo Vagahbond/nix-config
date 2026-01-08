@@ -54,6 +54,23 @@ in
             command = "/run/current-system/sw/bin/upgrade";
             options = [ "NOPASSWD" ];
           }
+          {
+            command = "/run/current-system/sw/bin/systemctl restart mario-crade-backend.service";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/systemctl restart mario-crade-frontend.service";
+            options = [ "NOPASSWD" ];
+          }
+          {
+
+            command = "/run/current-system/sw/bin/systemctl status mario-crade-backend.service";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/systemctl status mario-crade-frontend.service";
+            options = [ "NOPASSWD" ];
+          }
 
         ];
       }
