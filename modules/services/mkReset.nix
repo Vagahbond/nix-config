@@ -1,4 +1,68 @@
-{config, ...}: {
+{ config, pkgs, ... }:
+let
+  # MAINTENANCE
+
+  keys = import ../../secrets/sshKeys.nix {
+    inherit config;
+    inherit (pkgs) lib;
+  };
+
+  serviceUser = "mk_reset";
+
+  upgradeScript = pkgs.writeScriptBin "upgrade" ''
+    rm -r /tmp/tmpflake;
+    git clone https://github.com/vagahbond/nix-config /tmp/tmpflake;
+
+    nix flake update mkReset --flake /tmp/tmpflake;
+
+    nh os switch -R /tmp/tmpflake/.;
+  '';
+
+in
+{
+
+  users.users = {
+    ${serviceUser} = {
+      isSystemUser = pkgs.lib.mkForce false;
+      isNormalUser = true;
+
+      extraGroups = [
+        "wheel"
+      ];
+
+      openssh.authorizedKeys.keys = with keys; [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDr8QDLbHVJFcCYfbJW0sbACpX6RWrFig/nHfUbXNbx1 yoniserv"
+        platypute_access.pub
+      ];
+    };
+  };
+
+  nix.settings.trusted-users = [ serviceUser ];
+
+  security.sudo = {
+    enable = true;
+    extraRules = [
+      {
+        # allow wheel group to run nixos-rebuild without password
+        # this s a less vulnerable alternative to having wheelNeedsPassword = false
+        users = [
+          serviceUser
+        ];
+
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/upgrade";
+            options = [ "NOPASSWD" ];
+          }
+
+        ];
+      }
+    ];
+  };
+
+  environment.systemPackages = [ upgradeScript ];
+
+  # REVERSE PROXY
   services.nginx.virtualHosts = {
     "mario-crade.touches-grasses.fr" = {
       forceSSL = true;
@@ -20,12 +84,13 @@
     };
   };
 
+  # SECRETS
   age.secrets = {
     mkResetEnv = {
       file = ../../secrets/mk_reset_env.age;
       mode = "440";
-      owner = "mk_reset";
-      group = "mk_reset";
+      owner = serviceUser;
+      group = serviceUser;
     };
 
     mkResetPassword = {
@@ -36,9 +101,13 @@
     };
   };
 
+  # SERVICE
   services.mkReset = {
     enable = true;
 
+    user = serviceUser;
+
     envFile = config.age.secrets.mkResetEnv.path;
   };
+
 }

@@ -52,12 +52,6 @@
 
     agenix.url = "github:ryantm/agenix";
 
-    schizofox = {
-      url = "github:schizofox/schizofox";
-    };
-
-    hyprpaper.url = "github:hyprwm/hyprpaper";
-
     spicetify-nix = {
       url = "github:gerg-l/spicetify-nix";
 
@@ -85,6 +79,7 @@
       flake = false;
     };
 
+    # TODO: better package
     blog-contents = {
       url = "github:vagahbond/blog";
       flake = false;
@@ -106,7 +101,7 @@
 
     mkReset = {
       # url = "/home/vagahbond/Projects/mk_reset_online";
-      url = "github:jmsk8/mk_reset_online";
+      url = "github:vagahbond/mk_reset_online/package-fix";
     };
   };
 }
