@@ -101,7 +101,7 @@
 
     mkReset = {
       # url = "/home/vagahbond/Projects/mk_reset_online";
-      url = "github:vagahbond/mk_reset_online/package-fix";
+      url = "github:jmsk8/mk_reset_online";
     };
   };
 }

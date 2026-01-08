@@ -391,16 +391,15 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1767830238,
-        "narHash": "sha256-UKCtRAPBqhtwKuIci0g4ohkBcytKFrSkF3EYpvTabiY=",
-        "owner": "vagahbond",
+        "lastModified": 1767834513,
+        "narHash": "sha256-RHvDUOjU4W7GHS06OLifBw4aJIkFm50wjDOsQ3D5Pvo=",
+        "owner": "jmsk8",
         "repo": "mk_reset_online",
-        "rev": "d5f37335ce0e8ee0c87fb6ddaf96280940b07e08",
+        "rev": "c7587f291da1acf9e0e38fa6e693b3293c80c255",
         "type": "github"
       },
       "original": {
-        "owner": "vagahbond",
-        "ref": "package-fix",
+        "owner": "jmsk8",
         "repo": "mk_reset_online",
         "type": "github"
       }
