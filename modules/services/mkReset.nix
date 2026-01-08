@@ -81,6 +81,26 @@ in
 
   # REVERSE PROXY
   services.nginx.virtualHosts = {
+    "mkreset.fr" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://localhost:${toString config.services.mkReset.frontend.port}";
+        proxyWebsockets = true; # needed if you need to use WebSocket
+      };
+    };
+    /*
+      "api.mkreset.fr" = {
+        forceSSL = true;
+        enableACME = true;
+
+        locations."/" = {
+          proxyPass = "http://localhost:${toString config.services.mkReset.frontend.port}";
+          proxyWebsockets = true; # needed if you need to use WebSocket
+        };
+      };
+    */
     "mario-crade.touches-grasses.fr" = {
       forceSSL = true;
       enableACME = true;
@@ -91,14 +111,16 @@ in
       };
     };
 
-    "back.mario-crade.touches-grasses.fr" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://localhost:${toString config.services.mkReset.backend.port}";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+    /*
+      "back.mario-crade.touches-grasses.fr" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://localhost:${toString config.services.mkReset.backend.port}";
+          proxyWebsockets = true; # needed if you need to use WebSocket
+        };
       };
-    };
+    */
   };
 
   # SECRETS
