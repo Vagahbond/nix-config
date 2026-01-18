@@ -2,31 +2,30 @@
   inputs,
   config,
   lib,
+  pkgs,
   ...
-}: let
+}:
+let
   inherit (config.modules.impermanence) enable storageLocation;
-in {
+in
+{
   imports = [
-    inputs.impermanence.nixosModule
     ./options.nix
   ];
 
   config = {
-    environment.persistence =
-      if enable
-      then {
-        ${storageLocation} = {
-          directories = [
-            "/var/cache"
-            "/var/log"
-            "/var/lib/nixos"
-            "/var/lib/systemd/coredump"
-          ];
-          files = [
-            #  "/etc/machine-id"
-          ];
-        };
-      }
-      else lib.mkForce {};
+    environment = lib.optionalAttrs enable {
+      persistence.${storageLocation} = {
+        directories = [
+          "/var/cache"
+          "/var/log"
+          "/var/lib/nixos"
+          "/var/lib/systemd/coredump"
+        ];
+        files = [
+          #  "/etc/machine-id"
+        ];
+      };
+    };
   };
 }

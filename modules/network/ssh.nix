@@ -3,12 +3,10 @@
   pkgs,
   username,
   lib,
-}: let
-  privKeys =
-    lib.lists.map (
-      value: {"${value.name}" = value.priv;}
-    )
-    config.modules.network.ssh.keys;
+  options,
+}:
+let
+  privKeys = lib.lists.map (value: { "${value.name}" = value.priv; }) config.modules.network.ssh.keys;
 
   pubKeytoHomeFile = value: {
     ".ssh/${value.name}.pub" = {
@@ -17,22 +15,28 @@
   };
 
   pubKeys = lib.mkMerge (lib.lists.map pubKeytoHomeFile config.modules.network.ssh.keys);
-in {
+in
+{
   environment.systemPackages = with pkgs; [
     sshs
   ];
 
-  age.secrets = lib.mkMerge (privKeys
+  age.secrets = lib.mkMerge (
+    privKeys
     ++ [
       {
         sshConfig = {
           file = ../../secrets/ssh_config.age;
-          path = "${config.users.users.${username}.home}/.ssh/config";
+          path = "/home/${username}/.ssh/config";
           owner = username;
           group = "users";
         };
       }
-    ]);
+    ]
+  );
 
+}
+// lib.optionalAttrs (builtins.hasAttr "home-manager" options) {
   home-manager.users.${username}.home.file = pubKeys;
+
 }

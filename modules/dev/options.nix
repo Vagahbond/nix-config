@@ -14,7 +14,7 @@ with lib; {
       '';
     };
 
-    dbAdmin.enable = mkEnableOption "pgAdmin";
+    dbManager.enable = mkEnableOption "pgAdmin";
 
     enableGeo = mkEnableOption "geo tools";
 

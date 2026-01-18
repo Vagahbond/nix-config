@@ -1,4 +1,11 @@
-{...}: {
+{ inputs, ... }:
+{
+  imports = [
+    inputs.impermanence.nixosModule
+    inputs.universe.nixosModules.default
+    inputs.mkReset.nixosModules.default
+  ];
+
   config = {
     modules = {
       impermanence = {
@@ -12,7 +19,7 @@
       };
 
       editor = {
-        terminal = ["neovim"];
+        terminal = [ "neovim" ];
       };
 
       network = {
@@ -26,6 +33,7 @@
       };
 
       terminal = {
+        nh.enable = true;
         tmux.enable = true;
         shell = "zsh";
       };

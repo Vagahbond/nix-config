@@ -4,50 +4,38 @@
   config,
   self,
   inputs,
+  helpers,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.nix;
+  #  persistenceCfg = config.modules.impermanence;
   username = import ../../username.nix;
-in {
-  imports = [./options.nix];
+in
+{
+  imports = [ ./options.nix ];
   config = mkMerge [
     {
       nixpkgs.config = {
         allowUnfree = true;
       };
 
-      programs.nh = {
-        enable = true;
-        flake = "/home/${username}/Projects/nixos-config";
-      };
-
       environment = {
-        etc."current-flake".source = self;
-      };
-
-      environment = {
+        # etc."current-flake".source = self;
         systemPackages = with pkgs; [
           cachix
-          inputs.agenix.packages.${system}.default
-          #   sed
+          nh
         ];
-
-        persistence.${config.modules.impermanence.storageLocation} = {
-          directories = ["/root/.ssh"];
-        };
       };
 
-      nix.registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-
-      age.identityPaths = [
-        "${config.modules.impermanence.storageLocation}/home/${username}/.ssh/id_ed25519"
-      ];
-
       nix = {
+        optimise.automatic = true;
         settings = {
-          experimental-features = ["nix-command" "flakes"];
-          auto-optimise-store = true;
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
           trusted-users = [
             "root"
           ];
@@ -55,37 +43,61 @@ in {
 
         gc = {
           automatic = true;
-          dates = "weekly";
+          # interval = "weekly";
           options = "--delete-older-than 2d";
         };
-      };
 
-      home-manager.users.${username} = {
-        nixpkgs.config = {
-          allowUnfree = true;
-        };
-
-        home.stateVersion = "22.11";
-      };
-
-      system = {
-        stateVersion = "22.11"; # Did you read the comment?
-        autoUpgrade = {
-          enable = true;
-          channel = "https://nixos.org/channels/nixos-unstable";
-        };
+        registry = lib.mkDefault (lib.mapAttrs (_: value: { flake = value; }) inputs);
       };
     }
-    (mkIf cfg.remoteBuild.enable {
-      /*
-         age.secrets.builder_access = {
-        file = ./secrets/builder_access.age;
-        path = "${config.users.users.${username}.home}/.ssh/builder_access";
-        mode = "600";
-        owner = username;
-        group = "users";
+    /*
+      (
+        mkIf (!(helpers.isDarwin pkgs.stdenv.system)) {
+          system = {
+            stateVersion = "22.11"; # Did you read the comment?
+            autoUpgrade = {
+              enable = true;
+              channel = "https://nixos.org/channels/nixos-unstable";
+            };
+          };
+        }
+        // lib.optionalAttrs (builtins.hasAttr "home-manager" options) {
+          home-manager.users.${username} = {
+            nixpkgs.config = {
+              allowUnfree = true;
+            };
+
+            home.stateVersion = "22.11";
+          };
+        }
+      )
+    */
+
+    (mkIf (helpers.isDarwin pkgs.stdenv.system) {
+      nix = {
+        linux-builder = {
+          enable = true;
+          ephemeral = true;
+          maxJobs = 4;
+          config = {
+            virtualisation = {
+              darwin-builder = {
+                diskSize = 40 * 1024;
+                memorySize = 8 * 1024;
+              };
+              cores = 6;
+            };
+          };
+        };
+
+        settings.trusted-users = [ "@admin" ];
       };
-      */
+
+      system.stateVersion = 6;
+
+    })
+    (mkIf cfg.remoteBuild.enable {
+
       nix = {
         settings.trusted-users = [
           "builder"
@@ -103,8 +115,12 @@ in {
             protocol = "ssh";
             maxJobs = 4;
             speedFactor = 2;
-            supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-            # mandatoryFeatures = [];
+            supportedFeatures = [
+              "nixos-test"
+              "benchmark"
+              "big-parallel"
+              "kvm"
+            ];
           }
         ];
 
@@ -113,6 +129,14 @@ in {
           builders-use-substitutes = true
         '';
       };
-    })
+    }
+      /*
+        // lib.optionalAttrs persistenceCfg.enable {
+          persistence.${config.modules.impermanence.storageLocation} = {
+            directories = [ "/root/.ssh" ];
+          };
+        }
+      */
+    )
   ];
 }

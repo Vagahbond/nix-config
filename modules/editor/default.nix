@@ -1,49 +1,33 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
   self,
+  helpers,
   ...
 }:
-with lib; let
+with lib;
+let
   username = import ../../username.nix;
 
-  inherit (config.modules) graphics impermanence;
+  inherit (config.modules) impermanence;
 
   cfg = config.modules.editor;
-in {
-  imports = [./options.nix];
+in
+{
+  imports = [ ./options.nix ];
 
   config = mkMerge [
-    (mkIf ((builtins.elem "vscode" cfg.gui) && (graphics.type != null)) {
-      environment.persistence.${impermanence.storageLocation} = {
-        users.${username} = {
-          directories = [
-            ".vscode"
-          ];
-          files = [
-          ];
-        };
-      };
-      home-manager.users.${username} = _: {
-        programs.vscode = {
-          enable = true;
-          # enableExtensionUpdateCheck = true;
-          # enableUpdateCheck = false;
-          #extensions = with pkgs.vscode-extensions; [
-          #  github.copilot
-          #  esbenp.prettier-vscode
-          #  dbaeumer.vscode-eslint
-          #  bierner.markdown-mermaid
-          #  yzhang.markdown-all-in-one
-          #];
-        };
-      };
-    })
-    (
-      mkIf cfg.office {
-        environment.persistence.${impermanence.storageLocation} = {
+    (mkIf cfg.office {
+
+      environment = {
+        systemPackages = with pkgs; [
+          libreoffice
+        ];
+      }
+      // lib.optionalAttrs config.modules.impermanence.enable {
+
+        persistence.${impermanence.storageLocation} = {
           users.${username} = {
             directories = [
               ".config/libreoffice"
@@ -52,29 +36,33 @@ in {
             ];
           };
         };
-
-        environment.systemPackages = with pkgs; [
-          libreoffice
-        ];
-      }
-    )
-    (mkIf (builtins.elem "neovim" cfg.terminal) {
-      environment.persistence.${impermanence.storageLocation} = {
-        users.${username} = {
-          directories = [
-            ".config/github-copilot"
-          ];
-          files = [
-            ".viminfo"
-          ];
-        };
       };
-
+    })
+    (mkIf (builtins.elem "neovim" cfg.terminal) {
       environment = {
+        systemPackages = [ self.packages.${pkgs.stdenv.system}.nvf ];
+      }
+      // lib.optionalAttrs config.modules.impermanence.enable {
+        persistence.${impermanence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              ".config/github-copilot"
+            ];
+            files = [
+              ".viminfo"
+            ];
+          };
+        };
+      }
+      // lib.optionalAttrs (!(helpers.isDarwin pkgs.stdenv.system)) {
         sessionVariables = {
           EDITOR = "nvim";
         };
-        systemPackages = [self.packages.${pkgs.stdenv.system}.nvf];
+      }
+      // lib.optionalAttrs (helpers.isDarwin pkgs.stdenv.system) {
+        variables = {
+          EDITOR = "nvim";
+        };
       };
     })
   ];

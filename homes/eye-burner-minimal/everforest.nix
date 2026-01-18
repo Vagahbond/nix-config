@@ -6,7 +6,8 @@
   stdenvNoCC,
   libsForQt5,
   sddm-config,
-}: rec {
+}:
+rec {
   rose-pine-hyprcursor = stdenv.mkDerivation {
     pname = "rose-pine-hyprcursor";
     version = "1.0";
@@ -75,7 +76,10 @@
   gtk-theme = stdenv.mkDerivation {
     pname = "everforest-gtk";
     version = "1.0";
-    buildInputs = with pkgs; [sassc dos2unix];
+    buildInputs = with pkgs; [
+      sassc
+      dos2unix
+    ];
     dontBuild = true;
     installPhase = ''
       runHook preInstall
@@ -101,7 +105,7 @@
       owner = "Fausto-Korpsvart";
       repo = "Everforest-GTK-Theme";
       rev = "master";
-      sha256 = "sha256-XHO6NoXJwwZ8gBzZV/hJnVq5BvkEKYWvqLBQT00dGdE=";
+      sha256 = "sha256-NgE+zWDC4FRZKOPbLqWasTzaX5T1it8ve7DV1DvKRIY=";
     };
   };
 }

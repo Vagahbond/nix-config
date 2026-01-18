@@ -2,7 +2,7 @@
   imports = [
     ./user
     ./impermanence
-    ./graphics
+    # ./graphics
     ./browser
     ./desktop
     ./dev
@@ -18,7 +18,7 @@
     ./system
     ./terminal
     ./virtualisation
-    ./gaming
+    #   ./gaming
     ./services
     ./nix
   ];

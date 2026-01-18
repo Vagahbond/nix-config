@@ -13,18 +13,6 @@ with lib; let
 in {
   imports = [./options.nix];
   config = mkMerge [
-    /*
-      {
-      # network used by containers
-      networking.nat = {
-        enable = true;
-        internalInterfaces = ["ve-+"];
-        externalInterface = "ens3";
-        # Lazy IPv6 connectivity for the container
-        enableIPv6 = true;
-      };
-    }
-    */
     (mkIf cfg.wine.enable {
       environment.systemPackages = with pkgs; [
         bottles

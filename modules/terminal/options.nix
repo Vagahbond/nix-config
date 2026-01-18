@@ -1,12 +1,20 @@
-{lib, ...}:
-with lib; {
+{ lib, ... }:
+with lib;
+{
   options.modules.terminal = {
     tmux = {
       enable = mkEnableOption "tmux";
     };
 
+    nh = {
+      enable = mkEnableOption "nh";
+    };
+
     shell = mkOption {
-      type = types.enum ["zsh" "bash"];
+      type = types.enum [
+        "zsh"
+        "bash"
+      ];
       default = "zsh";
       description = ''
         Select the shell you want to use.
@@ -18,7 +26,7 @@ with lib; {
 
     shellAliases = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
       description = ''
         Specific aliases for that system.
       '';

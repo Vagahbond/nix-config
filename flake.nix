@@ -1,10 +1,11 @@
 {
-  description = "My modular NixOS configuration that totally did not take countless horus to make.";
+  description = "My modular NixOS configuration that totally did not take countless hours to make.";
 
   outputs =
     {
       self,
       nixpkgs,
+      carpentry,
       ...
     }@inputs:
     let
@@ -15,11 +16,34 @@
 
       forAllSystems =
         function: nixpkgs.lib.genAttrs systems (system: function nixpkgs.legacyPackages.${system});
+
+      mSystems = carpentry.lib.mkSystems {
+        root = self;
+        hosts = [
+          ./hosts/air
+        ];
+
+        modules = [
+          ./modules/test
+          ./modules/othertest.nix
+        ];
+      };
     in
     {
-      nixosConfigurations = import ./hosts {
-        inherit inputs self;
-      };
+      nixosConfigurations = mSystems.nixosSystems;
+
+      darwinConfigurations = mSystems.darwinSystems;
+      /*
+        .air = inputs.nix-darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit inputs self;
+          };
+          modules = [
+            inputs.agenix.darwinModules.default
+            (import ./hosts/air/features.nix)
+          ];
+        };
+      */
 
       packages = forAllSystems (pkgs: {
         doc = import ./doc {
@@ -29,6 +53,7 @@
         nvf =
           (inputs.nvf.lib.neovimConfiguration {
             pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.system};
+            # inherit pkgs;
             modules = [
               (import ./modules/editor/nvf.nix)
             ];
@@ -39,8 +64,14 @@
   # Imagine having no clean way to separate your system's dependencies...
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -102,6 +133,10 @@
     mkReset = {
       # url = "/home/vagahbond/Projects/mk_reset_online";
       url = "github:jmsk8/mk_reset_online";
+    };
+
+    carpentry = {
+      url = "/Users/vagahbond/Projects/carpentry";
     };
   };
 }

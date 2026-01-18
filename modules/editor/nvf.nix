@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   vim = {
     vimAlias = true;
     options = {
@@ -8,7 +9,6 @@
 
     clipboard = {
       enable = true;
-      providers.wl-copy.enable = true;
       registers = "unnamedplus";
     };
 
@@ -50,8 +50,8 @@
 
     theme = {
       enable = true;
-      name = "everforest";
-      style = "medium";
+      name = "rose-pine";
+      style = "dawn";
       transparent = false;
     };
 
@@ -66,12 +66,12 @@
 
     filetree = {
       /*
-        neo-tree = {
-        enable = true;
-        setupOpts = {
+          neo-tree = {
+          enable = true;
+          setupOpts = {
 
-      }
-      };
+        }
+        };
       */
       nvimTree.enable = true;
     };
@@ -145,13 +145,13 @@
     };
 
     /*
-    Look into this some time later
-    assistant = {
-      copilot = {
-        enable = false;
-        cmp.enable = false;
+      Look into this some time later
+      assistant = {
+        copilot = {
+          enable = false;
+          cmp.enable = false;
+        };
       };
-    };
     */
 
     gestures = {
