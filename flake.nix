@@ -1,49 +1,38 @@
 {
-  description = "My modular NixOS configuration that totally did not take countless hours to make.";
+  description = "My modular NixOS configuration that totally did not take countless horus to make.";
 
   outputs =
     {
       self,
       nixpkgs,
-      carpentry,
+      charpente,
       ...
     }@inputs:
     let
-      systems = [
+      archi = [
         "x86_64-linux"
         "aarch64-darwin" # Imagine nixing a mac
       ];
 
       forAllSystems =
-        function: nixpkgs.lib.genAttrs systems (system: function nixpkgs.legacyPackages.${system});
+        function: nixpkgs.lib.genAttrs archi (system: function nixpkgs.legacyPackages.${system});
 
-      mSystems = carpentry.lib.mkSystems {
+      systems = charpente.lib.mkSystems {
         root = self;
-        hosts = [
-          ./hosts/air
-        ];
-
+        hosts = [ "air" ];
         modules = [
-          ./modules/test
-          ./modules/othertest.nix
+          "test"
+          "othertest"
         ];
       };
+
     in
     {
-      nixosConfigurations = mSystems.nixosSystems;
+      nixosConfigurations = import ./hosts {
+        inherit inputs self;
+      };
 
-      darwinConfigurations = mSystems.darwinSystems;
-      /*
-        .air = inputs.nix-darwin.lib.darwinSystem {
-          specialArgs = {
-            inherit inputs self;
-          };
-          modules = [
-            inputs.agenix.darwinModules.default
-            (import ./hosts/air/features.nix)
-          ];
-        };
-      */
+      darwinConfigurations = systems.darwinSystems;
 
       packages = forAllSystems (pkgs: {
         doc = import ./doc {
@@ -53,7 +42,6 @@
         nvf =
           (inputs.nvf.lib.neovimConfiguration {
             pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.system};
-            # inherit pkgs;
             modules = [
               (import ./modules/editor/nvf.nix)
             ];
@@ -64,14 +52,8 @@
   # Imagine having no clean way to separate your system's dependencies...
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
-
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs-darwin";
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -135,7 +117,7 @@
       url = "github:jmsk8/mk_reset_online";
     };
 
-    carpentry = {
+    charpente = {
       url = "/Users/vagahbond/Projects/carpentry";
     };
   };
