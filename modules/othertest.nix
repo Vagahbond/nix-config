@@ -1,20 +1,12 @@
 {
-  pkgs,
-  inputs,
-  ...
-}:
-{
   targets = [ "air" ];
 
   darwinConfiguration = {
     config = {
-      environment.systemPackages = with pkgs; [
-        asciiquarium
+      environment.systemPackages = [
       ];
 
     };
   };
 
-  nixosConfiguration = { };
-  sharedConfiguration = { };
 }

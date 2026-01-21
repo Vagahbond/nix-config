@@ -24,6 +24,12 @@
           "test"
           "othertest"
         ];
+        extraArgs = {
+          inherit
+            inputs
+            self
+            ;
+        };
       };
 
     in
