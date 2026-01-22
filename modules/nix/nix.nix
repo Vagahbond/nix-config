@@ -1,4 +1,3 @@
-
 {
   targets = [
     "air"
@@ -7,15 +6,11 @@
   ];
 
   sharedConfiguration =
-    { pkgs, ... }:
-let
-  cfg = config.modules.nix;
-  #  persistenceCfg = config.modules.impermanence;
-  username = import ../../username.nix;
-in
-{
-  imports = [ ./options.nix ];
-  config = mkMerge [
+    {
+      pkgs,
+      inputs,
+      ...
+    }:
     {
       nixpkgs.config = {
         allowUnfree = true;
@@ -47,29 +42,50 @@ in
           options = "--delete-older-than 2d";
         };
 
-        registry = lib.mkDefault (lib.mapAttrs (_: value: { flake = value; }) inputs);
+        registry = pkgs.lib.mkDefault (pkgs.lib.mapAttrs (_: value: { flake = value; }) inputs);
       };
-    }
-    /*
-      (
-        mkIf (!(helpers.isDarwin pkgs.stdenv.system)) {
-          system = {
-            stateVersion = "22.11"; # Did you read the comment?
-            autoUpgrade = {
-              enable = true;
-              channel = "https://nixos.org/channels/nixos-unstable";
-            };
-          };
-        }
-        // lib.optionalAttrs (builtins.hasAttr "home-manager" options) {
-          home-manager.users.${username} = {
-            nixpkgs.config = {
-              allowUnfree = true;
-            };
+    };
 
-            home.stateVersion = "22.11";
-          };
-        }
-      )
-    */
+  nixosConfiguration =
+    { username, ... }:
+    {
 
+      system = {
+        autoUpgrade = {
+          enable = true;
+          channel = "https://nixos.org/channels/nixos-unstable";
+        };
+      };
+      home-manager.users.${username} = {
+        nixpkgs.config = {
+          allowUnfree = true;
+        };
+
+      };
+    };
+
+  darwinConfiguration = _: {
+
+    nix = {
+      linux-builder = {
+        enable = true;
+        ephemeral = true;
+        maxJobs = 4;
+        config = {
+          virtualisation = {
+            darwin-builder = {
+              diskSize = 40 * 1024;
+              memorySize = 8 * 1024;
+            };
+            cores = 6;
+          };
+        };
+      };
+
+      settings.trusted-users = [ "@admin" ];
+    };
+
+    system.stateVersion = 6;
+
+  };
+}

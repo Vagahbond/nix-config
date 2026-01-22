@@ -1,29 +1,27 @@
 {
   targets = [
-    "air"
     "platypute"
-    "framework"
   ];
 
-  sharedConfiguration =
-    { pkgs, ... }:
-
-    (mkIf (cfg.libvirt.enable && graphics != null) {
+  nixosConfiguration =
+    {
+      pkgs,
+      config,
+      username,
+      ...
+    }:
+    {
       environment.systemPackages = with pkgs; [
+        kvmtool
         virt-manager
       ];
 
       # keep virtual machines
-      environment.persistence.${impermanence.storageLocation} = {
+      environment.persistence.${config.impermanence.storageLocation} = {
         directories = [
           "/var/lib/libvirt"
         ];
       };
-    })
-    (mkIf cfg.libvirt.enable {
-      environment.systemPackages = with pkgs; [
-        kvmtool
-      ];
 
       programs.dconf.enable = true;
 
@@ -33,5 +31,6 @@
         spiceUSBRedirection.enable = true;
       };
 
-      users.users.${username}.extraGroups = ["libvirtd"];
-    })
+      users.users.${username}.extraGroups = [ "libvirtd" ];
+    };
+}

@@ -45,13 +45,7 @@
 
       packages = forAllSystems (pkgs: {
         nvf =
-          (inputs.nvf.lib.neovimConfiguration {
-            pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.system};
-            modules = [
-              (import ./modules/editor/nvf.nix)
-            ];
-          }).neovim;
-      });
+          ();
     };
 
   # Imagine having no clean way to separate your system's dependencies...

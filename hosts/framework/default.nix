@@ -1,132 +1,28 @@
 {
-  config,
-  lib,
-  inputs,
-  ...
-}:
-let
-  keys = import ../../secrets/sshKeys.nix { inherit config lib; };
-in
-{
-  imports = [
-    inputs.impermanence.nixosModule
-  ];
+  name = "air";
+  platform = "aarch64-darwin";
 
-  config = {
+  configuration = _: {
+    imports = [ ./hardware-configuration.nix ];
+
     rice = "eye-burner-minimal";
-    modules = {
-      impermanence.enable = true;
 
-      user.password = "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
+    user.password = "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
 
-      graphics.type = "intel";
-
-      # monitor=eDP-1, 2256x1504@60, 0x0, 1.5
-      desktop = {
-        session = "hyprland";
-
-        ags.enable = true;
-
-        fileExplorer = "yazi";
-        notifications = "mako";
-        terminal = "foot";
-        displayManager = "sddm";
-        launcher = "anyrun";
-        wallpaper = "hyprpaper";
-        lockscreen = "hyprlock";
-      };
-
-      browser = {
-        librewolf.enable = true;
-        chromium.enable = true;
-      };
-
-      dev = {
+    /*
+      ssh = {
         enable = true;
-        godot.enable = false;
-
-        enableGeo = false;
-        enableNetwork = true;
-        languages = [
-          "c-cpp"
-          "js"
-          "nix"
-          "android"
-          "rust"
+        keys = with keys; [
+          builder_access
+          platypute_access
+          github_access
+          dedistonks_access
         ];
-        dbAdmin.enable = true;
       };
+    */
 
-      editor = {
-        gui = [ ];
-        terminal = [ "neovim" ];
-        office = true;
-      };
-
-      medias = {
-        video = {
-          player = true;
-          downloader = true;
-          recorder = true;
-          editor = false;
-        };
-
-        audio = {
-          player = true;
-        };
-
-        image = {
-          viewer = true;
-          # editor = true; # need to make those sweet meems
-        };
-      };
-
-      network = {
-        wifi.enable = true;
-        bluetooth.enable = true;
-        vpn.enable = true;
-        ssh = {
-          enable = true;
-          keys = with keys; [
-            builder_access
-            platypute_access
-            github_access
-            dedistonks_access
-          ];
-        };
-      };
-
-      output = {
-        audio.enable = true;
-        printer.enable = true;
-      };
-
-      productivity = {
-        affine.enable = true;
-        nextcloudSync.enable = true;
-        pomodoro.enable = true;
-        activityWatch.enable = false;
-      };
-
-      security = {
-        fingerprint.enable = true;
-        polkit.enable = true;
-      };
-
-      social = {
-        discord.enable = true;
-        slack.enable = true;
-        matrix.enable = true;
-      };
-
-      system = {
-        ntfs.enable = true;
-        compression.enable = true;
-      };
-
+    /*
       terminal = {
-        tmux.enable = true;
-        shell = "zsh";
         shellAliases = {
           rebuild-remote = ''
             f() {  \
@@ -138,15 +34,6 @@ in
           '';
         };
       };
-
-      virtualisation = {
-        docker.enable = true;
-        libvirt.enable = true;
-      };
-
-      nix = {
-        remoteBuild.enable = true;
-      };
-    };
+    */
   };
 }

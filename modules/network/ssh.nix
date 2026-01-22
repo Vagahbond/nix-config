@@ -6,55 +6,76 @@
   ];
 
   sharedConfiguration =
-    { pkgs, ... }:
-      ssh = {
-        enable = mkEnableOption "ssh client";
-        keys = mkOption {
-          description = "Installed SSH keys";
-          default = [];
-          type = types.listOf (types.attrs);
-          example = [keys.dedistonks_access];
+    {
+      pkgs,
+      keys,
+      config,
+      username,
+      ...
+    }:
+    let
+      inherit (pkgs.lib)
+        mkOption
+        types
+        mkMerge
+        ;
+
+      privKeys = map (value: { "${value.name}" = value.priv; }) config.modules.network.ssh.keys;
+
+    in
+    {
+      options = {
+        ssh = {
+          keys = mkOption {
+            description = "Installed SSH keys";
+            default = [ ];
+            type = types.listOf types.attrs;
+            example = [ keys.dedistonks_access ];
+          };
         };
       };
-{
-  config,
-  pkgs,
-  username,
-  lib,
-  options,
-}:
-let
-  privKeys = lib.lists.map (value: { "${value.name}" = value.priv; }) config.modules.network.ssh.keys;
 
-  pubKeytoHomeFile = value: {
-    ".ssh/${value.name}.pub" = {
-      text = value.pub;
+      config = {
+        environment.systemPackages = with pkgs; [
+          sshs
+        ];
+
+        age.secrets = mkMerge (
+          privKeys
+          ++ [
+            {
+              sshConfig = {
+                file = ../../secrets/ssh_config.age;
+                path = "/home/${username}/.ssh/config";
+                owner = username;
+                group = "users";
+              };
+            }
+          ]
+        );
+
+      };
     };
-  };
-
-  pubKeys = lib.mkMerge (lib.lists.map pubKeytoHomeFile config.modules.network.ssh.keys);
-in
-{
-  environment.systemPackages = with pkgs; [
-    sshs
-  ];
-
-  age.secrets = lib.mkMerge (
-    privKeys
-    ++ [
-      {
-        sshConfig = {
-          file = ../../secrets/ssh_config.age;
-          path = "/home/${username}/.ssh/config";
-          owner = username;
-          group = "users";
+  nixosConfiguration =
+    {
+      config,
+      pkgs,
+      username,
+    }:
+    let
+      pubKeytoHomeFile = value: {
+        ".ssh/${value.name}.pub" = {
+          text = value.pub;
         };
-      }
-    ]
-  );
+      };
 
-}
-// lib.optionalAttrs (builtins.hasAttr "home-manager" options) {
-  home-manager.users.${username}.home.file = pubKeys;
+      pubKeys = pkgs.lib.mkMerge (pkgs.lib.lists.map pubKeytoHomeFile config.modules.network.ssh.keys);
 
+    in
+
+    {
+      # WARN: Remove home-manager, also every system needs those public keys
+      home-manager.users.${username}.home.file = pubKeys;
+
+    };
 }

@@ -1,71 +1,32 @@
-{ inputs, ... }:
 {
-  imports = [
-    inputs.impermanence.nixosModule
-    inputs.universe.nixosModules.default
-    inputs.mkReset.nixosModules.default
-  ];
+  name = "platypute";
+  platform = "x86_64-linux";
 
-  config = {
-    modules = {
-      impermanence = {
-        enable = true;
-        #storageLocation = "/data";
-      };
-      user.password = "$y$j9T$W4KvCgdBzhRBgZDnXf9s2/$rdrtKUhstflz5ADDB/w9WZc6M/sWlwqM76vKjaG3yV/";
+  configuration =
+    { inputs, username, ... }:
+    {
+      imports = [
+        ./hardware-configuration.nix
+        ./disk-config.nix
+        inputs.impermanence.nixosModule
+        inputs.universe.nixosModules.default
+        inputs.mkReset.nixosModules.default
+      ];
 
-      desktop = {
-        fileExplorer = "yazi";
-      };
+      system.stateVersion = "22.11"; # Did you read the comment?
+      home-manager.users.${username} = {
 
-      editor = {
-        terminal = [ "neovim" ];
+        home.stateVersion = "22.11";
       };
 
-      network = {
-        ssh.enable = false;
-      };
+      config = {
+        modules = {
+          impermanence = {
+            enable = true;
+          };
+          user.password = "$y$j9T$W4KvCgdBzhRBgZDnXf9s2/$rdrtKUhstflz5ADDB/w9WZc6M/sWlwqM76vKjaG3yV/";
 
-      system = {
-        rclone.enable = true;
-        ntfs.enable = true;
-        compression.enable = true;
-      };
-
-      terminal = {
-        nh.enable = true;
-        tmux.enable = true;
-        shell = "zsh";
-      };
-
-      virtualisation = {
-        docker.enable = true;
-      };
-
-      security = {
-        #keyring.enable = true;
-        polkit.enable = true;
-      };
-
-      services = {
-        mkReset.enable = true;
-        invoices.enable = true;
-        metrics.enable = true;
-        proxy.enable = true;
-        ssh.enable = true;
-        nextcloud.enable = true;
-        office.enable = true;
-        vaultwarden.enable = true;
-        builder.enable = true;
-        homePage.enable = true;
-        blog.enable = true;
-        universe.enable = false;
-        learnify.enable = false;
-        notes.enable = true;
-        pdf.enable = true;
-        fitness.enable = false;
-        mail.enable = false;
+        };
       };
     };
-  };
 }

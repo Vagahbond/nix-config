@@ -1,14 +1,16 @@
 {
   targets = [
-    "air"
     "platypute"
     "framework"
   ];
 
   sharedConfiguration =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
+    {
 
-    (mkIf cfg.docker.enable {
       environment.systemPackages = with pkgs; [
         docker-compose
         lazydocker
@@ -24,19 +26,13 @@
         defaultNetwork.settings.dns_enabled = true;
       };
 
-      # Docker
-      /*
-      virtualisation.docker.enable = true;
-      virtualisation.docker.rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
+    };
 
-      users.users.${username}.extraGroups = ["docker"];
-
-      */
+  nixosConfiguration =
+    { username, config, ... }:
+    {
       # keep docker data
-      environment.persistence.${impermanence.storageLocation} = {
+      environment.persistence.${config.persistence.storageLocation} = {
         directories = [
           "/var/lib/docker"
           "/var/lib/containers"
@@ -50,4 +46,7 @@
           ];
         };
       };
-    })
+
+    };
+
+}

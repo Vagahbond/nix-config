@@ -1,40 +1,40 @@
 {
   targets = [
-    "air"
     "platypute"
-    "framework"
   ];
 
-  sharedConfiguration =
-    { pkgs, ... }:
-_: {
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "vagahbond@pm.me";
-  };
+  nixosConfiguration = _: {
+    security.acme = {
+      acceptTerms = true;
+      defaults.email = "vagahbond@pm.me";
+    };
 
-  services.nginx = {
-    statusPage = true;
-    recommendedGzipSettings = true;
-    recommendedOptimisation = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
+    services.nginx = {
+      statusPage = true;
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
 
-    commonHttpConfig = ''
-      vhost_traffic_status_zone;
-      vhost_traffic_status_filter_by_set_key $host zone=vhost;
-    '';
+      commonHttpConfig = ''
+        vhost_traffic_status_zone;
+        vhost_traffic_status_filter_by_set_key $host zone=vhost;
+      '';
 
-    virtualHosts.localhost = {
-      locations = {
-        "/metrics" = {
-          extraConfig = ''
-            vhost_traffic_status_display;
-            vhost_traffic_status_display_format prometheus;
-          '';
+      virtualHosts.localhost = {
+        locations = {
+          "/metrics" = {
+            extraConfig = ''
+              vhost_traffic_status_display;
+              vhost_traffic_status_display_format prometheus;
+            '';
+          };
         };
       };
     };
+    networking.firewall.allowedTCPPorts = [
+      443
+      80
+    ];
   };
-  networking.firewall.allowedTCPPorts = [443 80];
 }

@@ -1,14 +1,12 @@
-
 {
   targets = [
-    "air"
     "platypute"
     "framework"
   ];
 
-  sharedConfiguration =
-    { pkgs, ... }:
-    (mkIf cfg.vpn.enable {
+  nixosConfiguration =
+    { pkgs, config, ... }:
+    {
       # Works with wgnord and wg-quick
       # Remember to create /var/lib/wgnord/template.conf (nix module could do that for you but I need to work rn)
       # Remember to wg-quick down and up for it to work.
@@ -19,15 +17,14 @@
           wgnord
           wireguard-tools
         ];
-      }
-      // lib.optionalAttrs (config.modules.impermanence.enable) {
 
-        persistence.${impermanence.storageLocation} = {
+        persistence.${config.impermanence.storageLocation} = {
           directories = [
             "/var/lib/wgnord"
             "/etc/wireguard/"
           ];
-        };
 
+        };
       };
-    })
+    };
+}
