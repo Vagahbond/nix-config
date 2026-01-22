@@ -1,27 +1,31 @@
-(mkIf (cfg.enable && cfg.enableNetwork) {
-  environment.systemPackages = with pkgs; [
-    wget
-    curlWithGnuTls
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
   ];
-})
-  (
-    mkIf (cfg.enable && cfg.enableNetwork && graphics != null) {
-      environment = {
-        systemPackages = with pkgs; [
-          slumber
-        ];
 
-      }
-      // lib.optionalAttrs config.modules.impermanence.enable {
-        persistence.${impermanence.storageLocation} = {
-          users.${username} = {
-            directories = [
-              ".config/slumber/"
-              ".local/share/slumber/"
-            ];
-          };
+  sharedConfiguration =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = with pkgs; [
+        wget
+        curlWithGnuTls
+        slumber
+      ];
+    };
+  nixosConfiguration =
+    { username, config, ... }:
+    {
+
+      persistence.${config.impermanence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".config/slumber/"
+            ".local/share/slumber/"
+          ];
         };
-
       };
-    }
-  )
+
+    };
+}

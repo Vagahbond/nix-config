@@ -1,6 +1,16 @@
-(mkIf (cfg.enable && cfg.dbManager.enable) {
-
-  environment.systemPackages = with pkgs; [
-    lazysql
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
   ];
-})
+
+  sharedConfiguration =
+    { pkgs, ... }:
+    {
+
+      environment.systemPackages = with pkgs; [
+        lazysql
+      ];
+    };
+}

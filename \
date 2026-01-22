@@ -183,16 +183,15 @@
       environment.systemPackages = [nvf];
   };
 
-  nixosConfiguration = _: {
-
+/*
+        // lib.optionalAttrs (!(helpers.isDarwin pkgs.stdenv.system)) {
         sessionVariables = {
           EDITOR = "nvim";
         };
-  };
-
-  darwinConfiguration = _: {
+      }
+      // lib.optionalAttrs (helpers.isDarwin pkgs.stdenv.system) {
         variables = {
           EDITOR = "nvim";
         };
       };
-}
+*/

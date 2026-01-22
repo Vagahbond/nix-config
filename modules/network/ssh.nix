@@ -1,3 +1,12 @@
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
+  ];
+
+  sharedConfiguration =
+    { pkgs, ... }:
       ssh = {
         enable = mkEnableOption "ssh client";
         keys = mkOption {

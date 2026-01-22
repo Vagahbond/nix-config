@@ -1,3 +1,12 @@
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
+  ];
+
+  sharedConfiguration =
+    { pkgs, ... }:
 {lib, ...}:
 with lib; {
   options.modules.security = {

@@ -9,36 +9,27 @@
       ...
     }@inputs:
     let
-      archi = [
-        "x86_64-linux"
-        "aarch64-darwin" # Imagine nixing a mac
-      ];
-
       forAllSystems =
-        function: nixpkgs.lib.genAttrs archi (system: function nixpkgs.legacyPackages.${system});
+        function:
+        nixpkgs.lib.genAttrs [
+          "x86_64-linux"
+          "aarch64-darwin" # Imagine nixing a mac
+        ] (system: function nixpkgs.legacyPackages.${system});
 
       systems = charpente.lib.mkSystems {
         root = self;
 
-        hosts = [ "air" ];
+        hosts = [
+          "air"
+          "framework"
+          "live"
+          "platypute"
+        ];
 
-        modules = {
-          /*
-            dev = [
-              "db"
-              "git"
-              "network"
-            ];
-          */
-          test = [
-            "testa"
-            "testb"
-            "testc"
-          ];
-          othertest = { };
-        };
+        modules = import ./charpenteModules.nix;
 
         extraArgs = {
+          username = "vagahbond";
           inherit
             inputs
             self
@@ -48,17 +39,11 @@
 
     in
     {
-      nixosConfigurations = import ./hosts {
-        inherit inputs self;
-      };
+      nixosConfigurations = systems.nixosSystems;
 
-      darwinConfigurations = builtins.trace systems.darwinSystems.air systems.darwinSystems;
+      darwinConfigurations = systems.darwinSystems;
 
       packages = forAllSystems (pkgs: {
-        doc = import ./doc {
-          inherit inputs self pkgs;
-        };
-
         nvf =
           (inputs.nvf.lib.neovimConfiguration {
             pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.system};
@@ -85,27 +70,11 @@
 
     agenix.url = "github:ryantm/agenix";
 
-    spicetify-nix = {
-      url = "github:gerg-l/spicetify-nix";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nvf = {
       url = "github:notashelf/nvf/1bf757685b065c5aaeaf252c02457238df42ed31";
     };
 
-    anyrun.url = "github:anyrun-org/anyrun";
-
     nix-cooker.url = "github:vagahbond/nix-cooker";
-
-    ags.url = "github:vagahbond/ags-bar";
-
-    universe.url = "github:uni-verse-fm/uni-verse-production";
-
-    #learnify = {
-    #  url = "git+ssh://git@github.com/vagahbond/learnify-platform";
-    #};
 
     website = {
       url = "github:vagahbond/website";
@@ -123,15 +92,6 @@
       flake = false;
     };
 
-    affine = {
-      url = "github:toeverything/AFFiNE";
-      flake = false;
-    };
-
-    matui = {
-      url = "github:pkulak/matui";
-    };
-
     mkReset = {
       # url = "/home/vagahbond/Projects/mk_reset_online";
       url = "github:jmsk8/mk_reset_online";
@@ -139,6 +99,7 @@
 
     charpente = {
       url = "/Users/vagahbond/Projects/carpentry";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }

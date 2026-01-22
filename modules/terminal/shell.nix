@@ -1,3 +1,12 @@
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
+  ];
+
+  sharedConfiguration =
+    { pkgs, ... }:
 
     shellAliases = mkOption {
       type = types.attrs;

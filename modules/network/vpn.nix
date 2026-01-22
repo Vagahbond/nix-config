@@ -1,4 +1,13 @@
 
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
+  ];
+
+  sharedConfiguration =
+    { pkgs, ... }:
     (mkIf cfg.vpn.enable {
       # Works with wgnord and wg-quick
       # Remember to create /var/lib/wgnord/template.conf (nix module could do that for you but I need to work rn)

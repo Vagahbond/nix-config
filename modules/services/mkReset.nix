@@ -1,3 +1,12 @@
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
+  ];
+
+  sharedConfiguration =
+    { pkgs, ... }:
 { config, pkgs, ... }:
 let
   # MAINTENANCE

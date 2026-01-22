@@ -1,4 +1,13 @@
 
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
+  ];
+
+  sharedConfiguration =
+    { pkgs, ... }:
 let
   cfg = config.modules.nix;
   #  persistenceCfg = config.modules.impermanence;

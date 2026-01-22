@@ -1,4 +1,13 @@
 
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
+  ];
+
+  sharedConfiguration =
+    { pkgs, ... }:
     (mkIf cfg.office {
 
       environment = {

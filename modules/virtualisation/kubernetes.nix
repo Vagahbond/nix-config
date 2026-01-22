@@ -1,3 +1,12 @@
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
+  ];
+
+  sharedConfiguration =
+    { pkgs, ... }:
 (mkIf (cfg.kubernetes.client.enable && graphics != null) {
   age.secrets = {
     kubeconfig = {

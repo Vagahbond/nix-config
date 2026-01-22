@@ -1,3 +1,13 @@
+
+{
+  targets = [
+    "air"
+    "platypute"
+    "framework"
+  ];
+
+  sharedConfiguration =
+    { pkgs, ... }:
 # nix build .#nixosConfigurations.hostName.config.system.build.isoImage
 {
   lib,
