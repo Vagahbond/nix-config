@@ -163,3 +163,16 @@
     };
   };
 }
+
+/*
+        // lib.optionalAttrs (!(helpers.isDarwin pkgs.stdenv.system)) {
+        sessionVariables = {
+          EDITOR = "nvim";
+        };
+      }
+      // lib.optionalAttrs (helpers.isDarwin pkgs.stdenv.system) {
+        variables = {
+          EDITOR = "nvim";
+        };
+      };
+*/

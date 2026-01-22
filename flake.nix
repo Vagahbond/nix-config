@@ -19,11 +19,25 @@
 
       systems = charpente.lib.mkSystems {
         root = self;
+
         hosts = [ "air" ];
-        modules = [
-          "test"
-          "othertest"
-        ];
+
+        modules = {
+          /*
+            dev = [
+              "db"
+              "git"
+              "network"
+            ];
+          */
+          test = [
+            "testa"
+            "testb"
+            "testc"
+          ];
+          othertest = { };
+        };
+
         extraArgs = {
           inherit
             inputs
@@ -38,7 +52,7 @@
         inherit inputs self;
       };
 
-      darwinConfigurations = systems.darwinSystems;
+      darwinConfigurations = builtins.trace systems.darwinSystems.air systems.darwinSystems;
 
       packages = forAllSystems (pkgs: {
         doc = import ./doc {

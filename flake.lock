@@ -177,8 +177,8 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1768972024,
-        "narHash": "sha256-WTaL/1Ty/euBI+t/0uX6t2IK6H5ESCojvrWQe0YAZ9Y=",
+        "lastModified": 1769060075,
+        "narHash": "sha256-C+DSsop05Z+bONHGySHU4D8Adjs4bYfxaIn5t67tnlo=",
         "path": "/Users/vagahbond/Projects/carpentry",
         "type": "path"
       },

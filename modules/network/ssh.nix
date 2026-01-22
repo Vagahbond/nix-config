@@ -1,3 +1,12 @@
+      ssh = {
+        enable = mkEnableOption "ssh client";
+        keys = mkOption {
+          description = "Installed SSH keys";
+          default = [];
+          type = types.listOf (types.attrs);
+          example = [keys.dedistonks_access];
+        };
+      };
 {
   config,
   pkgs,
