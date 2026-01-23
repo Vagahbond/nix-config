@@ -4,18 +4,10 @@
   outputs =
     {
       self,
-      nixpkgs,
       charpente,
       ...
     }@inputs:
     let
-      forAllSystems =
-        function:
-        nixpkgs.lib.genAttrs [
-          "x86_64-linux"
-          "aarch64-darwin" # Imagine nixing a mac
-        ] (system: function nixpkgs.legacyPackages.${system});
-
       systems = charpente.lib.mkSystems {
         root = self;
 
@@ -43,9 +35,6 @@
 
       darwinConfigurations = systems.darwinSystems;
 
-      packages = forAllSystems (pkgs: {
-        nvf =
-          ();
     };
 
   # Imagine having no clean way to separate your system's dependencies...

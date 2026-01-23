@@ -20,18 +20,16 @@
         mkMerge
         ;
 
-      privKeys = map (value: { "${value.name}" = value.priv; }) config.modules.network.ssh.keys;
-
+      # privKeys = map (value: { "${value.name}" = value.priv; }) config.network.ssh.keys;
+      privKeys = import ../../secrets/sshKeys.nix { inherit pkgs username; };
     in
     {
       options = {
-        ssh = {
-          keys = mkOption {
-            description = "Installed SSH keys";
-            default = [ ];
-            type = types.listOf types.attrs;
-            example = [ keys.dedistonks_access ];
-          };
+        network.ssh.keys = mkOption {
+          description = "Installed SSH keys";
+          default = [ ];
+          type = types.listOf types.attrs;
+          example = [ keys.dedistonks_access ];
         };
       };
 

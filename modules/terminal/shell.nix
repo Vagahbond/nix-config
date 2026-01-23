@@ -49,7 +49,7 @@
           dc = "docker compose";
           unzip-all = "for file in ./* ;do unzip -d \"\${file%.*}\" $file; done";
         }
-        // config.shellAliases;
+        // config.shell.shellAliases;
 
       };
     };

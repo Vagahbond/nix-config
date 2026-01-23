@@ -1,5 +1,5 @@
 {
-  target = [
+  targets = [
     "air"
     "framework"
     "platypute"
@@ -9,9 +9,12 @@
     {
       inputs,
       pkgs,
+      username,
       ...
     }:
     {
+
+      network.ssh.keys = (import ../../secrets/sshKeys.nix) { inherit username pkgs; };
 
       environment = {
         systemPackages = [

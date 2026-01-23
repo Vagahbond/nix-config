@@ -1,35 +1,19 @@
 {
-  inputs,
-  pkgs,
-  ...
-}: let
-  username = import ../../username.nix;
-in {
-  config = {
-    rice = null;
+  name = "framework";
+  platform = "x86_64-linux";
 
-    environment.systemPackages = [
-      inputs.disko.packages.${pkgs.system}.default
-    ];
+  configuration =
+    { inputs, pkgs, ... }:
+    {
+      environment.systemPackages = [
+        inputs.disko.packages.${pkgs.system}.default
+      ];
 
-    modules = {
+      imports = [ ./hardware-configuration.nix ];
+
+      rice = "eye-burner-minimal";
+
       user.password = "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
-      impermanence.enable = false;
-
-      graphics.type = null;
-
-      desktop = {
-        session = null;
-      };
-
-      editor = {
-        gui = [];
-        terminal = ["neovim"];
-      };
-
-      system = {
-        compression.enable = true;
-      };
 
       terminal = {
         shell = "zsh";
@@ -40,6 +24,6 @@ in {
           install = "f() {nixos-install --flake .#$1}; f";
         };
       };
+
     };
-  };
 }

@@ -18,12 +18,10 @@
           tealdeer
           bat
           dust
-          powertop
           tree
           killall
           htop
           jq
-          nitch
           socat
           rclone
         ];
@@ -43,6 +41,8 @@
         systemPackages = with pkgs; [
           zip
           unzip
+          nitch
+          powertop
           rar
           lz4
           ntfs3g

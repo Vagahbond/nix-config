@@ -1,6 +1,6 @@
 {
-  name = "air";
-  platform = "aarch64-darwin";
+  name = "framework";
+  platform = "x86_64-linux";
 
   configuration = _: {
     imports = [ ./hardware-configuration.nix ];
