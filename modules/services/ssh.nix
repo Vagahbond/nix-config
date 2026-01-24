@@ -14,6 +14,7 @@
       users.users.${username}.openssh.authorizedKeys.keys = [
         keys."${config.networking.hostName}_access".pub
       ];
+
       services = {
         fail2ban.enable = true;
         openssh = {

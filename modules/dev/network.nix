@@ -9,14 +9,24 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
+        slumber
+      ];
+    };
+
+  nixosConfiguration =
+    {
+      username,
+      config,
+      pkgs,
+      ...
+    }:
+    {
+
+      environment.systemPackages = with pkgs; [
         wget
         curlWithGnuTls
         slumber
       ];
-    };
-  nixosConfiguration =
-    { username, config, ... }:
-    {
 
       persistence.${config.impermanence.storageLocation} = {
         users.${username} = {

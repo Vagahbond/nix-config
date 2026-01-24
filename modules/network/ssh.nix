@@ -8,72 +8,50 @@
   sharedConfiguration =
     {
       pkgs,
-      keys,
-      config,
       username,
+      config,
       ...
     }:
     let
-      inherit (pkgs.lib)
-        mkOption
-        types
-        mkMerge
-        ;
+      keys = import ../../secrets/sshKeys.nix { inherit config pkgs username; };
 
-      # privKeys = map (value: { "${value.name}" = value.priv; }) config.network.ssh.keys;
-      privKeys = import ../../secrets/sshKeys.nix { inherit pkgs username; };
-    in
-    {
-      options = {
-        network.ssh.keys = mkOption {
-          description = "Installed SSH keys";
-          default = [ ];
-          type = types.listOf types.attrs;
-          example = [ keys.dedistonks_access ];
-        };
-      };
-
-      config = {
-        environment.systemPackages = with pkgs; [
-          sshs
-        ];
-
-        age.secrets = mkMerge (
-          privKeys
-          ++ [
-            {
-              sshConfig = {
-                file = ../../secrets/ssh_config.age;
-                path = "/home/${username}/.ssh/config";
-                owner = username;
-                group = "users";
-              };
-            }
-          ]
-        );
-
-      };
-    };
-  nixosConfiguration =
-    {
-      config,
-      pkgs,
-      username,
-    }:
-    let
-      pubKeytoHomeFile = value: {
-        ".ssh/${value.name}.pub" = {
+      pubKeytoHomeFile = name: value: {
+        ".ssh/${name}.pub" = {
           text = value.pub;
         };
       };
 
-      pubKeys = pkgs.lib.mkMerge (pkgs.lib.lists.map pubKeytoHomeFile config.modules.network.ssh.keys);
-
+      pubKeys = pkgs.lib.mkMerge (builtins.attrValues (builtins.mapAttrs pubKeytoHomeFile keys));
+      privKeys = builtins.mapAttrs (_: k: k.priv) keys;
     in
-
     {
-      # WARN: Remove home-manager, also every system needs those public keys
-      home-manager.users.${username}.home.file = pubKeys;
+      /*
+        options.network.ssh.keys = mkOption {
+          description = "Installed SSH keys";
+          default = [ ];
+          type = types.attrs;
+          example = [ keys.dedistonks_access ];
+        };
+      */
+      config = {
+        # WARN: Remove home-manager, also every system needs those public keys
+        home-manager.users.${username} = {
+          home.file = pubKeys;
 
+          age.secrets = privKeys // {
+            sshConfig = {
+              file = ../../secrets/ssh_config.age;
+              path = "${config.users.users.${username}.home}/.ssh/config";
+              mode = "644";
+              # owner = username;
+              # group = "users";
+            };
+          };
+        };
+        environment.systemPackages = with pkgs; [
+          sshs
+        ];
+
+      };
     };
 }

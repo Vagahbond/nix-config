@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   username,
   ...
 }:
@@ -14,10 +15,10 @@ let
 
   mkPrivateKey = name: {
     file = ./${name}.age;
-    path = "/home/${username}/.ssh/${name}";
+    path = "${config.users.users.${username}.home}/.ssh/${name}";
     mode = "600";
-    owner = username;
-    group = "users";
+    # owner = username;
+    # group = "users";
   };
 
   mkKeyPair = name: pub: {

@@ -12,6 +12,7 @@
         systemPackages = with pkgs; [
           lazygit
           gh
+          git
         ];
       };
     };
@@ -29,7 +30,6 @@
       };
     };
 
-  # dependent on homemanager ?
   programs = {
     git = {
       enable = true;

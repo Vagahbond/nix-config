@@ -52,4 +52,5 @@
   locales = { };
   system = { };
   user = { };
+  home = { };
 }

@@ -8,7 +8,6 @@
   sharedConfiguration =
     { pkgs, inputs, ... }:
     let
-
       nvf =
         (inputs.nvf.lib.neovimConfiguration {
           pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.system};
@@ -56,7 +55,6 @@
                     sql.enable = false;
                     rust = {
                       enable = true;
-                      crates.enable = true;
                     };
                     ts.enable = true;
                     lua.enable = true;
@@ -64,12 +62,14 @@
                     css.enable = true;
                   };
 
-                  theme = {
-                    enable = true;
-                    name = "rose-pine";
-                    style = "dawn";
-                    transparent = false;
-                  };
+                  /*
+                    theme = {
+                      enable = true;
+                      name = "rose-pine";
+                      style = "dawn";
+                      transparent = false;
+                    };
+                  */
 
                   autopairs.nvim-autopairs.enable = true;
 

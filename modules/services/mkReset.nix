@@ -4,13 +4,16 @@
   ];
 
   nixosConfiguration =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      ...
+    }:
     let
       # MAINTENANCE
 
       keys = import ../../secrets/sshKeys.nix {
-        inherit config;
-        inherit (pkgs) lib;
+        inherit config pkgs;
       };
 
       serviceUser = "mk_reset";

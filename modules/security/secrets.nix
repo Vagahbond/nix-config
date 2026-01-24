@@ -10,19 +10,25 @@
       inputs,
       pkgs,
       username,
+      config,
       ...
     }:
     {
 
-      network.ssh.keys = (import ../../secrets/sshKeys.nix) { inherit username pkgs; };
+      home-manager.users.${username} = {
+        imports = [ inputs.agenix.homeManagerModules.default ];
+
+        age.identityPaths = [
+          "${config.users.users.${username}.home}/.ssh/id_ed25519"
+        ];
+
+      };
 
       environment = {
         systemPackages = [
           inputs.agenix.packages.${pkgs.stdenv.system}.default
         ];
-
       };
-
     };
 
   nixosConfiguration =

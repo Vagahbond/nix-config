@@ -16,7 +16,6 @@
       system.stateVersion = "22.11"; # Did you read the comment?
       home-manager.users.${username} = {
 
-        home.stateVersion = "22.11";
       };
 
       config = {

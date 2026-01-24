@@ -51,7 +51,7 @@
 
     disko.url = "github:nix-community/disko";
 
-    agenix.url = "github:ryantm/agenix";
+    agenix.url = "github:yaxitech/ragenix";
 
     nvf = {
       url = "github:notashelf/nvf/1bf757685b065c5aaeaf252c02457238df42ed31";

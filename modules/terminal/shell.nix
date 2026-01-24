@@ -30,7 +30,7 @@
           fd
         ];
 
-        fonts.packages = [ config.theme.font.package ];
+        # fonts.packages = [ config.theme.font.package ];
 
         environment.shellAliases = {
           build-iso-remote = "nix build github:vagahbond/nix-config#nixosConfigurations.live.config.system.build.isoImage";
@@ -63,6 +63,7 @@
     }:
     {
       users.defaultUserShell = pkgs.zsh;
+
       programs.zsh = {
         enable = true;
         enableCompletion = true;
@@ -71,6 +72,7 @@
 
         histSize = 10000;
       };
+
       environment = {
         persistence.${config.persistence.storageLocation} = {
           users.${username} = {

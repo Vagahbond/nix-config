@@ -5,7 +5,7 @@
   ];
 
   sharedConfiguration =
-    { config, ... }:
+    { config, username, ... }:
     {
 
       nix = {
@@ -20,7 +20,7 @@
           {
             hostName = "vagahbond.com";
             sshUser = "builder";
-            sshKey = config.age.secrets.builder_access.path;
+            sshKey = "${config.users.users.${username}.home}/.ssh/builder_access";
             systems = [
               "aarch64-darwin"
               "x86_64-linux"
