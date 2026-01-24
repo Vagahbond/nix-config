@@ -30,7 +30,7 @@
           fd
         ];
 
-        # fonts.packages = [ config.theme.font.package ];
+        fonts.packages = [ pkgs.nerd-fonts.departure-mono ];
 
         environment.shellAliases = {
           build-iso-remote = "nix build github:vagahbond/nix-config#nixosConfigurations.live.config.system.build.isoImage";

@@ -81,7 +81,7 @@
     };
 
     charpente = {
-      url = "/Users/vagahbond/Projects/carpentry";
+      url = "github:vagahbond/charpente";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
