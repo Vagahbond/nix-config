@@ -86,11 +86,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769138843,
-        "narHash": "sha256-P/XaRZ+Ic3rP59skY2NnX53H4pe4on5fAZvdTSl4Xlk=",
+        "lastModified": 1769238232,
+        "narHash": "sha256-j44x8B8LBZspMAFJ4gA9HDtiHa4S9vlCMKgujSuiP54=",
         "owner": "vagahbond",
         "repo": "charpente",
-        "rev": "18773635345e693f1c06be957ae45f1fc9df44b7",
+        "rev": "692edef66b4e362c5dd98051109b4962376a33e8",
         "type": "github"
       },
       "original": {

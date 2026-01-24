@@ -8,17 +8,13 @@
       imports = [
         ./hardware-configuration.nix
         ./disk-config.nix
-        inputs.impermanence.nixosModule
-        inputs.universe.nixosModules.default
-        inputs.mkReset.nixosModules.default
       ];
 
-      system.stateVersion = "22.11"; # Did you read the comment?
-      home-manager.users.${username} = {
-
-      };
-
       config = {
+        system.stateVersion = "22.11"; # Did you read the comment?
+        home-manager.users.${username} = {
+
+        };
         modules = {
           impermanence = {
             enable = true;

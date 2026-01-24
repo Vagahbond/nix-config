@@ -6,6 +6,7 @@
   nixosConfiguration =
     {
       config,
+      inputs,
       pkgs,
       ...
     }:
@@ -29,6 +30,9 @@
 
     in
     {
+      imports = [
+        inputs.mkReset.nixosModules.default
+      ];
 
       users.users = {
         ${serviceUser} = {

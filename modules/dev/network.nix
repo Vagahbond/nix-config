@@ -28,7 +28,7 @@
         slumber
       ];
 
-      persistence.${config.impermanence.storageLocation} = {
+      persistence.${config.persistence.storageLocation} = {
         users.${username} = {
           directories = [
             ".config/slumber/"

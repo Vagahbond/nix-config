@@ -7,6 +7,7 @@
     {
       pkgs,
       config,
+      ...
     }:
     {
       environment.persistence.${config.persistence.storageLocation} = {
