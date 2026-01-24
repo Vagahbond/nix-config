@@ -3,15 +3,11 @@
   name = "platypute";
   platform = "x86_64-linux";
 
-  configuration =
-    { inputs, ... }:
-    {
+  configuration = _: {
 
-      imports = [
-        inputs.disko.nixosModules.disko
-        ./hardware-configuration.nix
-        ./disk-config.nix
-      ];
-      system.stateVersion = "22.11"; # Did you read the comment?
-    };
+    imports = [
+      ./hardware-configuration.nix
+    ];
+    system.stateVersion = "22.11"; # Did you read the comment?
+  };
 }
