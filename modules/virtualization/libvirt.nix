@@ -17,7 +17,7 @@
       ];
 
       # keep virtual machines
-      environment.persistence.${config.impermanence.storageLocation} = {
+      environment.persistence.${config.persistence.storageLocation} = {
         directories = [
           "/var/lib/libvirt"
         ];

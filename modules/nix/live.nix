@@ -1,8 +1,7 @@
 # nix build .#nixosConfigurations.hostName.config.system.build.isoImage
 {
   targets = [
-    "platypute"
-    "framework"
+    "live"
   ];
 
   nixosConfiguration =

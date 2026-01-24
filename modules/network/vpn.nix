@@ -18,7 +18,7 @@
           wireguard-tools
         ];
 
-        persistence.${config.impermanence.storageLocation} = {
+        persistence.${config.persistence.storageLocation} = {
           directories = [
             "/var/lib/wgnord"
             "/etc/wireguard/"

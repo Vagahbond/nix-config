@@ -4,7 +4,15 @@
   ];
 
   nixosConfiguration =
-    { keys, ... }:
+    {
+      pkgs,
+      config,
+      username,
+      ...
+    }:
+    let
+      keys = import ../../secrets/sshKeys.nix { inherit pkgs config username; };
+    in
     {
       users.groups.builder = { };
 

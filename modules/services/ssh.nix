@@ -6,10 +6,13 @@
   nixosConfiguration =
     {
       username,
-      keys,
       config,
+    pkgs,
       ...
     }:
+    let 
+      keys = import ../../secrets/sshKeys.nix {inherit username config pkgs;};
+    in
     {
       users.users.${username}.openssh.authorizedKeys.keys = [
         keys."${config.networking.hostName}_access".pub

@@ -7,7 +7,7 @@
   nixosConfiguration =
     { config, username, ... }:
     {
-      environment.persistence.${config.impermanence.storageLocation} = {
+      environment.persistence.${config.persistence.storageLocation} = {
         users.${username} = {
           directories = [
             ".local/share/keyring"

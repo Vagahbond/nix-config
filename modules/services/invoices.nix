@@ -9,12 +9,13 @@
       ...
     }:
     {
-      age.secrets.dolibarr = {
-        file = ../../secrets/dolibarr.age;
-        mode = "440";
-      };
-
-      environment.persistence.${config.impermanence.storageLocation} = {
+      /*
+        age.secrets.dolibarr = {
+          file = ../../secrets/dolibarr.age;
+          mode = "440";
+        };
+      */
+      environment.persistence.${config.persistence.storageLocation} = {
         directories = [
           {
             directory = "/var/lib/dolibarr";

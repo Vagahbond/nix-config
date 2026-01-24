@@ -188,7 +188,7 @@
     };
 
   nixosConfiguration = _: {
-    sessionVariables = {
+    environment.sessionVariables = {
       EDITOR = "nvim";
     };
   };

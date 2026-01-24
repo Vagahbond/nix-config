@@ -7,6 +7,7 @@
     {
       config,
       inputs,
+      username,
       pkgs,
       ...
     }:
@@ -14,7 +15,7 @@
       # MAINTENANCE
 
       keys = import ../../secrets/sshKeys.nix {
-        inherit config pkgs;
+        inherit username config pkgs;
       };
 
       serviceUser = "mk_reset";

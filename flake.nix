@@ -41,6 +41,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
+
     # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     home-manager = {
@@ -81,8 +83,10 @@
     };
 
     charpente = {
-      url = "github:vagahbond/charpente";
+      url = "/Users/vagahbond/Projects/carpentry";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-darwin.follows = "nix-darwin";
+
     };
   };
 }

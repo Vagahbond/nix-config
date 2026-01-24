@@ -30,9 +30,9 @@
     };
 
   nixosConfiguration =
-    { username, inputs, ... }:
+    { username, config, ... }:
     {
-      environment.persistence.${inputs.impermanence.storageLocation} = {
+      environment.persistence.${config.persistence.storageLocation} = {
         users.${username} = {
           directories = [
             ".config/lazygit"

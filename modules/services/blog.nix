@@ -29,7 +29,7 @@
     in
     {
       environment = {
-        persistence.${config.impermanence.storageLocation} = {
+        persistence.${config.persistence.storageLocation} = {
           directories = [
             {
               directory = "/var/lib/goatcounter";
