@@ -4,7 +4,7 @@
   platform = "x86_64-linux";
 
   configuration =
-    { inputs }:
+    { inputs, ... }:
     {
 
       imports = [
