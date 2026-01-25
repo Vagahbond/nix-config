@@ -8,13 +8,16 @@
   sharedConfiguration =
     { username, ... }:
     {
-      programs.zsh.interactiveShellInit = ''
+
+      environment.shellInit = ''
         eval "$(starship init zsh)";
       '';
 
       home-manager.users.${username} = {
+
         programs.starship = {
           enable = true;
+          enableZshIntegration = true;
           settings = {
             format = "In [󱄅](bold red)$hostname at [](bold green) $directory$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package\n$character";
 
@@ -105,4 +108,5 @@
         };
       };
     };
+
 }

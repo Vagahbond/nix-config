@@ -31,6 +31,15 @@
           fd
         ];
 
+        programs.zsh = {
+          enable = true;
+          enableCompletion = true;
+          enableAutosuggestions = true;
+          enableSyntaxHighlighting = true;
+
+          histSize = 10000;
+        };
+
         fonts.packages = [ pkgs.nerd-fonts.departure-mono ];
 
         environment.shellAliases = {
@@ -64,15 +73,6 @@
     }:
     {
       users.defaultUserShell = pkgs.zsh;
-
-      programs.zsh = {
-        enable = true;
-        enableCompletion = true;
-        enableAutosuggestions = true;
-        enableSyntaxHighlighting = true;
-
-        histSize = 10000;
-      };
 
       environment = {
         persistence.${config.persistence.storageLocation} = {
