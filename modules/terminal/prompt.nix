@@ -8,6 +8,10 @@
   sharedConfiguration =
     { username, ... }:
     {
+      programs.zsh.shellInit = ''
+        eval "$(starship init zsh)";
+      '';
+
       home-manager.users.${username} = {
         programs.starship = {
           enable = true;

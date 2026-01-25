@@ -88,14 +88,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1769294559,
-        "narHash": "sha256-ncXlQTkZB5hcRQFT68P1syI6gfxwAz/fq5CqMr3ZrZk=",
-        "path": "/Users/vagahbond/Projects/carpentry",
-        "type": "path"
+        "lastModified": 1769295924,
+        "narHash": "sha256-Z8IYNqA7XD9JxVNs7KwNcMOlY+sNszLRD5mWbanm+H0=",
+        "owner": "vagahbond",
+        "repo": "charpente",
+        "rev": "e3864ce6c9b2924e8251be0e8852dffeda6aafed",
+        "type": "github"
       },
       "original": {
-        "path": "/Users/vagahbond/Projects/carpentry",
-        "type": "path"
+        "owner": "vagahbond",
+        "repo": "charpente",
+        "type": "github"
       }
     },
     "crane": {
