@@ -27,6 +27,7 @@
           lsd
           fzf
           ripgrep
+          yazi
           fd
         ];
 

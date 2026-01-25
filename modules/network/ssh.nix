@@ -54,4 +54,19 @@
 
       };
     };
+
+  nixosConfiguration =
+    {
+      config,
+      ...
+    }:
+    {
+
+      environment.persistence.${config.persistence.storageLocation} = {
+        directories = [
+          "/root/.ssh"
+        ];
+      };
+    };
+
 }

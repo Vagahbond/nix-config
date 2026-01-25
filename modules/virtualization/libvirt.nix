@@ -1,6 +1,6 @@
 {
   targets = [
-    "platypute"
+    "framework"
   ];
 
   nixosConfiguration =

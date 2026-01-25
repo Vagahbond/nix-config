@@ -13,4 +13,22 @@
         lazysql
       ];
     };
+
+  nixosConfiguration =
+    {
+      config,
+      username,
+      ...
+    }:
+    {
+
+      environment.persistence.${config.persistence.storageLocation} = {
+        users.${username} = {
+          directories = [
+            ".config/lazysql"
+          ];
+        };
+      };
+    };
+
 }
