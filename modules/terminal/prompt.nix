@@ -8,7 +8,7 @@
   sharedConfiguration =
     { username, ... }:
     {
-      programs.zsh.shellInit = ''
+      programs.zsh.interactiveShellInit = ''
         eval "$(starship init zsh)";
       '';
 
