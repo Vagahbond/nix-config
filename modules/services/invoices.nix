@@ -1,45 +1,52 @@
 {
-  config,
-  storageLocation,
-  ...
-}: {
-  /*
-    age.secrets.dolibarr = {
-    file = ../../secrets/dolibarr.age;
-    mode = "440";
-  };
-  */
-  environment.persistence.${storageLocation} = {
-    directories = [
-      {
-        directory = "/var/lib/dolibarr";
-        user = "dolibarr";
-        group = "dolibarr";
-        mode = "u=rwx,g=rx,o=";
-      }
-    ];
-  };
+  targets = [
+    "platypute"
+  ];
 
-  services = {
-    nginx.virtualHosts = {
-      "invoices.vagahbond.com" = {
-        forceSSL = true;
-        enableACME = true;
+  nixosConfiguration =
+    {
+      config,
+      ...
+    }:
+    {
+      /*
+        age.secrets.dolibarr = {
+          file = ../../secrets/dolibarr.age;
+          mode = "440";
+        };
+      */
+      environment.persistence.${config.persistence.storageLocation} = {
+        directories = [
+          {
+            directory = "/var/lib/dolibarr";
+            user = "dolibarr";
+            group = "dolibarr";
+            mode = "u=rwx,g=rx,o=";
+          }
+        ];
       };
-      "accounting.vagahbond.com" = {
-        forceSSL = true;
-        enableACME = true;
+
+      services = {
+        nginx.virtualHosts = {
+          "invoices.vagahbond.com" = {
+            forceSSL = true;
+            enableACME = true;
+          };
+          "accounting.vagahbond.com" = {
+            forceSSL = true;
+            enableACME = true;
+          };
+        };
+
+        dolibarr = {
+          enable = true;
+          domain = "accounting.vagahbond.com";
+          database = {
+            type = "postgresql";
+            createLocally = true;
+          };
+          nginx = { };
+        };
       };
     };
-
-    dolibarr = {
-      enable = true;
-      domain = "accounting.vagahbond.com";
-      database = {
-        type = "postgresql";
-        createLocally = true;
-      };
-      nginx = {};
-    };
-  };
 }

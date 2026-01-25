@@ -1,50 +1,57 @@
 {
-  pkgs,
-  lib,
-  storageLocation,
-  config,
-}: {
-  environment.persistence.${storageLocation} = {
-    directories = [
-      {
-        directory = "/var/backup/postgresql";
-        user = "postgres";
-        group = "postgres";
-        mode = "u=rwx,g=rx,o=";
-      }
-      {
-        directory = "/var/lib/postgresql";
-        user = "postgres";
-        group = "postgres";
-        mode = "u=rwx,g=rx,o=";
-      }
-    ];
-  };
+  targets = [
+    "platypute"
+  ];
 
-  # environment.systemPackages = with pkgs; [postgresql_17];
+  nixosConfiguration =
+    {
+      pkgs,
+      config,
+      ...
+    }:
+    {
+      environment.persistence.${config.persistence.storageLocation} = {
+        directories = [
+          {
+            directory = "/var/backup/postgresql";
+            user = "postgres";
+            group = "postgres";
+            mode = "u=rwx,g=rx,o=";
+          }
+          {
+            directory = "/var/lib/postgresql";
+            user = "postgres";
+            group = "postgres";
+            mode = "u=rwx,g=rx,o=";
+          }
+        ];
+      };
 
-  services = {
-    postgresql = {
-      enable = true;
+      # environment.systemPackages = with pkgs; [postgresql_17];
 
-      package = pkgs.postgresql_17;
-      dataDir = "/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
+      services = {
+        postgresql = {
+          enable = true;
 
-      enableTCPIP = false;
+          package = pkgs.postgresql_17;
+          dataDir = "/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
 
-      checkConfig = true;
-      settings = {
-        log_connections = true;
-        log_statement = "all";
-        logging_collector = true;
-        log_disconnections = true;
-        log_destination = lib.mkForce "syslog";
+          enableTCPIP = false;
+
+          checkConfig = true;
+          settings = {
+            log_connections = true;
+            log_statement = "all";
+            logging_collector = true;
+            log_disconnections = true;
+            log_destination = pkgs.lib.mkForce "syslog";
+          };
+        };
+        postgresqlBackup = {
+          enable = true;
+          backupAll = true;
+          pgdumpOptions = "";
+        };
       };
     };
-    postgresqlBackup = {
-      enable = true;
-      backupAll = true;
-      pgdumpOptions = "";
-    };
-  };
 }

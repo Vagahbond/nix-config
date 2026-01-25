@@ -2,12 +2,12 @@
   lib,
   inputs,
   ...
-}: {
+}:
+{
+
   imports = [
     inputs.disko.nixosModules.disko
   ];
-
-  # fileSystems."/data".neededForBoot = true;
 
   disko.devices = {
     nodev = {
@@ -35,7 +35,6 @@
               size = "200M";
               type = "EF02";
             };
-
             esp = {
               name = "ESP";
               size = "500M";
@@ -67,28 +66,6 @@
           };
         };
       };
-      /*
-        secondary = {
-        device = lib.mkDefault "/dev/vdb";
-        type = "disk";
-
-        content = {
-          type = "gpt";
-
-          partitions = {
-            data = {
-              name = "data";
-              size = "100%";
-              content = {
-                format = "ext4";
-                mountpoint = "/data";
-                type = "filesystem";
-              };
-            };
-          };
-        };
-      };
-      */
     };
   };
 }

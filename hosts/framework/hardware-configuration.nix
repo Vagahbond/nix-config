@@ -6,21 +6,24 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot = {
-    initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
-    initrd.kernelModules = [];
-    kernelModules = ["kvm-intel"];
-    extraModulePackages = [];
-    kernelParams = ["boot.shell_on_fail"];
-  };
+  /*
+    boot = {
+      initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
+      initrd.kernelModules = [];
+      kernelModules = ["kvm-intel"];
+      extraModulePackages = [];
+      kernelParams = ["boot.shell_on_fail"];
+    };
+  */
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   # Impermanencing my whole system cause I like to suffer
   fileSystems = {
@@ -28,7 +31,11 @@
       device = "none";
       fsType = "tmpfs";
       # Set mode to 755 instead of 777 or openssh no worky
-      options = ["relatime" "mode=755" "size=14G"];
+      options = [
+        "relatime"
+        "mode=755"
+        "size=14G"
+      ];
     };
 
     "/nix" = {
@@ -58,7 +65,10 @@
     useDHCP = lib.mkDefault true;
     hostName = "framework"; # Define your hostname.
     # TODO: Move spotify port conf to spotify conf
-    firewall.allowedTCPPorts = [57621 3000];
+    firewall.allowedTCPPorts = [
+      57621
+      3000
+    ];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

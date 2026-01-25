@@ -1,19 +1,33 @@
-{keys}: {
-  users.groups.builder = {};
+{
+  targets = [
+    "platypute"
+  ];
 
-  users.users.builder = {
-    isNormalUser = true;
-    # isSystemUser = true;
-    group = "builder";
-    # extraGroups = ["wheel"];
-    createHome = false;
+  nixosConfiguration =
+    {
+      pkgs,
+      config,
+      username,
+      ...
+    }:
+    let
+      keys = import ../../secrets/sshKeys.nix { inherit pkgs config username; };
+    in
+    {
+      users.groups.builder = { };
 
-    description = "This user is gonna be used especially for the remote building for security reasons";
+      users.users.builder = {
+        isNormalUser = true;
+        group = "builder";
+        createHome = false;
 
-    openssh.authorizedKeys.keys = with keys; [
-      builder_access.pub
-    ];
-  };
+        description = "This user is gonna be used especially for the remote building for security reasons";
 
-  nix.settings.trusted-users = ["builder"];
+        openssh.authorizedKeys.keys = with keys; [
+          builder_access.pub
+        ];
+      };
+
+      nix.settings.trusted-users = [ "builder" ];
+    };
 }

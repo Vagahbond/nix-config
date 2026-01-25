@@ -1,8 +1,10 @@
 {
+  pkgs,
   config,
-  lib,
-}: let
-  username = import ../username.nix;
+  username,
+  ...
+}:
+let
 
   keys = {
     builder_access = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII15sFe9kG/r6idBuf4IDUOvgdTZ9wsL+KwA76AcJh9g vagahbond@framework";
@@ -13,10 +15,10 @@
 
   mkPrivateKey = name: {
     file = ./${name}.age;
-    path = "/home/${username}/.ssh/${name}";
+    path = "${config.users.users.${username}.home}/.ssh/${name}";
     mode = "600";
-    owner = username;
-    group = "users";
+    # owner = username;
+    # group = "users";
   };
 
   mkKeyPair = name: pub: {
@@ -24,6 +26,9 @@
     priv = mkPrivateKey name;
   };
 
-  mkKeys = lib.attrsets.foldlAttrs (acc: name: value: acc // {${name} = mkKeyPair name value;}) {};
+  mkKeys = pkgs.lib.attrsets.foldlAttrs (
+    acc: name: value:
+    acc // { ${name} = mkKeyPair name value; }
+  ) { };
 in
-  mkKeys keys
+mkKeys keys
