@@ -22,7 +22,8 @@
             sshUser = "builder";
             sshKey = "${config.users.users.${username}.home}/.ssh/builder_access";
             systems = [
-              "aarch64-darwin"
+              # IDK how to make it build something else
+              # "aarch64-darwin"
               "x86_64-linux"
             ];
             protocol = "ssh";
