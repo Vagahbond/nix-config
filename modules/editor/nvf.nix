@@ -62,14 +62,12 @@
                     css.enable = true;
                   };
 
-                  /*
-                    theme = {
-                      enable = true;
-                      name = "rose-pine";
-                      style = "dawn";
-                      transparent = false;
-                    };
-                  */
+                  theme = {
+                    enable = true;
+                    name = "rose-pine";
+                    style = "dawn";
+                    transparent = true;
+                  };
 
                   autopairs.nvim-autopairs.enable = true;
 
@@ -176,6 +174,27 @@
 
                   comments = {
                     comment-nvim.enable = true;
+                  };
+
+                  extraPlugins = {
+                    autoDarkMode = {
+                      package = pkgs.vimUtils.buildVimPlugin {
+                        name = "auto-dark-mode";
+                        src = inputs.autoDarkModeNvim;
+                      };
+                      setup = ''
+                        require('auto-dark-mode').setup {
+                          set_dark_mode = function()
+                            vim.cmd("colorscheme rose-pine-moon")
+                          end,
+                          set_light_mode = function()
+                            vim.cmd("colorscheme rose-pine-dawn")
+                          end,
+                          update_interval = 3000,
+                          fallback = "dark"
+                        }
+                      '';
+                    };
                   };
                 };
               }

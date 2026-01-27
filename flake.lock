@@ -46,6 +46,22 @@
         "type": "github"
       }
     },
+    "autoDarkModeNvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754250335,
+        "narHash": "sha256-PhhOlq4byctWJ5rLe3cifImH56vR2+k3BZGDZdQvjng=",
+        "owner": "f-person",
+        "repo": "auto-dark-mode.nvim",
+        "rev": "e300259ec777a40b4b9e3c8e6ade203e78d15881",
+        "type": "github"
+      },
+      "original": {
+        "owner": "f-person",
+        "repo": "auto-dark-mode.nvim",
+        "type": "github"
+      }
+    },
     "blog-contents": {
       "flake": false,
       "locked": {
@@ -553,6 +569,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "autoDarkModeNvim": "autoDarkModeNvim",
         "blog-contents": "blog-contents",
         "blog-theme": "blog-theme",
         "charpente": "charpente",

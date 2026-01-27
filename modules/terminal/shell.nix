@@ -62,7 +62,7 @@
         programs.zsh = {
           enable = true;
           enableCompletion = true;
-          enableSyntaxHighlighting = true;
+          syntaxHighlighting.enable = true;
 
         };
 
@@ -82,7 +82,7 @@
       programs.zsh = {
         enable = true;
         enableCompletion = true;
-        enableSyntaxHighlighting = true;
+        syntaxHighlighting.enable = true;
 
         histSize = 10000;
       };

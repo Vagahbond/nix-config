@@ -59,6 +59,11 @@
       url = "github:notashelf/nvf/1bf757685b065c5aaeaf252c02457238df42ed31";
     };
 
+    autoDarkModeNvim = {
+      url = "github:f-person/auto-dark-mode.nvim";
+      flake = false;
+    };
+
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
     website = {
@@ -86,7 +91,6 @@
       url = "github:vagahbond/charpente";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nix-darwin.follows = "nix-darwin";
-
     };
   };
 }
