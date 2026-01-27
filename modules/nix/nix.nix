@@ -65,6 +65,9 @@
     };
 
   darwinConfiguration = _: {
+    environment.variables = {
+      NIXPKGS_ALLOW_UNFREE = "1";
+    };
 
     nix = {
       linux-builder = {
@@ -85,6 +88,7 @@
       settings.trusted-users = [ "@admin" ];
     };
 
+    # TODO: remove
     system.stateVersion = 6;
 
   };
