@@ -32,9 +32,7 @@
     in
     {
       nixosConfigurations = systems.nixosSystems;
-
       darwinConfigurations = systems.darwinSystems;
-
     };
 
   # Imagine having no clean way to separate your system's dependencies...

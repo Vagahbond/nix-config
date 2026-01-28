@@ -70,7 +70,7 @@
 
                   autocomplete = {
                     blink-cmp = {
-                      enable = false;
+                      enable = true;
                       setupOpts.signature.enabled = true;
                     };
                   };
@@ -80,7 +80,7 @@
                   };
 
                   tabline = {
-                    nvimBufferline.enable = true;
+                    nvimBufferline.enable = false;
                   };
 
                   treesitter = {
