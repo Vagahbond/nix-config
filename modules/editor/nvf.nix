@@ -10,7 +10,7 @@
     let
       nvf =
         (inputs.nvf.lib.neovimConfiguration {
-          pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.system};
+          inherit pkgs;
           modules = [
             (
               { pkgs, ... }:
@@ -41,21 +41,18 @@
                     enable = true;
                     formatOnSave = false;
                     trouble.enable = false;
-                    # lspSignature.enable = true;
                   };
+
                   # LANGUAGES
 
                   languages = {
                     enableFormat = true;
-                    enableTreesitter = true;
                     enableExtraDiagnostics = true;
 
                     nix.enable = true;
                     html.enable = true;
                     sql.enable = false;
-                    rust = {
-                      enable = true;
-                    };
+                    rust.enable = true;
                     ts.enable = true;
                     lua.enable = true;
                     svelte.enable = true;
@@ -73,20 +70,12 @@
 
                   autocomplete = {
                     blink-cmp = {
-                      enable = true;
+                      enable = false;
                       setupOpts.signature.enabled = true;
                     };
                   };
 
                   filetree = {
-                    /*
-                        neo-tree = {
-                        enable = true;
-                        setupOpts = {
-
-                      }
-                      };
-                    */
                     nvimTree.enable = true;
                   };
 
@@ -95,6 +84,7 @@
                   };
 
                   treesitter = {
+                    enable = true;
                     grammars = [
                       pkgs.vimPlugins.nvim-treesitter.builtGrammars.yaml
                     ];
@@ -114,11 +104,9 @@
                   git = {
                     enable = true;
                     gitsigns.enable = true;
-                    # gitsigns.codeActions = false; # throws an annoying debug message
                   };
 
                   minimap = {
-                    minimap-vim.enable = false;
                     codewindow = {
                       enable = true; # lighter, faster, and uses lua for configuration
                     };
