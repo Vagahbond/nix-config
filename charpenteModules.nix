@@ -25,6 +25,7 @@
   ];
   services = [
     "blog"
+    "photos"
     "builder"
     "homepage"
     "invoices"
