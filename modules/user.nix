@@ -35,7 +35,6 @@
           ${username} = {
             isNormalUser = true;
             extraGroups = [ "wheel" ];
-            hashedPassword = "$y$j9T$wNFGGvQeqSgVUXxTmOHX8.$wd5iVM5t01vuyNKR.bEcwBZIQ.t8qIxhPylDzhRYDC0""$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
             home = "/home/${username}";
 
           };
