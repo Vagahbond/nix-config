@@ -3,9 +3,7 @@
   config,
   username,
   ...
-}:
-let
-
+}: let
   keys = {
     builder_access = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII15sFe9kG/r6idBuf4IDUOvgdTZ9wsL+KwA76AcJh9g vagahbond@framework";
     platypute_access = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHltlf+mdcWwHJ7bKcPB+V5xd2aqGLSwd1VSTV8v4Su vagahbond@framework";
@@ -28,7 +26,7 @@ let
 
   mkKeys = pkgs.lib.attrsets.foldlAttrs (
     acc: name: value:
-    acc // { ${name} = mkKeyPair name value; }
-  ) { };
+      acc // {${name} = mkKeyPair name value;}
+  ) {};
 in
-mkKeys keys
+  mkKeys keys

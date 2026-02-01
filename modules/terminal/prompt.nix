@@ -1,5 +1,4 @@
 let
-
   starshipConfiguration = {
     enable = true;
     settings = {
@@ -90,27 +89,24 @@ let
       };
     };
   };
-in
-{
+in {
   targets = [
     "air"
     "platypute"
     "framework"
   ];
 
-  darwinConfiguration =
-    { username, ... }:
-    {
-
-      home-manager.users.${username} = {
-        programs.starship = starshipConfiguration // {
+  darwinConfiguration = {username, ...}: {
+    home-manager.users.${username} = {
+      programs.starship =
+        starshipConfiguration
+        // {
           enableZshIntegration = true;
         };
-      };
     };
+  };
 
   nixosConfiguration = _: {
     programs.starship = starshipConfiguration;
   };
-
 }

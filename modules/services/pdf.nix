@@ -42,7 +42,7 @@
           LANGS = "en_GB";
         };
         hostname = "spdf";
-        ports = [ "8085:8080" ];
+        ports = ["8085:8080"];
       };
     };
   };

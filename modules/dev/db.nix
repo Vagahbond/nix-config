@@ -5,30 +5,23 @@
     "framework"
   ];
 
-  sharedConfiguration =
-    { pkgs, ... }:
-    {
+  sharedConfiguration = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
+      lazysql
+    ];
+  };
 
-      environment.systemPackages = with pkgs; [
-        lazysql
-      ];
-    };
-
-  nixosConfiguration =
-    {
-      config,
-      username,
-      ...
-    }:
-    {
-
-      environment.persistence.${config.persistence.storageLocation} = {
-        users.${username} = {
-          directories = [
-            ".config/lazysql"
-          ];
-        };
+  nixosConfiguration = {
+    config,
+    username,
+    ...
+  }: {
+    environment.persistence.${config.persistence.storageLocation} = {
+      users.${username} = {
+        directories = [
+          ".config/lazysql"
+        ];
       };
     };
-
+  };
 }

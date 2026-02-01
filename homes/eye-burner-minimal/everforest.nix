@@ -6,8 +6,7 @@
   stdenvNoCC,
   libsForQt5,
   sddm-config,
-}:
-rec {
+}: rec {
   rose-pine-hyprcursor = stdenv.mkDerivation {
     pname = "rose-pine-hyprcursor";
     version = "1.0";

@@ -49,9 +49,9 @@
     "kubernetes"
     "libvirt"
   ];
-  impermanence = { };
-  locales = { };
-  system = { };
-  user = { };
-  home = { };
+  impermanence = {};
+  locales = {};
+  system = {};
+  user = {};
+  home = {};
 }

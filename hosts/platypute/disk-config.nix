@@ -2,9 +2,7 @@
   lib,
   inputs,
   ...
-}:
-{
-
+}: {
   imports = [
     inputs.disko.nixosModules.disko
   ];

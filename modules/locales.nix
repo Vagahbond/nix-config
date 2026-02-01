@@ -4,67 +4,64 @@
     "framework"
   ];
 
-  nixosConfiguration =
-    {
-      config,
-      pkgs,
-      ...
-    }:
-    let
-      cfg = config.locales;
-    in
-    {
-      options.locales = {
-        zone = pkgs.lib.mkOption {
-          type = pkgs.lib.types.str;
-          default = "Pacific/Auckland";
-          description = ''
-            The time zone to use. 
-                  Your real location is relevant for SSL certificates, 
-                  so you should set this to your real location.'';
-          example = "Europe/Paris";
-        };
-
-        language = pkgs.lib.mkOption {
-          type = pkgs.lib.types.str;
-          default = "en_US.UTF-8";
-          description = ''The default language to use.'';
-          example = "en_US.UTF-8";
-        };
-
-        detailsLanguage = pkgs.lib.mkOption {
-          type = pkgs.lib.types.str;
-          default = "en_US.UTF-8";
-          description = ''
-            The language to use for formatting specific things :
-                  - dates
-                  - numbers
-                  - currency
-                  - addresses
-                  - measurements
-                  - paper sizes
-                  - telephone numbers
-                  - time'';
-          example = "en_US.utf8";
-        };
+  nixosConfiguration = {
+    config,
+    pkgs,
+    ...
+  }: let
+    cfg = config.locales;
+  in {
+    options.locales = {
+      zone = pkgs.lib.mkOption {
+        type = pkgs.lib.types.str;
+        default = "Pacific/Auckland";
+        description = ''
+          The time zone to use. 
+                Your real location is relevant for SSL certificates, 
+                so you should set this to your real location.'';
+        example = "Europe/Paris";
       };
-      config = {
-        # Set your time zone.
-        time.timeZone = cfg.zone;
-        i18n.defaultLocale = cfg.language;
-        i18n.extraLocaleSettings = {
-          LANGUAGE = cfg.detailsLanguage;
-          LC_ALL = cfg.detailsLanguage;
-          LC_ADDRESS = cfg.detailsLanguage;
-          LC_IDENTIFICATION = cfg.detailsLanguage;
-          LC_MEASUREMENT = cfg.detailsLanguage;
-          LC_MONETARY = cfg.detailsLanguage;
-          LC_NAME = cfg.detailsLanguage;
-          LC_NUMERIC = cfg.detailsLanguage;
-          LC_PAPER = cfg.detailsLanguage;
-          LC_TELEPHONE = cfg.detailsLanguage;
-          LC_TIME = cfg.detailsLanguage;
-        };
+
+      language = pkgs.lib.mkOption {
+        type = pkgs.lib.types.str;
+        default = "en_US.UTF-8";
+        description = ''The default language to use.'';
+        example = "en_US.UTF-8";
+      };
+
+      detailsLanguage = pkgs.lib.mkOption {
+        type = pkgs.lib.types.str;
+        default = "en_US.UTF-8";
+        description = ''
+          The language to use for formatting specific things :
+                - dates
+                - numbers
+                - currency
+                - addresses
+                - measurements
+                - paper sizes
+                - telephone numbers
+                - time'';
+        example = "en_US.utf8";
       };
     };
+    config = {
+      # Set your time zone.
+      time.timeZone = cfg.zone;
+      i18n.defaultLocale = cfg.language;
+      i18n.extraLocaleSettings = {
+        LANGUAGE = cfg.detailsLanguage;
+        LC_ALL = cfg.detailsLanguage;
+        LC_ADDRESS = cfg.detailsLanguage;
+        LC_IDENTIFICATION = cfg.detailsLanguage;
+        LC_MEASUREMENT = cfg.detailsLanguage;
+        LC_MONETARY = cfg.detailsLanguage;
+        LC_NAME = cfg.detailsLanguage;
+        LC_NUMERIC = cfg.detailsLanguage;
+        LC_PAPER = cfg.detailsLanguage;
+        LC_TELEPHONE = cfg.detailsLanguage;
+        LC_TIME = cfg.detailsLanguage;
+      };
+    };
+  };
 }

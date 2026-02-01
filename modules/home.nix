@@ -5,31 +5,29 @@
     "air"
   ];
 
-  sharedConfiguration =
-    { username, config, ... }:
-    {
-      home-manager.users.${username} = {
-        nixpkgs.config = {
-          allowUnfree = true;
-        };
+  sharedConfiguration = {
+    username,
+    config,
+    ...
+  }: {
+    home-manager.users.${username} = {
+      nixpkgs.config = {
+        allowUnfree = true;
+      };
 
-        home = {
-          inherit username;
-          homeDirectory = config.users.users.${username}.home;
-          stateVersion = "22.11";
-        };
+      home = {
+        inherit username;
+        homeDirectory = config.users.users.${username}.home;
+        stateVersion = "22.11";
       };
     };
+  };
 
-  nixosConfiguration =
-    { inputs, ... }:
-    {
-      imports = [ inputs.home-manager.nixosModules.default ];
-    };
+  nixosConfiguration = {inputs, ...}: {
+    imports = [inputs.home-manager.nixosModules.default];
+  };
 
-  darwinConfiguration =
-    { inputs, ... }:
-    {
-      imports = [ inputs.home-manager.darwinModules.default ];
-    };
+  darwinConfiguration = {inputs, ...}: {
+    imports = [inputs.home-manager.darwinModules.default];
+  };
 }
