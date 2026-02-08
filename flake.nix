@@ -1,35 +1,38 @@
 {
   description = "My modular NixOS configuration that totally did not take countless horus to make.";
 
-  outputs = {
-    self,
-    charpente,
-    ...
-  } @ inputs: let
-    systems = charpente.lib.mkSystems {
-      root = self;
+  outputs =
+    {
+      self,
+      charpente,
+      ...
+    }@inputs:
+    let
+      systems = charpente.lib.mkSystems {
+        root = self;
 
-      hosts = [
-        "air"
-        "framework"
-        "live"
-        "platypute"
-      ];
+        hosts = [
+          "air"
+          "framework"
+          "live"
+          "platypute"
+        ];
 
-      modules = import ./charpenteModules.nix;
+        modules = import ./charpenteModules.nix;
 
-      extraArgs = {
-        username = "vagahbond";
-        inherit
-          inputs
-          self
-          ;
+        extraArgs = {
+          username = "vagahbond";
+          inherit
+            inputs
+            self
+            ;
+        };
       };
+    in
+    {
+      nixosConfigurations = systems.nixosSystems;
+      darwinConfigurations = systems.darwinSystems;
     };
-  in {
-    nixosConfigurations = systems.nixosSystems;
-    darwinConfigurations = systems.darwinSystems;
-  };
 
   # Imagine having no clean way to separate your system's dependencies...
   inputs = {
