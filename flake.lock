@@ -65,11 +65,11 @@
     "blog-contents": {
       "flake": false,
       "locked": {
-        "lastModified": 1765019159,
-        "narHash": "sha256-TYqebgxdW38mFZKaSPyoKmWAcrncw+BgcndNwVKRJzQ=",
+        "lastModified": 1770703940,
+        "narHash": "sha256-mlAi7AwKWMUs9lfgz5+S5C/l6ldVhahXIEpqCqPqWNM=",
         "owner": "vagahbond",
         "repo": "blog",
-        "rev": "ca1a1ef114fb4e8ed0e330912268af3848595a1a",
+        "rev": "b46fb69a27e4c679c5fd93ce8c9f974fa47430eb",
         "type": "github"
       },
       "original": {
@@ -104,14 +104,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1770366601,
-        "narHash": "sha256-6fN4G3g7DkniW24WPrnSlQXFJWa0R+VG5xSw+Frc+rs=",
-        "path": "/Users/vagahbond/Projects/charpente",
-        "type": "path"
+        "lastModified": 1770280654,
+        "narHash": "sha256-DCn7AHsTqVtYzez+VZHrNM6OzfNCcqaSnPt3FujEho8=",
+        "owner": "vagahbond",
+        "repo": "charpente",
+        "rev": "557559616862f20b0a3c226483e58fe22abbfbb2",
+        "type": "github"
       },
       "original": {
-        "path": "/Users/vagahbond/Projects/charpente",
-        "type": "path"
+        "owner": "vagahbond",
+        "repo": "charpente",
+        "type": "github"
       }
     },
     "crane": {
@@ -252,11 +255,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1770586272,
-        "narHash": "sha256-Ucci8mu8QfxwzyfER2DQDbvW9t1BnTUJhBmY7ybralo=",
+        "lastModified": 1770654520,
+        "narHash": "sha256-mg5WZMIPGsFu9MxSrUcuJUPMbfMsF77el5yb/7rc10k=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b1f916ba052341edc1f80d4b2399f1092a4873ca",
+        "rev": "6c4fdbe1ad198fac36c320fd45c5957324a80b8e",
         "type": "github"
       },
       "original": {
@@ -510,11 +513,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1770197578,
-        "narHash": "sha256-AYqlWrX09+HvGs8zM6ebZ1pwUqjkfpnv8mewYwAo+iM=",
+        "lastModified": 1770562336,
+        "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "00c21e4c93d963c50d4c0c89bfa84ed6e0694df2",
+        "rev": "d6c71932130818840fc8fe9509cf50be8c64634f",
         "type": "github"
       },
       "original": {
@@ -550,11 +553,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1770572967,
-        "narHash": "sha256-uQ4g+gypEXoNE6bgQq1UP3mrwUNuemhdD3A7G9tbchk=",
+        "lastModified": 1770703021,
+        "narHash": "sha256-gqb5psh3ydigaeAnOby4KwXAXtzU0uZK9AeRAYIw53g=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "7a2c7c23966122eac80620dd503bf2b1163ed6d4",
+        "rev": "4d0d1884a00b32c034299fcd3e96f9e0cb68d23b",
         "type": "github"
       },
       "original": {
