@@ -14,7 +14,7 @@
     let
       nvf =
         (inputs.nvf.lib.neovimConfiguration {
-        inherit pkgs;
+          inherit pkgs;
           # pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.system};
           modules = [
             (
@@ -55,7 +55,7 @@
                     enableExtraDiagnostics = true;
 
                     nix.enable = true;
-                    html.enable = true;
+                    html.enable = false;
                     sql.enable = false;
                     rust.enable = true;
                     ts.enable = true;
