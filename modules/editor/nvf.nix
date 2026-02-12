@@ -14,8 +14,8 @@
     let
       nvf =
         (inputs.nvf.lib.neovimConfiguration {
-          inherit pkgs;
-          # pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.system};
+          # inherit pkgs;
+          pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.system};
           modules = [
             (
               { pkgs, ... }:
