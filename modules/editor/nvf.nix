@@ -55,7 +55,7 @@
                     enableExtraDiagnostics = true;
 
                     nix.enable = true;
-                    html.enable = false;
+                    html.enable = true;
                     sql.enable = false;
                     rust.enable = true;
                     ts.enable = true;
