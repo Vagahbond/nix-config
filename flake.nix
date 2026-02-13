@@ -65,8 +65,7 @@
     nix-cooker.url = "github:vagahbond/nix-cooker";
 
     website = {
-      url = "github:vagahbond/website";
-      flake = false;
+      url = "github:vagahbond/homepage";
     };
 
     # TODO: better package
