@@ -684,11 +684,11 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1770958237,
-        "narHash": "sha256-wAOSxaXrVkaQojixv1tz9XXTUo95gmBZo/FmeCyIkDI=",
+        "lastModified": 1770961961,
+        "narHash": "sha256-iwrKg+KjtoCEzD94HstB+4h1QzRBLrhsEpHtRTIejs0=",
         "owner": "vagahbond",
         "repo": "homepage",
-        "rev": "afd4012654e44e71d4ee7168c1eb4ee4221818bf",
+        "rev": "cce374a6429e38989274429c33ef1fc7bc1e6d1f",
         "type": "github"
       },
       "original": {
