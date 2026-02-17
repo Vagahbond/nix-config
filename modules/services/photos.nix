@@ -88,8 +88,8 @@
                 name = "ente";
               };
               apps = {
-                public-albums = "albums.pics.vagahbond.com";
-                # accounts = "accounts.pics.vagahbond.com";
+                public-albums = "https://albums.pics.vagahbond.com";
+                accounts = "https://accounts.pics.vagahbond.com";
               };
               s3 = {
                 are_local_buckets = false;
