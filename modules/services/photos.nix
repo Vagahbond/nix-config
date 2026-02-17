@@ -48,10 +48,6 @@
           forceSSL = true;
           enableACME = true;
         };
-        "albums.pics.vagahbond.com" = {
-          forceSSL = true;
-          enableACME = true;
-        };
         "accounts.pics.vagahbond.com" = {
           forceSSL = true;
           enableACME = true;
@@ -86,10 +82,6 @@
               db = {
                 user = "ente";
                 name = "ente";
-              };
-              apps = {
-                public-albums = "https://albums.pics.vagahbond.com";
-                accounts = "https://accounts.pics.vagahbond.com";
               };
               s3 = {
                 are_local_buckets = false;
