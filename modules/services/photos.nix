@@ -89,7 +89,7 @@
               };
               apps = {
                 public-albums = "albums.pics.vagahbond.com";
-                accounts = "accounts.pics.vagahbond.com";
+                # accounts = "accounts.pics.vagahbond.com";
               };
               s3 = {
                 are_local_buckets = false;
