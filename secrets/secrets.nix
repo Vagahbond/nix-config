@@ -34,7 +34,7 @@ in
   ];
   "nextcloud_client_account.age".publicKeys = [ mk ];
   "grafana_secret_key.age".publicKeys = [
-    dedistonks
+    platypute
     mk
   ];
 
