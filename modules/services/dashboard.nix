@@ -4,12 +4,12 @@
   nixosConfiguration =
     { config, ... }:
     {
-      environment.persistence.${config.persistence.storageLocation} = {
-        directories = [
-          "/var/lib/glance"
-
-        ];
-      };
+      # environment.persistence.${config.persistence.storageLocation} = {
+      #    directories = [
+      #     "/var/lib/glance"
+      #
+      #   ];
+      # };
 
       services = {
         nginx.virtualHosts."dash.vagahbond.com" = {
