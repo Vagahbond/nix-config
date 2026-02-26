@@ -6,12 +6,7 @@
     {
       environment.persistence.${config.persistence.storageLocation} = {
         directories = [
-          {
-            directory = "/var/lib/glance";
-            user = "glance";
-            group = "glance";
-            mode = "u=rwx,g=rx,o=";
-          }
+          "/var/lib/glance"
 
         ];
       };
