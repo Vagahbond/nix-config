@@ -6,7 +6,7 @@
     {
       environment.persistence.${config.persistence.storageLocation} = {
         directories = [
-          "/var/lib/cool"
+          "/var/lib/glance"
         ];
       };
 
