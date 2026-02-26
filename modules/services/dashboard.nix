@@ -15,7 +15,7 @@
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass = "http://localhost:${toString config.services.glance.settings.server.port}";
+            proxyPass = "http://127.0.0.1:${toString config.services.glance.settings.server.port}";
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
         };
