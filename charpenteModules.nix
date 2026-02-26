@@ -32,6 +32,7 @@
     "metrics"
     "mkReset"
     "nextcloud"
+    "dashboard"
     "notes"
     "office"
     "pdf"
@@ -49,9 +50,9 @@
     "kubernetes"
     "libvirt"
   ];
-  impermanence = {};
-  locales = {};
-  system = {};
-  user = {};
-  home = {};
+  impermanence = { };
+  locales = { };
+  system = { };
+  user = { };
+  home = { };
 }
