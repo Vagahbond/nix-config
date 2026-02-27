@@ -58,8 +58,8 @@
                 ];
               }
             ];
+            server.port = 9981;
           };
-          server.port = 9981;
         };
       };
     };
