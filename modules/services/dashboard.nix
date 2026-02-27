@@ -5,7 +5,7 @@
     { config, ... }:
     {
       environment.persistence.${config.persistence.storageLocation} = {
-         directories = [
+        directories = [
           "/var/lib/private/glance"
         ];
       };
@@ -19,11 +19,47 @@
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
         };
+
         glance = {
           enable = true;
           settings = {
-            server.port = 9981;
+            pages = [
+              {
+                name = "startpage";
+                width = "slim";
+                center-vertically = true;
+                columns = [
+                  {
+                    size = "full";
+                    widgets = [
+                      {
+                        type = "search";
+                        autofocus = true;
+                      }
+                      {
+                        type = "monitor";
+                        cache = "1m";
+                        title = "Services";
+                        sites = [
+                          {
+                            title = "Nextcloud";
+                            url = "https://nuage.vagahbond.com";
+                            icon = "si:nextcloud";
+                          }
+                          {
+                            title = "Pass";
+                            url = "https://pass.vagahbond.com";
+                            icon = "si:bitwarden";
+                          }
+                        ];
+                      }
+                    ];
+                  }
+                ];
+              }
+            ];
           };
+          server.port = 9981;
         };
       };
     };
