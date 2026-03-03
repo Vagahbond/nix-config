@@ -231,12 +231,12 @@
             };
             "auth" = {
               secret-key = {
-                _secret = config.secrets.glanceSecretKey.path;
+                _secret = config.age.secrets.glanceSecretKey.path;
               };
               users = {
                 vagahbond = {
                   password = {
-                    _secret = config.secrets.glancePassword.path;
+                    _secret = config.age.secrets.glancePassword.path;
                   };
                 };
               };
