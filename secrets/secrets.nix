@@ -20,19 +20,34 @@ in
     mk
     platypute
   ];
+
   "nextcloud_s3_secret.age".publicKeys = [
     mk
     platypute
   ];
+
   "ente_s3_secret.age".publicKeys = [
     mk
     platypute
   ];
+
   "nextcloud_mail_password.age".publicKeys = [
     mk
     platypute
   ];
+
   "nextcloud_client_account.age".publicKeys = [ mk ];
+
+  "glance_secret_key.age".publicKeys = [
+    mk
+    platypute
+  ];
+
+  "glance_vagahbond_password.age".publicKeys = [
+    mk
+    platypute
+  ];
+
   "grafana_secret_key.age".publicKeys = [
     platypute
     mk
