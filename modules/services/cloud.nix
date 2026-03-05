@@ -78,8 +78,11 @@
           };
           share.default_access = "viewer";
           features.api.enable = false;
-          auth.admin = "$2a$05$gIqN0/EbKTkj5iyZHjOgwOD6/ppQkKPzszkYGXSLvCuYapHWiACHC";
-          connections = [ ];
+          auth = {
+
+            admin = "$2a$12$6IeDB6RsGpntHVYqcADhteEwA7z/1AbUG1oj16Pkq9ibMSZP7tr06";
+          };
+          # connections = [ ];
         };
       };
     };
