@@ -63,7 +63,7 @@
       ###################################################
       # SERVICES                                        #
       ###################################################
-      services.livestash = {
+      services.filestash = {
         enable = true;
         settings = {
           general = {
