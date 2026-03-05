@@ -173,6 +173,22 @@
         "type": "github"
       }
     },
+    "filestash": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772513481,
+        "narHash": "sha256-7sN+YHWXgjQDGrBiCvDUmgg5zenIoFCOGW+CYctlH7s=",
+        "owner": "mickael-kerjean",
+        "repo": "filestash",
+        "rev": "7afeff63a35664338fa466f3d94a1054f29a4043",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mickael-kerjean",
+        "repo": "filestash",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -603,6 +619,7 @@
         "blog-theme": "blog-theme",
         "charpente": "charpente",
         "disko": "disko",
+        "filestash": "filestash",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "mkReset": "mkReset",

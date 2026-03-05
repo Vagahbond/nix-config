@@ -32,6 +32,7 @@
     {
       nixosConfigurations = systems.nixosSystems;
       darwinConfigurations = systems.darwinSystems;
+
     };
 
   # Imagine having no clean way to separate your system's dependencies...
@@ -83,6 +84,10 @@
     mkReset = {
       # url = "/home/vagahbond/Projects/mk_reset_online";
       url = "github:jmsk8/mk_reset_online";
+    };
+
+    filestash = {
+      url = "github:dermetfan/filestash.nix";
     };
 
     charpente = {
