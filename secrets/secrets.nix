@@ -137,4 +137,9 @@ in
     platypute
     mk
   ];
+
+  "filestash_secret_key.age".publicKeys = [
+    platypute
+    framework
+  ];
 }

@@ -40,11 +40,11 @@
       # SECRETS                                         #
       ###################################################
       age.secrets = {
-        nextcloudAdminPass = {
-          file = ../../secrets/nextcloud_admin_pass.age;
+        filestashSecretKey = {
+          file = ../../secrets/filestash_secret_key.age;
           mode = "440";
-          owner = "filestash";
-          group = "filestash";
+          owner = config.services.filestash.user;
+          group = config.services.filestash.group;
         };
 
       };
@@ -69,7 +69,7 @@
           general = {
             host = "cloud.vagahbond.com";
             port = 8334;
-            secret_key_file = config.age.secrets.filestash.path;
+            secret_key_file = config.age.secrets.filestashSecretKey.path;
             editor = "base";
             fork_button = false;
             upload_button = true;
