@@ -87,7 +87,7 @@
           auth = {
             admin = "$2a$12$6IeDB6RsGpntHVYqcADhteEwA7z/1AbUG1oj16Pkq9ibMSZP7tr06";
           };
-          # connections = [ ];
+          connections = [ ];
         };
       };
     };
