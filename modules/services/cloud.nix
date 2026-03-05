@@ -71,6 +71,10 @@
       ###################################################
       services.filestash = {
         enable = true;
+        paths = {
+
+          config = "/var/lib/filestash/config.json";
+        };
         /*
           settings = {
             general = {
