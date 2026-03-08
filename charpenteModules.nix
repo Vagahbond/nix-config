@@ -27,7 +27,7 @@
     "blog"
     "photos"
     "builder"
-    "cloud"
+    "files"
     "homepage"
     "invoices"
     "metrics"

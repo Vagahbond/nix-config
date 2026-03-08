@@ -54,7 +54,7 @@
       ###################################################
 
       services.nginx.virtualHosts = {
-        "cloud.vagahbond.com" = {
+        "files.vagahbond.com" = {
           forceSSL = true;
           enableACME = true;
 
