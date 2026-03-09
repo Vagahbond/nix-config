@@ -38,7 +38,11 @@
           # Listen on loopback interface only, and accept requests from ::1
           net = {
             listen = "loopback";
-            post_allow.host = [ "::1" ];
+            post_allow.host = [
+              "::1"
+              "localhost"
+              "127.0.0.1"
+            ];
           };
 
           # Restrict loading documents from WOPI Host nextcloud.example.com
