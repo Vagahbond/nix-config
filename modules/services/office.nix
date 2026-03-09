@@ -64,10 +64,12 @@
         "127.0.0.1" = [
           "nuage.vagahbond.com"
           "office.vagahbond.com"
+          "files.vagahbond.com"
         ];
         "::1" = [
           "nuage.vagahbond.com"
           "office.vagahbond.com"
+          "files.vagahbond.com"
         ];
       };
 
