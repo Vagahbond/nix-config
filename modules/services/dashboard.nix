@@ -158,7 +158,7 @@
                             url = "https://nuage.vagahbond.com";
                           }
                           {
-                            icon = "si:filestash";
+                            icon = "sh:filestash";
                             title = "Files";
                             url = "https://files.vagahbond.com";
                           }
