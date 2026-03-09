@@ -158,6 +158,11 @@
                             url = "https://nuage.vagahbond.com";
                           }
                           {
+                            icon = "si:filestash";
+                            title = "Files";
+                            url = "https://files.vagahbond.com";
+                          }
+                          {
                             icon = "si:hugo";
                             title = "Touches grasses";
                             url = "https://touches-grasses.fr";
