@@ -65,6 +65,9 @@
           enableACME = true;
 
           locations."/" = {
+            extraConfig = ''
+              client_max_body_size 100M;
+            '';
             proxyPass = "http://127.0.0.1:8334";
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
