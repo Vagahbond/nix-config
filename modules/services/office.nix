@@ -45,12 +45,10 @@
             ];
           };
 
-          # Restrict loading documents from WOPI Host nextcloud.example.com
           storage.wopi = {
             "@allow" = true;
             # TODO: use a variable for the FQDN
             host = [
-              config.services.nextcloud.hostName
               "files.vagahbond.com"
             ];
           };
@@ -66,44 +64,42 @@
 
       networking.hosts = {
         "127.0.0.1" = [
-          "nuage.vagahbond.com"
           "office.vagahbond.com"
           "files.vagahbond.com"
         ];
         "::1" = [
-          "nuage.vagahbond.com"
           "office.vagahbond.com"
           "files.vagahbond.com"
         ];
       };
 
-      systemd.services.nextcloud-config-collabora =
-        let
-          inherit (config.services.nextcloud) occ;
-
-          wopi_url = "http://[::1]:${toString config.services.collabora-online.port}";
-          public_wopi_url = "https://office.vagahbond.com";
-          wopi_allowlist = pkgs.lib.concatStringsSep "," [
-            "127.0.0.1"
-            "::1"
-          ];
-        in
-        {
-          wantedBy = [ "multi-user.target" ];
-          after = [
-            "nextcloud-setup.service"
-            "coolwsd.service"
-          ];
-          requires = [ "coolwsd.service" ];
-          script = ''
-            ${occ}/bin/nextcloud-occ config:app:set richdocuments wopi_url --value ${pkgs.lib.escapeShellArg wopi_url}
-            ${occ}/bin/nextcloud-occ config:app:set richdocuments public_wopi_url --value ${pkgs.lib.escapeShellArg public_wopi_url}
-            ${occ}/bin/nextcloud-occ config:app:set richdocuments wopi_allowlist --value ${pkgs.lib.escapeShellArg wopi_allowlist}
-            ${occ}/bin/nextcloud-occ richdocuments:setup
-          '';
-          serviceConfig = {
-            Type = "oneshot";
-          };
-        };
+      #   systemd.services.nextcloud-config-collabora =
+      #     let
+      #       inherit (config.services.nextcloud) occ;
+      #
+      #       wopi_url = "http://[::1]:${toString config.services.collabora-online.port}";
+      #       public_wopi_url = "https://office.vagahbond.com";
+      #       wopi_allowlist = pkgs.lib.concatStringsSep "," [
+      #         "127.0.0.1"
+      #         "::1"
+      #       ];
+      #     in
+      #     {
+      #       wantedBy = [ "multi-user.target" ];
+      #       after = [
+      #         "nextcloud-setup.service"
+      #         "coolwsd.service"
+      #       ];
+      #       requires = [ "coolwsd.service" ];
+      #       script = ''
+      #         ${occ}/bin/nextcloud-occ config:app:set richdocuments wopi_url --value ${pkgs.lib.escapeShellArg wopi_url}
+      #         ${occ}/bin/nextcloud-occ config:app:set richdocuments public_wopi_url --value ${pkgs.lib.escapeShellArg public_wopi_url}
+      #         ${occ}/bin/nextcloud-occ config:app:set richdocuments wopi_allowlist --value ${pkgs.lib.escapeShellArg wopi_allowlist}
+      #         ${occ}/bin/nextcloud-occ richdocuments:setup
+      #       '';
+      #       serviceConfig = {
+      #         Type = "oneshot";
+      #       };
+      #     };
     };
 }
