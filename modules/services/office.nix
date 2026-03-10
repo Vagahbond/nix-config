@@ -16,6 +16,10 @@
         ];
       };
 
+      environment.systemPackages = with pkgs; [
+        corefonts
+      ];
+
       services.nginx.virtualHosts."office.vagahbond.com" = {
         forceSSL = true;
         enableACME = true;
