@@ -1,7 +1,6 @@
 # TODO: Uncontainerize
 {
   targets = [
-    "platypute"
   ];
 
   nixosConfiguration = _: {
