@@ -16,7 +16,8 @@
         ];
       };
 
-      environment.systemPackages = with pkgs; [
+      fonts.packages = with pkgs; [
+        nerd-fonts.departure-mono
         corefonts
       ];
 
