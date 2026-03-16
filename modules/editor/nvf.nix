@@ -62,6 +62,7 @@
                     lua.enable = true;
                     svelte.enable = true;
                     css.enable = true;
+
                   };
 
                   theme = {
@@ -152,9 +153,38 @@
                   };
 
                   assistant = {
-                    supermaven-nvim = {
-                      enable = true;
-                    };
+                    supermaven-nvim.enable = true;
+                    /*
+                      avante-nvim = {
+                        enable = true;
+                        setupOpts = {
+                          provider = "claude";
+                          mappings = {
+                            ask = "<leader>aa"; # Open sidebar and ask
+                            edit = "<leader>ae"; # Edit selected code
+                            refresh = "<leader>ar"; # Refresh response
+                            focus = "<leader>af"; # Focus sidebar
+                            toggle = {
+                              default = "<leader>at"; # Toggle sidebar
+                            };
+                            diff = {
+                              ours = "co"; # Accept our change
+                              theirs = "ct"; # Accept their change
+                              next = "]x"; # Next conflict
+                              prev = "[x"; # Prev conflict
+                            };
+                            suggestion = {
+                              accept = "<Tab>"; # Accept inline suggestion
+                              dismiss = "<Esc>";
+                            };
+                            submit = {
+                              normal = "<CR>";
+                              insert = "<C-s>"; # Submit from insert mode
+                            };
+                          };
+                        };
+                      };
+                    */
                   };
 
                   gestures = {
@@ -192,7 +222,10 @@
         }).neovim;
     in
     {
-      environment.systemPackages = [ nvf ];
+      environment.systemPackages = [
+        nvf
+        pkgs.claude-code
+      ];
     };
 
   nixosConfiguration = _: {
