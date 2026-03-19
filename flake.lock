@@ -104,11 +104,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773622760,
-        "narHash": "sha256-UkUXMYNjEYcqEApZYF3bUwqlQnheMEuFIKq+N/z16Lk=",
+        "lastModified": 1773805532,
+        "narHash": "sha256-9PF0JoO4VfZi9v7Ni/jC8u07vHEsaMm3HikskAlFlzE=",
         "owner": "vagahbond",
         "repo": "charpente",
-        "rev": "5506ba1e4b4eb3620acfdb327cb294a8b5246a34",
+        "rev": "471bc6060dfa6501677fb02c5903a23238293fb2",
         "type": "github"
       },
       "original": {
@@ -292,11 +292,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1773681856,
-        "narHash": "sha256-+bRqxoFCJFO9ZTFhcCkzNXbDT3b8AEk88fyjB7Is6eo=",
+        "lastModified": 1773810247,
+        "narHash": "sha256-6Vz1Thy/1s7z+Rq5OfkWOBAdV4eD+OrvDs10yH6xJzQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "57d5560ee92a424fb71fde800acd6ed2c725dfce",
+        "rev": "d47357a4c806d18a3e853ad2699eaec3c01622e7",
         "type": "github"
       },
       "original": {
@@ -774,11 +774,11 @@
         "nixpkgs": "nixpkgs_12"
       },
       "locked": {
-        "lastModified": 1773789403,
-        "narHash": "sha256-IKo49wbSbmUL5nCVdx1H4orwdomqIlU9B9IQzOyfJxM=",
+        "lastModified": 1773878688,
+        "narHash": "sha256-/FeOTr00hb1hq2wTC79B8R0L092G3MCuXjuI+2JFuMI=",
         "owner": "vagahbond",
         "repo": "homepage",
-        "rev": "065b315ad2532ad01a10f4a53dd6137b7e8fcaef",
+        "rev": "710b097132fd7f116149684c56c82a14a5af91e7",
         "type": "github"
       },
       "original": {
