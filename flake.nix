@@ -55,7 +55,7 @@
     agenix.url = "github:yaxitech/ragenix";
 
     nvf = {
-      url = "github:notashelf/nvf/v0.8";
+      url = "github:notashelf/nvf";
       # url = "/Users/vagahbond/Projects/nvf";
     };
 
