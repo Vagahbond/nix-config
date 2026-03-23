@@ -70,6 +70,7 @@
           enable = true;
           url = "https://files.vagahbond.com";
           environmentFile = config.age.secrets.opencloudEnv.path;
+          port = 9205;
         };
       };
 
