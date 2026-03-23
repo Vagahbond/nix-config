@@ -51,7 +51,7 @@
 
       services = {
         nginx.virtualHosts = {
-          ${config.services.opencloud.url} = {
+          "files.vagahbond.com" = {
             forceSSL = true;
             enableACME = true;
 
