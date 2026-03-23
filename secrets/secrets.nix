@@ -138,6 +138,11 @@ in
     mk
   ];
 
+  "opencloud_env.age".publicKeys = [
+    dedistonks
+    framework
+  ];
+
   "filestash_secret_key.age".publicKeys = [
     platypute
     framework

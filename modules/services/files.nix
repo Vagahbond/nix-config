@@ -12,6 +12,55 @@
       ...
     }:
     {
+
+      age.secrets = {
+        opencloudEnv = {
+          file = ../../secrets/opencloud_env.age;
+          mode = "440";
+          owner = config.services.opencloud.user;
+          group = config.services.opencloud.group;
+
+        };
+
+      };
+
+
+
+      environment.persistence.${config.persistence.storageLocation} = {
+        # TODO = independent redis and rabbitmq with special volume
+        directories = [
+          {
+            directory = config.services.opencloud.stateDir;
+            inherit (config.services.opencloud) user group;
+            mode = "u=rwx,g=rx,o=";
+          }
+        ];
+      };
+
+      services = {
+        nginx.virtualHosts = {
+          config.services.opencloud.url = {
+            forceSSL = true;
+            enableACME = true;
+
+            locations."/" = {
+              extraConfig = ''
+                client_max_body_size 100M;
+              '';
+              proxyPass = "http://127.0.0.1:${toString config.services.opencloud.port}";
+              proxyWebsockets = true; # needed if you need to use WebSocket
+            };
+
+          };
+        };
+
+        opencloud = {
+          enable = true;
+          url = "https://files.vagahbond.com";
+          environmentFile = 
+        };
+      };
+
       imports = [ inputs.filestash.nixosModules.default ];
 
       ###################################################################
@@ -59,21 +108,21 @@
       # SSL                                             #
       ###################################################
 
-      services.nginx.virtualHosts = {
-        "files.vagahbond.com" = {
-          forceSSL = true;
-          enableACME = true;
-
-          locations."/" = {
-            extraConfig = ''
-              client_max_body_size 100M;
-            '';
-            proxyPass = "http://127.0.0.1:8334";
-            proxyWebsockets = true; # needed if you need to use WebSocket
-          };
-
-        };
-      };
+      # services.nginx.virtualHosts = {
+      #   "files.vagahbond.com" = {
+      #     forceSSL = true;
+      #     enableACME = true;
+      #
+      #     locations."/" = {
+      #       extraConfig = ''
+      #         client_max_body_size 100M;
+      #       '';
+      #       proxyPass = "http://127.0.0.1:8334";
+      #       proxyWebsockets = true; # needed if you need to use WebSocket
+      #     };
+      #
+      #   };
+      # };
 
       ###################################################
       # SERVICES                                        #
