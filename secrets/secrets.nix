@@ -139,7 +139,7 @@ in
   ];
 
   "opencloud_env.age".publicKeys = [
-    dedistonks
+    platypute
     framework
   ];
 
