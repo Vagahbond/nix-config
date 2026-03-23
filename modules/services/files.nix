@@ -24,8 +24,6 @@
 
       };
 
-
-
       environment.persistence.${config.persistence.storageLocation} = {
         # TODO = independent redis and rabbitmq with special volume
         directories = [
@@ -57,7 +55,7 @@
         opencloud = {
           enable = true;
           url = "https://files.vagahbond.com";
-          environmentFile = 
+          environmentFile = config.age.secrets.opencloudEnv.path;
         };
       };
 
