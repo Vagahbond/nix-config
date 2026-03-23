@@ -37,7 +37,7 @@
 
       services = {
         nginx.virtualHosts = {
-          config.services.opencloud.url = {
+          ${config.services.opencloud.url} = {
             forceSSL = true;
             enableACME = true;
 
