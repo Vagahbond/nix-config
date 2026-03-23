@@ -32,6 +32,20 @@
             inherit (config.services.opencloud) user group;
             mode = "u=rwx,g=rx,o=";
           }
+          {
+            directory = "/var/lib/filestash";
+            user = config.services.filestash.user;
+            group = config.services.filestash.group;
+            mode = "u=rwx,g=rx,o=";
+          }
+
+          {
+            directory = "/var/cache/filestash";
+            user = config.services.filestash.user;
+            group = config.services.filestash.group;
+            mode = "u=rwx,g=rx,o=";
+          }
+
         ];
       };
 
@@ -64,24 +78,6 @@
       ###################################################################
       # IMPERMANENCE                                                    #
       ###################################################################
-      environment.persistence.${config.persistence.storageLocation} = {
-        # TODO = independent redis and rabbitmq with special volume
-        directories = [
-          {
-            directory = "/var/lib/filestash";
-            user = config.services.filestash.user;
-            group = config.services.filestash.group;
-            mode = "u=rwx,g=rx,o=";
-          }
-
-          {
-            directory = "/var/cache/filestash";
-            user = config.services.filestash.user;
-            group = config.services.filestash.group;
-            mode = "u=rwx,g=rx,o=";
-          }
-        ];
-      };
 
       ###################################################
       # SECRETS                                         #
