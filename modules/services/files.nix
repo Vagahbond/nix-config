@@ -57,7 +57,7 @@
 
             locations."/" = {
               extraConfig = ''
-                client_max_body_size 100M;
+                client_max_body_size 1G;
               '';
               proxyPass = "http://127.0.0.1:${toString config.services.opencloud.port}";
               proxyWebsockets = true; # needed if you need to use WebSocket
@@ -70,7 +70,7 @@
           enable = true;
           url = "https://files.vagahbond.com";
           environmentFile = config.age.secrets.opencloudEnv.path;
-          port = 9205;
+          port = 9208;
         };
       };
 
