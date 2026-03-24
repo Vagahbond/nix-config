@@ -58,34 +58,34 @@
                 proxyWebsockets = true; # needed if you need to use WebSocket
               };
               # Radicale endpoints for CalDAV and CardDAV
-              "/caldav/" = {
-                proxyPass = "http://127.0.0.1:5232";
-                extraConfig = "
-            proxy_set_header X-Remote-User $remote_user; # provide username to CalDAV
-            proxy_set_header X-Script-Name /caldav;
-          ";
-              };
-              "/.well-known/caldav" = {
-                proxyPass = "http://127.0.0.1:5232";
-                extraConfig = "
-            proxy_set_header X-Remote-User $remote_user; # provide username to CalDAV
-            proxy_set_header X-Script-Name /caldav;
-          ";
-              };
-              "/carddav/" = {
-                proxyPass = "http://127.0.0.1:5232";
-                extraConfig = "
-            proxy_set_header X-Remote-User $remote_user; # provide username to CardDAV
-            proxy_set_header X-Script-Name /carddav;
-          ";
-              };
-              "/.well-known/carddav/" = {
-                proxyPass = "http://127.0.0.1:5232";
-                extraConfig = "
-            proxy_set_header X-Remote-User $remote_user; # provide username to CardDAV
-            proxy_set_header X-Script-Name /carddav;
-          ";
-              };
+              #     "/caldav/" = {
+              #       proxyPass = "http://127.0.0.1:5232";
+              #       extraConfig = "
+              #   proxy_set_header X-Remote-User $remote_user; # provide username to CalDAV
+              #   proxy_set_header X-Script-Name /caldav;
+              # ";
+              #     };
+              #     "/.well-known/caldav" = {
+              #       proxyPass = "http://127.0.0.1:5232";
+              #       extraConfig = "
+              #   proxy_set_header X-Remote-User $remote_user; # provide username to CalDAV
+              #   proxy_set_header X-Script-Name /caldav;
+              # ";
+              #     };
+              #     "/carddav/" = {
+              #       proxyPass = "http://127.0.0.1:5232";
+              #       extraConfig = "
+              #   proxy_set_header X-Remote-User $remote_user; # provide username to CardDAV
+              #   proxy_set_header X-Script-Name /carddav;
+              # ";
+              #     };
+              #     "/.well-known/carddav/" = {
+              #       proxyPass = "http://127.0.0.1:5232";
+              #       extraConfig = "
+              #   proxy_set_header X-Remote-User $remote_user; # provide username to CardDAV
+              #   proxy_set_header X-Script-Name /carddav;
+              # ";
+              #     };
             };
 
           };
@@ -107,6 +107,7 @@
             };
             auth = {
               type = "http_x_remote_user"; # disable authentication, and use the username that OpenCloud provides is
+              strip_domain = false;
             };
             web = {
               type = "none";
