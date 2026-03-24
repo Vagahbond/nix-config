@@ -100,31 +100,35 @@
             proxy = {
               additional_policies = [
                 {
-                  name = "radicale";
+                  name = "default";
                   routes = [
                     {
                       endpoint = "/caldav/";
                       backend = "http://127.0.0.1:5232";
                       remote_user_header = "X-Remote-User";
                       skip_x_access_token = true;
+                      additional_headers = [ { "X-Script-Name" = "/caldav"; } ];
                     }
                     {
                       endpoint = "/.well-known/caldav";
                       backend = "http://127.0.0.1:5232";
                       remote_user_header = "X-Remote-User";
                       skip_x_access_token = true;
+                      additional_headers = [ { "X-Script-Name" = "/caldav"; } ];
                     }
                     {
                       endpoint = "/carddav/";
                       backend = "http://127.0.0.1:5232";
                       remote_user_header = "X-Remote-User";
                       skip_x_access_token = true;
+                      additional_headers = [ { "X-Script-Name" = "/carddav"; } ];
                     }
                     {
                       endpoint = "/.well-known/carddav";
                       backend = "http://127.0.0.1:5232";
                       remote_user_header = "X-Remote-User";
                       skip_x_access_token = true;
+                      additional_headers = [ { "X-Script-Name" = "/carddav"; } ];
                     }
                   ];
                 }
