@@ -96,6 +96,41 @@
           url = "https://files.vagahbond.com";
           environmentFile = config.age.secrets.opencloudEnv.path;
           port = 9208;
+          settings = {
+            proxy = {
+              additional_policies = [
+                {
+                  name = "radicale";
+                  routes = [
+                    {
+                      endpoint = "/caldav/";
+                      backend = "http://127.0.0.1:5232";
+                      remote_user_header = "X-Remote-User";
+                      skip_x_access_token = true;
+                    }
+                    {
+                      endpoint = "/.well-known/caldav";
+                      backend = "http://127.0.0.1:5232";
+                      remote_user_header = "X-Remote-User";
+                      skip_x_access_token = true;
+                    }
+                    {
+                      endpoint = "/carddav/";
+                      backend = "http://127.0.0.1:5232";
+                      remote_user_header = "X-Remote-User";
+                      skip_x_access_token = true;
+                    }
+                    {
+                      endpoint = "/.well-known/carddav";
+                      backend = "http://127.0.0.1:5232";
+                      remote_user_header = "X-Remote-User";
+                      skip_x_access_token = true;
+                    }
+                  ];
+                }
+              ];
+            };
+          };
         };
 
         radicale = {
