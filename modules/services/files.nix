@@ -33,6 +33,11 @@
             mode = "u=rwx,g=rx,o=";
           }
           {
+            directory = "/etc/opencloud";
+            inherit (config.services.opencloud) user group;
+            mode = "u=rwx,g=rx,o=";
+          }
+          {
             directory = "/var/lib/filestash";
             user = config.services.filestash.user;
             group = config.services.filestash.group;
