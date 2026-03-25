@@ -97,7 +97,87 @@
           environmentFile = config.age.secrets.opencloudEnv.path;
           port = 9208;
           settings = {
+            # collaboration = {
+            #   app = {
+            #     name = "Collabora";
+            #     addr = "https://office.vagahbond.com";
+            #   };
+            # };
+            csp = {
+              directives = {
+                child-src = [
+                  "'self'"
+                ];
+
+                connect-src = [
+                  "'self'"
+                  "blob:"
+                  "https://\${COMPANION_DOMAIN|companion.opencloud.test}\${TRAEFIK_PORT_HTTPS}/"
+                  "wss://\${COMPANION_DOMAIN|companion.opencloud.test}\${TRAEFIK_PORT_HTTPS}/"
+                  "https://raw.githubusercontent.com/opencloud-eu/awesome-apps/"
+                  "https://\${IDP_DOMAIN|keycloak.opencloud.test}\${TRAEFIK_PORT_HTTPS}/"
+                  "https://update.opencloud.eu/"
+                ];
+
+                default-src = [
+                  "'none'"
+                ];
+
+                font-src = [
+                  "'self'"
+                ];
+
+                frame-ancestors = [
+                  "'self'"
+                ];
+
+                frame-src = [
+                  "'self'"
+                  "blob:"
+                  "https://embed.diagrams.net"
+                  # In contrary to bash and docker the default is given after the | character
+                  "https://office.vagahbond.com"
+                  # This is needed for the external-sites web extension when embedding sites
+                  "https://docs.opencloud.eu"
+                ];
+
+                img-src = [
+                  "'self'"
+                  "data:"
+                  "blob:"
+                  "https://raw.githubusercontent.com/opencloud-eu/awesome-apps/"
+                  "https://tile.openstreetmap.org/"
+                  # In contrary to bash and docker the default is given after the | character
+                  "https://office.vagahbond.com/"
+                ];
+
+                manifest-src = [
+                  "'self'"
+                ];
+
+                media-src = [
+                  "'self'"
+                ];
+
+                object-src = [
+                  "'self'"
+                  "blob:"
+                ];
+
+                script-src = [
+                  "'self'"
+                  "'unsafe-inline'"
+                  "https://\${IDP_DOMAIN|keycloak.opencloud.test}\${TRAEFIK_PORT_HTTPS}/"
+                ];
+
+                style-src = [
+                  "'self'"
+                  "'unsafe-inline'"
+                ];
+              };
+            };
             proxy = {
+              csp_config_file_location = "/etc/opencloud/csp.yaml";
               additional_policies = [
                 {
                   name = "default";

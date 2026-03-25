@@ -170,7 +170,6 @@
             news
             memories
             recognize
-            richdocuments
             ;
           tasks = pkgs.fetchNextcloudApp {
             appName = "tasks";

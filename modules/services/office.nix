@@ -42,20 +42,28 @@
 
           # Listen on loopback interface only, and accept requests from ::1
           net = {
+            content_security_policy = "frame-ancestors https://files.vagahbond.com;";
             listen = "loopback";
             post_allow.host = [
               "::1"
-              "localhost"
-              "127.0.0.1"
             ];
           };
 
           storage.wopi = {
             "@allow" = true;
-            # TODO: use a variable for the FQDN
-            host = [
-              "files.vagahbond.com"
-            ];
+            alias_groups = {
+              "@mode" = "groups";
+              group = [
+                {
+                  host = "files.vagahbond.com";
+                }
+              ];
+            };
+            # "@allow" = true;
+            # # TODO: use a variable for the FQDN
+            # host = [
+            #   "files.vagahbond.com"
+            # ];
           };
 
           # Set FQDN of server
