@@ -57,35 +57,6 @@
                 proxyPass = "http://127.0.0.1:${toString config.services.opencloud.port}";
                 proxyWebsockets = true; # needed if you need to use WebSocket
               };
-              # Radicale endpoints for CalDAV and CardDAV
-              #     "/caldav/" = {
-              #       proxyPass = "http://127.0.0.1:5232";
-              #       extraConfig = "
-              #   proxy_set_header X-Remote-User $remote_user; # provide username to CalDAV
-              #   proxy_set_header X-Script-Name /caldav;
-              # ";
-              #     };
-              #     "/.well-known/caldav" = {
-              #       proxyPass = "http://127.0.0.1:5232";
-              #       extraConfig = "
-              #   proxy_set_header X-Remote-User $remote_user; # provide username to CalDAV
-              #   proxy_set_header X-Script-Name /caldav;
-              # ";
-              #     };
-              #     "/carddav/" = {
-              #       proxyPass = "http://127.0.0.1:5232";
-              #       extraConfig = "
-              #   proxy_set_header X-Remote-User $remote_user; # provide username to CardDAV
-              #   proxy_set_header X-Script-Name /carddav;
-              # ";
-              #     };
-              #     "/.well-known/carddav/" = {
-              #       proxyPass = "http://127.0.0.1:5232";
-              #       extraConfig = "
-              #   proxy_set_header X-Remote-User $remote_user; # provide username to CardDAV
-              #   proxy_set_header X-Script-Name /carddav;
-              # ";
-              #     };
             };
 
           };
@@ -97,12 +68,6 @@
           environmentFile = config.age.secrets.opencloudEnv.path;
           port = 9208;
           settings = {
-            # collaboration = {
-            #   app = {
-            #     name = "Collabora";
-            #     addr = "https://office.vagahbond.com";
-            #   };
-            # };
             csp = {
               directives = {
                 child-src = [
@@ -176,6 +141,7 @@
                 ];
               };
             };
+
             proxy = {
               csp_config_file_location = "/etc/opencloud/csp.yaml";
               additional_policies = [
