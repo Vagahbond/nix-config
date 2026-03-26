@@ -53,6 +53,12 @@
           group = "users";
         };
 
+        enteOTTSecret = {
+          file = ../../secrets/ente_ott_secret.age;
+          mode = "440";
+          owner = "ente";
+          group = "users";
+        };
       };
 
       ###################################################
@@ -117,22 +123,19 @@
                 };
               };
               key = {
-                encryption = "yvmG/RnzKrbCb9L3mgsmoxXr9H7i2Z4qlbT0mL3ln4w=";
-                hash = "KXYiG07wC7GIgvCSdg+WmyWdXDAn6XKYJtp/wkEU7x573+byBRAYtpTP0wwvi8i/4l37uicX1dVTUzwH3sLZyw==";
+                encryption._secret = config.age.secrets.enteEncKeySecret.path;
+                hash._secret = config.age.secrets.enteEncHashSecret.path;
               };
               # JWT secrets
               jwt = {
-                secret = "i2DecQmfGreG6q1vBj5tCokhlN41gcfS2cjOs9Po-u8=";
+                secret._secret = config.age.secrets.enteJWTSecret.path;
               };
               internal = {
                 admin = "1580559962386438";
                 hardcoded-ott = {
                   emails = [
-                    "vagahbond@pm.me,123456"
-                    "victoria.graignic@proton.me,123456"
-                    "pommierv@proton.me,123456"
-                    "roxanesch@proton.me,123456"
                   ];
+                  code._secret = config.age.secrets.enteOTTSecret.path;
                 };
               };
             };

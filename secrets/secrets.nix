@@ -46,6 +46,12 @@ in
     platypute
   ];
 
+  "ente_ott_secret.age".publicKeys = [
+    mk
+    platypute
+
+  ];
+
   "nextcloud_mail_password.age".publicKeys = [
     mk
     platypute
