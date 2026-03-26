@@ -9,7 +9,27 @@
       config,
       ...
     }:
+    let
+      fontDir = pkgs.symlinkJoin {
+        name = "collabora-fonts";
+        paths = config.fonts.packages;
+      };
+    in
     {
+      systemd.services.coolwsd = {
+        serviceConfig = {
+          ExecStartPre = [
+            "+${pkgs.coreutils}/bin/mkdir -p /usr/share/fonts/collabora"
+            "+${pkgs.util-linux}/bin/mount --bind ${fontDir}/share/fonts /usr/share/fonts/collabora"
+            "+${pkgs.util-linux}/bin/mount --bind ${fontDir}/share/fonts /var/lib/cool/systemplate/usr/share/fonts/truetype"
+          ];
+          ExecStopPost = [
+            "+${pkgs.util-linux}/bin/umount -l /usr/share/fonts/collabora"
+            "+${pkgs.util-linux}/bin/umount -l /var/lib/cool/systemplate/usr/share/fonts/truetype"
+          ];
+        };
+      };
+
       environment.persistence.${config.persistence.storageLocation} = {
         directories = [
           "/var/lib/cool"
