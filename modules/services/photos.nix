@@ -34,6 +34,25 @@
           owner = "ente";
           group = "users";
         };
+        enteEncKeySecret = {
+          file = ../../secrets/ente_enc_key_secret.age;
+          mode = "440";
+          owner = "ente";
+          group = "users";
+        };
+        enteEncHashSecret = {
+          file = ../../secrets/ente_enc_hash_secret.age;
+          mode = "440";
+          owner = "ente";
+          group = "users";
+        };
+        enteJWTSecret = {
+          file = ../../secrets/ente_jwt_secret.age;
+          mode = "440";
+          owner = "ente";
+          group = "users";
+        };
+
       };
 
       ###################################################
@@ -89,12 +108,12 @@
                 b2-eu-cen = {
                   are_local_buckets = false;
                   use_path_style_urls = false;
-                  key = "AKIAZI2LIHXHGU2IFURD";
+                  key = "AKIAZI2LIHXHDKAQN73F";
                   # TODO: own secret
                   secret._secret = config.age.secrets.enteS3Secret.path;
                   # endpoint = "com.amazonaws.ap-southeast-2.s3";
                   region = "ap-southeast-2";
-                  bucket = "vagahbond-nextcloud-s3";
+                  bucket = "vagahbond-ente-s3";
                 };
               };
               key = {
