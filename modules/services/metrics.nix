@@ -36,13 +36,6 @@
           group = "grafana";
         };
 
-        nextCloudAccess = {
-          file = ../../secrets/nextCloudMonitoringAccessToken.age;
-          owner = "nextcloud-exporter";
-          mode = "600";
-          group = "nextcloud-exporter";
-        };
-
       };
 
       environment.persistence.${config.persistence.storageLocation} = {
@@ -169,14 +162,6 @@
                 }
               ];
             }
-            {
-              job_name = "nextcloud";
-              static_configs = [
-                {
-                  targets = [ "localhost:${toString config.services.prometheus.exporters.nextcloud.port}" ];
-                }
-              ];
-            }
           ];
 
           exporters = {
@@ -207,12 +192,6 @@
               ];
             };
 
-            nextcloud = {
-              enable = true;
-              url = "https://${config.services.nextcloud.hostName}";
-              tokenFile = "${config.age.secrets.nextCloudAccess.path}";
-              # port = 1212;
-            };
           };
         };
 
