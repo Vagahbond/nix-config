@@ -86,10 +86,6 @@
       url = "github:jmsk8/mk_reset_online";
     };
 
-    filestash = {
-      url = "github:dermetfan/filestash.nix";
-    };
-
     charpente = {
       url = "github:vagahbond/charpente";
       inputs.nixpkgs.follows = "nixpkgs";

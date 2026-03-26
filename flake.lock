@@ -350,11 +350,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1774056308,
-        "narHash": "sha256-28gkr1i1ILaqgE8XauY+cKEBDUYF0dwgf36ZYcY7KKU=",
+        "lastModified": 1774444884,
+        "narHash": "sha256-O0mz+ZoMhC4rJtn7UkVYCk0/3MDOrCCD2ukIs9X/mRo=",
         "owner": "jmsk8",
         "repo": "mk_reset_online",
-        "rev": "2d784b78861f87df917be3ef4dc6ede9d18af12d",
+        "rev": "b783279b697b9abf1219e3bd50847b5395bc2010",
         "type": "github"
       },
       "original": {
