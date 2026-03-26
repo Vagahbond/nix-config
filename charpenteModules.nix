@@ -32,8 +32,6 @@
     "invoices"
     "metrics"
     "mkReset"
-    "nextcloud"
-    "dashboard"
     "notes"
     "office"
     "pdf"
