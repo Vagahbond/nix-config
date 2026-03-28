@@ -70,6 +70,10 @@
       url = "github:vagahbond/homepage";
     };
 
+    audio-experiments = {
+      url = "github:vagahbond/audio-experiments";
+    };
+
     # TODO: better package
     blog-contents = {
       url = "github:vagahbond/blog";

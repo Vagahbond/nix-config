@@ -29,6 +29,7 @@
     "builder"
     "files"
     "homepage"
+    "audio-experiments"
     "invoices"
     "metrics"
     "mkReset"
