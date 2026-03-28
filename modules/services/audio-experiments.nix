@@ -9,9 +9,9 @@
       services.nginx = {
         enable = true;
         virtualHosts."audio-experiments.vagahbond.com" = {
-          default = true;
           enableACME = true;
           forceSSL = true;
+
           locations."/" = {
             root = "${inputs.audio-experiments.packages.${pkgs.stdenv.system}.default}";
           };
