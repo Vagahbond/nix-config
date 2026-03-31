@@ -23,13 +23,13 @@
             name = "symlink-${un}-${fn}";
             value = {
               text = ''
-                mkdir -p ${config.users.users.${un}.home}/${fn}
-                ln -sf ${fn.source} ${users.users.${un}.home}/${fn}
+                mkdir -p ${uv.home}/${fn}
+                ln -sf ${fv.source} ${uv.home}/${fn}
               '';
             };
           }
 
-          ) config.users.users.${u}.files
+          ) config.users.users.${un}.files
         ) config.users.users;
 
         users = {
