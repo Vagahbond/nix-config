@@ -57,7 +57,6 @@
 
   darwinConfiguration =
     {
-      username,
       pkgs,
       ...
     }:
@@ -67,12 +66,11 @@
         pkgs.nerd-fonts.mononoki
       ];
 
-      home-manager.users.${username} = {
-        programs.zsh = {
-          enable = true;
-          enableCompletion = true;
-          syntaxHighlighting.enable = true;
-        };
+      programs.zsh = {
+        enable = true;
+        enableCompletion = true;
+        enableSyntaxHighlighting = true;
+        enableAutosuggestions = true;
       };
     };
 

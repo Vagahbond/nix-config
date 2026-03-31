@@ -42,12 +42,6 @@
 
     nix-darwin.url = "github:nix-darwin/nix-darwin";
 
-    # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-    };
-
     impermanence.url = "github:nix-community/impermanence";
 
     disko.url = "github:nix-community/disko";

@@ -5,55 +5,52 @@
     "framework"
   ];
 
-  sharedConfiguration = {
-    pkgs,
-    inputs,
-    ...
-  }: {
-    nixpkgs.config = {
-      allowUnfree = true;
-    };
+  sharedConfiguration =
+    {
+      pkgs,
+      inputs,
+      ...
+    }:
+    {
+      nixpkgs.config = {
+        allowUnfree = true;
+      };
 
-    environment = {
-      # etc."current-flake".source = self;
-      systemPackages = with pkgs; [
-        cachix
-        nh
-      ];
-    };
-
-    nix = {
-      optimise.automatic = true;
-      settings = {
-        experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
-        trusted-users = [
-          "root"
+      environment = {
+        # etc."current-flake".source = self;
+        systemPackages = with pkgs; [
+          cachix
+          nh
         ];
       };
 
-      gc = {
-        automatic = true;
-        # interval = "weekly";
-        options = "--delete-older-than 2d";
+      nix = {
+        optimise.automatic = true;
+        settings = {
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+          trusted-users = [
+            "root"
+          ];
+        };
+
+        gc = {
+          automatic = true;
+          # interval = "weekly";
+          options = "--delete-older-than 2d";
+        };
+
+        registry = pkgs.lib.mkDefault (pkgs.lib.mapAttrs (_: value: { flake = value; }) inputs);
       };
-
-      registry = pkgs.lib.mkDefault (pkgs.lib.mapAttrs (_: value: {flake = value;}) inputs);
     };
-  };
 
-  nixosConfiguration = {username, ...}: {
+  nixosConfiguration = _: {
     system = {
       autoUpgrade = {
         enable = true;
         channel = "https://nixos.org/channels/nixos-unstable";
-      };
-    };
-    home-manager.users.${username} = {
-      nixpkgs.config = {
-        allowUnfree = true;
       };
     };
   };
@@ -79,7 +76,7 @@
         };
       };
 
-      settings.trusted-users = ["@admin"];
+      settings.trusted-users = [ "@admin" ];
     };
 
     # TODO: remove

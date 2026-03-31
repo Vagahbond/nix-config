@@ -14,13 +14,10 @@
       ...
     }:
     {
-      home-manager.users.${username} = {
-        imports = [ inputs.agenix.homeManagerModules.default ];
 
-        age.identityPaths = [
-          "${config.users.users.${username}.home}/.ssh/id_ed25519"
-        ];
-      };
+      age.identityPaths = [
+        "${config.users.users.${username}.home}/.ssh/id_ed25519"
+      ];
 
       environment = {
         systemPackages = [

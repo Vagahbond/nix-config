@@ -89,22 +89,27 @@ let
       };
     };
   };
-in {
+in
+{
   targets = [
     "air"
     "platypute"
     "framework"
   ];
 
-  darwinConfiguration = {username, ...}: {
-    home-manager.users.${username} = {
-      programs.starship =
-        starshipConfiguration
-        // {
-          enableZshIntegration = true;
-        };
+  darwinConfiguration =
+    { pkgs, username, ... }:
+    {
+      environment.systemPackages = with pkgs; [
+        starship
+      ];
+
+      pkgs.writers.writeTOML users.users.${username}.home
+      hjem.users.${username}.files.".config/starship.toml" = {
+        source = pkgs.writers.writeTOML "starship.toml" starshipConfiguration.settings;
+        clobber = true;
+      };
     };
-  };
 
   nixosConfiguration = _: {
     programs.starship = starshipConfiguration;

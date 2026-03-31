@@ -34,18 +34,15 @@
         };
       */
       config = {
-        # WARN: Remove home-manager, also every system needs those public keys
-        home-manager.users.${username} = {
-          home.file = pubKeys;
+        hjem.users.${username}.files = pubKeys;
 
-          age.secrets = privKeys // {
-            sshConfig = {
-              file = ../../secrets/ssh_config.age;
-              path = "${config.users.users.${username}.home}/.ssh/config";
-              mode = "644";
-              # owner = username;
-              # group = "users";
-            };
+        age.secrets = privKeys // {
+          sshConfig = {
+            file = ../../secrets/ssh_config.age;
+            path = "${config.users.users.${username}.home}/.ssh/config";
+            mode = "644";
+            # owner = username;
+            # group = "users";
           };
         };
 
