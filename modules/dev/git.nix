@@ -20,18 +20,13 @@
   darwinConfiguration =
     { username, ... }:
     {
-      hjem = {
-        users.${username}.files.".gitconfig" = {
-          clobber = true;
-          text = ''
-            [user]
-             name = Vagahbond
-             email = vagahbond@pm.me        
-            [init]
-              defaultbranch = master
-          '';
-        };
-      };
+      home-files.${username}.".gitconfig".text = ''
+        [user]
+         name = Vagahbond
+         email = vagahbond@pm.me        
+        [init]
+          defaultbranch = master
+      '';
     };
 
   nixosConfiguration =

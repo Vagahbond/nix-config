@@ -104,11 +104,8 @@ in
         starship
       ];
 
-      pkgs.writers.writeTOML users.users.${username}.home
-      hjem.users.${username}.files.".config/starship.toml" = {
-        source = pkgs.writers.writeTOML "starship.toml" starshipConfiguration.settings;
-        clobber = true;
-      };
+      home-files.${username}.".config/starship.toml".source =
+        pkgs.writers.writeTOML "starship.toml" starshipConfiguration.settings;
     };
 
   nixosConfiguration = _: {

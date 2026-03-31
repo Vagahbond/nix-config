@@ -34,7 +34,7 @@
         };
       */
       config = {
-        hjem.users.${username}.files = pubKeys;
+        home-files.${username} = pubKeys;
 
         age.secrets = privKeys // {
           sshConfig = {
