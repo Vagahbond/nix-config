@@ -1,3 +1,43 @@
+let
+
+  mkHomeFilesActivationScript =
+    pkgs: files: cfgUsers:
+    let
+      mkSymlinks =
+        links:
+        pkgs.lib.concatStringsSep "\n" (
+          pkgs.lib.mapAttrsToList (dest: src: ''
+            mkdir -p "$(${pkgs.coreutils}/bin/dirname ${dest})"
+            ln -sf ${src} ${dest}
+          '') links
+        );
+    in
+    pkgs.lib.concatStringsSep "\n" (
+      pkgs.lib.mapAttrsToList (
+        username: userCfg:
+        let
+          links = pkgs.lib.mapAttrs' (
+            relPath: fileCfg:
+            let
+              inherit (cfgUsers.${username}) home;
+              sourcePath = fileCfg.source or null;
+              textContent = fileCfg.text or null;
+            in
+            pkgs.lib.nameValuePair "${home}/${relPath}" (
+              if sourcePath != null then
+                sourcePath
+              else if textContent != null then
+                pkgs.writeText relPath textContent
+              else
+                throw ""
+            )
+          ) userCfg;
+        in
+        mkSymlinks links
+      ) files
+    );
+
+in
 {
   targets = [
     "platypute"
@@ -7,49 +47,33 @@
 
   sharedConfiguration =
     {
-      config,
       username,
       lib,
       pkgs,
       ...
     }:
     let
-
-      fileModule = lib.types.attrsOf (
-        lib.types.submodule {
-          options = {
-            source = lib.mkOption {
-              type = lib.types.path;
-              description = "Path to the file in the nix store.";
-            };
-            text = lib.mkOption {
-              type = lib.types.str;
-              description = "Content for the file";
-            };
+      fileModule = pkgs.lib.types.submodule {
+        options = {
+          source = pkgs.lib.mkOption {
+            type = pkgs.lib.types.nullOr pkgs.lib.types.path;
+            default = null;
+            description = "Path to the file in the nix store.";
           };
-        }
-      );
-
-      homeFileModule = lib.mkOption {
-        description = "A module allowing to create files and symlink them in the home directory";
-        type = lib.types.attrsOf (
-          lib.types.submodule {
-            options = fileModule;
-          }
-        );
+          text = pkgs.lib.mkOption {
+            type = pkgs.lib.types.nullOr pkgs.lib.types.lines;
+            default = null;
+            description = "Inline text content for the file.";
+          };
+        };
       };
-
-      mkSymlinks =
-        links:
-        lib.concatStringsSep "\n" (
-          lib.mapAttrsToList (dest: src: ''
-            mkdir -p "$(${pkgs.coreutils}/bin/dirname ${dest})"
-            ln -sf ${src} ${dest}
-          '') links
-        );
     in
     {
-      options.home-files = homeFileModule;
+      options.home-files = lib.mkOption {
+        type = lib.types.attrsOf (lib.types.attrsOf fileModule);
+        default = { };
+        description = "Per-user file symlink configuration, keyed by username then relative path from home.";
+      };
       # {
       #   home-files = lib.mkOption {
       #   type = lib.types.attrsOf (
@@ -68,20 +92,6 @@
 
       config = {
 
-        system.activationScripts.homeFiles.text = lib.concatStringsSep "\n" (
-          lib.mapAttrsToList (
-            username: userCfg:
-            let
-              inherit (config.users.users.${username}) home;
-              links = lib.mapAttrs' (
-                relPath: fileCfg:
-                lib.nameValuePair "${home}/${relPath}" (fileCfg.source or (pkgs.writeText relPath fileCfg.text))
-              ) userCfg;
-            in
-            mkSymlinks links
-          ) config.home-files
-        );
-
         users = {
           users = {
             ${username} = {
@@ -93,8 +103,19 @@
     };
 
   darwinConfiguration =
-    { username, ... }:
     {
+      username,
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
+    {
+
+      system.activationScripts.postActivation.text = lib.mkAfter (
+        mkHomeFilesActivationScript pkgs config.home-files config.users.users
+      );
+
       users.users.${username}.home = "/Users/${username}";
     };
 
@@ -102,9 +123,15 @@
     {
       config,
       username,
+      pkgs,
       ...
     }:
     {
+      system.activationScripts.homeFiles = {
+        text = mkHomeFilesActivationScript pkgs config.home-files config.users.users;
+        deps = [ "postActivation" ];
+      };
+
       users = {
         mutableUsers = false;
         users = {
