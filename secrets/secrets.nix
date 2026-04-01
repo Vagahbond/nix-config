@@ -161,11 +161,15 @@ in
 
   "opencloud_env.age".publicKeys = [
     platypute
-    framework
+    mk
   ];
 
   "filestash_secret_key.age".publicKeys = [
     platypute
-    framework
+    mk
   ];
+  "opencode_conf.age".publicKeys = [
+    mk
+  ];
+
 }

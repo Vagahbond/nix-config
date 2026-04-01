@@ -3,6 +3,7 @@
     "db"
     "git"
     "network"
+    "opencode"
   ];
   editor = [
     "nvf"

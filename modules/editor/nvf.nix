@@ -278,17 +278,6 @@ in
     "framework"
   ];
 
-  sharedConfiguration =
-    {
-      pkgs,
-      ...
-    }:
-    {
-      environment.systemPackages = [
-        pkgs.opencode
-      ];
-    };
-
   nixosConfiguration =
     { pkgs, inputs, ... }:
     {
