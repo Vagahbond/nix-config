@@ -1,8 +1,6 @@
 {
   targets = [
     "air"
-    "platypute"
-    "framework"
   ];
 
   sharedConfiguration =
@@ -25,31 +23,21 @@
       privKeys = builtins.mapAttrs (_: k: k.priv) keys;
     in
     {
-      /*
-        options.network.ssh.keys = mkOption {
-          description = "Installed SSH keys";
-          default = [ ];
-          type = types.attrs;
-          example = [ keys.dedistonks_access ];
-        };
-      */
-      config = {
-        home-files.${username} = pubKeys;
+      home-files.${username} = pubKeys;
 
-        age.secrets = privKeys // {
-          sshConfig = {
-            file = ../../secrets/ssh_config.age;
-            path = "${config.users.users.${username}.home}/.ssh/config";
-            mode = "644";
-            # owner = username;
-            # group = "users";
-          };
+      age.secrets = privKeys // {
+        sshConfig = {
+          file = ../../secrets/ssh_config.age;
+          path = "${config.users.users.${username}.home}/.ssh/config";
+          mode = "644";
+          # owner = username;
+          # group = "users";
         };
-
-        environment.systemPackages = with pkgs; [
-          sshs
-        ];
       };
+
+      environment.systemPackages = with pkgs; [
+        sshs
+      ];
     };
 
   nixosConfiguration =
