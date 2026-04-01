@@ -74,21 +74,6 @@ in
         default = { };
         description = "Per-user file symlink configuration, keyed by username then relative path from home.";
       };
-      # {
-      #   home-files = lib.mkOption {
-      #   type = lib.types.attrsOf (
-      #     lib.types.submodule {
-      #       options = {
-      #         files = lib.mkOption {
-      #           type = lib.attrsOf fileModule;
-      #           default = { };
-      #           description = "Attribute set of files to symlink, keyed by relative path to $HOME";
-      #         };
-      #       };
-      #     }
-      #   );
-      # };
-      #  };
 
       config = {
 
@@ -129,7 +114,7 @@ in
     {
       system.activationScripts.homeFiles = {
         text = mkHomeFilesActivationScript pkgs config.home-files config.users.users;
-        deps = [ "postActivation" ];
+        deps = [ ];
       };
 
       users = {
