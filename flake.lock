@@ -52,11 +52,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1774694274,
-        "narHash": "sha256-1WLwT0i7Os9hySp2bPo8orrOwGMjSLWV77F+QBB6Chw=",
+        "lastModified": 1775112944,
+        "narHash": "sha256-A7IBPgy+YpdLDTARKZYXY1qSPxNcsRNw7CzouYBjsVU=",
         "owner": "vagahbond",
         "repo": "audio-experiments",
-        "rev": "4371606fc66ab928e53396983bdfe6d943f97cdf",
+        "rev": "90a5e7a8b2dc2840db6a91760ffd0c6fa35f1bc4",
         "type": "github"
       },
       "original": {
