@@ -84,11 +84,11 @@
     "blog-contents": {
       "flake": false,
       "locked": {
-        "lastModified": 1773956415,
-        "narHash": "sha256-Rp+BTIU0JxMf7d2HQUOxWWVNGvVG0l0hvmGzucBmROk=",
+        "lastModified": 1775523516,
+        "narHash": "sha256-vNkNH6niebRHDOL1i1BcZxHSztqDjuB1evDGhZk1sBo=",
         "owner": "vagahbond",
         "repo": "blog",
-        "rev": "7bd277758646f3f6743131635fa6d1f961698b51",
+        "rev": "57b22049bacf99785981a8fba666d97d87537b06",
         "type": "github"
       },
       "original": {
@@ -604,11 +604,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1774852850,
-        "narHash": "sha256-7VK4v7ZbQw5apfgc+FvgRi8BUC45ERlcp8VTTTQ3tko=",
+        "lastModified": 1775424406,
+        "narHash": "sha256-ENSQFUK6zs4C5brC4MlrNRM2Krn8OsHdoxPLtezhFyU=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "b4d6539e7e9948aaba5efd7a67a63672d1fa80ef",
+        "rev": "3ffc800a01cbd1f2e68e78b527bb7d56078c6351",
         "type": "github"
       },
       "original": {
