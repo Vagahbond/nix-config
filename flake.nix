@@ -68,15 +68,8 @@
       url = "github:vagahbond/audio-experiments";
     };
 
-    # TODO: better package
-    blog-contents = {
+    blog = {
       url = "github:vagahbond/blog";
-      flake = false;
-    };
-
-    blog-theme = {
-      url = "github:athul/archie";
-      flake = false;
     };
 
     mkReset = {
