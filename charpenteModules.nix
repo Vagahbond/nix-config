@@ -45,7 +45,7 @@
   terminal = [
     "prompt"
     "shell"
-    "rss.nix"
+    "rss"
   ];
   virtualization = [
     "docker"
