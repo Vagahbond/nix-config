@@ -9,7 +9,7 @@
       ...
     }:
     {
-      enviornment.systemPackages = with pkgs; [
+      environment.systemPackages = with pkgs; [
         bulletty
       ];
     };
