@@ -48,7 +48,7 @@
           port = 3012;
 
           grassTickIntervalSeconds = 60;
-          secure = false;
+          secure = true;
         };
 
       };
