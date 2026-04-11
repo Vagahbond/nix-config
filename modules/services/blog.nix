@@ -35,7 +35,7 @@
 
       networking.firewall.allowedTCPPorts = [ 3012 ];
 
-      services.touches-grasses = {
+      services.touchesGrasses = {
         enable = true;
         address = "touches-grasses.fr";
 
