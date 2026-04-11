@@ -148,7 +148,7 @@ let
               };
 
               assistant = {
-                # supermaven-nvim.enable = true;
+                supermaven-nvim.enable = true;
                 /*
                   avante-nvim = {
                     enable = true;
