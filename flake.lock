@@ -86,11 +86,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1775893646,
-        "narHash": "sha256-u9BYTX1vpWMp04v01/zjfslb92O61LnrMiUIt9lF8nI=",
+        "lastModified": 1775893840,
+        "narHash": "sha256-hZ99cvR2hiKf3b2VTebYoaeHUUpD/7rw/Fk9CWr4HQw=",
         "owner": "vagahbond",
         "repo": "blog",
-        "rev": "02bed2ea205bf2cf5445d593100960b9fde559b4",
+        "rev": "57453e61776bbd418ff71fc8004cffb2c3aa988b",
         "type": "github"
       },
       "original": {
