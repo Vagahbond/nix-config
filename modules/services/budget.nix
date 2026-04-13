@@ -40,6 +40,7 @@
 
         settings = {
           port = 3054;
+          hostname = "localhost";
           datadir = "/var/lib/actual";
         };
       };
