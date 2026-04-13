@@ -25,6 +25,7 @@
     "secrets"
   ];
   services = [
+    "budget"
     "blog"
     "photos"
     "builder"
