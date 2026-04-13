@@ -21,6 +21,11 @@
         ];
       };
 
+      systemd.tmpfiles.rules = [
+        "d ${config.services.actual.settings.userFiles} 0755 ${config.services.actual.user} ${config.services.actual.group} -"
+        "d ${config.services.actual.settings.serverFiles} 0755 ${config.services.actual.user} ${config.services.actual.group} -"
+      ];
+
       ###################################################
       # SERVICES                                        #
       ###################################################
