@@ -25,7 +25,7 @@
       # SERVICES                                        #
       ###################################################
 
-      user.users.actual = {
+      users.users.actual = {
         isSystemUser = true;
         group = "actual";
         home = config.services.actual.settings.datadir;
