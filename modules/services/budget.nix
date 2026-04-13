@@ -28,7 +28,7 @@
       users.users.actual = {
         isSystemUser = true;
         group = "actual";
-        home = config.services.actual.settings.datadir;
+        #  home = config.services.actual.settings.datadir;
       };
 
       users.groups.actual = { };
