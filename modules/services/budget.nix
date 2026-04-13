@@ -31,7 +31,7 @@
         home = config.services.actual.settings.datadir;
       };
 
-      groups.actual = { };
+      users.groups.actual = { };
 
       services.actual = {
         enable = true;
