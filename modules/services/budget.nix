@@ -26,12 +26,12 @@
       environment.persistence.${config.persistence.storageLocation} = {
         directories = [
           {
-            directory = config.services.firefly-iii.settings.dataDir;
+            directory = config.services.firefly-iii.dataDir;
             inherit (config.services.firefly-iii) user group;
             mode = "u=rwx,g=rx,o=";
           }
           {
-            directory = config.services.firefly-iii-data-importer.settings.dataDir;
+            directory = config.services.firefly-iii-data-importer.dataDir;
             inherit (config.services.firefly-iii-data-importer) user group;
             mode = "u=rwx,g=rx,o=";
           }
