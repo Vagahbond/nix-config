@@ -38,6 +38,16 @@
         ];
       };
 
+      systemd.services.firefly-iii-setup = {
+        serviceConfig.StateDirectory = [
+          "firefly-iii/storage/app/public"
+          "firefly-iii/storage/logs"
+          "firefly-iii/storage/framework/cache"
+          "firefly-iii/storage/framework/sessions"
+          "firefly-iii/storage/framework/views"
+        ];
+      };
+
       ###################################################
       # SERVICES                                        #
       ###################################################
