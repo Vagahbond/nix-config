@@ -31,8 +31,8 @@
             mode = "u=rwx,g=rx,o=";
           }
           {
-            directory = config.services.firefly-iii-importer.settings.dataDir;
-            inherit (config.services.firefly-iii-importer) user group;
+            directory = config.services.firefly-iii-data-importer.settings.dataDir;
+            inherit (config.services.firefly-iii-data-importer) user group;
             mode = "u=rwx,g=rx,o=";
           }
         ];
@@ -71,7 +71,7 @@
           enableACME = true;
         };
 
-        ${config.services.firefly-iii-importer.virtualHost} = {
+        ${config.services.firefly-iii-data-importer.virtualHost} = {
           forceSSL = true;
           enableACME = true;
         };
