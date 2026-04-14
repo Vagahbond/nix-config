@@ -49,10 +49,11 @@
           enableNginx = true;
 
           settings = {
-            port = 3054;
-            hostname = "localhost";
+            APP_ENV = "production";
             DB_CONNECTION = "pgsql";
             APP_KEY_FILE = config.age.secrets.fireflyKey.path;
+            DB_DATABASE = config.services.firefly-iii.user;
+            DB_USERNAME = config.services.firefly-iii.user;
           };
         };
         firefly-iii-data-importer = {
