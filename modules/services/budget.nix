@@ -45,6 +45,8 @@
           "firefly-iii/storage/framework/cache"
           "firefly-iii/storage/framework/sessions"
           "firefly-iii/storage/framework/views"
+          "firefly-iii/storage/cache"
+
         ];
       };
 
@@ -52,9 +54,11 @@
         serviceConfig.StateDirectory = [
           "firefly-iii-data-importer/storage/app/public"
           "firefly-iii-data-importer/storage/logs"
+          "firefly-iii-data-importer/storage/uploads"
           "firefly-iii-data-importer/storage/framework/cache"
           "firefly-iii-data-importer/storage/framework/sessions"
           "firefly-iii-data-importer/storage/framework/views"
+          "firefly-iii-data-importer/cache"
         ];
       };
 
@@ -76,10 +80,22 @@
             DB_USERNAME = config.services.firefly-iii.user;
           };
         };
+
         firefly-iii-data-importer = {
           enable = true;
           virtualHost = "importer.money.vagahbond.com";
           enableNginx = true;
+        };
+
+        postgresql = {
+
+          ensureDatabases = [ config.services.firefly-iii.user ];
+          ensureUsers = [
+            {
+              name = config.services.firefly-iii.user;
+              ensureDBOwnership = true;
+            }
+          ];
         };
       };
 
