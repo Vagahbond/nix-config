@@ -48,6 +48,16 @@
         ];
       };
 
+      systemd.services.firefly-iii-data-importer-setup = {
+        serviceConfig.StateDirectory = [
+          "firefly-iii-data-importer/storage/app/public"
+          "firefly-iii-data-importer/storage/logs"
+          "firefly-iii-data-importer/storage/framework/cache"
+          "firefly-iii-data-importer/storage/framework/sessions"
+          "firefly-iii-data-importer/storage/framework/views"
+        ];
+      };
+
       ###################################################
       # SERVICES                                        #
       ###################################################
