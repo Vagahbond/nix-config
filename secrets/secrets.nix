@@ -172,4 +172,8 @@ in
     mk
   ];
 
+  "firefly_app_key.age".publicKeys = [
+    mk
+    platypute
+  ];
 }
