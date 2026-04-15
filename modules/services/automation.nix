@@ -45,7 +45,7 @@
       services.n8n = {
         enable = true;
         taskRunners = {
-          enabled = true;
+          enable = true;
 
           runners = {
             javascript = {
