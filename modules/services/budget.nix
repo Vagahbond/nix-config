@@ -55,6 +55,7 @@
           "firefly-iii-data-importer/storage/app/public"
           "firefly-iii-data-importer/storage/logs"
           "firefly-iii-data-importer/storage/uploads"
+          "firefly-iii-data-importer/storage/import-jobs"
           "firefly-iii-data-importer/storage/framework/cache"
           "firefly-iii-data-importer/storage/framework/sessions"
           "firefly-iii-data-importer/storage/framework/views"
