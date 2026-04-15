@@ -70,7 +70,7 @@
       # PROXY                                           #
       ###################################################
 
-      serivces.nginx.virtualHosts = {
+      services.nginx.virtualHosts = {
         "automation.vagahbond.com" = {
           forceSSL = true;
           enableACME = true;
