@@ -27,6 +27,7 @@
   services = [
     "budget"
     "blog"
+    "automation"
     "photos"
     "builder"
     "files"

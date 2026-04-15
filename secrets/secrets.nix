@@ -176,4 +176,14 @@ in
     mk
     platypute
   ];
+
+  "n8n_encryption_key.age".publicKeys = [
+    mk
+    platypute
+  ];
+
+  "n8n_runners_auth_token.age".publicKeys = [
+    mk
+    platypute
+  ];
 }
