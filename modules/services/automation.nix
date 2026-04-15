@@ -60,7 +60,7 @@
           };
         };
         environment = {
-          N8N_ENCRYPTION_KEY_FILE = config.age.secrets.n8nKey.path;
+          N8N_ENCRYPTION_KEY_FILE = config.age.secrets.n8nEncryptionKey.path;
           N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
           N8N_PORT = "5778";
         };
