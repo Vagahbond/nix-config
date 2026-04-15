@@ -24,6 +24,7 @@
         {
           device = "${fontDir}/share/fonts";
           options = [ "bind" ];
+          fsType = "none";
         };
 
       # systemd.services.coolwsd = {
