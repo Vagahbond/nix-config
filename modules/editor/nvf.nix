@@ -4,7 +4,7 @@ let
     pkgs: inputs:
     (inputs.nvf.lib.neovimConfiguration {
       inherit pkgs;
-      # pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.system};
+      # pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       modules = [
         (
           { pkgs, ... }:
@@ -283,7 +283,7 @@ in
     {
       environment = {
         systemPackages = [
-          (mkNvf inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.system} inputs)
+          (mkNvf inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system} inputs)
         ];
         variables = {
           EDITOR = "nvim";

@@ -21,7 +21,7 @@
 
       environment = {
         systemPackages = [
-          inputs.agenix.packages.${pkgs.stdenv.system}.default
+          inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
       };
     };

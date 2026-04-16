@@ -16,7 +16,7 @@
             "vagahbond.com"
           ];
           locations."/" = {
-            root = "${inputs.website.packages.${pkgs.stdenv.system}.default}";
+            root = "${inputs.website.packages.${pkgs.stdenv.hostPlatform.system}.default}";
             extraConfig = ''
               if ($request_uri ~ ^/(.*)\.html(\?|$)) {
                 return 302 /$1;

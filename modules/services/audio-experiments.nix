@@ -13,7 +13,7 @@
           forceSSL = true;
 
           locations."/" = {
-            root = "${inputs.audio-experiments.packages.${pkgs.stdenv.system}.default}";
+            root = "${inputs.audio-experiments.packages.${pkgs.stdenv.hostPlatform.system}.default}";
           };
         };
       };
