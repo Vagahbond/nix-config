@@ -17,7 +17,7 @@
 
   swapDevices = [
     {
-      device = "/var/lib/swapfile";
+      device = "/nix/swapfile";
       size = 8 * 1024; # 16 GiB
     }
   ];
