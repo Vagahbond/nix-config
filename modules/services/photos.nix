@@ -107,10 +107,6 @@
                   # Replace hardcoded ente.io urls if desired
                   + lib.optionalString (enteMainUrl != null) ''
                     substituteInPlace \
-                      apps/photos/src/pages/shared-albums.tsx \
-                      --replace-fail "https://ente.io" ${lib.escapeShellArg enteMainUrl}
-
-                    substituteInPlace \
                       apps/accounts/src/pages/index.tsx \
                       --replace-fail "https://web.ente.io" ${lib.escapeShellArg enteMainUrl}
                   '';
