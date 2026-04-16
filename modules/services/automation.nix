@@ -44,21 +44,21 @@
       ###################################################
       services.n8n = {
         enable = true;
-        # taskRunners = {
-        #   enable = true;
-        #
-        #   runners = {
-        #     javascript = {
-        #       enable = true;
-        #       command = lib.getExe' config.services.n8n.package "n8n-task-runner";
-        #       healthCheckPort = 5681;
-        #     };
-        #   };
-        #
-        #   environment = {
-        #     N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
-        #   };
-        # };
+        taskRunners = {
+          enable = true;
+
+          runners = {
+            javascript = {
+              enable = true;
+              command = lib.getExe' config.services.n8n.package "n8n-task-runner";
+              healthCheckPort = 5681;
+            };
+          };
+
+          environment = {
+            N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
+          };
+        };
         environment = {
           N8N_ENCRYPTION_KEY_FILE = config.age.secrets.n8nEncryptionKey.path;
           N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
