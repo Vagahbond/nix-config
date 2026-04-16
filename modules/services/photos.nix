@@ -7,6 +7,7 @@
     {
       config,
       pkgs,
+      lib,
       ...
     }:
     {
@@ -90,6 +91,33 @@
         ente = {
           web = {
             enable = true;
+            package = pkgs.ente-web.overrideAttrs (
+              _:
+              let
+                enteMainUrl = config.services.ente.web.domains.photos;
+              in
+              {
+                postPatch = # Use our `wasm-pack` binary, rather than the Node version, which is
+                  # just a wrapper that tries to download the actual binary
+                  ''
+                    substituteInPlace \
+                      packages/wasm/package.json \
+                      --replace-fail "wasm-pack " ${lib.escapeShellArg "${pkgs.wasm-pack}/bin/wasm-pack "}
+                  ''
+                  # Replace hardcoded ente.io urls if desired
+                  + lib.optionalString (enteMainUrl != null) ''
+                    substituteInPlace \
+                    # This breaks the last build
+                    # apps/payments/src/services/billing.ts \
+                      apps/photos/src/pages/shared-albums.tsx \
+                      --replace-fail "https://ente.io" ${lib.escapeShellArg enteMainUrl}
+
+                    substituteInPlace \
+                      apps/accounts/src/pages/index.tsx \
+                      --replace-fail "https://web.ente.io" ${lib.escapeShellArg enteMainUrl}
+                  '';
+              }
+            );
             domains = {
               photos = "pics.vagahbond.com";
               api = "api.pics.vagahbond.com";
