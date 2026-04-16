@@ -43,9 +43,9 @@
       # SERVICES                                        #
       ###################################################
       services.n8n = {
-        enable = true;
+        enable = false;
         taskRunners = {
-          enable = true;
+          enable = false;
 
           runners = {
             javascript = {
