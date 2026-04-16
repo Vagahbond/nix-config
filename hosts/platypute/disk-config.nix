@@ -2,7 +2,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.disko.nixosModules.disko
   ];
@@ -55,7 +56,7 @@
               };
             };
             encryptedSwap = {
-              size = "8G";
+              size = "16G";
               content = {
                 type = "swap";
                 randomEncryption = true;
