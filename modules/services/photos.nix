@@ -107,8 +107,7 @@
                   # Replace hardcoded ente.io urls if desired
                   + lib.optionalString (enteMainUrl != null) ''
                     substituteInPlace \
-                    # This breaks the last build
-                    # apps/payments/src/services/billing.ts \
+                      apps/payments/src/services/billing.ts \
                       apps/photos/src/pages/shared-albums.tsx \
                       --replace-fail "https://ente.io" ${lib.escapeShellArg enteMainUrl}
 
