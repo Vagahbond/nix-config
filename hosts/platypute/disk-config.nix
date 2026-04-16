@@ -46,6 +46,13 @@
               };
             };
 
+            encryptedSwap = {
+              size = "8G";
+              content = {
+                type = "swap";
+                randomEncryption = true;
+              };
+            };
             root = {
               name = "root";
               size = "100%";
@@ -53,13 +60,6 @@
                 format = "ext4";
                 mountpoint = "/nix";
                 type = "filesystem";
-              };
-            };
-            encryptedSwap = {
-              size = "8G";
-              content = {
-                type = "swap";
-                randomEncryption = true;
               };
             };
           };
