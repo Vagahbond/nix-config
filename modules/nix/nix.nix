@@ -38,7 +38,6 @@
             "root"
           ];
 
-
         };
 
         gc = {
@@ -58,6 +57,7 @@
         channel = "https://nixos.org/channels/nixos-unstable";
       };
     };
+
   };
 
   darwinConfiguration = _: {

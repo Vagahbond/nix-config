@@ -6,19 +6,20 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   /*
-  boot = {
-    initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
-    initrd.kernelModules = [];
-    kernelModules = ["kvm-intel"];
-    extraModulePackages = [];
-    kernelParams = ["boot.shell_on_fail"];
-  };
+    boot = {
+      initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
+      initrd.kernelModules = [];
+      kernelModules = ["kvm-intel"];
+      extraModulePackages = [];
+      kernelParams = ["boot.shell_on_fail"];
+    };
   */
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
@@ -81,12 +82,6 @@
     tmpfiles.rules = [
       "d /var/cache/nix 1777 root root 10d"
     ];
-    services.nix-daemon = {
-      environment = {
-        # Where temp files need to go to avoid filling the whole ram
-        TMPDIR = "/var/cache/nix";
-      };
-    };
     settings.Manager = {
       CacheDirectory = "nix";
       DefaultTimeoutStopSec = "10s";
