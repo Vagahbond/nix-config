@@ -58,6 +58,10 @@
       };
     };
 
+    environment.sessionVariables = {
+      TMPDIR = "/var/tmp/nix-build-tmp"; # Use a disk-based directory
+    };
+
   };
 
   darwinConfiguration = _: {

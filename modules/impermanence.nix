@@ -30,7 +30,7 @@
             "/var/log"
             "/var/lib/nixos"
             "/var/lib/systemd/coredump"
-            "/tmp"
+            "/var/tmp"
           ];
           files = [
             #  "/etc/machine-id"
