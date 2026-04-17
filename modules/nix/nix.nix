@@ -38,7 +38,6 @@
             "root"
           ];
 
-          buildDir = "/nix/build";
 
         };
 
