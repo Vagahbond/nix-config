@@ -24,6 +24,12 @@
         ];
       };
 
+      systemd = {
+        tmpfiles.rules = [
+          "d /var/tmp/nix 1777 root root 10d"
+        ];
+      };
+
       nix = {
         optimise.automatic = true;
         settings = {
@@ -59,7 +65,7 @@
     };
 
     environment.sessionVariables = {
-      TMPDIR = "/var/tmp/nix-build-tmp"; # Use a disk-based directory
+      TMPDIR = "/var/tmp"; # Use a disk-based directory
     };
 
   };
