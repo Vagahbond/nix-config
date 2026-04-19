@@ -24,8 +24,7 @@
           enable = true;
           settings = {
             PasswordAuthentication = false;
-            Banner =  pkgs.writeText "banner.txt" 
-    ''
+            Banner = pkgs.writeText "banner.txt" ''
                 ,ggggggggggg,
               dP"""88""""""Y8, ,dPYb,               I8                                         I8
               Yb,  88      `8b IP'`Yb               I8                                         I8
