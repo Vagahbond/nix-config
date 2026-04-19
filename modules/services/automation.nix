@@ -47,6 +47,20 @@
       ###################################################
       # SERVICES                                        #
       ###################################################
+
+      users.users.n8n = {
+        isSystemUser = true;
+        group = "n8n";
+        home = "/var/lib/n8n";
+      };
+
+      users.groups.n8n = { };
+
+      systemd.services.n8n.serviceConfig = {
+        User = "n8n";
+        Group = "n8n";
+      };
+
       services.n8n = {
         enable = true;
 
@@ -73,6 +87,7 @@
           N8N_ENCRYPTION_KEY_FILE = config.age.secrets.n8nEncryptionKey.path;
           N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
           N8N_PORT = "5778";
+          N8N_USER_FOLDER = "/var/lib/n8n";
         };
       };
 

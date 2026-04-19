@@ -52,11 +52,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1775112944,
-        "narHash": "sha256-A7IBPgy+YpdLDTARKZYXY1qSPxNcsRNw7CzouYBjsVU=",
+        "lastModified": 1776384379,
+        "narHash": "sha256-qC1GYe7S6atCkBWUoV0+LBU9GBXtQTKAUqH1D7vC3y8=",
         "owner": "vagahbond",
         "repo": "audio-experiments",
-        "rev": "90a5e7a8b2dc2840db6a91760ffd0c6fa35f1bc4",
+        "rev": "bb74918d860afaaccccf15e608200f2f93bd3e3e",
         "type": "github"
       },
       "original": {
@@ -422,11 +422,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1776380580,
-        "narHash": "sha256-zXUKngj95ykHYT/MAind2WRgSs7q6HdRwepj3G5LrRY=",
+        "lastModified": 1776584684,
+        "narHash": "sha256-B7pr8uyBY/sQJTH7M4abbW7/zUiqYOPou+MS1KZKJmo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "86bc17644bbac227d02c28e881a42b5c2e180703",
+        "rev": "0b67bda09b078f391a05d1a096970eeb5f3b6a0d",
         "type": "github"
       },
       "original": {
@@ -605,11 +605,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1776376181,
-        "narHash": "sha256-N/I4lxWjes7E8n4NEOYaNxxvJ9db+RKHJSH8oDdqR8o=",
+        "lastModified": 1776539146,
+        "narHash": "sha256-zuaO3Gi+HUf4Udv6wiCsK29SKh/Q6kwacpTn8gIwyZY=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "029ca6d34ad8d830afb56a9963e4baed53848da6",
+        "rev": "2809f4d43071e124f316ecf6dd0c68302f1078af",
         "type": "github"
       },
       "original": {
