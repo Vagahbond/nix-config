@@ -36,7 +36,7 @@
       environment.persistence.${config.persistence.storageLocation} = {
         directories = [
           {
-            directory = config.services.n8n.environment.N8N_USER_FOLDER;
+            directory = "/var/lib/n8n";
             user = "n8n";
             group = "n8n";
             mode = "u=rwx,g=rx,o=";
@@ -48,25 +48,26 @@
       # SERVICES                                        #
       ###################################################
 
-      users.users.n8n = {
-        isSystemUser = true;
-        group = "n8n";
-        home = "/var/lib/n8n";
-      };
-
-      users.groups.n8n = { };
-
-      systemd.services.n8n.serviceConfig = {
-        User = "n8n";
-        Group = "n8n";
-      };
+      # users.users.n8n = {
+      #   isSystemUser = true;
+      #   group = "n8n";
+      #   home = "/var/lib/n8n";
+      # };
+      #
+      # users.groups.n8n = { };
+      #
+      # systemd.services.n8n.serviceConfig = {
+      #   User = "n8n";
+      #   Group = "n8n";
+      # };
 
       services.n8n = {
         enable = true;
 
-        package = pkgs.n8n.overrideAttrs (_: {
-          NODE_OPTIONS = "--max-old-space-size=4096";
-        });
+        package = pkgs.n8n;
+        # .overrideAttrs (_: {
+        #           NODE_OPTIONS = "--max-old-space-size=4096";
+        #         });
 
         taskRunners = {
           enable = true;
