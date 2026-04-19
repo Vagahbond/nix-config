@@ -93,6 +93,16 @@
         "automation.vagahbond.com" = {
           forceSSL = true;
           enableACME = true;
+
+          locations = {
+            "/" = {
+              extraConfig = ''
+                client_max_body_size 1G;
+              '';
+              proxyPass = "http://127.0.0.1:${toString config.services.n8n.environment.N8N_PORT}";
+              proxyWebsockets = true; # needed if you need to use WebSocket
+            };
+          };
         };
       };
     };
