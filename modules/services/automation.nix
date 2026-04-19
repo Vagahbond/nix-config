@@ -33,16 +33,16 @@
       ###################################################
       # IMPERMANENCE                                    #
       ###################################################
-      environment.persistence.${config.persistence.storageLocation} = {
-        directories = [
-          {
-            directory = "/var/lib/n8n";
-            user = "n8n";
-            group = "n8n";
-            mode = "u=rwx,g=rx,o=";
-          }
-        ];
-      };
+      # environment.persistence.${config.persistence.storageLocation} = {
+      #   directories = [
+      #     {
+      #       directory = "/var/lib/n8n";
+      #       user = "n8n";
+      #       group = "n8n";
+      #       mode = "u=rwx,g=rx,o=";
+      #     }
+      #   ];
+      # };
 
       ###################################################
       # SERVICES                                        #
@@ -54,11 +54,6 @@
       };
 
       users.groups.n8n = { };
-      #
-      # systemd.services.n8n.serviceConfig = {
-      #   User = "n8n";
-      #   Group = "n8n";
-      # };
 
       services.n8n = {
         enable = true;

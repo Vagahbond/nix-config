@@ -14,17 +14,17 @@
       ###################################################################
       # IMPERMANENCE                                                    #
       ###################################################################
-      environment.persistence.${config.persistence.storageLocation} = {
-        # TODO: independent redis and rabbitmq with special volume
-        directories = [
-          {
-            directory = "/var/lib/ente";
-            user = "ente";
-            group = "ente";
-            mode = "u=rwx,g=rx,o=";
-          }
-        ];
-      };
+      # environment.persistence.${config.persistence.storageLocation} = {
+      #   # TODO: independent redis and rabbitmq with special volume
+      #   directories = [
+      #     {
+      #       directory = "/var/lib/ente";
+      #       user = "ente";
+      #       group = "ente";
+      #       mode = "u=rwx,g=rx,o=";
+      #     }
+      #   ];
+      # };
       ###################################################
       # SECRETS                                         #
       ###################################################

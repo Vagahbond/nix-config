@@ -41,11 +41,11 @@
       #   };
       # };
 
-      environment.persistence.${config.persistence.storageLocation} = {
-        directories = [
-          "/var/lib/cool"
-        ];
-      };
+      # environment.persistence.${config.persistence.storageLocation} = {
+      #   directories = [
+      #     "/var/lib/cool"
+      #   ];
+      # };
 
       # fonts.packages = with pkgs; [
       #   nerd-fonts.departure-mono

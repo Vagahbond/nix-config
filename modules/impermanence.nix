@@ -28,8 +28,7 @@
           directories = [
             "/var/cache"
             "/var/log"
-            "/var/lib/nixos"
-            "/var/lib/systemd/coredump"
+            "/var/lib"
             "/var/tmp"
           ];
           files = [

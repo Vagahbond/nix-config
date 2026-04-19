@@ -34,12 +34,12 @@
             inherit (config.services.opencloud) user group;
             mode = "u=rwx,g=rx,o=";
           }
-          {
-            directory = "/var/lib/radicale";
-            user = "radicale";
-            group = "radicale";
-            mode = "u=rwx,g=rx,o=";
-          }
+          # {
+          #   directory = "/var/lib/radicale";
+          #   user = "radicale";
+          #   group = "radicale";
+          #   mode = "u=rwx,g=rx,o=";
+          # }
         ];
       };
 

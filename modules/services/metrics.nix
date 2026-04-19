@@ -38,23 +38,23 @@
 
       };
 
-      environment.persistence.${config.persistence.storageLocation} = {
-        # TODO: independent redis and rabbitmq with special volume
-        directories = [
-          {
-            directory = "/var/lib/grafana";
-            user = "grafana";
-            group = "grafana";
-            mode = "u=rwx,g=rx,o=";
-          }
-          {
-            directory = "/var/lib/prometheus";
-            user = "prometheus";
-            group = "prometheus";
-            mode = "u=rwx,g=rx,o=";
-          }
-        ];
-      };
+      # environment.persistence.${config.persistence.storageLocation} = {
+      #   # TODO: independent redis and rabbitmq with special volume
+      #   directories = [
+      #     {
+      #       directory = "/var/lib/grafana";
+      #       user = "grafana";
+      #       group = "grafana";
+      #       mode = "u=rwx,g=rx,o=";
+      #     }
+      #     {
+      #       directory = "/var/lib/prometheus";
+      #       user = "prometheus";
+      #       group = "prometheus";
+      #       mode = "u=rwx,g=rx,o=";
+      #     }
+      #   ];
+      # };
 
       services = {
         grafana = {
