@@ -38,7 +38,7 @@
         # environmentFile =
         config = {
           ROCKET_PORT = 7060;
-          DOMAIN = "https://pass.vagahbond.com";
+          # DOMAIN = "https://pass.vagahbond.com";
           ROCKET_LOG = "critical";
         };
       };
