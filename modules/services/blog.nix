@@ -53,28 +53,5 @@
 
       };
 
-      ###################################################
-      # Analytics                                       #
-      ###################################################
-
-      users.groups.goatcounter = { };
-
-      users.users.goatcounter = {
-        isNormalUser = true;
-        group = "goatcounter";
-        createHome = false;
-      };
-
-      services.goatcounter = {
-        enable = true;
-        proxy = true;
-        port = 8084;
-      };
-
-      # Fix incompatibility issue
-      systemd.services.goatcounter.serviceConfig = {
-        DynamicUser = pkgs.lib.mkForce false;
-        User = "goatcounter";
-      };
     };
 }
