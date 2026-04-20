@@ -55,9 +55,15 @@
 
       users.groups.n8n = { };
 
-      systemd.services.n8n.serviceConfig = {
-        DynamicUser = pkgs.lib.mkForce false;
-        User = "n8n";
+      systemd.services = {
+        n8n.serviceConfig = {
+          DynamicUser = pkgs.lib.mkForce false;
+          User = "n8n";
+        };
+        n8n-task-runner.serviceConfig = {
+          DynamicUser = pkgs.lib.mkForce false;
+          User = "n8n";
+        };
       };
 
       services.n8n = {
