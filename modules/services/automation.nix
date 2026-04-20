@@ -95,6 +95,7 @@
           DB_TYPE = "postgresdb";
           DB_POSTGRESDB_HOST = "";
           DB_POSTGRESDB_USER = "n8n";
+          DB_POSTGRESDB_PASSWORD = "";
         };
       };
 
