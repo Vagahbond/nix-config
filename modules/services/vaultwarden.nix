@@ -37,9 +37,8 @@
         # backupDir = "/var/lib/bitwarden_rs/backup";
         # environmentFile =
         config = {
-          ROCKET_ADDRESS = "0.0.0.0";
           ROCKET_PORT = 7060;
-          DOMAIN = "https://vagahbond.com";
+          DOMAIN = "https://pass.vagahbond.com";
           ROCKET_LOG = "critical";
         };
       };
