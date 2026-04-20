@@ -92,7 +92,9 @@
           N8N_ENCRYPTION_KEY_FILE = config.age.secrets.n8nEncryptionKey.path;
           N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
           N8N_PORT = "5778";
-          # N8N_USER_FOLDER = "/var/lib/n8n";
+          DB_TYPE = "postgresdb";
+          DB_POSTGRESDB_HOST = "";
+          DB_POSTGRESDB_USER = "n8n";
         };
       };
 
