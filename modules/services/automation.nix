@@ -93,7 +93,7 @@
           N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
           N8N_PORT = "5778";
           DB_TYPE = "postgresdb";
-          DB_POSTGRESDB_HOST = "";
+          DB_POSTGRESDB_HOST = "/run/postgresql";
           DB_POSTGRESDB_USER = "n8n";
           DB_POSTGRESDB_PASSWORD = "";
         };
