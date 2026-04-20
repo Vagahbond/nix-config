@@ -47,13 +47,13 @@
       ###################################################
       # SSL                                             #
       ###################################################
-      # services.nginx.virtualHosts."pass.vagahbond.com" = {
-      #   forceSSL = true;
-      #   enableACME = true;
-      #   locations."/" = {
-      #     proxyPass = "http://localhost:7060";
-      #     proxyWebsockets = true; # needed if you need to use WebSocket
-      #   };
-      # };
+      services.nginx.virtualHosts."pass.vagahbond.com" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://localhost:7060";
+          proxyWebsockets = true; # needed if you need to use WebSocket
+        };
+      };
     };
 }
