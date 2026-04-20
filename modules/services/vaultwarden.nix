@@ -50,7 +50,7 @@
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:7060";
+          proxyPass = "http://localhost:7060";
           proxyWebsockets = true; # needed if you need to use WebSocket
         };
       };
