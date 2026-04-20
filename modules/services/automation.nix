@@ -66,36 +66,38 @@
         };
       };
 
-      services.n8n = {
-        enable = true;
-
-        package = pkgs.n8n.overrideAttrs (_: {
-          NODE_OPTIONS = "--max-old-space-size=4096";
-        });
-
-        taskRunners = {
+      services = {
+        n8n = {
           enable = true;
 
-          runners = {
-            javascript = {
-              enable = true;
-              command = lib.getExe' config.services.n8n.package "n8n-task-runner";
-              healthCheckPort = 5681;
+          package = pkgs.n8n.overrideAttrs (_: {
+            NODE_OPTIONS = "--max-old-space-size=4096";
+          });
+
+          taskRunners = {
+            enable = true;
+
+            runners = {
+              javascript = {
+                enable = true;
+                command = lib.getExe' config.services.n8n.package "n8n-task-runner";
+                healthCheckPort = 5681;
+              };
+            };
+
+            environment = {
+              N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
             };
           };
-
           environment = {
+            N8N_ENCRYPTION_KEY_FILE = config.age.secrets.n8nEncryptionKey.path;
             N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
+            N8N_PORT = "5778";
+            DB_TYPE = "postgresdb";
+            DB_POSTGRESDB_HOST = "/run/postgresql";
+            DB_POSTGRESDB_USER = "n8n";
+            DB_POSTGRESDB_PASSWORD = "";
           };
-        };
-        environment = {
-          N8N_ENCRYPTION_KEY_FILE = config.age.secrets.n8nEncryptionKey.path;
-          N8N_RUNNERS_AUTH_TOKEN_FILE = config.age.secrets.n8nRunnersAuthToken.path;
-          N8N_PORT = "5778";
-          DB_TYPE = "postgresdb";
-          DB_POSTGRESDB_HOST = "/run/postgresql";
-          DB_POSTGRESDB_USER = "n8n";
-          DB_POSTGRESDB_PASSWORD = "";
         };
 
         postgresql = {
