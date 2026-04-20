@@ -97,17 +97,18 @@
           DB_POSTGRESDB_USER = "n8n";
           DB_POSTGRESDB_PASSWORD = "";
         };
-      };
 
-      postgresql = {
+        postgresql = {
 
-        ensureDatabases = [ "n8n" ];
-        ensureUsers = [
-          {
-            name = "n8n";
-            ensureDBOwnership = true;
-          }
-        ];
+          ensureDatabases = [ "n8n" ];
+          ensureUsers = [
+            {
+              name = "n8n";
+              ensureDBOwnership = true;
+            }
+          ];
+        };
+
       };
 
       ###################################################
