@@ -99,16 +99,15 @@
         };
       };
 
-        postgresql = {
+      postgresql = {
 
-          ensureDatabases = [ "n8n" ];
-          ensureUsers = [
-            {
-              name = "n8n";
-              ensureDBOwnership = true;
-            }
-          ];
-        };
+        ensureDatabases = [ "n8n" ];
+        ensureUsers = [
+          {
+            name = "n8n";
+            ensureDBOwnership = true;
+          }
+        ];
       };
 
       ###################################################
