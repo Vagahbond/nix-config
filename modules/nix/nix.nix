@@ -24,12 +24,6 @@
         ];
       };
 
-      systemd = {
-        tmpfiles.rules = [
-          "d /var/tmp/nix 1777 root root 10d"
-        ];
-      };
-
       nix = {
         optimise.automatic = true;
         settings = {
@@ -62,6 +56,12 @@
         enable = true;
         channel = "https://nixos.org/channels/nixos-unstable";
       };
+    };
+
+    systemd = {
+      tmpfiles.rules = [
+        "d /var/tmp/nix 1777 root root 10d"
+      ];
     };
 
     environment.sessionVariables = {
