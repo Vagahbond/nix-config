@@ -47,7 +47,8 @@
           host = "grass.touches-grasses.fr";
           port = 3012;
 
-          grassTickIntervalSeconds = 60;
+          # Tick grass 4 times daily
+          grassTickIntervalSeconds = 60 * 60 * 6;
           secure = true;
         };
 
