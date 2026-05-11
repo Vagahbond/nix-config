@@ -119,6 +119,7 @@
               proxyPass = "http://127.0.0.1:3004";
               proxyWebsockets = true; # needed if you need to use WebSocket
             };
+          };
           forceSSL = true;
           enableACME = true;
         };
