@@ -114,6 +114,7 @@
       ###################################################
       services.nginx.virtualHosts = {
         ${config.services.firefly-iii.virtualHost} = {
+          root = "${config.services.firefly-iii.package}/public";
           locations = {
             "/debts" = {
               proxyPass = "http://127.0.0.1:3004";
