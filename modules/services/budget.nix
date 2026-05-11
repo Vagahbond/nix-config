@@ -120,6 +120,14 @@
               proxyWebsockets = true; # needed if you need to use WebSocket
             };
 
+            "/" = {
+              tryFiles = "$uri $uri/ /index.php?$query_string";
+              index = "index.php";
+              extraConfig = ''
+                sendfile off;
+              '';
+            };
+
             "~ \\.php$" = {
               extraConfig = ''
                 include ${config.services.nginx.package}/conf/fastcgi_params ;
@@ -129,13 +137,6 @@
               '';
             };
 
-            "/" = {
-              tryFiles = "$uri $uri/ /index.php?$query_string";
-              index = "index.php";
-              extraConfig = ''
-                sendfile off;
-              '';
-            };
           };
           forceSSL = true;
           enableACME = true;
