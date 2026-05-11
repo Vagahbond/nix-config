@@ -4,8 +4,12 @@
   ];
 
   nixosConfiguration =
-    { config, ... }:
+    { config, inputs, ... }:
     {
+
+      imports = [
+        inputs.firesplit.nixosModules.default
+      ];
 
       ###################################################
       # SECRETS                                         #
