@@ -38,9 +38,7 @@
   # Imagine having no clean way to separate your system's dependencies...
   inputs = {
     # pin nixpkgs to switch to stable later
-    nixpkgs.url = "github:NixOS/nixpkgs/26.05-pre";
-
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix-darwin.url = "github:nix-darwin/nix-darwin";
 
