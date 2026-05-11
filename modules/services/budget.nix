@@ -80,6 +80,11 @@
             DB_DATABASE = config.services.firefly-iii.user;
             DB_USERNAME = config.services.firefly-iii.user;
           };
+
+          firesplit = {
+            enable = true;
+            port = 3004;
+          };
         };
 
         firefly-iii-data-importer = {
