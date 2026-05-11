@@ -114,15 +114,6 @@
       ###################################################
       services.nginx.virtualHosts = {
         ${config.services.firefly-iii.virtualHost} = {
-          locations = {
-            "/split" = {
-              proxyPass = "http://127.0.0.1:3004";
-              proxyWebsockets = true; # needed if you need to use WebSocket
-              extraConfig = ''
-                rewrite =  ^/split(.*)$ $1 break;
-              '';
-            };
-          };
           forceSSL = true;
           enableACME = true;
         };
