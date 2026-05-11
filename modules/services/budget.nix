@@ -75,7 +75,7 @@
         firefly-iii = {
           enable = true;
           virtualHost = "money.vagahbond.com";
-          # enableNginx = true;
+          enableNginx = true;
 
           settings = {
             APP_ENV = "production";
@@ -114,31 +114,31 @@
       ###################################################
       services.nginx.virtualHosts = {
         ${config.services.firefly-iii.virtualHost} = {
-          root = "${config.services.firefly-iii.package}/public";
-          locations = {
-            "/split" = {
-              proxyPass = "http://127.0.0.1:3004";
-              proxyWebsockets = true; # needed if you need to use WebSocket
-            };
-
-            "/" = {
-              tryFiles = "$uri $uri/ /index.php?$query_string";
-              index = "index.php";
-              extraConfig = ''
-                sendfile off;
-              '';
-            };
-
-            "~ \\.php$" = {
-              extraConfig = ''
-                include ${config.services.nginx.package}/conf/fastcgi_params ;
-                fastcgi_param SCRIPT_FILENAME $request_filename;
-                fastcgi_param modHeadersAvailable true; #Avoid sending the security headers twice
-                fastcgi_pass unix:${config.services.phpfpm.pools.firefly-iii.socket};
-              '';
-            };
-
-          };
+          # root = "${config.services.firefly-iii.package}/public";
+          # locations = {
+          #   "/split" = {
+          #     proxyPass = "http://127.0.0.1:3004";
+          #     proxyWebsockets = true; # needed if you need to use WebSocket
+          #   };
+          #
+          #   "/" = {
+          #     tryFiles = "$uri $uri/ /index.php?$query_string";
+          #     index = "index.php";
+          #     extraConfig = ''
+          #       sendfile off;
+          #     '';
+          #   };
+          #
+          #   "~ \\.php$" = {
+          #     extraConfig = ''
+          #       include ${config.services.nginx.package}/conf/fastcgi_params ;
+          #       fastcgi_param SCRIPT_FILENAME $request_filename;
+          #       fastcgi_param modHeadersAvailable true; #Avoid sending the security headers twice
+          #       fastcgi_pass unix:${config.services.phpfpm.pools.firefly-iii.socket};
+          #     '';
+          #   };
+          #
+          # };
           forceSSL = true;
           enableACME = true;
         };
