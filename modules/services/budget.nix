@@ -116,7 +116,7 @@
         ${config.services.firefly-iii.virtualHost} = {
           root = "${config.services.firefly-iii.package}/public";
           locations = {
-            "/debts" = {
+            "/split" = {
               proxyPass = "http://127.0.0.1:3004";
               proxyWebsockets = true; # needed if you need to use WebSocket
             };
