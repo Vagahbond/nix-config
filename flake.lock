@@ -210,11 +210,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778554379,
-        "narHash": "sha256-Ez27BDQNXRDvLyF6e2I/w2qmV7W3k0rg1ZUWls/iUNU=",
+        "lastModified": 1778554638,
+        "narHash": "sha256-SxpWFBv6aXapjG8IKeT0rmhrbdxP/BPAVUIQHWCJKwc=",
         "owner": "vagahbond",
         "repo": "firesplit",
-        "rev": "5f3deed8680f067666e8b7ddb2576f539d1d7682",
+        "rev": "bf48944a91d9e909bb302e9974bbc323e963842e",
         "type": "github"
       },
       "original": {
