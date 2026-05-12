@@ -1,6 +1,5 @@
 {
   targets = [
-    "platypute"
   ];
 
   nixosConfiguration =
