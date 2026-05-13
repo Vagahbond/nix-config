@@ -53,28 +53,5 @@
           pgdumpOptions = "";
         };
       };
-
-      /**
-        ***************************************************************************
-      */
-      /**
-        ******************************** GUI *************************************
-      */
-      /**
-        ***************************************************************************
-      */
-
-      services = {
-        metabase = {
-          enable = true;
-        };
-        nginx.virtualHosts."bdd.vagahbond.com" = {
-          enableACME = true;
-          forceSSL = true;
-          locations."/".proxyPass =
-            "http://${config.services.metabase.listen.ip}:${toString config.services.metabase.listen.port}";
-
-        };
-      };
     };
 }
