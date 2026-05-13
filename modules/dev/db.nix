@@ -9,7 +9,7 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        harlequin # comes with Postgres adapter inbuilt?
+        rainfrog
       ];
     };
 
