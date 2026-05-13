@@ -9,8 +9,7 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        harlequin
-        python313Packages.harlequin-postgres
+        harlequin # comes with Postgres adapter inbuilt?
       ];
     };
 
