@@ -13,20 +13,20 @@
       ...
     }:
     {
-      age.secrets = {
-        opencode = {
-          file = ../../secrets/opencode_conf.age;
-          path = "${config.users.users.${username}.home}/.config/opencode/opencode.json";
-
-          owner = username;
-
-          mode = "u=r,g=,o=";
-
-        };
-      };
+      # age.secrets = {
+      #   crush = {
+      #     file = ../../secrets/crush_conf.age;
+      #     path = "${config.users.users.${username}.home}/.config/crush/opencode.json";
+      #
+      #     owner = username;
+      #
+      #     mode = "u=r,g=,o=";
+      #
+      #   };
+      # };
 
       environment.systemPackages = [
-        pkgs.opencode
+        pkgs.crush
       ];
     };
 }
