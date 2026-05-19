@@ -59,14 +59,14 @@
 
           settings = {
 
+            # NODE_EXTRA_CA_CERTS = {
+            #   _type = "literalExpression";
+            #   text = "config.security.pki.caBundle";
+            # };
+            PORT = "4492";
+            UPTIME_KUMA_DB_TYPE = "sqlite";
+            DATA_DIR = "/var/lib/uptime-kuma";
           };
-          # NODE_EXTRA_CA_CERTS = {
-          #   _type = "literalExpression";
-          #   text = "config.security.pki.caBundle";
-          # };
-          PORT = "4492";
-          UPTIME_KUMA_DB_TYPE = "sqlite";
-          DATA_DIR = "/var/lib/uptime-kuma";
 
         };
       };
