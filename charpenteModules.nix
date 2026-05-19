@@ -25,6 +25,7 @@
     "secrets"
   ];
   services = [
+    "uptime"
     "analytics"
     "budget"
     "blog"
