@@ -66,7 +66,7 @@
             # };
             PORT = "4492";
             UPTIME_KUMA_DB_TYPE = "sqlite";
-            DATA_DIR = "/var/lib/uptime-kuma";
+            # DATA_DIR = "/var/lib/uptime-kuma";
           };
 
         };
