@@ -47,9 +47,10 @@
           "uptime.vagahbond.com" = {
             forceSSL = true;
             enableACME = true;
-
-            proxyPass = "http://127.0.0.1:${toString config.services.uptime-kuma.settings.PORT}";
-            proxyWebsockets = true; # needed if you need to use WebSocket
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:${toString config.services.uptime-kuma.settings.PORT}";
+              proxyWebsockets = true; # needed if you need to use WebSocket
+            };
           };
 
         };
