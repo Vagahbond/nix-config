@@ -32,7 +32,7 @@
 
         # alias to access db TUI
         shellAliases = {
-          db = "sudo -u postgres rainfrog --username postgres --host /run/postgresql --password " " --port 5432 --driver postgresql";
+          db = "sudo -u postgres rainfrog --username postgres --host /run/postgresql --password \"\" --port 5432 --driver postgresql";
 
         };
       };
