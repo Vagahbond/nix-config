@@ -27,7 +27,11 @@
         ];
       };
 
-      # environment.systemPackages = with pkgs; [postgresql_17];
+      environment.systemPackages = with pkgs; [ rainfrog ];
+
+      # alias to access db TUI
+      environment.shellAliases = {
+        db = "sudo -u postgres rainfrog --username postgres --host /run/postgresql --password "" --port 5432 --driver postgresql";
 
       services = {
         postgresql = {

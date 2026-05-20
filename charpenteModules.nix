@@ -1,6 +1,5 @@
 {
   dev = [
-    "db"
     "git"
     "network"
     "ai"
