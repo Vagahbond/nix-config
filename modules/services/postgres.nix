@@ -10,29 +10,32 @@
       ...
     }:
     {
-      environment.persistence.${config.persistence.storageLocation} = {
-        directories = [
-          {
-            directory = "/var/backup/postgresql";
-            user = "postgres";
-            group = "postgres";
-            mode = "u=rwx,g=rx,o=";
-          }
-          # {
-          #   directory = "/var/lib/postgresql";
-          #   user = "postgres";
-          #   group = "postgres";
-          #   mode = "u=rwx,g=rx,o=";
-          # }
-        ];
+      environment = {
+        persistence.${config.persistence.storageLocation} = {
+          directories = [
+            {
+              directory = "/var/backup/postgresql";
+              user = "postgres";
+              group = "postgres";
+              mode = "u=rwx,g=rx,o=";
+            }
+            # {
+            #   directory = "/var/lib/postgresql";
+            #   user = "postgres";
+            #   group = "postgres";
+            #   mode = "u=rwx,g=rx,o=";
+            # }
+          ];
+        };
+
+        systemPackages = with pkgs; [ rainfrog ];
+
+        # alias to access db TUI
+        shellAliases = {
+          db = "sudo -u postgres rainfrog --username postgres --host /run/postgresql --password " " --port 5432 --driver postgresql";
+
+        };
       };
-
-      environment.systemPackages = with pkgs; [ rainfrog ];
-
-      # alias to access db TUI
-      environment.shellAliases = {
-        db = "sudo -u postgres rainfrog --username postgres --host /run/postgresql --password "" --port 5432 --driver postgresql";
-
       services = {
         postgresql = {
           enable = true;
