@@ -29,10 +29,16 @@
   nixosConfiguration =
     {
       inputs,
+      config,
+      useername,
       ...
     }:
     {
       imports = [ inputs.agenix.nixosModules.default ];
+      environment.persistence.${config.impermanence.storageLocation} = {
+        directories = [ "/run/agenix.d" ];
+      };
+
     };
 
   darwinConfiguration =
