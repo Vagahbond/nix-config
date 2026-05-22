@@ -30,12 +30,12 @@
     {
       inputs,
       config,
-      useername,
       ...
     }:
     {
       imports = [ inputs.agenix.nixosModules.default ];
-      environment.persistence.${config.impermanence.storageLocation} = {
+
+      environment.persistence.${config.persistence.storageLocation} = {
         directories = [ "/run/agenix.d" ];
       };
 
