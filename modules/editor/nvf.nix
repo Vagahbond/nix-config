@@ -46,7 +46,7 @@ let
 
                 nix.enable = true;
                 html.enable = true;
-                sql.enable = false;
+                sql.enable = true;
                 rust.enable = true;
                 typescript.enable = true;
                 lua.enable = true;
