@@ -11,7 +11,7 @@ let
           {
             vim = {
               vimAlias = true;
-              
+
               #options = {
               #  tabstop = 2;
               #  shiftwidth = 2;
@@ -48,7 +48,7 @@ let
                 html.enable = true;
                 sql.enable = false;
                 rust.enable = true;
-                # ts.enable = true;
+                typescript.enable = true;
                 lua.enable = true;
                 svelte.enable = true;
                 css.enable = true;
@@ -163,7 +163,6 @@ let
                   };
                 */
               };
-
 
               comments = {
                 comment-nvim.enable = true;
