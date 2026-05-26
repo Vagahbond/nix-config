@@ -11,10 +11,11 @@ let
           {
             vim = {
               vimAlias = true;
-              options = {
-                tabstop = 2;
-                shiftwidth = 2;
-              };
+              
+              #options = {
+              #  tabstop = 2;
+              #  shiftwidth = 2;
+              #};
 
               clipboard = {
                 enable = true;
@@ -27,27 +28,27 @@ let
                 logFile = "/tmp/nvim.log";
               };
 
-              statusline.lualine = {
-                enable = true;
-              };
+              # statusline.lualine = {
+              #   enable = true;
+              # };
 
               lsp = {
                 enable = true;
-                formatOnSave = false;
-                trouble.enable = false;
+                # formatOnSave = false;
+                # trouble.enable = false;
               };
 
               # LANGUAGES
 
               languages = {
-                enableFormat = true;
-                enableExtraDiagnostics = true;
+                # enableFormat = true;
+                # enableExtraDiagnostics = true;
 
                 nix.enable = true;
                 html.enable = true;
                 sql.enable = false;
                 rust.enable = true;
-                ts.enable = true;
+                # ts.enable = true;
                 lua.enable = true;
                 svelte.enable = true;
                 css.enable = true;
@@ -79,12 +80,7 @@ let
               };
 
               treesitter = {
-                enable = true;
-                # grammars = [
-                #   pkgs.vimPlugins.nvim-treesitter.builtGrammars.yaml
-                # ];
-
-                context.enable = true;
+                # context.enable = true;
               };
 
               binds = {
@@ -101,24 +97,10 @@ let
                 gitsigns.enable = true;
               };
 
-              minimap = {
-                codewindow = {
-                  enable = true; # lighter, faster, and uses lua for configuration
-                };
-              };
-
               notify = {
                 nvim-notify = {
                   enable = true;
-                  setupOpts = {
-                    timeout = 500;
-                    position = "bottom_left";
-                  };
                 };
-              };
-
-              projects = {
-                project-nvim.enable = true;
               };
 
               utility = {
@@ -182,9 +164,6 @@ let
                 */
               };
 
-              gestures = {
-                gesture-nvim.enable = true;
-              };
 
               comments = {
                 comment-nvim.enable = true;
@@ -243,7 +222,7 @@ in
     {
       environment = {
         systemPackages = [
-          (mkNvf pkgs inputs)
+          (mkNvf inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system} inputs)
         ];
         variables = {
           EDITOR = "nvim";

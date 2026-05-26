@@ -40,8 +40,10 @@
     # pin nixpkgs to switch to stable later
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nix-darwin.url = "github:nix-darwin/nix-darwin";
-
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence.url = "github:nix-community/impermanence";
 
     disko.url = "github:nix-community/disko";
