@@ -7,6 +7,8 @@
     ./disk-config.nix
   ];
 
+  fileSystems."/nix".neededForBoot = true;
+
   boot.initrd.availableKernelModules = [
     "ata_piix"
     "uhci_hcd"
