@@ -28,9 +28,9 @@ let
                 logFile = "/tmp/nvim.log";
               };
 
-              # statusline.lualine = {
-              #   enable = true;
-              # };
+              statusline.lualine = {
+                enable = true;
+              };
 
               lsp = {
                 enable = true;
@@ -41,8 +41,8 @@ let
               # LANGUAGES
 
               languages = {
-                # enableFormat = true;
-                # enableExtraDiagnostics = true;
+                enableFormat = true;
+                enableExtraDiagnostics = true;
 
                 nix.enable = true;
                 html.enable = true;
