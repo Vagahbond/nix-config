@@ -36,7 +36,10 @@
       imports = [ inputs.agenix.nixosModules.default ];
 
       environment.persistence.${config.persistence.storageLocation} = {
-        directories = [ "/run/agenix.d" ];
+        directories = [
+          "/run/agenix.d"
+          "agenix"
+        ];
       };
 
     };
