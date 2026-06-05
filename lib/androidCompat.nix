@@ -28,11 +28,7 @@ in
   };
 
   config = {
-
-    user.home = mConfig.users.users.${username}.home;
-
     environment.packages = mConfig.environment.systemPackages;
-
   };
 
 }
