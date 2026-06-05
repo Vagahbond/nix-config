@@ -23,7 +23,6 @@
     ];
     locales = { };
     system = { };
-    user = { };
   };
 
   configuration = _: {
