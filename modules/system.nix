@@ -4,8 +4,8 @@
     conf = _: {
       android-integration = {
         termux-setup-storage.enable = true;
-        android-integration.termux-open-url.enable = true;
-        android-integration.termux-open.enable = true;
+        termux-open-url.enable = true;
+        termux-open.enable = true;
       };
     };
   }
