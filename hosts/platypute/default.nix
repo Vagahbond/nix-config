@@ -18,7 +18,7 @@
     ];
     services = [
       "uptime"
-      "analytics"
+      # "analytics"
       "budget"
       "blog"
       "automation"
@@ -28,11 +28,11 @@
       "homepage"
       "audio-experiments"
       "invoices"
-      "metrics"
+      # "metrics"
       "mkReset"
       "notes"
       "office"
-      "pdf"
+      # "pdf"
       "postgres"
       "proxy"
       "ssh"
