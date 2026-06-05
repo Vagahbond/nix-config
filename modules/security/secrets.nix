@@ -21,13 +21,6 @@
       };
     };
 
-  nixOnDroidConfiguration =
-    { inputs, ... }:
-    {
-      imports = [ inputs.agenix.nixosModules.default ];
-
-    };
-
   nixosConfiguration =
     {
       inputs,

@@ -16,9 +16,6 @@
     nix = [
       "nix"
     ];
-    security = [
-      "secrets"
-    ];
     terminal = [
       "prompt"
       "shell"
