@@ -109,15 +109,15 @@ let
         preparedModules
         ++ [
           host.configuration
-          # set hostname
-          (_: { networking.hostName = name; })
         ]
         ++ globalModules;
 
     in
     fn (
       {
-        modules = baseModules;
+        modules = baseModules ++ [
+          (_: { networking.hostName = name; })
+        ];
 
       }
       // (
