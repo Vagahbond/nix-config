@@ -25,7 +25,7 @@
       darwinConfigurations = {
         air = lib.mkDarwinHost "air";
       };
-      androidConfigurations = {
+      nixOnDroidConfigurations = {
         pixel = lib.mkAndroidHost "pixel";
       };
     };
