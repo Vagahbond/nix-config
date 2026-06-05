@@ -122,6 +122,8 @@ let
         if (fnName == "nixOnDroidConfiguration") then
           {
 
+            modules = [ (import ./androidCompat.nix) ];
+
             pkgs = import inputs.nixpkgs {
               system = "aarch64-linux";
 

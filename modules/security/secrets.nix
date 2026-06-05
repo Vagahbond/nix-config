@@ -6,13 +6,12 @@
       pkgs,
       username,
       config,
-      homeLib,
       ...
     }:
     {
 
       age.identityPaths = [
-        "${homeLib.getHomeDir username config}/.ssh/id_ed25519"
+        "${config.users.users.${username}.home}/.ssh/id_ed25519"
       ];
 
       environment = {
