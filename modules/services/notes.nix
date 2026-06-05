@@ -1,9 +1,5 @@
 # TODO: Host Affine without container layer
 {
-  targets = [
-    "platypute"
-  ];
-
   nixosConfiguration = {config, ...}: {
     ###################################################################
     # USERS                                                           #

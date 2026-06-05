@@ -1,9 +1,4 @@
 {
-  targets = [
-    "platypute"
-    "framework"
-  ];
-
   nixosConfiguration =
     {
       pkgs,

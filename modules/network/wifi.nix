@@ -1,8 +1,4 @@
 {
-  targets = [
-    "framework"
-  ];
-
   nixosConfiguration = {config, ...}: {
     networking.wireless = {
       enable = true;

@@ -1,10 +1,4 @@
 {
-  targets = [
-    "air"
-    "platypute"
-    "framework"
-  ];
-
   sharedConfiguration =
     { pkgs, ... }:
     {

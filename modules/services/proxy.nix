@@ -1,8 +1,4 @@
 {
-  targets = [
-    "platypute"
-  ];
-
   nixosConfiguration = _: {
     security.acme = {
       acceptTerms = true;

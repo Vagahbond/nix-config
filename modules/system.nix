@@ -1,11 +1,5 @@
 # TODO: break this down into modules
 {
-  targets = [
-    "air"
-    "platypute"
-    "framework"
-  ];
-
   nixosOnDroidConfiguration = _: {
     android-integration = {
       termux-setup-storage.enable = true;

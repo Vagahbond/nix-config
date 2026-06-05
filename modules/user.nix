@@ -39,12 +39,6 @@ let
 
 in
 {
-  targets = [
-    "platypute"
-    "framework"
-    "air"
-  ];
-
   sharedConfiguration =
     {
       username,

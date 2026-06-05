@@ -1,8 +1,4 @@
 {
-  targets = [
-    "air"
-  ];
-
   sharedConfiguration =
     {
       pkgs,

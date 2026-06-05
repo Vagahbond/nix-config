@@ -1,8 +1,4 @@
 {
-  targets = [
-    "framework"
-  ];
-
   nixosConfiguration =
     {
       pkgs,

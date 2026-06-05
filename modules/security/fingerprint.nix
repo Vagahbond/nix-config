@@ -1,9 +1,4 @@
 {
-  targets = [
-    "air"
-    "framework"
-  ];
-
   nixosConfiguration =
     { config, ... }:
     {

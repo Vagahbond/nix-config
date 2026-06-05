@@ -1,8 +1,5 @@
 # TODO: Uncontainerize
 {
-  targets = [
-  ];
-
   nixosConfiguration = _: {
     ###################################################
     # Stirling-pdf                                    #

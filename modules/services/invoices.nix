@@ -1,8 +1,4 @@
 {
-  targets = [
-    "platypute"
-  ];
-
   nixosConfiguration =
     { config, ... }:
     {
