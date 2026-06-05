@@ -114,7 +114,13 @@ let
           (_: { networking.hostName = name; })
         ]
         ++ globalModules;
+
       specialArgs = extraArgs;
+
+      pkgs = lib.mkIf (fnName == "nixOnDroidConfiguration") import inputs.nixpkgs {
+        system = "aarch64-linux";
+      };
+
     };
 
 in
