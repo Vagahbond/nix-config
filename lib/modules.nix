@@ -115,7 +115,7 @@ let
         ]
         ++ globalModules;
 
-      specialArgs = extraArgs;
+      specialArgs = lib.mkIf (fnName != "nixOnDroidConfiguration") extraArgs;
 
       pkgs = lib.mkIf (fnName == "nixOnDroidConfiguration") (
         import inputs.nixpkgs {
