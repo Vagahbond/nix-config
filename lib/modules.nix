@@ -117,9 +117,16 @@ let
 
       specialArgs = extraArgs;
 
-      pkgs = lib.mkIf (fnName == "nixOnDroidConfiguration") import inputs.nixpkgs {
-        system = "aarch64-linux";
-      };
+      pkgs = lib.mkIf (fnName == "nixOnDroidConfiguration") (
+        import inputs.nixpkgs {
+          system = "aarch64-linux";
+
+          overlays = [
+            inputs.nix-on-droid.overlays.default
+            # add other overlays
+          ];
+        }
+      );
 
     };
 
