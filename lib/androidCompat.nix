@@ -26,9 +26,9 @@
 
   config = {
 
-    config.user.home = config.users.users.${username}.home;
+    user.home = config.users.users.${username}.home;
 
-    config.environment.packages = config.environment.systemPackages;
+    environment.packages = config.environment.systemPackages;
 
   };
 
