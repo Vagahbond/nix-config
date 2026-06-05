@@ -1,11 +1,35 @@
 {
   name = "air";
-  platform = "aarch64-darwin";
+  modules = {
+    dev = [
+      "git"
+      "network"
+      "ai"
+    ];
+    editor = [
+      "nvf"
+    ];
+    network = [
+      "ssh"
+    ];
+    nix = [
+      "nix"
+      "remoteBuild"
+    ];
+    security = [
+      "secrets"
+    ];
+    terminal = [
+      "prompt"
+      "shell"
+      "rss"
+    ];
+    system = { };
+    user = { };
+  };
 
   configuration = _: {
     system.stateVersion = 6;
-    #  users.users.${username}.hashedPassword =
-    #       "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
-
+    nixpkgs.hostPlatform = "aarch64-darwin";
   };
 }

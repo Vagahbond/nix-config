@@ -3,36 +3,31 @@
 
   outputs =
     {
-      self,
-      charpente,
       ...
     }@inputs:
     let
-      systems = charpente.lib.mkSystems {
-        root = self;
+      extraArgs = {
+        username = "vagahbond";
+        inherit
+          inputs
+          ;
+      };
 
-        hosts = [
-          "air"
-          "framework"
-          "live"
-          "platypute"
-        ];
-
-        modules = import ./charpenteModules.nix;
-
-        extraArgs = {
-          username = "vagahbond";
-          inherit
-            inputs
-            self
-            ;
-        };
+      lib = import ./lib/modules.nix {
+        inherit extraArgs inputs;
+        inherit (inputs.nixpkgs) lib;
       };
     in
     {
-      nixosConfigurations = systems.nixosSystems;
-      darwinConfigurations = systems.darwinSystems;
-
+      nixosConfigurations = {
+        platypute = lib.mkNixosHost "platypute";
+      };
+      darwinConfigurations = {
+        air = lib.mkDarwinHost "air";
+      };
+      androidConfigurations = {
+        pixel = lib.mkAndroidHost "pixel";
+      };
     };
 
   # Imagine having no clean way to separate your system's dependencies...
@@ -44,6 +39,12 @@
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/prerelease-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     impermanence.url = "github:nix-community/impermanence";
 
     disko.url = "github:nix-community/disko";
@@ -82,12 +83,6 @@
     mkReset = {
       # url = "/home/vagahbond/Projects/mk_reset_online";
       url = "github:jmsk8/mk_reset_online";
-    };
-
-    charpente = {
-      url = "github:vagahbond/charpente";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-darwin.follows = "nix-darwin";
     };
 
   };

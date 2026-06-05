@@ -1,18 +1,28 @@
-# nh os switch --dry --build-host platypute --target-host platypute --hostname platypute . --show-trace
 {
-  name = "platypute";
+  name = "pixel";
 
   modules = {
     dev = [
       "git"
+      "network"
+      "ai"
     ];
     editor = [
       "nvf"
+      "office"
+    ];
+    network = [
+      "ssh"
+      "vpn"
+      "wifi"
     ];
     nix = [
+      "live"
       "nix"
+      "remoteBuild"
     ];
     security = [
+      "fingerprint"
       "keyring"
       "secrets"
     ];
@@ -41,9 +51,12 @@
     terminal = [
       "prompt"
       "shell"
+      "rss"
     ];
     virtualization = [
       "docker"
+      "kubernetes"
+      "libvirt"
     ];
     impermanence = { };
     locales = { };
@@ -51,18 +64,8 @@
     user = { };
   };
 
-  configuration =
-    { username, ... }:
-    {
-      imports = [
-        ./hardware-configuration.nix
-      ];
-
-      system.stateVersion = "22.11"; # Did you read the comment?
-
-      nixpkgs.hostPlatform = "x86_64-linux";
-
-      users.users.${username}.hashedPassword =
-        "$y$j9T$wNFGGvQeqSgVUXxTmOHX8.$wd5iVM5t01vuyNKR.bEcwBZIQ.t8qIxhPylDzhRYDC0";
-    };
+  configuration = _: {
+    nixpkgs.hostPlatform = "aarch64-linux";
+    system.stateVersion = "24.05";
+  };
 }
