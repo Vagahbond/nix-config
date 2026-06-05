@@ -104,17 +104,20 @@ let
       preparedModules = prepareModules importedModules fnNameToConfigType.${fnName};
 
       fn = systemLib.${fnName};
+
+      baseModules =
+        preparedModules
+        ++ [
+          host.configuration
+          # set hostname
+          (_: { networking.hostName = name; })
+        ]
+        ++ globalModules;
+
     in
     fn (
       {
-        modules =
-          preparedModules
-          ++ [
-            host.configuration
-            # set hostname
-            (_: { networking.hostName = name; })
-          ]
-          ++ globalModules;
+        modules = baseModules;
 
       }
       // (
@@ -122,7 +125,7 @@ let
         if (fnName == "nixOnDroidConfiguration") then
           {
 
-            modules = [ (import ./androidCompat.nix) ];
+            modules = baseModules ++ [ (import ./androidCompat.nix) ];
 
             pkgs = import inputs.nixpkgs {
               system = "aarch64-linux";
