@@ -196,31 +196,35 @@ let
     }).neovim;
 
 in
-{
-
-  nixosConfiguration =
-    { pkgs, inputs, ... }:
-    {
-      environment = {
-        systemPackages = [
-          (mkNvf inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system} inputs)
-        ];
-        variables = {
-          EDITOR = "nvim";
+[
+  {
+    targets = [ "nixosConfiguration" ];
+    conf =
+      { pkgs, inputs, ... }:
+      {
+        environment = {
+          systemPackages = [
+            (mkNvf inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system} inputs)
+          ];
+          variables = {
+            EDITOR = "nvim";
+          };
         };
       };
-    };
-
-  darwinConfiguration =
-    { pkgs, inputs, ... }:
-    {
-      environment = {
-        systemPackages = [
-          (mkNvf inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system} inputs)
-        ];
-        variables = {
-          EDITOR = "nvim";
+  }
+  {
+    targets = [ "darwinConfiguration" ];
+    conf =
+      { pkgs, inputs, ... }:
+      {
+        environment = {
+          systemPackages = [
+            (mkNvf inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system} inputs)
+          ];
+          variables = {
+            EDITOR = "nvim";
+          };
         };
       };
-    };
-}
+  }
+]

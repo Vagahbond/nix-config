@@ -1,73 +1,86 @@
-let
-  nixAndDarwinConfiguration =
-    { pkgs, inputs, ... }:
-    {
+[
+  {
+    targets = [
+      "nixosConfiguration"
+      "darwinConfiguration"
+      "androidConfiguration"
+    ];
+    conf =
+      {
+        pkgs,
+        ...
+      }:
+      {
 
-      nixpkgs.config = {
-        allowUnfree = true;
+        environment = {
+          # etc."current-flake".source = self;
+          systemPackages = with pkgs; [
+            cachix
+            nh
+          ];
+        };
+      };
+  }
+
+  {
+    targets = [
+      "nixosConfiguration"
+      "darwinConfiguration"
+    ];
+    conf =
+      { pkgs, inputs, ... }:
+      {
+
+        nixpkgs.config = {
+          allowUnfree = true;
+        };
+
+        nix = {
+
+          optimise.automatic = true;
+          settings = {
+
+            substituters = [ "https://cache.nixos.org/" ];
+            trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
+            experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
+            trusted-users = [
+              "root"
+            ];
+
+          };
+
+          gc = {
+            automatic = true;
+            # interval = "weekly";
+            options = "--delete-older-than 2d";
+          };
+
+          registry = pkgs.lib.mkDefault (pkgs.lib.mapAttrs (_: value: { flake = value; }) inputs);
+
+        };
       };
 
-      nix = {
+  }
 
-        optimise.automatic = true;
-        settings = {
+  {
+    targets = [ "androidConfiguration" ];
+    conf =
+      { pkgs, inputs, ... }:
+      {
+        nix = {
 
           substituters = [ "https://cache.nixos.org/" ];
-          trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
-          experimental-features = [
-            "nix-command"
-            "flakes"
-          ];
-          trusted-users = [
-            "root"
-          ];
-
+          trustedPublicKeys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
+          registry = pkgs.lib.mkDefault (pkgs.lib.mapAttrs (_: value: { flake = value; }) inputs);
         };
-
-        gc = {
-          automatic = true;
-          # interval = "weekly";
-          options = "--delete-older-than 2d";
-        };
-
-        registry = pkgs.lib.mkDefault (pkgs.lib.mapAttrs (_: value: { flake = value; }) inputs);
-
       };
-    };
-
-in
-{
-  sharedConfiguration =
-    {
-      pkgs,
-      ...
-    }:
-    {
-
-      environment = {
-        # etc."current-flake".source = self;
-        systemPackages = with pkgs; [
-          cachix
-          nh
-        ];
-      };
-    };
-
-  nixOnDroidConfiguration =
-    { pkgs, inputs, ... }:
-    {
-      nix = {
-
-        substituters = [ "https://cache.nixos.org/" ];
-        trustedPublicKeys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
-        registry = pkgs.lib.mkDefault (pkgs.lib.mapAttrs (_: value: { flake = value; }) inputs);
-      };
-    };
-
-  nixosConfiguration =
-    { pkgs, inputs, ... }:
-    (nixAndDarwinConfiguration { inherit pkgs inputs; })
-    // {
+  }
+  {
+    targets = [ "nixosConfiguration" ];
+    conf = _: {
       system = {
         autoUpgrade = {
           enable = true;
@@ -86,11 +99,10 @@ in
       };
 
     };
-
-  darwinConfiguration =
-    { pkgs, inputs, ... }:
-    (nixAndDarwinConfiguration { inherit pkgs inputs; })
-    // {
+  }
+  {
+    targets = [ "darwinConfiguration" ];
+    conf = _: {
       environment.variables = {
         NIXPKGS_ALLOW_UNFREE = "1";
       };
@@ -117,4 +129,5 @@ in
       # TODO: remove
       system.stateVersion = 6;
     };
-}
+  }
+]

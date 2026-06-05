@@ -90,20 +90,24 @@ let
     };
   };
 in
-{
+[
+  {
+    targets = [ "darwinConfiguration" ];
+    conf =
+      { pkgs, username, ... }:
+      {
+        environment.systemPackages = with pkgs; [
+          starship
+        ];
 
-  darwinConfiguration =
-    { pkgs, username, ... }:
-    {
-      environment.systemPackages = with pkgs; [
-        starship
-      ];
-
-      home-files.${username}.".config/starship.toml".source =
-        pkgs.writers.writeTOML "starship.toml" starshipConfiguration.settings;
+        home-files.${username}.".config/starship.toml".source =
+          pkgs.writers.writeTOML "starship.toml" starshipConfiguration.settings;
+      };
+  }
+  {
+    targets = [ "nixosConfiguration" ];
+    conf = _: {
+      programs.starship = starshipConfiguration;
     };
-
-  nixosConfiguration = _: {
-    programs.starship = starshipConfiguration;
-  };
-}
+  }
+]

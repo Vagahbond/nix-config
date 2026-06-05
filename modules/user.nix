@@ -38,122 +38,133 @@ let
     );
 
 in
-{
-  sharedConfiguration =
-    {
-      username,
-      lib,
-      pkgs,
-      ...
-    }:
-    let
-      fileModule = pkgs.lib.types.submodule {
-        options = {
-          source = pkgs.lib.mkOption {
-            type = pkgs.lib.types.nullOr pkgs.lib.types.path;
-            default = null;
-            description = "Path to the file in the nix store.";
-          };
-          text = pkgs.lib.mkOption {
-            type = pkgs.lib.types.nullOr pkgs.lib.types.lines;
-            default = null;
-            description = "Inline text content for the file.";
+[
+  {
+    targets = [
+      "nixosConfiguration"
+      "darwinConfiguration"
+      "androidConfiguration"
+    ];
+    conf =
+      {
+        username,
+        lib,
+        pkgs,
+        ...
+      }:
+      let
+        fileModule = pkgs.lib.types.submodule {
+          options = {
+            source = pkgs.lib.mkOption {
+              type = pkgs.lib.types.nullOr pkgs.lib.types.path;
+              default = null;
+              description = "Path to the file in the nix store.";
+            };
+            text = pkgs.lib.mkOption {
+              type = pkgs.lib.types.nullOr pkgs.lib.types.lines;
+              default = null;
+              description = "Inline text content for the file.";
+            };
           };
         };
-      };
-    in
-    {
-      options.home-files = lib.mkOption {
-        type = lib.types.attrsOf (lib.types.attrsOf fileModule);
-        default = { };
-        description = "Per-user file symlink configuration, keyed by username then relative path from home.";
-      };
+      in
+      {
+        options.home-files = lib.mkOption {
+          type = lib.types.attrsOf (lib.types.attrsOf fileModule);
+          default = { };
+          description = "Per-user file symlink configuration, keyed by username then relative path from home.";
+        };
 
-      config = {
+        config = {
 
-        users = {
           users = {
-            ${username} = {
-              description = "Main user";
+            users = {
+              ${username} = {
+                description = "Main user";
+              };
             };
           };
         };
       };
-    };
+  }
+  {
+    targets = [ "darwinConfiguration" ];
+    conf =
+      {
+        username,
+        pkgs,
+        config,
+        lib,
+        ...
+      }:
+      {
 
-  darwinConfiguration =
-    {
-      username,
-      pkgs,
-      config,
-      lib,
-      ...
-    }:
-    {
+        system.activationScripts.postActivation.text = lib.mkAfter (
+          mkHomeFilesActivationScript pkgs config.home-files config.users.users
+        );
 
-      system.activationScripts.postActivation.text = lib.mkAfter (
-        mkHomeFilesActivationScript pkgs config.home-files config.users.users
-      );
-
-      users.users.${username}.home = "/Users/${username}";
-    };
-
-  nixosConfiguration =
-    {
-      config,
-      username,
-      pkgs,
-      ...
-    }:
-    {
-      system.activationScripts.homeFiles = {
-        text = mkHomeFilesActivationScript pkgs config.home-files config.users.users;
-        deps = [ ];
+        users.users.${username}.home = "/Users/${username}";
       };
+  }
+  {
+    targets = [ "nixosConfiguration" ];
+    conf =
+      {
+        config,
+        username,
+        pkgs,
+        ...
+      }:
+      {
+        system.activationScripts.homeFiles = {
+          text = mkHomeFilesActivationScript pkgs config.home-files config.users.users;
+          deps = [ ];
+        };
 
-      users = {
-        mutableUsers = false;
         users = {
-          ${username} = {
-            isNormalUser = true;
-            extraGroups = [ "wheel" ];
-            home = "/home/${username}";
+          mutableUsers = false;
+          users = {
+            ${username} = {
+              isNormalUser = true;
+              extraGroups = [ "wheel" ];
+              home = "/home/${username}";
+            };
+            root = {
+            };
           };
-          root = {
+        };
+
+        environment.persistence.${config.persistence.storageLocation} = {
+          users.${username} = {
+            directories = [
+              "Projects"
+              "Downloads"
+              "Music"
+              "Pictures"
+              "Documents"
+              "Videos"
+              {
+                directory = ".gnupg";
+                mode = "0700";
+              }
+              {
+                directory = ".ssh";
+                mode = "0700";
+              }
+              {
+                directory = ".local/share/keyrings";
+                mode = "0700";
+              }
+
+              ".local/share/nix"
+              ".pki"
+            ];
+
+            files = [
+              ".gitconfig"
+            ];
           };
         };
       };
-
-      environment.persistence.${config.persistence.storageLocation} = {
-        users.${username} = {
-          directories = [
-            "Projects"
-            "Downloads"
-            "Music"
-            "Pictures"
-            "Documents"
-            "Videos"
-            {
-              directory = ".gnupg";
-              mode = "0700";
-            }
-            {
-              directory = ".ssh";
-              mode = "0700";
-            }
-            {
-              directory = ".local/share/keyrings";
-              mode = "0700";
-            }
-
-            ".local/share/nix"
-            ".pki"
-          ];
-
-          files = [
-            ".gitconfig"
-          ];
-        };
-      };
-    };
-}
+  }
+]

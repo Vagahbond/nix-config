@@ -1,49 +1,57 @@
-{
+[
+  {
+    targets = [
+      "nixosConfiguration"
+      "darwinConfiguration"
+      "androidConfiguration"
+    ];
+    conf =
+      {
+        pkgs,
+        username,
+        config,
+        ...
+      }:
+      let
+        keys = import ../../secrets/sshKeys.nix { inherit config pkgs username; };
 
-  sharedConfiguration =
-    {
-      pkgs,
-      username,
-      config,
-      ...
-    }:
-    let
-      keys = import ../../secrets/sshKeys.nix { inherit config pkgs username; };
-
-      pubKeytoHomeFile = name: value: {
-        ".ssh/${name}.pub" = {
-          text = value.pub;
+        pubKeytoHomeFile = name: value: {
+          ".ssh/${name}.pub" = {
+            text = value.pub;
+          };
         };
-      };
 
-      pubKeys = pkgs.lib.mkMerge (builtins.attrValues (builtins.mapAttrs pubKeytoHomeFile keys));
-      privKeys = builtins.mapAttrs (_: k: k.priv) keys;
-    in
-    {
-      home-files.${username} = pubKeys;
+        pubKeys = pkgs.lib.mkMerge (builtins.attrValues (builtins.mapAttrs pubKeytoHomeFile keys));
+        privKeys = builtins.mapAttrs (_: k: k.priv) keys;
+      in
+      {
+        home-files.${username} = pubKeys;
 
-      age.secrets = privKeys // {
-        sshConfig = {
-          file = ../../secrets/ssh_config.age;
-          path = "${config.users.users.${username}.home}/.ssh/config";
-          mode = "644";
-          # owner = username;
-          # group = "users";
+        age.secrets = privKeys // {
+          sshConfig = {
+            file = ../../secrets/ssh_config.age;
+            path = "${config.users.users.${username}.home}/.ssh/config";
+            mode = "644";
+            # owner = username;
+            # group = "users";
+          };
         };
-      };
 
-      environment.systemPackages = with pkgs; [
-        sshs
-      ];
-    };
-
-  nixosConfiguration =
-    { config, ... }:
-    {
-      environment.persistence.${config.persistence.storageLocation} = {
-        directories = [
-          "/root/.ssh"
+        environment.systemPackages = with pkgs; [
+          sshs
         ];
       };
-    };
-}
+  }
+  {
+    targets = [ "nixosConfiguration" ];
+    conf =
+      { config, ... }:
+      {
+        environment.persistence.${config.persistence.storageLocation} = {
+          directories = [
+            "/root/.ssh"
+          ];
+        };
+      };
+  }
+]

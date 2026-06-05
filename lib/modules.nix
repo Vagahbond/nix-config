@@ -6,17 +6,13 @@
 }:
 let
 
-  configTypes = [
-    "darwinConfiguration"
-    "nixosConfiguration"
-    "nixOnDroidConfiguration"
-  ];
-
   fnNameToConfigType = {
     darwinSystem = "darwinConfiguration";
     nixosSystem = "nixosConfiguration";
-    nixOnDroidConfiguration = "nixOnDroidConfiguration";
+    nixOnDroidConfiguration = "androidConfiguration";
   };
+
+  configTypes = builtins.attrValues fnNameToConfigType;
 
   hostDir = toString ../hosts;
 
@@ -50,19 +46,28 @@ let
     ) names;
 
   /**
-    Pick the right elements from a module
+    Pick the right elements from a module.
+
+    A module is now a list of `{ targets = [ ... ]; conf = ...; }` entries.
+    Each entry's `conf` is kept only when the current `configType` is part of
+    its `targets` list.
   */
-  prepareModuleArray =
-    configType: module:
-    let
-      assertConfigType = lib.assertMsg (builtins.elem configType configTypes) "Invalid config type ${configType}";
-    in
-    [
-      (if (builtins.hasAttr "sharedConfiguration" module) then module.sharedConfiguration else _: { })
-      (
-        if (assertConfigType && (builtins.hasAttr configType module)) then module.${configType} else _: { }
-      )
-    ];
+  prepareModules =
+    configType: modules:
+    assert lib.assertMsg (builtins.elem configType configTypes) "Invalid config type ${configType}";
+    assert lib.assertMsg (builtins.isList modules)
+      "A module must be a list of `{ targets; conf; }` attribute sets; got: ${builtins.toJSON modules}";
+    builtins.concatMap (
+      entry:
+      let
+        hasShape = (builtins.hasAttr "targets" entry) && (builtins.hasAttr "conf" entry);
+        validTargets = builtins.all (t: builtins.elem t configTypes) entry.targets;
+      in
+      assert lib.assertMsg hasShape "Each module entry must have `targets` and `conf` attributes";
+      assert lib.assertMsg validTargets
+        "Invalid target name; valid targets: ${lib.concatStringsSep ", " configTypes}";
+      if (builtins.elem configType entry.targets) then [ entry.conf ] else [ ]
+    ) modules;
 
   /**
     Import a single module
@@ -83,8 +88,8 @@ let
   /**
     Gather hosts and modules into a single system's configuration
   */
-  prepareModules =
-    modules: configType: lib.lists.flatten (builtins.map (prepareModuleArray configType) modules);
+  # prepareModules =
+  #   modules: configType: lib.lists.flatten (builtins.map (prepareModuleArray configType) modules);
 
   /**
     Gather hosts and loaded modules into a single system's configuration
@@ -101,7 +106,7 @@ let
 
       importedModules = importModules host.modules;
 
-      preparedModules = prepareModules importedModules fnNameToConfigType.${fnName};
+      preparedModules = prepareModules fnNameToConfigType.${fnName} (lib.lists.flatten importedModules);
 
       fn = systemLib.${fnName};
 

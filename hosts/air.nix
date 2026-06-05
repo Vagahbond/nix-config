@@ -17,6 +17,7 @@
       "remoteBuild"
     ];
     security = [
+      "fingerprint"
       "secrets"
     ];
     terminal = [

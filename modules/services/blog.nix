@@ -1,54 +1,57 @@
-{
-  nixosConfiguration =
-    {
-      pkgs,
-      inputs,
-      config,
-      ...
-    }:
-    {
+[
+  {
+    targets = [ "nixosConfiguration" ];
+    conf =
+      {
+        pkgs,
+        inputs,
+        config,
+        ...
+      }:
+      {
 
-      imports = [
-        inputs.blog.nixosModules.default
-      ];
+        imports = [
+          inputs.blog.nixosModules.default
+        ];
 
-      # environment = {
-      #   persistence.${config.persistence.storageLocation} = {
-      #     directories = [
-      #       {
-      #         directory = "/var/lib/goatcounter";
-      #         user = "goatcounter";
-      #         group = "goatcounter";
-      #         mode = "u=rwx,g=rx,o=";
-      #       }
-      #     ];
-      #   };
-      # };
+        # environment = {
+        #   persistence.${config.persistence.storageLocation} = {
+        #     directories = [
+        #       {
+        #         directory = "/var/lib/goatcounter";
+        #         user = "goatcounter";
+        #         group = "goatcounter";
+        #         mode = "u=rwx,g=rx,o=";
+        #       }
+        #     ];
+        #   };
+        # };
 
-      ###################################################
-      # BLOG                                            #
-      ###################################################
+        ###################################################
+        # BLOG                                            #
+        ###################################################
 
-      networking.firewall.allowedTCPPorts = [ 3012 ];
+        networking.firewall.allowedTCPPorts = [ 3012 ];
 
-      services.touchesGrasses = {
-        enable = true;
-        address = "touches-grasses.fr";
-
-        enableNginx = true;
-
-        grassServer = {
+        services.touchesGrasses = {
           enable = true;
+          address = "touches-grasses.fr";
 
-          host = "grass.touches-grasses.fr";
-          port = 3012;
+          enableNginx = true;
 
-          # Tick grass 4 times daily
-          grassTickIntervalSeconds = 60 * 60 * 6;
-          secure = true;
+          grassServer = {
+            enable = true;
+
+            host = "grass.touches-grasses.fr";
+            port = 3012;
+
+            # Tick grass 4 times daily
+            grassTickIntervalSeconds = 60 * 60 * 6;
+            secure = true;
+          };
+
         };
 
       };
-
-    };
-}
+  }
+]
