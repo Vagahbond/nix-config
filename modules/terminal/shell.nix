@@ -1,16 +1,6 @@
-{
-  targets = [
-    "air"
-    "platypute"
-    "framework"
-  ];
-
-  sharedConfiguration =
-    {
-      pkgs,
-      config,
-      ...
-    }:
+let
+  nixAndDarwinConfiguration =
+    { config, pkgs }:
     {
       options = {
         shell.shellAliases = pkgs.lib.mkOption {
@@ -24,16 +14,8 @@
           };
         };
       };
-      config = {
-        # Just basic tools I like to use
-        environment.systemPackages = with pkgs; [
-          lsd
-          fzf
-          ripgrep
-          yazi
-          fd
-        ];
 
+      config = {
         environment.shellAliases = {
           build-iso-remote = "nix build github:vagahbond/nix-config#nixosConfigurations.live.config.system.build.isoImage";
           build-iso = "nix build .#nixosConfigurations.live.config.system.build.isoImage";
@@ -52,25 +34,53 @@
           unzip-all = "for file in ./* ;do unzip -d \"\${file%.*}\" $file; done";
         }
         // config.shell.shellAliases;
+
+      };
+
+    };
+
+in
+{
+
+  sharedConfiguration =
+    {
+      pkgs,
+      ...
+    }:
+    {
+      config = {
+        # Just basic tools I like to use
+        environment.systemPackages = with pkgs; [
+          lsd
+          fzf
+          ripgrep
+          yazi
+          fd
+        ];
+
       };
     };
 
   darwinConfiguration =
     {
       pkgs,
+      config,
       ...
     }:
-    {
-      fonts.packages = [
-        pkgs.nerd-fonts.departure-mono
-        pkgs.nerd-fonts.mononoki
-      ];
+    (nixAndDarwinConfiguration { inherit pkgs config; })
+    // {
+      config = {
+        fonts.packages = [
+          pkgs.nerd-fonts.departure-mono
+          pkgs.nerd-fonts.mononoki
+        ];
 
-      programs.zsh = {
-        enable = true;
-        enableCompletion = true;
-        enableSyntaxHighlighting = true;
-        enableAutosuggestions = true;
+        programs.zsh = {
+          enable = true;
+          enableCompletion = true;
+          enableSyntaxHighlighting = true;
+          enableAutosuggestions = true;
+        };
       };
     };
 
@@ -81,22 +91,26 @@
       pkgs,
       ...
     }:
-    {
-      users.defaultUserShell = pkgs.zsh;
+    (nixAndDarwinConfiguration { inherit pkgs config; })
+    // {
+      config = {
 
-      programs.zsh = {
-        enable = true;
-        enableCompletion = true;
-        syntaxHighlighting.enable = true;
+        users.defaultUserShell = pkgs.zsh;
 
-        histSize = 10000;
-      };
-      environment = {
-        persistence.${config.persistence.storageLocation} = {
-          users.${username} = {
-            files = [
-              ".zshrc"
-            ];
+        programs.zsh = {
+          enable = true;
+          enableCompletion = true;
+          syntaxHighlighting.enable = true;
+
+          histSize = 10000;
+        };
+        environment = {
+          persistence.${config.persistence.storageLocation} = {
+            users.${username} = {
+              files = [
+                ".zshrc"
+              ];
+            };
           };
         };
       };
