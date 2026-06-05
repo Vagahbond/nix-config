@@ -91,11 +91,6 @@ let
   };
 in
 {
-  targets = [
-    "air"
-    "platypute"
-    "framework"
-  ];
 
   darwinConfiguration =
     { pkgs, username, ... }:

@@ -197,11 +197,6 @@ let
 
 in
 {
-  targets = [
-    "air"
-    "platypute"
-    "framework"
-  ];
 
   nixosConfiguration =
     { pkgs, inputs, ... }:

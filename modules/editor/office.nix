@@ -1,7 +1,4 @@
 {
-  targets = [
-    "framework"
-  ];
 
   sharedConfiguration =
     { pkgs, ... }:

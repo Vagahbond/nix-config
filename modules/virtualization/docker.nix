@@ -1,8 +1,4 @@
 {
-  targets = [
-    "platypute"
-    "framework"
-  ];
 
   sharedConfiguration =
     { pkgs, ... }:

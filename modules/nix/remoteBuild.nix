@@ -1,8 +1,4 @@
 {
-  targets = [
-    "air"
-    "framework"
-  ];
 
   sharedConfiguration = {
     config,
