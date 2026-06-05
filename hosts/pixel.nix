@@ -30,7 +30,7 @@
   };
 
   configuration = _: {
-    nixpkgs.hostPlatform = "aarch64-linux";
+    # nixpkgs.hostPlatform = "aarch64-linux";
     system.stateVersion = "24.05";
   };
 }
