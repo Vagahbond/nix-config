@@ -105,30 +105,42 @@ let
 
       fn = systemLib.${fnName};
     in
-    fn {
-      modules =
-        preparedModules
-        ++ [
-          host.configuration
-          # set hostname
-          (_: { networking.hostName = name; })
-        ]
-        ++ globalModules;
+    fn (
+      {
+        modules =
+          preparedModules
+          ++ [
+            host.configuration
+            # set hostname
+            (_: { networking.hostName = name; })
+          ]
+          ++ globalModules;
 
-      specialArgs = lib.mkIf (fnName != "nixOnDroidConfiguration") extraArgs;
+      }
+      // (
+        # Special case for nix-on-droid
+        if (fnName == "nixOnDroidConfiguration") then
+          {
 
-      pkgs = lib.mkIf (fnName == "nixOnDroidConfiguration") (
-        import inputs.nixpkgs {
-          system = "aarch64-linux";
+            pkgs = import inputs.nixpkgs {
+              system = "aarch64-linux";
 
-          overlays = [
-            inputs.nix-on-droid.overlays.default
-            # add other overlays
-          ];
-        }
-      );
+              overlays = [
+                inputs.nix-on-droid.overlays.default
+                # add other overlays
+              ];
+            };
 
-    };
+            extraSpecialArgs = extraArgs;
+
+          }
+        else
+          {
+
+            specialArgs = extraArgs;
+          }
+      )
+    );
 
 in
 {
