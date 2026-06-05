@@ -25,6 +25,15 @@ in
         The system packages to install.
       '';
     };
+
+    # Suppress error on age config definition
+    age.secrets = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+      description = ''
+        The age secrets to use (Ignored on Android systems).
+      '';
+    };
   };
 
   config = {
