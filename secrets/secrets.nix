@@ -2,6 +2,7 @@ let
   framework = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFusXTBhXLpViUVKjfHRJnjVb6WZFrxYq2/0Kh7MKwN pro@yoni-firroloni.com";
   dedistonks = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAf1czoN5B1iRpQxeAKwgTPLFDkHyb3S118Ka3Djxo89 vagahbond@pm.me";
   platypute = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBaJF2F4uGyvYMnt0t1sgdUdxdU0+eEUzH//hGheZSPd vagahbond@nixos";
+  pixel = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPKPQRY/MlF5s24KTWkpIB+3s6TFDZEB1kd3axAOkhGF vagahbond@pm.me";
 
   # Master key is responsible for re-keying everything
   mk = framework;
@@ -109,13 +110,13 @@ in
   ];
 
   # SSH Keys
-  "ssh_config.age".publicKeys = [ mk ];
+  "ssh_config.age".publicKeys = [ mk pixel ];
 
-  "builder_access.age".publicKeys = [ mk ];
+  "builder_access.age".publicKeys = [ mk pixel ];
 
-  "platypute_access.age".publicKeys = [ mk ];
+  "platypute_access.age".publicKeys = [ mk pixel ];
 
-  "github_access.age".publicKeys = [ mk ];
+  "github_access.age".publicKeys = [ mk pixel ];
 
   "dedistonks_access.age".publicKeys = [ mk ];
 
