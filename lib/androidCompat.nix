@@ -1,8 +1,8 @@
 {
   config,
-  pkgs,
   username,
   lib,
+  ...
 }:
 {
 
