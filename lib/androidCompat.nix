@@ -1,10 +1,10 @@
 {
-  config,
+  #config,
   username,
   lib,
   ...
 }:
-{
+rec {
 
   options = {
     users.users.${username}.home = lib.mkOption {
