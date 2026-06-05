@@ -2,12 +2,13 @@
   description = "My modular NixOS configuration that totally did not take countless horus to make.";
 
   outputs =
-    {
-      ...
-    }@inputs:
+    inputs:
     let
       extraArgs = {
         username = "vagahbond";
+
+        homeLib = import ./lib/home.nix;
+
         inherit
           inputs
           ;

@@ -1,9 +1,4 @@
 {
-  targets = [
-    "air"
-    "framework"
-    "platypute"
-  ];
 
   sharedConfiguration =
     {
@@ -11,12 +6,13 @@
       pkgs,
       username,
       config,
+      homeLib,
       ...
     }:
     {
 
       age.identityPaths = [
-        "${config.users.users.${username}.home}/.ssh/id_ed25519"
+        "${homeLib.getHomeDir username config}/.ssh/id_ed25519"
       ];
 
       environment = {
