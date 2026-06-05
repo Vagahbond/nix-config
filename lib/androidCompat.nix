@@ -1,10 +1,13 @@
 {
-  #config,
+  config,
   username,
   lib,
   ...
 }:
-rec {
+let
+  mConfig = config;
+in
+{
 
   options = {
     users.users.${username}.home = lib.mkOption {
@@ -26,9 +29,9 @@ rec {
 
   config = {
 
-    user.home = config.users.users.${username}.home;
+    user.home = mConfig.users.users.${username}.home;
 
-    environment.packages = config.environment.systemPackages;
+    environment.packages = mConfig.environment.systemPackages;
 
   };
 
