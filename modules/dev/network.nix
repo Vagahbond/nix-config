@@ -1,18 +1,6 @@
 [
   {
     targets = [
-      "androidConfiguration"
-    ];
-    conf =
-      { pkgs, ... }:
-      {
-        environment.packages = with pkgs; [
-          slumber
-        ];
-      };
-  }
-  {
-    targets = [
       "darwinConfiguration"
     ];
     conf =

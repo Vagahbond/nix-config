@@ -24,9 +24,6 @@
       darwinConfigurations = {
         air = lib.mkDarwinHost "air";
       };
-      nixOnDroidConfigurations = {
-        pixel = lib.mkAndroidHost "pixel";
-      };
     };
 
   # Imagine having no clean way to separate your system's dependencies...
@@ -39,8 +36,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/prerelease-25.11";
+    home-manager = {
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

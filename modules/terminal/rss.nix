@@ -1,16 +1,6 @@
 [
 
   {
-    targets = [ "androidConfiguration" ];
-    conf =
-      { pkgs, ... }:
-      {
-        environment.packages = with pkgs; [
-          bulletty
-        ];
-      };
-  }
-  {
     targets = [
       "nixosConfiguration"
       "darwinConfiguration"

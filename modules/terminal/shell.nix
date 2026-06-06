@@ -1,27 +1,4 @@
 [
-  {
-    targets = [
-      "androidConfiguration"
-    ];
-    conf =
-      {
-        pkgs,
-        ...
-      }:
-      {
-        config = {
-          # Just basic tools I like to use
-          environment.packages = with pkgs; [
-            lsd
-            fzf
-            ripgrep
-            yazi
-            fd
-          ];
-
-        };
-      };
-  }
 
   {
     targets = [

@@ -3,7 +3,6 @@
     targets = [
       "nixosConfiguration"
       "darwinConfiguration"
-      "androidConfiguration"
     ];
     conf =
       {

@@ -9,7 +9,6 @@ let
   fnNameToConfigType = {
     darwinSystem = "darwinConfiguration";
     nixosSystem = "nixosConfiguration";
-    nixOnDroidConfiguration = "androidConfiguration";
   };
 
   configTypes = builtins.attrValues fnNameToConfigType;
@@ -118,46 +117,19 @@ let
         ++ globalModules;
 
     in
-    fn (
-      {
-        modules = baseModules ++ [
-          (_: { networking.hostName = name; })
-        ];
+    fn {
+      modules = baseModules ++ [
+        (_: { networking.hostName = name; })
+      ];
 
-      }
-      // (
-        # Special case for nix-on-droid
-        if (fnName == "nixOnDroidConfiguration") then
-          {
+      specialArgs = extraArgs;
 
-            modules = baseModules;
-
-            pkgs = import inputs.nixpkgs {
-              system = "aarch64-linux";
-
-              overlays = [
-                inputs.nix-on-droid.overlays.default
-                # add other overlays
-              ];
-            };
-
-            extraSpecialArgs = extraArgs;
-
-          }
-        else
-          {
-
-            specialArgs = extraArgs;
-          }
-      )
-    );
+    };
 
 in
 {
   mkDarwinHost = path: prepareSystem inputs.nix-darwin.lib "darwinSystem" path;
 
   mkNixosHost = path: prepareSystem inputs.nixpkgs.lib "nixosSystem" path;
-
-  mkAndroidHost = path: prepareSystem inputs.nix-on-droid.lib "nixOnDroidConfiguration" path;
 
 }

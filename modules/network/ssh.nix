@@ -1,16 +1,4 @@
 [
-  {
-    targets = [ "androidConfiguration" ];
-    conf =
-      { pkgs, ... }:
-      {
-        environment.packages = with pkgs; [
-          sshs
-          openssh
-        ];
-
-      };
-  }
 
   {
     targets = [

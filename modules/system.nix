@@ -16,20 +16,6 @@ let
 in
 [
   {
-    targets = [ "androidConfiguration" ];
-    conf =
-      { pkgs, ... }:
-      {
-        android-integration = {
-          termux-setup-storage.enable = true;
-          termux-open-url.enable = true;
-          termux-open.enable = true;
-        };
-
-        environment.packages = systemPkgs pkgs;
-      };
-  }
-  {
     targets = [
       "nixosConfiguration"
       "darwinConfiguration"

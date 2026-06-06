@@ -1,17 +1,5 @@
 [
   {
-    targets = [ "androidConfiguration" ];
-
-    conf =
-      { pkgs,  ... }:
-      {
-        environment.packages = with pkgs; [
-          cachix
-        ];
-      };
-
-  }
-  {
     targets = [
       "nixosConfiguration"
       "darwinConfiguration"
@@ -76,19 +64,6 @@
 
   }
 
-  {
-    targets = [ "androidConfiguration" ];
-    conf =
-      { pkgs, inputs, ... }:
-      {
-        nix = {
-
-          substituters = [ "https://cache.nixos.org/" ];
-          trustedPublicKeys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
-          registry = pkgs.lib.mkDefault (pkgs.lib.mapAttrs (_: value: { flake = value; }) inputs);
-        };
-      };
-  }
   {
     targets = [ "nixosConfiguration" ];
     conf = _: {
