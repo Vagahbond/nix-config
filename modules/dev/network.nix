@@ -1,9 +1,19 @@
 [
   {
     targets = [
-      "nixosConfiguration"
-      "darwinConfiguration"
       "androidConfiguration"
+    ];
+    conf =
+      { pkgs, ... }:
+      {
+        environment.packages = with pkgs; [
+          slumber
+        ];
+      };
+  }
+  {
+    targets = [
+      "darwinConfiguration"
     ];
     conf =
       { pkgs, ... }:

@@ -130,7 +130,7 @@ let
         if (fnName == "nixOnDroidConfiguration") then
           {
 
-            modules = baseModules ++ [ (import ./androidCompat.nix) ];
+            modules = baseModules;
 
             pkgs = import inputs.nixpkgs {
               system = "aarch64-linux";

@@ -1,9 +1,20 @@
 [
   {
+    targets = [ "androidConfiguration" ];
+
+    conf =
+      { pkgs,  ... }:
+      {
+        environment.packages = with pkgs; [
+          cachix
+        ];
+      };
+
+  }
+  {
     targets = [
       "nixosConfiguration"
       "darwinConfiguration"
-      "androidConfiguration"
     ];
     conf =
       {
