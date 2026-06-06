@@ -12,10 +12,10 @@ let
             vim = {
               vimAlias = true;
 
-              #options = {
-              #  tabstop = 2;
-              #  shiftwidth = 2;
-              #};
+              options = {
+                tabstop = 2;
+                shiftwidth = 2;
+              };
 
               clipboard = {
                 enable = true;
