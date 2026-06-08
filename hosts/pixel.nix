@@ -28,13 +28,14 @@
   configuration =
     {
       username,
+      inputs,
       ...
     }:
 
     {
       imports = [
         # include nixos-avf modules
-        <nixos-avf/avf>
+        inputs.avf.nixosModules.avf
       ];
 
       # Change default user
