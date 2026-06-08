@@ -20,6 +20,7 @@
     {
       nixosConfigurations = {
         platypute = lib.mkNixosHost "platypute";
+        pixel = lib.mkNixosHost "pixel";
       };
       darwinConfigurations = {
         air = lib.mkDarwinHost "air";
