@@ -4,25 +4,25 @@
   modules = {
     dev = [
       "git"
-      "network"
-      "ai"
     ];
     editor = [
       "nvf"
     ];
-    network = [
-      "ssh"
-    ];
     nix = [
       "nix"
+    ];
+    security = [
+      "keyring"
+      "secrets"
     ];
     terminal = [
       "prompt"
       "shell"
-      "rss"
     ];
+    impermanence = { };
     locales = { };
     system = { };
+    user = { };
   };
 
   configuration =
