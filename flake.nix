@@ -40,7 +40,6 @@
     };
 
     avf = {
-
       url = "github:nix-community/nixos-avf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -61,18 +60,21 @@
       flake = false;
     };
 
-    nix-cooker.url = "github:vagahbond/nix-cooker";
-
     website = {
       url = "github:vagahbond/homepage";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+
     };
 
     audio-experiments = {
       url = "github:vagahbond/audio-experiments";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     blog = {
       url = "github:vagahbond/blog";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     firesplit = {
@@ -83,6 +85,7 @@
     mkReset = {
       # url = "/home/vagahbond/Projects/mk_reset_online";
       url = "github:jmsk8/mk_reset_online";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
