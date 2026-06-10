@@ -81,6 +81,26 @@
         "type": "github"
       }
     },
+    "avf": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769132082,
+        "narHash": "sha256-cJVUBVP3qmRO2HGHqj18ChjOSztyo7eqElQJMRpWXw8=",
+        "owner": "nix-community",
+        "repo": "nixos-avf",
+        "rev": "d0a62c3f64b45a39570fde31a3a490b214bf19ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixos-avf",
+        "type": "github"
+      }
+    },
     "blog": {
       "inputs": {
         "nixpkgs": "nixpkgs_4"
@@ -302,26 +322,6 @@
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780885330,
-        "narHash": "sha256-aMA5oAq2Iv467U9s8YOb50DYQT9w0WJbyWqwlzHuLMs=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "4fe95527cbe952713318ada8a4d122e1a6ab120f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_3": {
-      "inputs": {
-        "nixpkgs": [
           "impermanence",
           "nixpkgs"
         ]
@@ -342,7 +342,7 @@
     },
     "impermanence": {
       "inputs": {
-        "home-manager": "home-manager_3",
+        "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
@@ -674,10 +674,10 @@
         "agenix": "agenix",
         "audio-experiments": "audio-experiments",
         "autoDarkModeNvim": "autoDarkModeNvim",
+        "avf": "avf",
         "blog": "blog",
         "disko": "disko",
         "firesplit": "firesplit",
-        "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "mkReset": "mkReset",
         "nix-cooker": "nix-cooker",

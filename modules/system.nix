@@ -34,6 +34,7 @@ in
         pkgs,
         config,
         username,
+        utils,
         ...
       }:
       {
@@ -43,11 +44,12 @@ in
             unzip
             nitch
             powertop
-            rar
+            (utils.ifSupported config rar)
             lz4
             ntfs3g
             systemctl-tui
           ];
+
           persistence.${config.persistence.storageLocation} = {
             users.${username} = {
               directories = [
