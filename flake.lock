@@ -364,11 +364,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1776211462,
-        "narHash": "sha256-NHxq+4+v7MuOBLn9qxEZUKgEsMyEnVYIFUzoLiDjhZA=",
+        "lastModified": 1780957583,
+        "narHash": "sha256-3+IhqeecmMB/vBSelpB3ePaxrnNvFe2KqCrU64R+ot0=",
         "owner": "jmsk8",
         "repo": "mk_reset_online",
-        "rev": "cec556a64dc6cd9968867049fc907f9e24e9818f",
+        "rev": "5e44193ee61cfec95045a0e0881ca8428aff1905",
         "type": "github"
       },
       "original": {
