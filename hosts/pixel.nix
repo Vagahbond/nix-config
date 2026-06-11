@@ -2,22 +2,30 @@
   name = "pixel";
 
   modules = {
-    dev = [
-      "git"
-    ];
-    editor = [
-      "nvf"
-    ];
-    nix = [
-      "nix"
-    ];
     security = [
       "keyring"
       "secrets"
     ];
+    editor = [
+      "nvf"
+    ];
+    network = [
+      "ssh"
+    ];
+    nix = [
+      "nix"
+      "remoteBuild"
+    ];
     terminal = [
       "prompt"
       "shell"
+      "rss"
+    ];
+
+    dev = [
+      "git"
+      "network"
+      "ai"
     ];
     impermanence = { };
     locales = { };
