@@ -43,23 +43,19 @@
     }:
 
     {
+
       imports = [
         # include nixos-avf modules
         inputs.avf.nixosModules.avf
       ];
 
-      options = {
-        # ignore impermanence
+      # Change default user
+      avf.defaultUser = username;
 
-      };
+      environment.persistence.${config.persistence.storageLocation}.enable = lib.mkForce false;
 
-      configuration = {
+      # platform
+      nixpkgs.hostPlatform = "aarch64-linux";
 
-        # Change default user
-        avf.defaultUser = username;
-
-        environment.persistence.${config.persistence.storageLocation}.enable = lib.mkForce false;
-
-      };
     };
 }
