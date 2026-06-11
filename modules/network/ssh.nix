@@ -42,16 +42,18 @@
         ];
       };
   }
-  {
-    targets = [ "nixosConfiguration" ];
-    conf =
-      { config, ... }:
-      {
-        environment.persistence.${config.persistence.storageLocation} = {
-          directories = [
-            "/root/.ssh"
-          ];
+  /*
+    {
+      targets = [ "nixosConfiguration" ];
+      conf =
+        { config, ... }:
+        {
+          environment.persistence.${config.persistence.storageLocation} = {
+            directories = [
+              "/root/.ssh"
+            ];
+          };
         };
-      };
-  }
+    }
+  */
 ]

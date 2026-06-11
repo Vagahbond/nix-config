@@ -22,24 +22,6 @@
           };
         };
 
-        ###################################################
-        # IMPERMANENCE                                    #
-        ###################################################
-        # environment.persistence.${config.persistence.storageLocation} = {
-        #   directories = [
-        #     {
-        #       directory = config.services.firefly-iii.dataDir;
-        #       inherit (config.services.firefly-iii) user group;
-        #       mode = "u=rwx,g=rx,o=";
-        #     }
-        #     {
-        #       directory = config.services.firefly-iii-data-importer.dataDir;
-        #       inherit (config.services.firefly-iii-data-importer) user group;
-        #       mode = "u=rwx,g=rx,o=";
-        #     }
-        #   ];
-        # };
-        #
         systemd.services.firefly-iii-setup = {
           serviceConfig.StateDirectory = [
             "firefly-iii/storage/app/public"

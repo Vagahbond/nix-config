@@ -13,20 +13,6 @@
         ];
 
         ###################################################
-        # IMPERMANENCE                                    #
-        ###################################################
-        # environment.persistence.${config.persistence.storageLocation} = {
-        #   directories = [
-        #     {
-        #       directory = "/var/lib/bitwarden_rs";
-        #       user = "vaultwarden";
-        #       group = "vaultwarden";
-        #       mode = "u=rwx,g=rx,o=";
-        #     }
-        #   ];
-        # };
-
-        ###################################################
         # SERVICES                                        #
         ###################################################
 

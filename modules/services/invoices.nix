@@ -4,22 +4,6 @@
     conf =
       { config, ... }:
       {
-        /*
-          age.secrets.dolibarr = {
-            file = ../../secrets/dolibarr.age;
-            mode = "440";
-          };
-        */
-        # environment.persistence.${config.persistence.storageLocation} = {
-        #   directories = [
-        #     {
-        #       directory = "/var/lib/dolibarr";
-        #       user = "dolibarr";
-        #       group = "dolibarr";
-        #       mode = "u=rwx,g=rx,o=";
-        #     }
-        #   ];
-        # };
 
         services = {
           nginx.virtualHosts = {

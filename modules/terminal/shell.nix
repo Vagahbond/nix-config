@@ -90,6 +90,12 @@
 
           users.defaultUserShell = pkgs.zsh;
 
+          # change the font used in the terminal
+          fonts.fonts = with pkgs; [
+            (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+            (nerdfonts.override { fonts = [ "FiraCode" ]; })
+          ];
+
           programs.zsh = {
             enable = true;
             enableCompletion = true;

@@ -14,13 +14,6 @@
           virt-manager
         ];
 
-        # keep virtual machines
-        # environment.persistence.${config.persistence.storageLocation} = {
-        #   directories = [
-        #     "/var/lib/libvirt"
-        #   ];
-        # };
-
         programs.dconf.enable = true;
 
         virtualisation = {

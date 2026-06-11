@@ -19,27 +19,6 @@
         #
         # };
 
-        # environment.persistence.${config.persistence.storageLocation} = {
-        #   directories = [
-        #     {
-        #       directory = config.services.opencloud.stateDir;
-        #       inherit (config.services.opencloud) user group;
-        #       mode = "u=rwx,g=rx,o=";
-        #     }
-        #     {
-        #       directory = "/etc/opencloud";
-        #       inherit (config.services.opencloud) user group;
-        #       mode = "u=rwx,g=rx,o=";
-        #     }
-        #     # {
-        #     #   directory = "/var/lib/radicale";
-        #     #   user = "radicale";
-        #     #   group = "radicale";
-        #     #   mode = "u=rwx,g=rx,o=";
-        #     # }
-        #   ];
-        # };
-
         services = {
           nginx.virtualHosts = {
             "uptime.vagahbond.com" = {

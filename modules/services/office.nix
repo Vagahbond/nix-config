@@ -25,31 +25,6 @@
             fsType = "none";
           };
 
-        # systemd.services.coolwsd = {
-        #   serviceConfig = {
-        #     ExecStartPre = [
-        #       # "+${pkgs.coreutils}/bin/mkdir -p /usr/share/fonts/collabora"
-        #       # "+${pkgs.util-linux}/bin/mount --bind ${fontDir}/share/fonts /usr/share/fonts/collabora"
-        #       "+${pkgs.util-linux}/bin/mount --bind ${fontDir}/share/fonts /var/lib/cool/systemplate/usr/share/fonts/truetype"
-        #     ];
-        #     ExecStopPost = [
-        #       # "+${pkgs.util-linux}/bin/umount -l /usr/share/fonts/collabora"
-        #       "+${pkgs.util-linux}/bin/umount -l /var/lib/cool/systemplate/usr/share/fonts/truetype"
-        #     ];
-        #   };
-        # };
-
-        # environment.persistence.${config.persistence.storageLocation} = {
-        #   directories = [
-        #     "/var/lib/cool"
-        #   ];
-        # };
-
-        # fonts.packages = with pkgs; [
-        #   nerd-fonts.departure-mono
-        #   corefonts
-        # ];
-
         services.nginx.virtualHosts."office.vagahbond.com" = {
           forceSSL = true;
           enableACME = true;

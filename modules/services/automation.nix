@@ -31,20 +31,6 @@
         };
 
         ###################################################
-        # IMPERMANENCE                                    #
-        ###################################################
-        # environment.persistence.${config.persistence.storageLocation} = {
-        #   directories = [
-        #     {
-        #       directory = "/var/lib/n8n";
-        #       user = "n8n";
-        #       group = "n8n";
-        #       mode = "u=rwx,g=rx,o=";
-        #     }
-        #   ];
-        # };
-
-        ###################################################
         # SERVICES                                        #
         ###################################################
 
