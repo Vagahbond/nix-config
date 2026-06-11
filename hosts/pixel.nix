@@ -37,6 +37,8 @@
     {
       username,
       inputs,
+      lib,
+      config,
       ...
     }:
 
@@ -58,6 +60,10 @@
       system.stateVersion = "26.05"; # Did you read the comment?
 
       nixpkgs.hostPlatform = "aarch64-linux";
+
+      # On AVF, no tmpfs, no impermanence
+
+      environment.persistence.${config.persistence.storageLocation}.enable = lib.mkForce false;
 
     };
 }

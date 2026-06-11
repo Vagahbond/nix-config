@@ -53,7 +53,7 @@
     conf =
       { config, ... }:
       {
-        environment.persistence.${config.modules.impermanence.storageLocation} = {
+        environment.persistence.${config.persistence.storageLocation} = {
           directories = [ "/root/.ssh" ];
         };
       };
