@@ -39,18 +39,16 @@ in
       }:
       {
         environment = {
-          systemPackages =
-            with pkgs;
-            [
-              zip
-              unzip
-              nitch
-              powertop
-              lz4
-              ntfs3g
-              systemctl-tui
-            ]
-            # ++ (utils.ifSupported config rar);
+          systemPackages = with pkgs; [
+            zip
+            unzip
+            nitch
+            powertop
+            lz4
+            ntfs3g
+            systemctl-tui
+          ];
+          # ++ (utils.ifSupported config rar);
 
           persistence.${config.persistence.storageLocation} = {
             users.${username} = {
