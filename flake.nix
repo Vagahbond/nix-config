@@ -7,7 +7,7 @@
       extraArgs = {
         username = "vagahbond";
 
-        utils = import ./lib/utils.nix;
+        libUtils = import ./lib/utils.nix;
 
         inherit
           inputs
