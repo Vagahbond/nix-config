@@ -50,7 +50,7 @@ in
               ntfs3g
               systemctl-tui
             ]
-            ++ (utils.ifSupported config rar);
+            # ++ (utils.ifSupported config rar);
 
           persistence.${config.persistence.storageLocation} = {
             users.${username} = {
