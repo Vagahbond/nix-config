@@ -56,6 +56,9 @@
 
       # platform
       nixpkgs.hostPlatform = "aarch64-linux";
+      
+      system.stateVersion = "26.05";
+
 
     };
 }
