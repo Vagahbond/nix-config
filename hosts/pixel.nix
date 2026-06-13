@@ -27,7 +27,6 @@
       "network"
       "ai"
     ];
-    impermanence = { };
     locales = { };
     system = { };
     user = { };
@@ -43,22 +42,32 @@
     }:
 
     {
+      options = {
+        environment.persistence = lib.mkOption {
+          type = lib.types.attrs;
+          default = { };
+          description = ''
+            Persistence options. 
+            For this host, we want them to be ignored.
+          '';
+        };
+      };
 
       imports = [
         # include nixos-avf modules
         inputs.avf.nixosModules.avf
       ];
 
-      # Change default user
-      avf.defaultUser = username;
+      config = {
 
-      environment.persistence.${config.persistence.storageLocation}.enable = lib.mkForce false;
+        # Change default user
+        avf.defaultUser = username;
 
-      # platform
-      nixpkgs.hostPlatform = "aarch64-linux";
-      
-      system.stateVersion = "26.05";
+        # platform
+        nixpkgs.hostPlatform = "aarch64-linux";
 
+        system.stateVersion = "26.05";
 
+      };
     };
 }
