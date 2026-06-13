@@ -131,7 +131,10 @@ in
     pixel
   ];
 
-  "dedistonks_access.age".publicKeys = [ mk ];
+  "dedistonks_access.age".publicKeys = [
+    mk
+    pixel
+  ];
 
   "aws_ro_access.age".publicKeys = [
     platypute
