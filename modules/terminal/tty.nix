@@ -10,7 +10,7 @@
       }:
       {
         console = {
-          font = "${pkgs.nerd-fonts.departure-mono}/share/fonts/opentype/NerdFonts/DepartureMono/DepartureMonoNerdFontMono-Regular.otf";
+          font = "${pkgs.nerd-fonts.bigblue-terminal}/share/fonts/truetype/NerdFonts/BigBlueTerm/BigBlueTermPlusNerdFontMono-Regular.ttf";
           colors = [
             "191724"
             "1f1d2e"
