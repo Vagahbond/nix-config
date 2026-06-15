@@ -42,6 +42,9 @@
       ...
     }:
 
+    let
+      ttydCommand = config.systemd.services.ttyd.serviceConfig.ExecStart;
+    in
     {
       options = {
         environment.persistence = lib.mkOption {
@@ -59,28 +62,23 @@
         inputs.avf.nixosModules.avf
       ];
 
-      config =
-        let
-          ttydCommand = config.systemd.services.ttyd.serviceConfig.ExecStart;
+      config = {
 
-        in
-        {
+        fonts.packages = [ pkgs.nerd-fonts.bigblue-terminal ];
 
-          fonts.packages = [ pkgs.nerd-fonts.bigblue-terminal ];
+        # Change default user
+        avf.defaultUser = username;
 
-          # Change default user
-          avf.defaultUser = username;
+        # platform
+        nixpkgs.hostPlatform = "aarch64-linux";
 
-          # platform
-          nixpkgs.hostPlatform = "aarch64-linux";
+        system.stateVersion = "26.05";
 
-          system.stateVersion = "26.05";
+        systemd.services.ttyd.serviceConfig.ExecStart = ttydCommand ++ ''
+          \
+                 -t fontSize=16 -t fontFamily="'BigBlueTerm Nerd Font Mono'"
+        '';
 
-          systemd.services.ttyd.serviceConfig.ExecStart = ttydCommand ++ ''
-            \
-                   -t fontSize=16 -t fontFamily="'BigBlueTerm Nerd Font Mono'"
-          '';
-
-        };
+      };
     };
 }
