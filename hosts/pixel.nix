@@ -18,6 +18,7 @@
     ];
     terminal = [
       "prompt"
+      "tty"
       "shell"
       "rss"
     ];

@@ -62,10 +62,6 @@
       }:
       {
         config = {
-          fonts.packages = [
-            pkgs.nerd-fonts.departure-mono
-            pkgs.nerd-fonts.mononoki
-          ];
 
           programs.zsh = {
             enable = true;
