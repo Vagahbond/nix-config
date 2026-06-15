@@ -9,12 +9,8 @@
         ...
       }:
       {
-        fonts.packages = [
-          pkgs.nerd-fonts.departure-mono
-          pkgs.nerd-fonts.mononoki
-        ];
         console = {
-          font = "DepartureMono Nerd Font Mono";
+          font = "${pkgs.nerd-fonts.departure-mono}/share/fonts/opentype/NerdFonts/DepartureMono/DepartureMonoNerdFontMono-Regular.otf";
           colors = [
             "191724"
             "1f1d2e"
