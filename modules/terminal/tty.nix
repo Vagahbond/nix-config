@@ -17,23 +17,23 @@
         console = {
           font = "Departure Mono Nerd Font Mono";
           colors = [
-
             "191724"
-            "eb6f92"
-            "31748f"
-            "f6c177"
-            "9ccfd8"
-            "ebbcba"
-            "c4a7e7"
-            "e0def4"
-            "191724"
-            "eb6f92"
             "1f1d2e"
             "26233a"
             "6e6a86"
-            "c4a7e7"
-            "6e6a86"
+            "908caa"
             "e0def4"
+            "e0def4"
+            "524f67"
+            "eb6f92"
+            "f6c177"
+            "ebbcba"
+            "31748f"
+            "9ccfd8"
+            "c4a7e7"
+            "f6c177"
+            "524f67"
+
           ];
         };
 
