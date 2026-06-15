@@ -37,14 +37,10 @@
       username,
       inputs,
       lib,
-      config,
       pkgs,
       ...
     }:
 
-    let
-      ttydCommand = config.systemd.services.ttyd.serviceConfig.ExecStart;
-    in
     {
       options = {
         environment.persistence = lib.mkOption {
@@ -73,11 +69,6 @@
         nixpkgs.hostPlatform = "aarch64-linux";
 
         system.stateVersion = "26.05";
-
-        systemd.services.ttyd.serviceConfig.ExecStart = ttydCommand ++ ''
-          \
-                 -t fontSize=16 -t fontFamily="'BigBlueTerm Nerd Font Mono'"
-        '';
 
       };
     };
