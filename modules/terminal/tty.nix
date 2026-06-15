@@ -5,7 +5,6 @@
     ];
     conf =
       {
-        config,
         pkgs,
         ...
       }:
@@ -15,7 +14,7 @@
           pkgs.nerd-fonts.mononoki
         ];
         console = {
-          font = "Departure Mono Nerd Font Mono";
+          font = "DepartureMono Nerd Font Mono";
           colors = [
             "191724"
             "1f1d2e"
@@ -33,7 +32,6 @@
             "c4a7e7"
             "f6c177"
             "524f67"
-
           ];
         };
 
