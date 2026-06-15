@@ -18,7 +18,6 @@
     ];
     terminal = [
       "prompt"
-      "tty"
       "shell"
       "rss"
     ];
@@ -39,6 +38,7 @@
       inputs,
       lib,
       config,
+      pkgs,
       ...
     }:
 
@@ -59,16 +59,28 @@
         inputs.avf.nixosModules.avf
       ];
 
-      config = {
+      config =
+        let
+          ttydCommand = config.systemd.services.ttyd.serviceConfig.ExecStart;
 
-        # Change default user
-        avf.defaultUser = username;
+        in
+        {
 
-        # platform
-        nixpkgs.hostPlatform = "aarch64-linux";
+          fonts.packages = [ pkgs.nerd-fonts.bigblue-terminal ];
 
-        system.stateVersion = "26.05";
+          # Change default user
+          avf.defaultUser = username;
 
-      };
+          # platform
+          nixpkgs.hostPlatform = "aarch64-linux";
+
+          system.stateVersion = "26.05";
+
+          systemd.services.ttyd.serviceConfig.ExecStart = ttydCommand ++ ''
+            \
+                   -t fontSize=16 -t fontFamily="'BigBlueTerm Nerd Font Mono'"
+          '';
+
+        };
     };
 }
