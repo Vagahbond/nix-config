@@ -13,6 +13,18 @@
         port = 3015;
       in
       {
+
+        ###################################################
+        # SECRETS                                         #
+        ###################################################
+
+        age.secrets.forgejoAdminPass = {
+          file = ../../secrets/forgejo_admin_pass.age;
+          owner = "forgejo";  
+          group = "forgejo";
+          mode = "600";
+        }
+
         ###################################################
         # PERSISTENCE                                     #
         ###################################################
@@ -67,7 +79,7 @@
         systemd.services.forgejo.preStart =
           let
             adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
-            pwd = config.sops.secrets.forgejo-admin-password;
+            pwd = config.age.secrets.forgejoAdminPass.path;
             user = "root"; # Note, Forgejo doesn't allow creation of an account named "admin"
           in
           ''
