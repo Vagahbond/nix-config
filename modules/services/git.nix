@@ -4,6 +4,7 @@
     conf =
       {
         pkgs,
+        lib,
         config,
         ...
       }:
@@ -63,6 +64,18 @@
           };
         };
 
+        systemd.services.forgejo.preStart =
+          let
+            adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
+            pwd = config.sops.secrets.forgejo-admin-password;
+            user = "root"; # Note, Forgejo doesn't allow creation of an account named "admin"
+          in
+          ''
+            ${adminCmd} create --admin --email "root@localhost" --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
+            ## uncomment this line to change an admin user which was already created
+            # ${adminCmd} change-password --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
+          '';
+
         ###################################################
         # SSL                                             #
         ###################################################
@@ -72,6 +85,9 @@
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString port}";
             proxyWebsockets = true;
+            extraConfig = ''
+              client_max_body_size 512M;
+            '';
           };
         };
       };

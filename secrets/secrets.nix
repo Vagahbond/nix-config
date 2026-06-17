@@ -203,4 +203,10 @@ in
     mk
     platypute
   ];
+
+  "forgejo_admin_pass.age".publicKeys = [
+    mk
+    platypute
+  ];
+
 }
