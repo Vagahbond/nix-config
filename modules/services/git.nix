@@ -20,10 +20,10 @@
 
         age.secrets.forgejoAdminPass = {
           file = ../../secrets/forgejo_admin_pass.age;
-          owner = "forgejo";  
+          owner = "forgejo";
           group = "forgejo";
           mode = "600";
-        }
+        };
 
         ###################################################
         # PERSISTENCE                                     #
