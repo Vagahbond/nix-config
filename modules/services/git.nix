@@ -15,46 +15,50 @@
         ###################################################
         # PERSISTENCE                                     #
         ###################################################
-        environment = {
-          persistence.${config.persistence.storageLocation} = {
-            directories = [
-              {
-                directory = "/var/lib/forgejo";
-                user = "forgejo";
-                group = "forgejo";
-                mode = "u=rwx,g=rx,o=";
-              }
-            ];
+        /*
+          environment = {
+            persistence.${config.persistence.storageLocation} = {
+              directories = [
+                {
+                  directory = "/var/lib/forgejo";
+                  user = "forgejo";
+                  group = "forgejo";
+                  mode = "u=rwx,g=rx,o=";
+                }
+              ];
+            };
           };
-        };
+        */
 
         ###################################################
         # SERVICE                                         #
         ###################################################
-        services.forgejo = {
-          enable = true;
+        services = {
+          forgejo = {
+            enable = true;
 
-          database = {
-            type = "postgres";
-            createDatabase = true;
-          };
-
-          lfs.enable = true;
-
-          settings = {
-            server = {
-              DOMAIN = domain;
-              ROOT_URL = "https://${domain}/";
-              HTTP_ADDR = "127.0.0.1";
-              HTTP_PORT = port;
+            database = {
+              type = "postgres";
+              createDatabase = true;
             };
 
-            service = {
-              DISABLE_REGISTRATION = true;
-            };
+            lfs.enable = true;
 
-            session = {
-              COOKIE_SECURE = true;
+            settings = {
+              server = {
+                DOMAIN = domain;
+                ROOT_URL = "https://${domain}/";
+                HTTP_ADDR = "127.0.0.1";
+                HTTP_PORT = port;
+              };
+
+              service = {
+                DISABLE_REGISTRATION = true;
+              };
+
+              session = {
+                COOKIE_SECURE = true;
+              };
             };
           };
         };

@@ -22,6 +22,7 @@
       "budget"
       "blog"
       "automation"
+      "git"
       "photos"
       "builder"
       "files"
