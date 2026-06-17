@@ -79,7 +79,7 @@
         systemd.services.forgejo.preStart =
           let
             adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
-            pwd = config.age.secrets.forgejoAdminPass.path;
+            pwd = config.age.secrets.forgejoAdminPass;
             user = "root"; # Note, Forgejo doesn't allow creation of an account named "admin"
           in
           ''
