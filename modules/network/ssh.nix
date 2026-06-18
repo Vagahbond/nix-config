@@ -23,7 +23,8 @@
 
         privKeytoHomeFile = name: value: {
           ".ssh/${name}" = {
-            source = value.priv;
+
+            source = config.age.secrets.${name}.path;
           };
         };
 
