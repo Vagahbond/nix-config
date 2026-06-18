@@ -57,8 +57,8 @@
             enable = true;
             config = {
               user = {
-                name = "Yoni FIRROLONI";
-                email = "pro@yoni-firroloni.com";
+                name = "Vagahbond";
+                email = "vagahbond@pm.me";
               };
               init = {
                 defaultBranch = "master";
@@ -69,6 +69,11 @@
                     "gh:"
                     "github:"
                   ];
+                  "https://git.vagahbond.com/" = {
+                    insteadOf = [
+                      "vag:"
+                      "fj:"
+                    ];
                 };
               };
             };
