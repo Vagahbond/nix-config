@@ -21,19 +21,33 @@
           };
         };
 
+        privKeytoHomeFile = name: value: {
+          ".ssh/${name}" = {
+            source = value.priv;
+          };
+        };
+
         pubKeys = pkgs.lib.mkMerge (builtins.attrValues (builtins.mapAttrs pubKeytoHomeFile keys));
-        privKeys = builtins.mapAttrs (_: k: k.priv) keys;
+        privKeys = pkgs.lib.mkMerge (builtins.attrValues (builtins.mapAttrs privKeytoHomeFile keys));
+        privKeySecrets = builtins.mapAttrs (_: k: k.priv) keys;
       in
       {
-        home-files.${username} = pubKeys;
+        home-files.${username} =
+          pubKeys
+          // privKeys
+          // {
+            ".ssh/config" = {
+              source = config.age.secrets.sshConfig.path;
+            };
+          };
 
-        age.secrets = privKeys // {
+        age.secrets = privKeySecrets // {
           sshConfig = {
             file = ../../secrets/ssh_config.age;
-            path = "${config.users.users.${username}.home}/.ssh/config";
-            mode = "644";
-            # owner = username;
-            # group = "users";
+            # path = "${config.users.users.${username}.home}/.ssh/config";
+            mode = "600";
+            owner = username;
+            group = "users";
           };
         };
 
