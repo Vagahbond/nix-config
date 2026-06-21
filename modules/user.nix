@@ -7,6 +7,7 @@ let
         links:
         pkgs.lib.concatStringsSep "\n" (
           pkgs.lib.mapAttrsToList (dest: src: ''
+            echo "Creating symlink ${dest}"
             mkdir -p "$(${pkgs.coreutils}/bin/dirname ${dest})"
             ln -sf ${src} ${dest}
           '') links
@@ -29,7 +30,7 @@ let
               else if textContent != null then
                 pkgs.writeText relPath textContent
               else
-                throw ""
+                throw "Incorrect home file configuration for ${username}: ${relPath}"
             )
           ) userCfg;
         in

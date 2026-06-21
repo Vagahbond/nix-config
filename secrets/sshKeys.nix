@@ -13,10 +13,10 @@ let
 
   mkPrivateKey = name: {
     file = ./${name}.age;
-    # path = "${config.users.users.${username}.home}/.ssh/${name}";
-    mode = "600";
-    owner = username;
-    group = "users";
+    #path = "${config.users.users.${username}.home}/.ssh/${name}";
+    #mode = "600";
+    #owner = username;
+    #group = "users";
   };
 
   mkKeyPair = name: pub: {

@@ -46,9 +46,9 @@
           sshConfig = {
             file = ../../secrets/ssh_config.age;
             # path = "${config.users.users.${username}.home}/.ssh/config";
-            mode = "600";
-            owner = username;
-            group = "users";
+            # mode = "440";
+            # owner = username;
+            # group = "users";
           };
         };
 
