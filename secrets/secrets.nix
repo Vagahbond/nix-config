@@ -114,6 +114,7 @@ in
   "ssh_config.age".publicKeys = [
     mk
     pixel
+    platypute
   ];
 
   "builder_access.age".publicKeys = [
@@ -127,6 +128,7 @@ in
   ];
 
   "github_access.age".publicKeys = [
+    platypute
     mk
     pixel
   ];
@@ -172,6 +174,11 @@ in
   ];
 
   "mk_reset_env.age".publicKeys = [
+    platypute
+    mk
+  ];
+
+  "tournament_env.age".publicKeys = [
     platypute
     mk
   ];

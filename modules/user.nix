@@ -160,9 +160,11 @@ in
               ".pki"
             ];
 
-            files = [
-              ".gitconfig"
-            ];
+            /*
+              files = [
+                ".gitconfig"
+              ];
+            */
           };
         };
       };

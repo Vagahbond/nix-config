@@ -88,5 +88,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    tournament = {
+      url = "git+ssh://git@github.com/Vagahbond/tournment-app-project.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 }

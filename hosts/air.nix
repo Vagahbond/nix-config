@@ -9,6 +9,9 @@
     editor = [
       "nvf"
     ];
+    admin = [
+      "keys"
+    ];
     network = [
       "ssh"
     ];
