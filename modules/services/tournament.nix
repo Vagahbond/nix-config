@@ -30,6 +30,7 @@
             locations = {
               "/" = {
                 root = "${inputs.tournament.packages.${pkgs.stdenv.hostPlatform.system}.frontend}";
+                tryFiles = "$uri $uri/ /index.html";
               };
 
               "/api/" = {
