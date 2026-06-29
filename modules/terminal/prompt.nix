@@ -94,7 +94,12 @@ in
   {
     targets = [ "darwinConfiguration" ];
     conf =
-      { pkgs, username, ... }:
+      {
+        pkgs,
+        username,
+        lib,
+        ...
+      }:
       {
         environment.systemPackages = with pkgs; [
           starship
@@ -102,7 +107,13 @@ in
 
         home-files.${username}.".config/starship.toml".source =
           pkgs.writers.writeTOML "starship.toml" starshipConfiguration.settings;
+
+        programs.zsh.promptInit = ''
+          eval "$(${pkgs.starship}/bin/starship init zsh)"
+        '';
+
       };
+
   }
   {
     targets = [ "nixosConfiguration" ];

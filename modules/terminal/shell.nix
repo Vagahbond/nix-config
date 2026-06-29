@@ -55,22 +55,17 @@
   }
   {
     targets = [ "darwinConfiguration" ];
-    conf =
-      {
-        pkgs,
-        ...
-      }:
-      {
-        config = {
+    conf = _: {
+      config = {
 
-          programs.zsh = {
-            enable = true;
-            enableCompletion = true;
-            enableSyntaxHighlighting = true;
-            enableAutosuggestions = true;
-          };
+        programs.zsh = {
+          enable = true;
+          enableCompletion = true;
+          enableSyntaxHighlighting = true;
+          enableAutosuggestions = true;
         };
       };
+    };
   }
   {
     targets = [ "nixosConfiguration" ];
