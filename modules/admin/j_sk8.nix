@@ -69,6 +69,10 @@
                   command = "/run/current-system/sw/bin/systemctl restart tournament-api.service";
                   options = [ "NOPASSWD" ];
                 }
+                {
+                  command = "/run/current-system/sw/bin/migrate-tournament-db";
+                  options = [ "NOPASSWD" ];
+                }
               ];
             }
           ];
