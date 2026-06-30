@@ -89,7 +89,7 @@
     };
 
     tournament = {
-      url = "git+ssh://git@github.com/Vagahbond/tournment-app-project.git";
+      url = "git+ssh://git@github.com/jmsk8/tournment-app-project.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
