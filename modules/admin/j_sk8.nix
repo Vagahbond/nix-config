@@ -5,6 +5,7 @@
       {
         inputs,
         pkgs,
+        config,
         ...
       }:
       let
@@ -41,6 +42,14 @@
         nix.settings.trusted-users = [ username ];
 
         environment.systemPackages = [ upgradeScript ];
+
+        home-files.${username} = {
+          ".ssh/config".source = config.age.secrets.sshConfig.path;
+          ".ssh/github_access.pub".text =
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBi/qH3wsZVyF61Wd1qgwvzx5VRl4uPYEWNxSCbYLC+n vagahbond@framework";
+          ".ssh/github_access".source = config.age.secrets.gitKey.path;
+
+        };
 
         security.sudo = {
           enable = true;
