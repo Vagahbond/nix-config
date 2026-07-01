@@ -660,17 +660,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1782699604,
-        "narHash": "sha256-xBe3/4nw23j2p0EwL/00M5PEL0qrBaeeVUl99xHFUr4=",
+        "lastModified": 1782837327,
+        "narHash": "sha256-jrB7Mnj9jOm2wAMYSH1f+5VMNjperZn7EnjKBK6nkuQ=",
         "ref": "refs/heads/main",
-        "rev": "49e78a322742e7380e630501c148f690040bec56",
-        "revCount": 56,
+        "rev": "ca77f152bb46e48d96b32837c0c93d26d9c8d16e",
+        "revCount": 27,
         "type": "git",
-        "url": "ssh://git@github.com/Vagahbond/tournment-app-project.git"
+        "url": "ssh://git@github.com/jmsk8/tournment-app-project.git"
       },
       "original": {
         "type": "git",
-        "url": "ssh://git@github.com/Vagahbond/tournment-app-project.git"
+        "url": "ssh://git@github.com/jmsk8/tournment-app-project.git"
       }
     },
     "treefmt-nix": {
