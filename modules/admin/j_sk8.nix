@@ -3,7 +3,6 @@
     targets = [ "nixosConfiguration" ];
     conf =
       {
-        inputs,
         pkgs,
         config,
         ...
@@ -13,7 +12,7 @@
 
         upgradeScript = pkgs.writeScriptBin "upgrade" ''
           rm -r /tmp/tmpflake;
-          git clone --depth 1 https://github.com/vagahbond/nix-config /tmp/tmpflake;
+          git clone --depth 1 https://git.vagahbond.com/vagahbond/nix-config /tmp/tmpflake;
 
           nix flake update mkReset tournament --flake /tmp/tmpflake;
 

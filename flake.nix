@@ -61,24 +61,24 @@
     };
 
     website = {
-      url = "github:vagahbond/homepage";
+      url = "git+ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git";
 
       inputs.nixpkgs.follows = "nixpkgs";
 
     };
 
     audio-experiments = {
-      url = "github:vagahbond/audio-experiments";
+      url = "git+ssh://forgejo@git.vagahbond.com/vagahbond/audio-experiments.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     blog = {
-      url = "github:vagahbond/blog";
+      url = "git+ssh://forgejo@git.vagahbond.com/vagahbond/blog.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     firesplit = {
-      url = "github:vagahbond/firesplit";
+      url = "git+ssh://forgejo@git.vagahbond.com/vagahbond/firesplit.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

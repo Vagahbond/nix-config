@@ -56,15 +56,15 @@
       "locked": {
         "lastModified": 1776651780,
         "narHash": "sha256-HptBBoDsCxQmwSloUADIiZ0pPZmeEXBMJEJA4AGV2Qc=",
-        "owner": "vagahbond",
-        "repo": "audio-experiments",
+        "ref": "refs/heads/main",
         "rev": "f1919869020aafbda2c652fdc400aa63faae2333",
-        "type": "github"
+        "revCount": 22,
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/audio-experiments.git"
       },
       "original": {
-        "owner": "vagahbond",
-        "repo": "audio-experiments",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/audio-experiments.git"
       }
     },
     "autoDarkModeNvim": {
@@ -112,15 +112,15 @@
       "locked": {
         "lastModified": 1776812041,
         "narHash": "sha256-rqlg24YrfSEAhGY1NMgjcch8WOHS+Xa+tUgjkUuIrr4=",
-        "owner": "vagahbond",
-        "repo": "blog",
+        "ref": "refs/heads/master",
         "rev": "d07ed43a63d8975727a6541f119eda22d913a6c6",
-        "type": "github"
+        "revCount": 71,
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/blog.git"
       },
       "original": {
-        "owner": "vagahbond",
-        "repo": "blog",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/blog.git"
       }
     },
     "bun2nix": {
@@ -213,15 +213,15 @@
       "locked": {
         "lastModified": 1780736758,
         "narHash": "sha256-b47MSRaDLSDisjUdMMh28t3mBDDSdXGQYpGjwvks2W0=",
-        "owner": "vagahbond",
-        "repo": "firesplit",
+        "ref": "refs/heads/master",
         "rev": "c734167f77fc6fb8a9878ebea8cde4e57e8a5be3",
-        "type": "github"
+        "revCount": 90,
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/firesplit.git"
       },
       "original": {
-        "owner": "vagahbond",
-        "repo": "firesplit",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/firesplit.git"
       }
     },
     "flake-compat": {
@@ -502,11 +502,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1782821651,
-        "narHash": "sha256-D5jO0ME1lA9bDHnd5kVawBwItG/N4oZr3FlXmMzLec8=",
+        "lastModified": 1782918843,
+        "narHash": "sha256-ETYnV9U7Sr+A45dohzZdfCZKOss4qrTkO+wgNZNvEc0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e52c192be9d7b2c4bd4aed326c8731b35f8bb75c",
+        "rev": "e8273b29fe1390ec8d4603f2477357555291432e",
         "type": "github"
       },
       "original": {
@@ -518,11 +518,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1781216227,
-        "narHash": "sha256-9mUW6gNwoN2SWc/l0fW4svPNOulXLl8ijqKyeSOGgJE=",
+        "lastModified": 1782847225,
+        "narHash": "sha256-JC9PjqKYG9ve5U8aDOLQipp3+KLANBHUvGdLZlxzdKI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a0374025a863d007d98e3297f6aa46cc3141c2f0",
+        "rev": "95ca1e203c0750115fd4a6f17d5a245dfe6b1edd",
         "type": "github"
       },
       "original": {
@@ -541,11 +541,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1782841360,
-        "narHash": "sha256-S1f/S5Vv7wURVUtzPkmAFlKPVciaPLXxoeg7/GCnl28=",
+        "lastModified": 1783020948,
+        "narHash": "sha256-72w8cZWJhcIo8ThuxP6Mh/hwvnjnO03c8C80h6iAfFE=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "6fad9e9a998dd3a7783c839ce2928877d3e5a883",
+        "rev": "1f0b98b404daac6635d766455ab3dd06f6c85866",
         "type": "github"
       },
       "original": {
@@ -704,15 +704,15 @@
       "locked": {
         "lastModified": 1775114938,
         "narHash": "sha256-1uboFjZY4PbD8cIqHtS3vgtUsTuV4Pj0RGWSBCfADTw=",
-        "owner": "vagahbond",
-        "repo": "homepage",
+        "ref": "refs/heads/master",
         "rev": "48d28ce4367beb5892252f4e5dade82f66630479",
-        "type": "github"
+        "revCount": 52,
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       },
       "original": {
-        "owner": "vagahbond",
-        "repo": "homepage",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       }
     }
   },
