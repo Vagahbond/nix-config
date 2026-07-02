@@ -502,11 +502,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1782760764,
-        "narHash": "sha256-N66fYdUuZ9hpdM7jsQ7CUWtLJduqGDyTGCaLR62CXaQ=",
+        "lastModified": 1782821651,
+        "narHash": "sha256-D5jO0ME1lA9bDHnd5kVawBwItG/N4oZr3FlXmMzLec8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7a1a64774a5fd0b0cd39ac95d0e170ace8b266a0",
+        "rev": "e52c192be9d7b2c4bd4aed326c8731b35f8bb75c",
         "type": "github"
       },
       "original": {
@@ -660,11 +660,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782837327,
-        "narHash": "sha256-jrB7Mnj9jOm2wAMYSH1f+5VMNjperZn7EnjKBK6nkuQ=",
+        "lastModified": 1782950415,
+        "narHash": "sha256-jdNe5RfBT5eZbWR2DFXdOM7r0yVf3UKnyQhD8o+WawI=",
         "ref": "refs/heads/main",
-        "rev": "ca77f152bb46e48d96b32837c0c93d26d9c8d16e",
-        "revCount": 27,
+        "rev": "28cb99f4b1868dceb4fa2650fdd4f620867785c0",
+        "revCount": 28,
         "type": "git",
         "url": "ssh://git@github.com/jmsk8/tournment-app-project.git"
       },
