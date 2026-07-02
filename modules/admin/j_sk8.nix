@@ -18,6 +18,8 @@
           nix flake update mkReset tournament --flake /tmp/tmpflake;
 
           nh os switch -R /tmp/tmpflake/.;
+
+          rm -rf /tmp/tmpflake;
         '';
 
       in
