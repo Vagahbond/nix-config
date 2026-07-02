@@ -45,7 +45,7 @@
 
         age.secrets.j_sk8GitKey = {
           file = ./secrets/github_access.age;
-          user = username;
+          owner = username;
           mode = "0400";
         };
 
