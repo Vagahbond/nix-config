@@ -53,7 +53,7 @@
           };
         };
 
-        home-files.${username} = {
+        home-files.root = {
           ".ssh/config".text = ''
             Host github.com
               HostName github.com
