@@ -23,7 +23,7 @@
           sshConfig = {
             file = ../../secrets/ssh_config.age;
             owner = username;
-            mode = "440";
+            mode = "400";
           };
         };
 

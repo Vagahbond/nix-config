@@ -14,7 +14,7 @@ let
   mkPrivateKey = name: {
     file = ./${name}.age;
     owner = username;
-    mode = "440";
+    mode = "400";
   };
 
   mkKeyPair = name: pub: {

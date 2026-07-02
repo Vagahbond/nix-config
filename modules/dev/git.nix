@@ -10,7 +10,7 @@
         age.secrets.gitKey = {
           file = ../../secrets/github_access.age;
           owner = "vagahbond";
-          mode = "440";
+          mode = "400";
         };
 
         home-files.vagahbond = {
