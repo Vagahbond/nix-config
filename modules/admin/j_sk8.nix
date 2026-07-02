@@ -13,7 +13,7 @@
 
         upgradeScript = pkgs.writeScriptBin "upgrade" ''
           rm -r /tmp/tmpflake;
-          git clone https://github.com/vagahbond/nix-config /tmp/tmpflake;
+          git clone --depth 1 https://github.com/vagahbond/nix-config /tmp/tmpflake;
 
           nix flake update mkReset tournament --flake /tmp/tmpflake;
 
