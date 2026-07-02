@@ -44,7 +44,7 @@
         environment.systemPackages = [ upgradeScript ];
 
         age.secrets.j_sk8GitKey = {
-          file = ./secrets/github_access.age;
+          file = ../../secrets/github_access.age;
           owner = username;
           mode = "0400";
         };
