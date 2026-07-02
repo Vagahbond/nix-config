@@ -43,11 +43,17 @@
 
         environment.systemPackages = [ upgradeScript ];
 
+        age.secrets.j_sk8GitKey = {
+          file = ./secrets/github_access.age;
+          user = username;
+          mode = "0400";
+        };
+
         home-files.${username} = {
           ".ssh/config".source = config.age.secrets.sshConfig.path;
           ".ssh/github_access.pub".text =
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBi/qH3wsZVyF61Wd1qgwvzx5VRl4uPYEWNxSCbYLC+n vagahbond@framework";
-          ".ssh/github_access".source = config.age.secrets.gitKey.path;
+          ".ssh/github_access".source = config.age.secrets.j_sk8GitKey.path;
 
         };
 
