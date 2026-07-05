@@ -22,13 +22,6 @@
             enable = true;
             settings = {
               PasswordAuthentication = false;
-              Banner = toString (
-                pkgs.writeText "banner.txt" ''
-                  You just logged into ${config.networking.hostName}.
-                  For inquiries, please contact vagahbond@pm.me.
-
-                ''
-              );
             };
           };
         };

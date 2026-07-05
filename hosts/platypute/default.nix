@@ -60,7 +60,7 @@
   };
 
   configuration =
-    { username, ... }:
+    { username, pkgs, ... }:
     {
       imports = [
         ./hardware-configuration.nix
@@ -72,6 +72,18 @@
 
       users.users.${username}.hashedPassword =
         "$y$j9T$wNFGGvQeqSgVUXxTmOHX8.$wd5iVM5t01vuyNKR.bEcwBZIQ.t8qIxhPylDzhRYDC0";
+
+      services.openssh.Banner = toString (
+        pkgs.writeText "banner.txt" ''
+                __      ____  
+           ___,o` `.-'''    ```-._.----. 
+          '----..__,,_________,,-..____,'
+                  (_\        (_\
+          Bienvenue sur Platypute.
+          Pour toute demande, contacter vagahbond@pm.me.
+
+        ''
+      );
 
     };
 }
