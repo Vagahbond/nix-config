@@ -33,7 +33,7 @@
   };
 
   configuration =
-    { pkgs }:
+    { pkgs, ... }:
     let
       updatePlatyputeScript = pkgs.writeScript "update-platypute" ''
         #!${pkgs.runtimeShell}
@@ -44,7 +44,7 @@
 
     in
     {
-      environment.systemPackages = with pkgs; [
+      environment.systemPackages = [
         updatePlatyputeScript
       ];
 
