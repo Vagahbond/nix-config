@@ -1,3 +1,6 @@
+let
+  config-repo = "git+ssh://forgejo@git.vagahbond.com/vagahbond/nix-config.git";
+in
 [
   {
     targets = [
@@ -5,10 +8,7 @@
       "darwinConfiguration"
     ];
     conf =
-      {
-        pkgs,
-        ...
-      }:
+      { pkgs, inputs, ... }:
       {
 
         environment = {
@@ -18,17 +18,6 @@
             nh
           ];
         };
-      };
-  }
-
-  {
-    targets = [
-      "nixosConfiguration"
-      "darwinConfiguration"
-    ];
-    conf =
-      { pkgs, inputs, ... }:
-      {
 
         nixpkgs.config = {
           allowUnfree = true;
@@ -82,6 +71,7 @@
 
       environment.sessionVariables = {
         TMPDIR = "/var/tmp"; # Use a disk-based directory
+        NIX_CONFIG = config-repo;
       };
 
     };
@@ -91,6 +81,7 @@
     conf = _: {
       environment.variables = {
         NIXPKGS_ALLOW_UNFREE = "1";
+        NIX_CONFIG = config-repo;
       };
 
       nix = {

@@ -32,8 +32,24 @@
     user = { };
   };
 
-  configuration = _: {
-    system.stateVersion = 6;
-    nixpkgs.hostPlatform = "aarch64-darwin";
-  };
+  configuration =
+    { pkgs }:
+    let
+      updatePlatyputeScript = pkgs.writeScript "update-platypute" ''
+        #!${pkgs.runtimeShell}
+        set -euo pipefail
+
+        ssh -t platypute nh os switch --refresh "$NIX_CONFIG";
+      '';
+
+    in
+    {
+      environment.systemPackages = with pkgs; [
+        updatePlatyputeScript
+      ];
+
+      system.stateVersion = 6;
+      nixpkgs.hostPlatform = "aarch64-darwin";
+
+    };
 }
