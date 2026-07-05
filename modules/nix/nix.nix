@@ -79,6 +79,10 @@ in
   {
     targets = [ "darwinConfiguration" ];
     conf = _: {
+      # https://github.com/nix-darwin/nix-darwin/issues/1817
+      documentation.enable = false;
+      system.tools.darwin-uninstaller.enable = false;
+
       environment.variables = {
         NIXPKGS_ALLOW_UNFREE = "1";
         NIX_CONFIG = config-repo;
