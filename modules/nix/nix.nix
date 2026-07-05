@@ -1,5 +1,7 @@
 let
-  config-repo = "git+ssh://forgejo@git.vagahbond.com/vagahbond/nix-config.git";
+  nhEnv = {
+    NH_FLAKE = "git+ssh://forgejo@git.vagahbond.com/vagahbond/nix-config.git";
+  };
 in
 [
   {
@@ -71,8 +73,8 @@ in
 
       environment.sessionVariables = {
         TMPDIR = "/var/tmp"; # Use a disk-based directory
-        NIX_CONFIG = config-repo;
-      };
+      }
+      // nhEnv;
 
     };
   }
@@ -85,8 +87,8 @@ in
 
       environment.variables = {
         NIXPKGS_ALLOW_UNFREE = "1";
-        NIX_CONFIG = config-repo;
-      };
+      }
+      // nhEnv;
 
       nix = {
         linux-builder = {

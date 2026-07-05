@@ -33,10 +33,10 @@
   };
 
   configuration =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     let
-      updatePlatyputeScript = pkgs.writeScriptBin "update-platypute" ''
-        ssh -t platypute nh os switch --refresh "$NIX_CONFIG";
+      updatePlatyputeScript = pkgs.writeScriptBin "upgrade-platypute" ''
+        ssh -t platypute nh os switch "${config.environment.variables.NH_FLAKE}" --refresh;
       '';
 
     in
