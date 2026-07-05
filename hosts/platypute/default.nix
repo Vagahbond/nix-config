@@ -73,7 +73,7 @@
       users.users.${username}.hashedPassword =
         "$y$j9T$wNFGGvQeqSgVUXxTmOHX8.$wd5iVM5t01vuyNKR.bEcwBZIQ.t8qIxhPylDzhRYDC0";
 
-      services.openssh.Banner = toString (
+      services.openssh.settings.Banner = toString (
         pkgs.writeText "banner.txt" ''
                 __      ____  
            ___,o` `.-'''    ```-._.----. 
