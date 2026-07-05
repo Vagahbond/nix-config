@@ -35,10 +35,7 @@
   configuration =
     { pkgs, ... }:
     let
-      updatePlatyputeScript = pkgs.writeScript "update-platypute" ''
-        #!${pkgs.runtimeShell}
-        set -euo pipefail
-
+      updatePlatyputeScript = pkgs.writeScriptBin "update-platypute" ''
         ssh -t platypute nh os switch --refresh "$NIX_CONFIG";
       '';
 
