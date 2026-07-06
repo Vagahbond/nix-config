@@ -83,6 +83,8 @@
               DB_POSTGRESDB_HOST = "/run/postgresql";
               DB_POSTGRESDB_USER = "n8n";
               DB_POSTGRESDB_PASSWORD = "";
+              WEBHOOK_URL = "https://automation.vagahbond.com";
+              N8N_PROXY_HOPS = 1;
             };
           };
 
