@@ -194,6 +194,7 @@
               };
               web = {
                 type = "internal";
+                prefer_browser_login = true;
               };
               storage = {
                 filesystem_folder = "/var/lib/radicale/collections";
