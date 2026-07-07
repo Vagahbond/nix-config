@@ -211,11 +211,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780736758,
-        "narHash": "sha256-b47MSRaDLSDisjUdMMh28t3mBDDSdXGQYpGjwvks2W0=",
+        "lastModified": 1783464822,
+        "narHash": "sha256-uSIgFzjjyRHsXkrn4OH7JSN3TjHrSwv4zBnFke/iKIA=",
         "ref": "refs/heads/master",
-        "rev": "c734167f77fc6fb8a9878ebea8cde4e57e8a5be3",
-        "revCount": 90,
+        "rev": "acc5f5dae3d7769798ba71b7a813e6ecfca19a1b",
+        "revCount": 91,
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/firesplit.git"
       },
