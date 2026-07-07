@@ -43,11 +43,24 @@
         services = {
           postgresql = {
             enable = true;
+            initialScript = pkgs.writeText "j_sk8-grants.sql" ''
+                            
+              GRANT ALL PRIVILEGES ON DATABASE mk_reset TO myuser;
+              GRANT ALL PRIVILEGES ON DATABASE tournament TO myuser;
+
+              \c mk_reset
+              GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
+              GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO myuser;
+              GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO myuser;
+
+              \c tournament
+              GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
+              GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO myuser;
+              GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO myuser;
+            '';
             ensureUsers = [
               {
-                name = "j_sk8";
-                ensureClauses = { };
-
+                name = username;
               }
             ];
           };
