@@ -40,6 +40,19 @@
           };
         };
 
+        services = {
+          postgresql = {
+            enable = true;
+            ensureUsers = [
+              {
+                name = "j_sk8";
+                ensureClauses = { };
+
+              }
+            ];
+          };
+        };
+
         nix.settings.trusted-users = [ username ];
 
         environment.systemPackages = [ upgradeScript ];
