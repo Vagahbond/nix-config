@@ -45,18 +45,18 @@
             enable = true;
             initialScript = pkgs.writeText "j_sk8-grants.sql" ''
                             
-              GRANT ALL PRIVILEGES ON DATABASE mk_reset TO myuser;
-              GRANT ALL PRIVILEGES ON DATABASE tournament TO myuser;
+              GRANT ALL PRIVILEGES ON DATABASE mk_reset TO ${username};
+              GRANT ALL PRIVILEGES ON DATABASE tournament TO ${username};
 
               \c mk_reset
-              GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
-              GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO myuser;
-              GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO myuser;
+              GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${username};
+              GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO ${username};
+              GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO ${username};
 
               \c tournament
-              GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
-              GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO myuser;
-              GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO myuser;
+              GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${username};
+              GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO ${username};
+              GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO ${username};
             '';
             ensureUsers = [
               {
