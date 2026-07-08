@@ -41,6 +41,10 @@
 
         users.groups.n8n = { };
 
+        systemd.tmpfiles.rules = [
+          "d /var/lib/n8n 0755 n8n n8n - -"
+        ];
+
         systemd.services = {
           n8n.serviceConfig = {
             DynamicUser = pkgs.lib.mkForce false;
@@ -85,6 +89,7 @@
               DB_POSTGRESDB_PASSWORD = "";
               WEBHOOK_URL = "https://automation.vagahbond.com";
               N8N_PROXY_HOPS = 1;
+              N8N_RESTRICT_FILE_ACCESS_TO = "/var/lib/n8n/";
             };
           };
 
