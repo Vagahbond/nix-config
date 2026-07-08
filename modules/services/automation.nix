@@ -90,7 +90,9 @@
               WEBHOOK_URL = "https://automation.vagahbond.com";
               N8N_PROXY_HOPS = 1;
               N8N_RESTRICT_FILE_ACCESS_TO = "/var/lib/n8n";
-              N8N_REINSTALL_MISSING_PACKAGES = "true";
+              N8N_REINSTALL_MISSING_PACKAGES = "false";
+              N8N_COMMUNITY_PACKAGES_PREVENT_LOADING = "true";
+
             };
           };
 
