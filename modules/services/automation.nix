@@ -90,7 +90,6 @@
               WEBHOOK_URL = "https://automation.vagahbond.com";
               N8N_PROXY_HOPS = 1;
               N8N_RESTRICT_FILE_ACCESS_TO = "/var/lib/n8n";
-              N8N_USER_FOLDER = "/var/lib/n8n";
             };
           };
 
