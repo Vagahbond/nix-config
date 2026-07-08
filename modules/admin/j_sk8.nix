@@ -94,21 +94,6 @@
         security.sudo = {
           enable = true;
           extraRules = [
-
-            {
-              users = [ username ];
-              runAs = [
-                "tournament"
-                "mk_reset"
-              ];
-              commands = [
-                {
-                  command = "/run/current-system/sw/bin/psql";
-                  options = [ "NOPASSWD" ];
-                }
-
-              ];
-            }
             {
               # allow wheel group to run nixos-rebuild without password
               # this s a less vulnerable alternative to having wheelNeedsPassword = false
@@ -139,7 +124,25 @@
                 }
               ];
             }
-          ];
+          ]
+          ++ (builtins.map
+            (dbUser: {
+
+              users = [ username ];
+              runAs = dbUser;
+              commands = [
+                {
+                  command = "/run/current-system/sw/bin/psql";
+                  options = [ "NOPASSWD" ];
+                }
+
+              ];
+            })
+            [
+              "tournament"
+              "mk_reset"
+            ]
+          );
         };
       };
   }
