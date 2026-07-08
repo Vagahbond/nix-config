@@ -58,6 +58,7 @@
               GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO ${username};
               GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO ${username};
             '';
+
             ensureUsers = [
               {
                 name = username;
@@ -119,6 +120,14 @@
                 }
                 {
                   command = "/run/current-system/sw/bin/migrate-tournament-db";
+                  options = [ "NOPASSWD" ];
+                }
+                {
+                  command = "/run/current-system/sw/bin/psql -d tournament";
+                  options = [ "NOPASSWD" ];
+                }
+                {
+                  command = "/run/current-system/sw/bin/psql -d mk_reset";
                   options = [ "NOPASSWD" ];
                 }
               ];
