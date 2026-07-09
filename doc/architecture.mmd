@@ -1,0 +1,193 @@
+flowchart LR
+  acme[Let's Encrypt ACME]
+  matrix[Matrix messaging]
+  awss3[AWS S3]
+
+  subgraph platypute[platypute NixOS server]
+
+    subgraph edge[Edge services]
+      subgraph nginx[Nginx reverse proxy]
+
+        uptime.vagahbond.com
+        git.vagahbond.com
+        automation.vagahbond.com
+        files.vagahbond.com
+        office.vagahbond.com
+        pass.vagahbond.com
+        notes.vagahbond.com
+        pics.vagahbond.com
+        api.pics.vagahbond.com
+        money.vagahbond.com
+        importer.money.vagahbond.com
+        accounting.vagahbond.com
+
+        music-experiments.vagahbond.com
+        vagahbond.com
+        touches-grasses.fr
+
+        tournament.mkreset.fr
+        mkreset.fr
+      end
+      subgraph sshd[OpenSSH and fail2ban]
+        forgejossh["forgejo@git.vagahbond.com"]
+        builderssh["builder@vagahbond.com"]
+      end
+    end
+
+    subgraph backend[Back-End]
+      postgres[(PostgreSQL 17)]
+      pgbackup[PostgreSQL backups]
+    end
+
+    subgraph lab[Lab]
+      homepage[Homepage]
+      audio[Audio experiments]
+
+      subgraph bloggroup[Blog]
+        blog[Touches-grasses]
+        grassServer[Grass server]
+      end
+    end
+
+    subgraph j_sk8[J_sk8]
+        mkreset[mkReset]
+      subgraph tournamentgroup[Tournament]
+        tournament[Tournament]
+        tournamentBackend[Tournament backend]
+      end
+    end
+
+    subgraph services[Services]
+      kuma[Uptime]
+      forgejo[Git server]
+      subgraph n8ngroup[n8n Automations]
+        n8n[Automations]
+        n8nrunner[n8n task runner]
+      end
+
+      subgraph opencloudgroup[Open Cloud]
+        opencloud[cloud]
+        radicale[Calendar and contacts]
+        collabora[Online office]
+      end
+
+      vaultwarden[Password manager]
+
+      subgraph affinegroup [Affine Containers]
+        affine[Notes]
+        affineDb[Notes Database]
+        affineCache[Notes cache]
+      end
+      ente[Photos]
+
+      builder[Nix eval server]
+      subgraph fireflygroup[Firefly]
+        firefly[Budgetting]
+        firesplit[Debt management]
+        ffimporter[Bank data import]
+      end
+      dolibarr[Professional invoices]
+
+    end
+  end
+
+subgraph clients[Services clients]
+  subgraph phone[Android smartphone]
+    waterflymapp[waterfly]
+    affinemapp[Affine App]
+    calendarmapp[Calendar App]
+    contactsmapp[Contacts App]
+    entemapp[Ente App]
+    gitnexmapp[GitNex]
+    opencloudmapp[OpenCloud]
+    bitwardenmapp[BitWarden]
+
+  end
+  subgraph desktop[Linux or MaxOS computer]
+    browser[Browser]
+
+    affineapp[Affine App]
+    calendarapp[Calendar App]
+    contactsapp[Contacts App]
+    enteapp[Ente App]
+    opencloudapp[OpenCloud]
+    bitwardenapp[BitWarden]
+  end
+end
+
+opencloud --> radicale
+opencloud --> collabora
+ffimporter --> firefly
+firesplit --> firefly
+blog-->grassServer
+tournament-->tournamentBackend
+
+nginx <--> acme
+
+tournament.mkreset.fr --> tournament
+mkreset.fr-->  mkreset 
+
+uptime.vagahbond.com-->  kuma
+git.vagahbond.com-->  forgejo 
+automation.vagahbond.com-->  n8n 
+files.vagahbond.com-->  opencloud 
+office.vagahbond.com-->  collabora
+pass.vagahbond.com-->  vaultwarden
+notes.vagahbond.com-->  affine
+pics.vagahbond.com-->  ente
+api.pics.vagahbond.com --> ente
+money.vagahbond.com-->  firefly
+importer.money.vagahbond.com-->  ffimporter
+accounting.vagahbond.com-->  dolibarr
+
+music-experiments.vagahbond.com-->  audio
+vagahbond.com-->  homepage
+touches-grasses.fr-->  blog
+
+forgejossh --> forgejo
+builderssh --> builder
+
+tournament --> postgres
+mkreset --> postgres
+
+forgejo --> postgres
+n8n --> postgres
+opencloud --> postgres
+ente --> postgres
+firefly --> postgres
+dolibarr --> postgres
+forgejo --> postgres
+tournamentBackend --> postgres
+
+pgbackup-->postgres
+
+affine --> affineCache
+affine --> affineDb
+
+n8nrunner --> n8n
+
+affine --> awss3 
+ente --> awss3 
+opencloud --> awss3
+
+n8n --> matrix
+kuma --> matrix
+
+waterflymapp --> money.vagahbond.com
+affinemapp --> notes.vagahbond.com
+calendarmapp --> files.vagahbond.com
+contactsmapp --> files.vagahbond.com
+entemapp --> api.pics.vagahbond.com
+gitnexmapp --> git.vagahbond.com
+opencloudmapp --> files.vagahbond.com
+bitwardenmapp --> pass.vagahbond.com
+
+
+browser --> nginx
+
+affineapp --> notes.vagahbond.com
+calendarapp --> files.vagahbond.com
+contactsapp --> files.vagahbond.com
+enteapp --> api.pics.vagahbond.com
+opencloudapp --> files.vagahbond.com
+bitwardenapp --> pass.vagahbond.com

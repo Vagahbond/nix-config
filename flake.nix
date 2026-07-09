@@ -4,6 +4,24 @@
   outputs =
     inputs:
     let
+
+      forAllSystems =
+        function:
+        inputs.nixpkgs.lib.genAttrs
+          [
+            "x86_64-linux"
+            "aarch64-darwin" # Imagine nixing a mac
+          ]
+          (
+            system:
+            function (
+              import inputs.nixpkgs {
+                inherit system;
+                config.allowUnfree = true;
+              }
+            )
+          );
+
       extraArgs = {
         username = "vagahbond";
 
@@ -24,9 +42,24 @@
         platypute = lib.mkNixosHost "platypute";
         pixel = lib.mkNixosHost "pixel";
       };
+
       darwinConfigurations = {
         air = lib.mkDarwinHost "air";
       };
+
+      devShells = forAllSystems (pkgs: {
+        default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            mermaid-cli
+            # ZSH
+            entr
+          ];
+
+          shellHook = ''
+            echo "Editing my NixOS configuration!"
+          '';
+        };
+      });
     };
 
   # Imagine having no clean way to separate your system's dependencies...
