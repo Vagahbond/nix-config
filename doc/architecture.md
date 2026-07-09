@@ -1,3 +1,6 @@
+# Vagahrchitecture
+```mermaid
+
 flowchart LR
   acme[Let's Encrypt ACME]
   matrix[Matrix messaging]
@@ -191,3 +194,4 @@ contactsapp --> files.vagahbond.com
 enteapp --> api.pics.vagahbond.com
 opencloudapp --> files.vagahbond.com
 bitwardenapp --> pass.vagahbond.com
+```
