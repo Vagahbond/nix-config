@@ -34,6 +34,10 @@
         # SERVICES                                        #
         ###################################################
 
+        environment.systemPackages = with pkgs; [
+          matrix-commander-rs
+        ];
+
         users.users.n8n = {
           isSystemUser = true;
           group = "n8n";
