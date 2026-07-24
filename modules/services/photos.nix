@@ -50,10 +50,10 @@
         # SSL                                             #
         ###################################################
         services.nginx.virtualHosts = {
-          "pics.vagahbond.com" = {
-            forceSSL = true;
-            enableACME = true;
-          };
+          # "pics.vagahbond.com" = {
+          #   forceSSL = true;
+          #   enableACME = true;
+          # };
           "api.pics.vagahbond.com" = {
             forceSSL = true;
             enableACME = true;
