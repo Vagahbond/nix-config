@@ -66,10 +66,13 @@
             forceSSL = true;
             enableACME = true;
           };
-          "albums.pics.vagahbond.com" = {
-            forceSSL = true;
-            enableACME = true;
-          };
+          # Is alias of normal domain
+          /*
+            "albums.pics.vagahbond.com" = {
+              forceSSL = true;
+              enableACME = true;
+            };
+          */
         };
 
         ###################################################
