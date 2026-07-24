@@ -66,6 +66,10 @@
             forceSSL = true;
             enableACME = true;
           };
+          "albums.pics.vagahbond.com" = {
+            forceSSL = true;
+            enableACME = true;
+          };
         };
 
         ###################################################
@@ -110,6 +114,7 @@
               enableLocalDB = true;
               domain = "api.pics.vagahbond.com";
               settings = {
+                apps.public-albums = "https://albums.pics.vagahbond.com";
                 db = {
                   user = "ente";
                   name = "ente";
