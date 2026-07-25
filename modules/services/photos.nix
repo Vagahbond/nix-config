@@ -106,7 +106,7 @@
               domains = {
                 photos = "pics.vagahbond.com";
                 api = "api.pics.vagahbond.com";
-                albums = "albums.pics.vagahbond.com";
+                albums = "pics.vagahbond.com";
                 accounts = "accounts.pics.vagahbond.com";
                 cast = "cast.pics.vagahbond.com";
               };
