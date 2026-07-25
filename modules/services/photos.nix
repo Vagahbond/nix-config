@@ -8,6 +8,20 @@
         lib,
         ...
       }:
+      let
+        mainDomain = "pics.vagahbond.com";
+
+        ente-web-albums = pkgs.ente-web.override {
+          enteApp = "albums";
+          enteMailUrl = "https://${mainDomain}";
+          extraBuildEnv = {
+            NEXT_PUBLIC_ENTE_ENDPOINT = "https://api.${mainDomain}";
+            NEXT_PUBLIC_ENTE_ALBUMS_ENDPOINT = "https://albums.${mainDomain}";
+            NEXT_TELEMETRY_DISABLED = "1";
+          };
+        };
+
+      in
       {
         ###################################################
         # SECRETS                                         #
@@ -50,29 +64,34 @@
         # SSL                                             #
         ###################################################
         services.nginx.virtualHosts = {
-          "pics.vagahbond.com" = {
+          ${mainDomain} = {
             forceSSL = true;
             enableACME = true;
           };
-          "api.pics.vagahbond.com" = {
+          "api.${mainDomain}" = {
             forceSSL = true;
             enableACME = true;
           };
-          "accounts.pics.vagahbond.com" = {
+          "accounts.${mainDomain}" = {
             forceSSL = true;
             enableACME = true;
           };
-          "cast.pics.vagahbond.com" = {
+          "cast.${mainDomain}" = {
             forceSSL = true;
             enableACME = true;
           };
-          # Is alias of normal domain
-          /*
-            "albums.pics.vagahbond.com" = {
-              forceSSL = true;
-              enableACME = true;
+          "albums.${mainDomain}" = {
+            forceSSL = true;
+            enableACME = true;
+
+            locations."/" = {
+              root = ente-web-albums;
+              tryFiles = "$uri $uri.html /index.html";
+              extraConfig = ''
+                add_header Access-Control-Allow-Origin 'https://api.${mainDomain}';
+              '';
             };
-          */
+          };
         };
 
         ###################################################
@@ -104,20 +123,19 @@
               #   }
               # );
               domains = {
-                photos = "pics.vagahbond.com";
-                api = "api.pics.vagahbond.com";
-                albums = "pics.vagahbond.com";
-                accounts = "accounts.pics.vagahbond.com";
-                cast = "cast.pics.vagahbond.com";
+                photos = mainDomain;
+                api = "api.${mainDomain}";
+                albums = "albums.${mainDomain}";
+                accounts = "accounts.${mainDomain}";
+                cast = "cast.${mainDomain}";
               };
             };
             api = {
               enable = true;
               nginx.enable = true;
               enableLocalDB = true;
-              domain = "api.pics.vagahbond.com";
+              domain = "api.${mainDomain}";
               settings = {
-                #  apps.public-albums = "albums.pics.vagahbond.com";
                 db = {
                   user = "ente";
                   name = "ente";
