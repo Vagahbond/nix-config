@@ -13,7 +13,7 @@
 
         ente-web-albums = pkgs.ente-web.override {
           enteApp = "albums";
-          enteMailUrl = "https://${mainDomain}";
+          enteMainUrl = "https://${mainDomain}";
           extraBuildEnv = {
             NEXT_PUBLIC_ENTE_ENDPOINT = "https://api.${mainDomain}";
             NEXT_PUBLIC_ENTE_ALBUMS_ENDPOINT = "https://albums.${mainDomain}";
