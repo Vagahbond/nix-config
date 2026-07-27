@@ -342,26 +342,6 @@
         "type": "github"
       }
     },
-    "mkReset": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1783604514,
-        "narHash": "sha256-RaooSHG/A2ku/MMO8uXsKpHAgzvj8XnoG7acL5hWRhI=",
-        "owner": "jmsk8",
-        "repo": "mk_reset_online",
-        "rev": "a9c4e48bcf0e755f3f5f9299665b2a2cd80b2e81",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jmsk8",
-        "repo": "mk_reset_online",
-        "type": "github"
-      }
-    },
     "mnw": {
       "locked": {
         "lastModified": 1780772958,
@@ -481,11 +461,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1785110946,
-        "narHash": "sha256-WWuWxmXKzGZWryswWlijP3Mjp6aGy4Ngmeil5nGMMjk=",
+        "lastModified": 1785141334,
+        "narHash": "sha256-kh35kIx7el4Jk8Ki3BH9/Pn1eZYSYLJ6LMALos0zOy0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d3498f786f97ac0bded21b34bae0bf3809b45aa3",
+        "rev": "38a4887411571457d700c51c64a6e49ead2ed5ab",
         "type": "github"
       },
       "original": {
@@ -515,11 +495,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1785093145,
-        "narHash": "sha256-Wutqb+MbbcLqm03C6jKYjVVwAQPOtcUueVQv/B+3z5s=",
+        "lastModified": 1785176844,
+        "narHash": "sha256-XrTo7nq3JGXB+3AC8OelN6aYM2/EsmlUbvTOL31TtjI=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "9851d9c3e0f32e7f37139893f16f6229929649fd",
+        "rev": "2dd63d29211ee1b296f43f41fbe9ea338bc3a3f9",
         "type": "github"
       },
       "original": {
@@ -538,11 +518,9 @@
         "disko": "disko",
         "firesplit": "firesplit",
         "impermanence": "impermanence",
-        "mkReset": "mkReset",
         "nix-darwin": "nix-darwin_2",
         "nixpkgs": "nixpkgs_5",
         "nvf": "nvf",
-        "tournament": "tournament",
         "website": "website"
       }
     },
@@ -610,26 +588,6 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
-      }
-    },
-    "tournament": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1782950415,
-        "narHash": "sha256-jdNe5RfBT5eZbWR2DFXdOM7r0yVf3UKnyQhD8o+WawI=",
-        "ref": "refs/heads/main",
-        "rev": "28cb99f4b1868dceb4fa2650fdd4f620867785c0",
-        "revCount": 28,
-        "type": "git",
-        "url": "ssh://git@github.com/jmsk8/tournment-app-project.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/jmsk8/tournment-app-project.git"
       }
     },
     "treefmt-nix": {

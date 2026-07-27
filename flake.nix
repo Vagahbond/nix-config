@@ -115,16 +115,5 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mkReset = {
-      # url = "/home/vagahbond/Projects/mk_reset_online";
-      url = "github:jmsk8/mk_reset_online";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    tournament = {
-      url = "git+ssh://git@github.com/jmsk8/tournment-app-project.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 }

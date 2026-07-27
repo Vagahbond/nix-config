@@ -30,8 +30,9 @@
       "audio-experiments"
       "invoices"
       # "metrics"
-      "tournament"
-      "mkReset"
+      # J_sk8 took his own server
+      #  "tournament"
+      #  "mkReset"
       "notes"
       "office"
       # "pdf"
@@ -51,7 +52,8 @@
       "docker"
     ];
     admin = [
-      "j_sk8"
+      # J_sk8 took his own server
+      #     "j_sk8"
     ];
     impermanence = { };
     locales = { };
