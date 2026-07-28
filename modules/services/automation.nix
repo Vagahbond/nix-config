@@ -69,7 +69,7 @@
 
               hash = "sha256-lmkCT1o5LSC1ORd+Jozr9hkJu2znMpFO97jTWYOnga0=";
 
-              pnpmDeps = pkgs.lib.fetchPnpmDeps {
+              pnpmDeps = pkgs.fetchPnpmDeps {
                 inherit (attrs) pname src;
                 inherit version;
                 pnpm = pkgs.pnpm_10;
