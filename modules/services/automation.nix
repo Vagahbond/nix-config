@@ -64,23 +64,20 @@
           n8n = {
             enable = true;
 
-            package =
-              (pkgs.n8n.override (attrs: rec {
-                version = "2.31.4";
+            package = pkgs.n8n.overrideAttrs (attrs: rec {
+              version = "2.31.4";
 
-                hash = "sha256-lmkCT1o5LSC1ORd+Jozr9hkJu2znMpFO97jTWYOnga0=";
+              hash = "sha256-lmkCT1o5LSC1ORd+Jozr9hkJu2znMpFO97jTWYOnga0=";
 
-                pnpmDeps = pkgs.fetchPnpmDeps {
-                  inherit (attrs) pname src;
-                  inherit version;
-                  pnpm = pkgs.pnpm_10;
-                  fetcherVersion = 4;
-                  hash = "sha256-ejJ0ihsLdIXbNllDtoi7Yd1u4x61Czxm6d8zJ9Fj7p8=";
-                };
-              })).overrideAttrs
-                (_: {
-                  NODE_OPTIONS = "--max-old-space-size=4096";
-                });
+              pnpmDeps = pkgs.fetchPnpmDeps {
+                inherit (attrs) pname src;
+                inherit version;
+                pnpm = pkgs.pnpm_10;
+                fetcherVersion = 4;
+                hash = "sha256-ejJ0ihsLdIXbNllDtoi7Yd1u4x61Czxm6d8zJ9Fj7p8=";
+              };
+              NODE_OPTIONS = "--max-old-space-size=4096";
+            });
 
             taskRunners = {
               enable = true;
