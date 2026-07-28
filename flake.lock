@@ -54,11 +54,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776651780,
-        "narHash": "sha256-HptBBoDsCxQmwSloUADIiZ0pPZmeEXBMJEJA4AGV2Qc=",
+        "lastModified": 1785199947,
+        "narHash": "sha256-FSW9uq4O5fcNGhFQUvTzeFpnLJww3J4H/OAQVCxgUZ4=",
         "ref": "refs/heads/main",
-        "rev": "f1919869020aafbda2c652fdc400aa63faae2333",
-        "revCount": 22,
+        "rev": "2847882947ddf85c53fdd051185635418feef97e",
+        "revCount": 23,
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/audio-experiments.git"
       },
