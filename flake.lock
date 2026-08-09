@@ -461,11 +461,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1785747939,
-        "narHash": "sha256-D740uKsMbgsfK2oaDenJLLPIZfq7W0/g4KN/Fls8eKs=",
+        "lastModified": 1785975029,
+        "narHash": "sha256-X44cn5rzytELc3NNoQsh0aLkjWA/QzPfc6HPQmsG3sU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "104240a772428cc2e20d8fd86c9ddbb886bbaff2",
+        "rev": "70ce234312134a463ba7728e94da2486a1d237ac",
         "type": "github"
       },
       "original": {
@@ -495,11 +495,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1785857293,
-        "narHash": "sha256-E7WXL/pYNph1ChKv4BixI9Pev6osdJL43322uZqLw5w=",
+        "lastModified": 1786307523,
+        "narHash": "sha256-RKnrspb7azG0ERNZgdumX3EEivFCD3Vtglwbf90T1K0=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "64cbd0ffea1a76dc0248528985e1c8ee711fae99",
+        "rev": "23f994fcd754e9de067fa00cca891a774498825b",
         "type": "github"
       },
       "original": {
@@ -619,11 +619,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785125683,
-        "narHash": "sha256-RrmS5N6mBz76DYwulKEk3hmxe1Skk3PjLORRyssEobk=",
+        "lastModified": 1785956724,
+        "narHash": "sha256-flS5MYGBxeot7OgkD8tEDm/77rdtmfXrQZl7YE28oLM=",
         "ref": "refs/heads/master",
-        "rev": "20efe3501020b448f28d38680962b9b3ef861909",
-        "revCount": 54,
+        "rev": "31f059c1dc15f91d3c13f4d73dcb66f61edbbce2",
+        "revCount": 55,
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       },
