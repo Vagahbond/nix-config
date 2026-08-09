@@ -65,6 +65,10 @@
                 HTTP_PORT = port;
               };
 
+              repository = {
+                DISABLE_DOWNLOAD_SOURCE_ARCHIVES = true;
+              };
+
               service = {
                 DISABLE_REGISTRATION = true;
               };
