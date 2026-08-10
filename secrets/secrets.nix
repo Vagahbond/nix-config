@@ -148,6 +148,16 @@ in
     mk
   ];
 
+  "postgres_backup_s3_access_key.age".publicKeys = [
+    platypute
+    mk
+  ];
+
+  "postgres_backup_s3_secret_key.age".publicKeys = [
+    platypute
+    mk
+  ];
+
   "vultr_api_key.age".publicKeys = [
     platypute
     mk
