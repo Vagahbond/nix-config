@@ -11,15 +11,20 @@
       let
         mainDomain = "pics.vagahbond.com";
 
-        ente-web-albums = pkgs.ente-web.override {
-          enteApp = "albums";
-          enteMainUrl = "https://${mainDomain}";
-          extraBuildEnv = {
-            NEXT_PUBLIC_ENTE_ENDPOINT = "https://api.${mainDomain}";
-            NEXT_PUBLIC_ENTE_ALBUMS_ENDPOINT = "https://albums.${mainDomain}";
-            NEXT_TELEMETRY_DISABLED = "1";
-          };
-        };
+        ente-web-albums =
+          (pkgs.ente-web.override {
+            enteApp = "albums";
+            enteMainUrl = "https://${mainDomain}";
+            extraBuildEnv = {
+              NEXT_PUBLIC_ENTE_ENDPOINT = "https://api.${mainDomain}";
+              NEXT_PUBLIC_ENTE_ALBUMS_ENDPOINT = "https://albums.${mainDomain}";
+              NEXT_TELEMETRY_DISABLED = "1";
+            };
+          }).overrideAttrs
+            (_: {
+              NODE_OPTIONS = "--max-old-space-size=2048";
+
+            });
 
       in
       {
