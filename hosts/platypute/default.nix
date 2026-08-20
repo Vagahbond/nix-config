@@ -72,6 +72,11 @@
 
       nixpkgs.hostPlatform = "x86_64-linux";
 
+      # not enough goddamn disk space
+      nix.settings = {
+        auto-optimise-store = true;
+      };
+
       users.users.${username}.hashedPassword =
         "$y$j9T$wNFGGvQeqSgVUXxTmOHX8.$wd5iVM5t01vuyNKR.bEcwBZIQ.t8qIxhPylDzhRYDC0";
 
