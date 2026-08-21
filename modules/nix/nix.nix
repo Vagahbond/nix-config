@@ -41,8 +41,8 @@ in
             ];
 
             # auto-GC mid-build/eval when store gets low, instead of failing with ENOSPC
-            min-free = 5 * 1024 * 1024 * 1024; # 5G
-            max-free = 15 * 1024 * 1024 * 1024; # 15G
+            min-free = 10 * 1024 * 1024 * 1024; # 5G
+            # max-free = 1 * 1024 * 1024 * 1024; # 15G
 
             keep-outputs = false;
             keep-derivations = false;
