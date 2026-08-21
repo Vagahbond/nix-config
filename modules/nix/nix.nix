@@ -40,12 +40,19 @@ in
               "root"
             ];
 
+            # auto-GC mid-build/eval when store gets low, instead of failing with ENOSPC
+            min-free = 5 * 1024 * 1024 * 1024; # 5G
+            max-free = 15 * 1024 * 1024 * 1024; # 15G
+
+            keep-outputs = false;
+            keep-derivations = false;
+
           };
 
           gc = {
             automatic = true;
             # interval = "weekly";
-            options = "--delete-older-than 2d";
+            options = "--delete-older-than 1d";
           };
 
           registry = pkgs.lib.mkDefault (pkgs.lib.mapAttrs (_: value: { flake = value; }) inputs);
