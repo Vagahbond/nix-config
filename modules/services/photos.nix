@@ -10,21 +10,22 @@
       }:
       let
         mainDomain = "pics.vagahbond.com";
+        /*
+                ente-web-albums =
+                  (pkgs.ente-web.override {
+                    enteApp = "albums";
+                    enteMainUrl = "https://${mainDomain}";
+                    extraBuildEnv = {
+                      NEXT_PUBLIC_ENTE_ENDPOINT = "https://api.${mainDomain}";
+                      NEXT_PUBLIC_ENTE_ALBUMS_ENDPOINT = "https://albums.${mainDomain}";
+                      NEXT_TELEMETRY_DISABLED = "1";
+                    };
+                  }).overrideAttrs
+                    (_: {
+                      NODE_OPTIONS = "--max-old-space-size=2048";
 
-        ente-web-albums =
-          (pkgs.ente-web.override {
-            enteApp = "albums";
-            enteMainUrl = "https://${mainDomain}";
-            extraBuildEnv = {
-              NEXT_PUBLIC_ENTE_ENDPOINT = "https://api.${mainDomain}";
-              NEXT_PUBLIC_ENTE_ALBUMS_ENDPOINT = "https://albums.${mainDomain}";
-              NEXT_TELEMETRY_DISABLED = "1";
-            };
-          }).overrideAttrs
-            (_: {
-              NODE_OPTIONS = "--max-old-space-size=2048";
-
-            });
+                    });
+        */
 
       in
       {
@@ -89,13 +90,15 @@
             forceSSL = true;
             enableACME = true;
 
-            locations."/" = {
-              root = ente-web-albums;
-              tryFiles = "$uri $uri.html /index.html";
-              extraConfig = ''
-                add_header Access-Control-Allow-Origin 'https://api.${mainDomain}';
-              '';
-            };
+            /*
+              locations."/" = {
+                root = ente-web-albums;
+                tryFiles = "$uri $uri.html /index.html";
+                extraConfig = ''
+                  add_header Access-Control-Allow-Origin 'https://api.${mainDomain}';
+                '';
+              };
+            */
           };
         };
 
