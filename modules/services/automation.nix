@@ -64,9 +64,9 @@
           n8n = {
             enable = true;
 
-            package = pkgs.n8n; # .overrideAttrs (_: {
-            #  NODE_OPTIONS = "--max-old-space-size=2048";
-            #});
+            package = pkgs.n8n.overrideAttrs (_: {
+              NODE_OPTIONS = "--max-old-space-size=2048";
+            });
 
             taskRunners = {
               enable = true;
