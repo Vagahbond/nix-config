@@ -43,6 +43,7 @@
     {
       environment.systemPackages = [
         updatePlatyputeScript
+        pkgs.timewarrior
       ];
 
       system.stateVersion = 6;
