@@ -50,7 +50,7 @@
               locations = {
                 "/" = {
                   extraConfig = ''
-                    client_max_body_size 1G;
+                    client_max_body_size 10G;
                   '';
                   proxyPass = "http://127.0.0.1:${toString config.services.opencloud.port}";
                   proxyWebsockets = true; # needed if you need to use WebSocket
