@@ -27,6 +27,7 @@
       "prompt"
       "shell"
       "rss"
+      "music"
     ];
     system = { };
     user = { };
