@@ -31,10 +31,11 @@
 
 
           # swap/move focused window with neighbor
-          cmd + alt - left : yabai -m window --swap west
-          cmd + alt - down : yabai -m window --swap south
-          cmd + alt - up : yabai -m window --swap north
-          cmd + alt - right : yabai -m window --swap east
+
+          # cmd + alt - left : yabai -m window --swap west
+          # cmd + alt - down : yabai -m window --swap south
+          # cmd + alt - up : yabai -m window --swap north
+          # cmd + alt - right : yabai -m window --swap east
 
           # focus next/previous window in current space
           cmd - tab : yabai -m window --focus recent
