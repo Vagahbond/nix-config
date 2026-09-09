@@ -31,6 +31,7 @@
     ];
     system = { };
     user = { };
+    desktop = { };
   };
 
   configuration =
