@@ -226,4 +226,9 @@ in
     platypute
   ];
 
+  "forgejo_runner_token.age".publicKeys = [
+    mk
+    platypute
+  ];
+
 }

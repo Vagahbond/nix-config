@@ -78,6 +78,22 @@
               };
             };
           };
+
+          # Will need isolated environment before I can kick it off.
+          # Pondering between microVM and nixos-container.
+          /*
+            forgejo-runner.instances.nix = {
+              instances.default = {
+                enable = true;
+                name = "monolith";
+                url = config.services.forgejo.settings.server.ROOT_URL;
+                labels = [
+                  ## optionally provide native execution on the host:
+                  "native:host"
+                ];
+              };
+            };
+          */
         };
 
         systemd.services.forgejo.preStart =
