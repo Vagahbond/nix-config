@@ -37,10 +37,6 @@
           # cmd + alt - up : yabai -m window --swap north
           # cmd + alt - right : yabai -m window --swap east
 
-          # focus next/previous window in current space
-          cmd - tab : yabai -m window --focus recent
-          cmd + shift - tab : yabai -m window --focus recent
-
           # focus display (screen)
           cmd + shift - left : yabai -m display --focus west
           cmd + shift - down : yabai -m display --focus south
