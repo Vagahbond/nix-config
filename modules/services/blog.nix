@@ -14,19 +14,6 @@
           inputs.blog.nixosModules.default
         ];
 
-        # environment = {
-        #   persistence.${config.persistence.storageLocation} = {
-        #     directories = [
-        #       {
-        #         directory = "/var/lib/goatcounter";
-        #         user = "goatcounter";
-        #         group = "goatcounter";
-        #         mode = "u=rwx,g=rx,o=";
-        #       }
-        #     ];
-        #   };
-        # };
-
         ###################################################
         # BLOG                                            #
         ###################################################

@@ -4,7 +4,6 @@ let
     pkgs: inputs:
     (inputs.nvf.lib.neovimConfiguration {
       inherit pkgs;
-      # pkgs = inputs.nvf.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       modules = [
         (
           { pkgs, ... }:
@@ -34,11 +33,7 @@ let
 
               lsp = {
                 enable = true;
-                # formatOnSave = false;
-                # trouble.enable = false;
               };
-
-              # LANGUAGES
 
               languages = {
                 enableFormat = true;
@@ -131,37 +126,6 @@ let
 
               assistant = {
                 supermaven-nvim.enable = true;
-                /*
-                  avante-nvim = {
-                    enable = true;
-                    setupOpts = {
-                      provider = "claude";
-                      mappings = {
-                        ask = "<leader>aa"; # Open sidebar and ask
-                        edit = "<leader>ae"; # Edit selected code
-                        refresh = "<leader>ar"; # Refresh response
-                        focus = "<leader>af"; # Focus sidebar
-                        toggle = {
-                          default = "<leader>at"; # Toggle sidebar
-                        };
-                        diff = {
-                          ours = "co"; # Accept our change
-                          theirs = "ct"; # Accept their change
-                          next = "]x"; # Next conflict
-                          prev = "[x"; # Prev conflict
-                        };
-                        suggestion = {
-                          accept = "<Tab>"; # Accept inline suggestion
-                          dismiss = "<Esc>";
-                        };
-                        submit = {
-                          normal = "<CR>";
-                          insert = "<C-s>"; # Submit from insert mode
-                        };
-                      };
-                    };
-                  };
-                */
               };
 
               comments = {

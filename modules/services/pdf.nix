@@ -16,11 +16,6 @@
         };
       };
 
-      # age.secrets.s-pdfEnv = {
-      #   file = ../../secrets/ghost_env.age;
-      #   mode = "440";
-      # };
-
       virtualisation.oci-containers.containers = {
         sPdf = {
           autoStart = true;

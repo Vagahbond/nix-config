@@ -10,7 +10,12 @@ in
       "darwinConfiguration"
     ];
     conf =
-      { pkgs, inputs, ... }:
+      {
+        pkgs,
+        inputs,
+        username,
+        ...
+      }:
       {
 
         environment = {
@@ -37,6 +42,7 @@ in
               "flakes"
             ];
             trusted-users = [
+              username
               "root"
             ];
 
@@ -87,7 +93,7 @@ in
   }
   {
     targets = [ "darwinConfiguration" ];
-    conf = _: {
+    conf = { username, pkgs, ... }: {
       # https://github.com/nix-darwin/nix-darwin/issues/1817
       documentation.enable = false;
       system.tools.darwin-uninstaller.enable = false;
@@ -100,20 +106,18 @@ in
       nix = {
         linux-builder = {
           enable = true;
-          ephemeral = true;
+          speedFactor = 3;
+          ephemeral = false;
           maxJobs = 4;
-          config = {
-            virtualisation = {
-              darwin-builder = {
-                diskSize = 40 * 1024;
-                memorySize = 8 * 1024;
-              };
-              cores = 6;
-            };
-          };
+          systems = [
+            "aarch64-linux"
+          ];
         };
 
-        settings.trusted-users = [ "@admin" ];
+        settings.trusted-users = [
+          username
+          "root"
+        ];
       };
 
       # TODO: remove

@@ -18,7 +18,6 @@
     ];
     services = [
       "uptime"
-      # "analytics"
       "budget"
       "blog"
       "automation"
@@ -29,13 +28,8 @@
       "homepage"
       "audio-experiments"
       "invoices"
-      # "metrics"
-      # J_sk8 took his own server
-      #  "tournament"
-      #  "mkReset"
       "notes"
       "office"
-      # "pdf"
       "postgres"
       "proxy"
       "ssh"
@@ -51,10 +45,6 @@
     virtualization = [
       "docker"
     ];
-    admin = [
-      # J_sk8 took his own server
-      #     "j_sk8"
-    ];
     impermanence = { };
     locales = { };
     system = { };
@@ -68,7 +58,7 @@
         ./hardware-configuration.nix
       ];
 
-      system.stateVersion = "22.11"; # Did you read the comment?
+      system.stateVersion = "22.11";
 
       nixpkgs.hostPlatform = "x86_64-linux";
 

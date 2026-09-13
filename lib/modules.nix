@@ -85,12 +85,6 @@ let
     modules: lib.lists.flatten (lib.attrsets.attrValues (lib.attrsets.mapAttrs importModule modules));
 
   /**
-    Gather hosts and modules into a single system's configuration
-  */
-  # prepareModules =
-  #   modules: configType: lib.lists.flatten (builtins.map (prepareModuleArray configType) modules);
-
-  /**
     Gather hosts and loaded modules into a single system's configuration
   */
   prepareSystem =

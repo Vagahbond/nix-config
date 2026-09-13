@@ -51,7 +51,6 @@
         default = pkgs.mkShell {
           buildInputs = with pkgs; [
             mermaid-cli
-            # ZSH
             entr
           ];
 
@@ -62,9 +61,7 @@
       });
     };
 
-  # Imagine having no clean way to separate your system's dependencies...
   inputs = {
-    # pin nixpkgs to switch to stable later
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
@@ -85,7 +82,6 @@
 
     nvf = {
       url = "github:notashelf/nvf";
-      # url = "/Users/vagahbond/Projects/nvf";
     };
 
     autoDarkModeNvim = {
