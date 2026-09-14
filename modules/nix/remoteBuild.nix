@@ -21,6 +21,8 @@
           ###############################################################
           buildMachines = [
             {
+              sshKey = "${config.users.users.${username}.home}/.ssh/builder_2_access";
+
               hostName = "eu.nixbuild.net";
               system = "x86_64-linux";
               maxJobs = 100;
