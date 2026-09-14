@@ -21,7 +21,8 @@
           ###############################################################
           buildMachines = [
             {
-              sshKey = "${config.users.users.${username}.home}/.ssh/builder_2_access";
+              # sshKey = "${config.users.users.${username}.home}/.ssh/builder_2_access";
+              sshKey = config.age.secrets.builder_2_access.path;
 
               hostName = "eu.nixbuild.net";
               system = "x86_64-linux";
@@ -35,7 +36,8 @@
             {
               hostName = "vagahbond.com";
               sshUser = "builder";
-              sshKey = "${config.users.users.${username}.home}/.ssh/builder_access";
+              # sshKey = "${config.users.users.${username}.home}/.ssh/builder_access";
+              sshKey = config.age.secrets.builder_access.path;
               systems = [
                 # IDK how to make it build something else
                 # "aarch64-darwin"
