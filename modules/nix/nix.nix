@@ -84,6 +84,8 @@ in
         ];
       };
 
+      nix.settings.build-dir = "/var/tmp/nix"; # nix-daemon doesn't see sessionVariables, so TMPDIR alone doesn't move build dirs off tmpfs roots
+
       environment.sessionVariables = {
         TMPDIR = "/var/tmp"; # Use a disk-based directory
       }

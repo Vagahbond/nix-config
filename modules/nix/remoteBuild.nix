@@ -30,7 +30,10 @@
                 "x86_64-linux"
               ];
               protocol = "ssh-ng";
-              maxJobs = 4;
+              # Lowered from 4: platypute is memory-constrained (see hardware-configuration.nix
+              # swap + disk-config.nix tmpfs root), and heavy single derivations (e.g. rust/napi
+              # builds) stacking concurrently was causing OOM/thrashing mid-build.
+              maxJobs = 1;
               speedFactor = 2;
               supportedFeatures = [
                 "nixos-test"
