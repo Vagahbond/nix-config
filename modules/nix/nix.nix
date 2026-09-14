@@ -80,14 +80,17 @@ in
 
       systemd = {
         tmpfiles.rules = [
-          "d /var/tmp/nix 0755 root root 10d"
+          # Must not live anywhere under /var/tmp or /tmp: nix rejects a build-dir if any
+          # ancestor directory is world-writable, and /var/tmp is 1777. Use /nix instead,
+          # which is a real disk-backed filesystem (not the tmpfs root) and root-owned.
+          "d /nix/build-tmp 0755 root root 10d"
         ];
       };
 
       # nix-daemon doesn't see sessionVariables, so TMPDIR alone doesn't move build dirs
       # off tmpfs roots. build-dir must be root-owned and not world-writable, or nix
       # daemon refuses it as a security risk.
-      nix.settings.build-dir = "/var/tmp/nix";
+      nix.settings.build-dir = "/nix/build-tmp";
 
       # Note: previously also set TMPDIR = "/var/tmp" here as a disk-based-tmp workaround,
       # but that broke `nh`'s own working-dir creation (permission denied under /var/tmp
