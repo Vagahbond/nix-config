@@ -89,10 +89,12 @@ in
       # daemon refuses it as a security risk.
       nix.settings.build-dir = "/var/tmp/nix";
 
-      environment.sessionVariables = {
-        TMPDIR = "/var/tmp"; # Use a disk-based directory
-      }
-      // nhEnv;
+      # Note: previously also set TMPDIR = "/var/tmp" here as a disk-based-tmp workaround,
+      # but that broke `nh`'s own working-dir creation (permission denied under /var/tmp
+      # when invoked over ssh) and never actually affected nix-daemon builds anyway
+      # (daemon doesn't inherit sessionVariables). nix.settings.build-dir above is the
+      # real, working fix for keeping nix build scratch space off the tmpfs root.
+      environment.sessionVariables = nhEnv;
 
     };
   }
