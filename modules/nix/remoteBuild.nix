@@ -29,7 +29,7 @@
                 # "aarch64-darwin"
                 "x86_64-linux"
               ];
-              protocol = "ssh";
+              protocol = "ssh-ng";
               maxJobs = 4;
               speedFactor = 2;
               supportedFeatures = [
