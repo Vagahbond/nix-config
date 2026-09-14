@@ -80,11 +80,14 @@ in
 
       systemd = {
         tmpfiles.rules = [
-          "d /var/tmp/nix 1777 root root 10d"
+          "d /var/tmp/nix 0755 root root 10d"
         ];
       };
 
-      nix.settings.build-dir = "/var/tmp/nix"; # nix-daemon doesn't see sessionVariables, so TMPDIR alone doesn't move build dirs off tmpfs roots
+      # nix-daemon doesn't see sessionVariables, so TMPDIR alone doesn't move build dirs
+      # off tmpfs roots. build-dir must be root-owned and not world-writable, or nix
+      # daemon refuses it as a security risk.
+      nix.settings.build-dir = "/var/tmp/nix";
 
       environment.sessionVariables = {
         TMPDIR = "/var/tmp"; # Use a disk-based directory
