@@ -80,7 +80,7 @@ in
 
       systemd = {
         tmpfiles.rules = [
-          "d /var/tmp/nix 0755 root root 10d"
+          # "d /var/tmp/nix 0755 root root 10d"
         ];
       };
 
