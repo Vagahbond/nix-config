@@ -122,6 +122,12 @@ in
     pixel
   ];
 
+  "builder_2_access.age".publicKeys = [
+    mk
+    pixel
+    platypute
+  ];
+
   "platypute_access.age".publicKeys = [
     mk
     pixel

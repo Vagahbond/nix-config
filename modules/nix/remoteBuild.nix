@@ -21,6 +21,16 @@
           ###############################################################
           buildMachines = [
             {
+              hostName = "eu.nixbuild.net";
+              system = "x86_64-linux";
+              maxJobs = 100;
+              speedFactor = 2;
+              supportedFeatures = [
+                "benchmark"
+                "big-parallel"
+              ];
+            }
+            {
               hostName = "vagahbond.com";
               sshUser = "builder";
               sshKey = "${config.users.users.${username}.home}/.ssh/builder_access";

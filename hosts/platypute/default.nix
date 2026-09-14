@@ -11,6 +11,7 @@
     ];
     nix = [
       "nix"
+      "remoteBuild"
     ];
     security = [
       "keyring"

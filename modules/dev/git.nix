@@ -12,12 +12,13 @@
           owner = "vagahbond";
           mode = "400";
         };
-
-        home-files.vagahbond = {
-          ".ssh/github_access.pub".text =
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBi/qH3wsZVyF61Wd1qgwvzx5VRl4uPYEWNxSCbYLC+n vagahbond@framework";
-          ".ssh/github_access".source = config.age.secrets.gitKey.path;
-        };
+        /*
+                home-files.vagahbond = {
+                  ".ssh/github_access.pub".text =
+                    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBi/qH3wsZVyF61Wd1qgwvzx5VRl4uPYEWNxSCbYLC+n vagahbond@framework";
+                  ".ssh/github_access".source = config.age.secrets.gitKey.path;
+                };
+        */
         environment = {
           systemPackages = with pkgs; [
             lazygit
