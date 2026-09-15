@@ -115,7 +115,7 @@ in
 
       nix = {
         linux-builder = {
-          enable = true;
+          enable = false;
           speedFactor = 3;
           ephemeral = false;
           maxJobs = 4;
