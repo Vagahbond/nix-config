@@ -27,7 +27,7 @@
               hostName = "eu.nixbuild.net";
               system = "x86_64-linux";
               maxJobs = 100;
-              speedFactor = 2;
+              speedFactor = 3;
               supportedFeatures = [
                 "benchmark"
                 "big-parallel"
