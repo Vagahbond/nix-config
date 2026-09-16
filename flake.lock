@@ -70,11 +70,11 @@
     "autoDarkModeNvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1774803352,
-        "narHash": "sha256-xTgRyct3L6Gcz/vdYSc+h2IUgi/+Lh1Q4mxJwHISeis=",
+        "lastModified": 1789169075,
+        "narHash": "sha256-xBpdk0D2LauLJoktw/vQfvic07NsKaBDeL8KAl4KE7s=",
         "owner": "f-person",
         "repo": "auto-dark-mode.nvim",
-        "rev": "54058b4fe414bd64bd2904a6f8a63f1f14e3d8df",
+        "rev": "2b16a24c202892e61fca7df4d2d7c4c872a44165",
         "type": "github"
       },
       "original": {
@@ -461,11 +461,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1788865024,
-        "narHash": "sha256-3YkAzvtt4LoE11IcBDzPshIF3fJ0aIoILqE7dAg8CLI=",
+        "lastModified": 1789370336,
+        "narHash": "sha256-6RSEDHIWQtesQKWSu5qRai8L2h4KgCgMEfJHstW99G4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "422d1ae605d7fcd9896412b37dc065c456c0eefb",
+        "rev": "c7def046b9a883d46974757852106483d741586f",
         "type": "github"
       },
       "original": {
@@ -495,11 +495,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1788873411,
-        "narHash": "sha256-PEcPDc5QRRlzYYGQuGuh7OMMLZ1TC5hLHt3whFBRSS0=",
+        "lastModified": 1789510188,
+        "narHash": "sha256-umec9LKkWjK89Yx4XpvQStkgfKvhK7GjVf5m21bjzKU=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "4771b6b78c203c090799ca6984d73c54e77228d6",
+        "rev": "cdc7e7aaa7eb521bba1b38f54c3228d52cc31703",
         "type": "github"
       },
       "original": {
@@ -619,11 +619,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785956724,
-        "narHash": "sha256-flS5MYGBxeot7OgkD8tEDm/77rdtmfXrQZl7YE28oLM=",
+        "lastModified": 1789434984,
+        "narHash": "sha256-mIaeLq7HKiFHxQWWJcIft8kXR2f+RcNmwhqpXH9tw8w=",
         "ref": "refs/heads/master",
-        "rev": "31f059c1dc15f91d3c13f4d73dcb66f61edbbce2",
-        "revCount": 55,
+        "rev": "096bbfb51e595191c859642b6bf73cdc56763255",
+        "revCount": 56,
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       },
