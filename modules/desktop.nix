@@ -3,7 +3,7 @@
     targets = [ "darwinConfiguration" ];
     conf = _: {
       services.yabai = {
-        enable = true;
+        enable = false;
         config = {
           focus_follows_mouse = "autoraise";
           mouse_follows_focus = "on";
@@ -22,7 +22,7 @@
       };
 
       services.skhd = {
-        enable = true;
+        enable = false;
         skhdConfig = ''
           cmd - left : yabai -m window --focus west
           cmd - down : yabai -m window --focus south
