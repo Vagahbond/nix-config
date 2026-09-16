@@ -619,11 +619,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789434984,
-        "narHash": "sha256-mIaeLq7HKiFHxQWWJcIft8kXR2f+RcNmwhqpXH9tw8w=",
+        "lastModified": 1789531411,
+        "narHash": "sha256-VXDZO8paVatnzDhBd/x1eeGEqpvHMgDoEr4kopRm+p0=",
         "ref": "refs/heads/master",
-        "rev": "096bbfb51e595191c859642b6bf73cdc56763255",
-        "revCount": 56,
+        "rev": "a9dac732aa23af0d6cbd0c70804aa99d74131607",
+        "revCount": 57,
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       },
