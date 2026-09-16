@@ -619,15 +619,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1789531411,
-        "narHash": "sha256-VXDZO8paVatnzDhBd/x1eeGEqpvHMgDoEr4kopRm+p0=",
+        "lastModified": 1785956724,
+        "narHash": "sha256-flS5MYGBxeot7OgkD8tEDm/77rdtmfXrQZl7YE28oLM=",
         "ref": "refs/heads/master",
-        "rev": "a9dac732aa23af0d6cbd0c70804aa99d74131607",
-        "revCount": 57,
+        "rev": "31f059c1dc15f91d3c13f4d73dcb66f61edbbce2",
+        "revCount": 55,
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       },
       "original": {
+        "rev": "31f059c1dc15f91d3c13f4d73dcb66f61edbbce2",
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       }
