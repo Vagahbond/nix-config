@@ -10,59 +10,31 @@
         pkgs,
         username,
         config,
+        lib,
         ...
       }:
+      let
+        recipients = import ../../secrets/recipients.nix;
+        secretRules = import ../../secrets/secrets.nix;
+        secretNames = [
+          "builder_2_access"
+          "builder_access"
+          "dedistonks_access"
+          "github_access"
+          "platypute_access"
+        ];
+        hostRecipient = recipients.${config.networking.hostName} or null;
+        hasSecret =
+          name: hostRecipient != null && lib.elem hostRecipient secretRules."${name}.age".publicKeys;
+        identityFile =
+          name: lib.optionalString (hasSecret name) "IdentityFile ${config.age.secrets.${name}.path}";
+      in
       {
-        # Dead code: ssh config used to be a fully encrypted blob copied verbatim
-        # into ~/.ssh/config. Replaced by the interpolated programs.ssh.extraConfig
-        # below, which points IdentityFile entries straight at the agenix-decrypted
-        # secret paths instead of copying keys into ~/.ssh. Kept here for reference,
-        # remove once confirmed working.
-        # home-files.${username} = {
-        #   ".ssh/config" = {
-        #     source = config.age.secrets.sshConfig.path;
-        #   };
-        # };
-        #
-        # age.secrets = {
-        #   sshConfig = {
-        #     file = ../../secrets/ssh_config.age;
-        #     owner = username;
-        #     mode = "400";
-        #   };
-        # };
-
-        # Private keys used by the extraConfig IdentityFile entries below.
-        # Declared here (rather than modules/admin/keys.nix) because this is
-        # the module that actually consumes the decrypted paths; keys.nix used
-        # to copy these into ~/.ssh and is now dead code.
-        age.secrets = {
-          dedistonks_access = {
-            file = ../../secrets/dedistonks_access.age;
-            owner = username;
-            mode = "400";
-          };
-          github_access = {
-            file = ../../secrets/github_access.age;
-            owner = username;
-            mode = "400";
-          };
-          platypute_access = {
-            file = ../../secrets/platypute_access.age;
-            owner = username;
-            mode = "400";
-          };
-          builder_access = {
-            file = ../../secrets/builder_access.age;
-            owner = username;
-            mode = "400";
-          };
-          builder_2_access = {
-            file = ../../secrets/builder_2_access.age;
-            owner = username;
-            mode = "400";
-          };
-        };
+        age.secrets = lib.genAttrs (builtins.filter hasSecret secretNames) (name: {
+          file = ../../secrets + "/${name}.age";
+          owner = username;
+          mode = "400";
+        });
 
         environment.systemPackages = with pkgs; [
           sshs
@@ -83,34 +55,34 @@
               HostName vagahbond.com
               User vagahbond
               Port 45
-              IdentityFile ${config.age.secrets.dedistonks_access.path}
+              ${identityFile "dedistonks_access"}
 
             Host github.com
-                HostName github.com
-                PreferredAuthentications publickey
-                IdentityFile ${config.age.secrets.github_access.path}
+              HostName github.com
+              PreferredAuthentications publickey
+              ${identityFile "github_access"}
 
             Host VagahGit
-                HostName git.vagahbond.com
-                PreferredAuthentications publickey  
-                IdentityFile ${config.age.secrets.github_access.path}
+              HostName git.vagahbond.com
+              PreferredAuthentications publickey  
+              ${identityFile "github_access"}
 
             Host platypute
               HostName vagahbond.com  
               User vagahbond
               Port 22
-              IdentityFile ${config.age.secrets.platypute_access.path}
+              ${identityFile "platypute_access"}
 
             Host builder
               HostName vagahbond.com
               User builder
               port 22
-              IdentityFile  ${config.age.secrets.builder_access.path}
+              ${identityFile "builder_access"}
 
             Host nixbuild
               PubkeyAcceptedKeyTypes ssh-ed25519
               ServerAliveInterval 60
-              IdentityFile ${config.age.secrets.builder_2_access.path}
+              ${identityFile "builder_2_access"}
           '';
 
           knownHosts = {
