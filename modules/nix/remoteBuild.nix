@@ -25,7 +25,7 @@
               # sshKey = "${config.users.users.${username}.home}/.ssh/builder_2_access";
               sshKey = config.age.secrets.builder_2_access.path;
 
-              hostName = "eu.nixbuild.net";
+              hostName = "nixbuild";
               system = "x86_64-linux";
               maxJobs = 100;
               speedFactor = 3;
@@ -35,8 +35,7 @@
               ];
             }
             ++ lib.optional (config.age.secrets ? builder_access) {
-              hostName = "vagahbond.com";
-              sshUser = "builder";
+              hostName = "builder";
               # sshKey = "${config.users.users.${username}.home}/.ssh/builder_access";
               sshKey = config.age.secrets.builder_access.path;
               systems = [

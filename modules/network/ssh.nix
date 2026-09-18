@@ -80,6 +80,7 @@
               ${identityFile "builder_access"}
 
             Host nixbuild
+              HostName eu.nixbuild.net
               PubkeyAcceptedKeyTypes ssh-ed25519
               ServerAliveInterval 60
               ${identityFile "builder_2_access"}
