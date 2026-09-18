@@ -7,6 +7,7 @@
     conf =
       {
         config,
+        lib,
         username,
         ...
       }:
@@ -19,8 +20,8 @@
           ###############################################################
           # Setup distributed builds                                    #
           ###############################################################
-          buildMachines = [
-            {
+          buildMachines =
+            lib.optional (config.age.secrets ? builder_2_access) {
               # sshKey = "${config.users.users.${username}.home}/.ssh/builder_2_access";
               sshKey = config.age.secrets.builder_2_access.path;
 
@@ -33,7 +34,7 @@
                 "big-parallel"
               ];
             }
-            {
+            ++ lib.optional (config.age.secrets ? builder_access) {
               hostName = "vagahbond.com";
               sshUser = "builder";
               # sshKey = "${config.users.users.${username}.home}/.ssh/builder_access";
@@ -55,8 +56,7 @@
                 "big-parallel"
                 "kvm"
               ];
-            }
-          ];
+            };
 
           distributedBuilds = true;
           extraOptions = ''
