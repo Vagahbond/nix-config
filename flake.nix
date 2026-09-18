@@ -59,6 +59,17 @@
           '';
         };
       });
+
+      templates = {
+        mongodb = {
+          path = ./templates/mongodb;
+          description = "NodeJS + MongoDB dev shell";
+        };
+        postgresql = {
+          path = ./templates/postgresql;
+          description = "NodeJS + PostgreSQL dev shell";
+        };
+      };
     };
 
   inputs = {
