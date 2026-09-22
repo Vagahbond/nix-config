@@ -13,15 +13,17 @@
         ###################################################################
         # USERS                                                           #
         ###################################################################
-        users.groups.affine = { };
+        /*
+          users.groups.affine = { };
 
-        users.users.affine = {
-          isNormalUser = true;
-          # isSystemUser = true;
-          group = "affine";
-          # extraGroups = ["wheel"];
-          createHome = true;
-        };
+          users.users.affine = {
+            isNormalUser = true;
+            # isSystemUser = true;
+            group = "affine";
+            # extraGroups = ["wheel"];
+            createHome = true;
+          };
+        */
 
         ###################################################################
         # SECRETS                                                         #
@@ -31,6 +33,13 @@
           mode = "440";
           owner = "root";
           group = "root";
+        };
+
+        age.secrets.affineKey = {
+          file = ../../secrets/affine_key.age;
+          mode = "400";
+          owner = config.services.affine-server.user;
+          group = config.services.affine-server.group;
         };
 
         ###################################################################
@@ -92,6 +101,9 @@
           };
 
           settings = {
+            crypto = {
+               privateKey = toString config.age.secrets.affineKey.path;
+            };
             server = {
               host = "beta.notes.vagahbond.com";
 

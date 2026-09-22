@@ -108,6 +108,11 @@ in
     platypute
   ];
 
+  "affine_key.age".publicKeys = [
+    mk
+    platypute
+  ];
+
   "redis_affine_pass_file.age".publicKeys = [
     mk
     platypute

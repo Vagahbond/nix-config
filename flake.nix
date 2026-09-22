@@ -123,7 +123,7 @@
     };
 
     affine-server = {
-      url = "git+ssh://forgejo@git.vagahbond.com/vagahbond/nix-affine.git";
+      url = "git+file:../nix-affine/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
