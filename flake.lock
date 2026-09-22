@@ -25,11 +25,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790056675,
-        "narHash": "sha256-SZa/LW8imRCKzJzNEZEVof2w5Yk47gJ17Vb/Sb+evFI=",
+        "lastModified": 1790056828,
+        "narHash": "sha256-KCBZ/wOzJSp4eDdNfegMnQ5XiJh1gddW25evACgIAqs=",
         "ref": "refs/heads/master",
-        "rev": "6ac40a1790450f80681799768950cb39930ef46f",
-        "revCount": 29,
+        "rev": "d226f4b536534adaee5b757a188bc4330612ad40",
+        "revCount": 30,
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/nix-affine.git"
       },
