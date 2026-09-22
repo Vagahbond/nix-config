@@ -1,5 +1,43 @@
 {
   "nodes": {
+    "affine": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786939290,
+        "narHash": "sha256-MuzQkiiMUrmFVzHCA5l5hzXm7wA7ChPaKzcrJtc1R3Y=",
+        "owner": "toeverything",
+        "repo": "affine",
+        "rev": "b4c8548c09da21b2898443559a5b846f0ccf5dd8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "toeverything",
+        "ref": "v0.27.4",
+        "repo": "affine",
+        "type": "github"
+      }
+    },
+    "affine-server": {
+      "inputs": {
+        "affine": "affine",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790047696,
+        "narHash": "sha256-SxUi4Ts6HwpV/uc2R4PS6QIkQAANomue0cJ75r/ZidE=",
+        "ref": "refs/heads/master",
+        "rev": "ead0d36865b603e7ede59d2a2225f80f5b619279",
+        "revCount": 12,
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/nix-affine.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://forgejo@git.vagahbond.com/vagahbond/nix-affine.git"
+      }
+    },
     "agenix": {
       "inputs": {
         "agenix": "agenix_2",
@@ -510,6 +548,7 @@
     },
     "root": {
       "inputs": {
+        "affine-server": "affine-server",
         "agenix": "agenix",
         "audio-experiments": "audio-experiments",
         "autoDarkModeNvim": "autoDarkModeNvim",
