@@ -99,6 +99,11 @@
 
           package = inputs.affine-server.packages.${pkgs.system}.default;
 
+          nginx = {
+            enable = true;
+            enableACME = true;
+          };
+
           database = {
             createLocally = true;
           };
