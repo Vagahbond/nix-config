@@ -3,7 +3,12 @@
   {
     targets = [ "nixosConfiguration" ];
     conf =
-      { config, inputs, ... }:
+      {
+        config,
+        inputs,
+        pkgs,
+        ...
+      }:
       {
 
         imports = [
@@ -91,6 +96,8 @@
 
         services.affine-server = {
           enable = true;
+
+          package = inputs.affine-server.packages.${pkgs.system}.default;
 
           database = {
             createLocally = true;
