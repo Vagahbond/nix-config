@@ -3,8 +3,13 @@
   {
     targets = [ "nixosConfiguration" ];
     conf =
-      { config, ... }:
+      { config, inputs, ... }:
       {
+
+        imports = [
+          inputs.affine-server.nixosModules.default
+        ];
+
         ###################################################################
         # USERS                                                           #
         ###################################################################
