@@ -75,6 +75,25 @@
           };
         };
 
+        services.affine-server = {
+          enable = true;
+
+          database = {
+            createLocally = true;
+          };
+
+          redis = {
+            createLocally = true;
+          };
+
+          settings = {
+            server = {
+              host = "beta.notes.vagahbond.com";
+
+            };
+          };
+        };
+
         ###################################################################
         # PROXY                                                           #
         ###################################################################
