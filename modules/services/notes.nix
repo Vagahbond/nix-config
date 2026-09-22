@@ -102,7 +102,7 @@
 
           settings = {
             crypto = {
-              privateKey = config.age.secrets.affineKey.path;
+              privateKey._secret = config.age.secrets.affineKey.path;
             };
             server = {
               host = "beta.notes.vagahbond.com";
