@@ -27,8 +27,8 @@
         services = {
           fail2ban = {
             enable = true;
-            #   banaction = "nftables-multiport";
-            #   banaction-allports = "nftables-allports";
+            banaction = "nftables-multiport";
+            banaction-allports = "nftables-allports";
           };
           openssh = {
             enable = true;
