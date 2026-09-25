@@ -49,6 +49,11 @@
           }
           // config.shell.shellAliases;
 
+          programs.zsh.interactiveShellInit = ''
+            if ping -c 1 -W 1 8.8.8.8 >/dev/null 2>&1; then
+              ${pkgs.curl}/bin/curl https://bible-api.com/data/web/random/PSA 2> /dev/null| jq -r '"\n \(.translation.name) Psalms — \(.random_verse.chapter):\(.random_verse.verse) — \(.random_verse.text | gsub("\n"; " ") | gsub("\\s+"; " ") | trim) "'
+            fi
+          '';
         };
 
       };
