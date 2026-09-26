@@ -10,12 +10,13 @@
     conf =
       {
         pkgs,
+        inputs,
         ...
       }:
       {
 
         environment.systemPackages = [
-          pkgs.crush
+          inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.crush
         ];
       };
   }

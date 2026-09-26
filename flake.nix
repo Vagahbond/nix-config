@@ -127,5 +127,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    llm-agents = {
+      url = "github:numtide/nix-ai-tools";
+    };
+
   };
 }
