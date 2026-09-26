@@ -101,7 +101,7 @@
 
           nginx = {
             enable = true;
-            enableACME = false;
+            enableACME = true;
           };
 
           database = {
