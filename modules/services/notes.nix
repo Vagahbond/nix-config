@@ -135,7 +135,7 @@
                 config = {
                   region = "ap-southeast-2";
                   credentials = {
-                    secretAccessKey = config.age.secrets.affineS3Secret.path;
+                    secretAccessKey._secret = config.age.secrets.affineS3Secret.path;
                     accessKeyId = "AKIAZI2LIHXHDIZGJ3P5";
                   };
                 };
@@ -146,7 +146,7 @@
                 config = {
                   region = "ap-southeast-2";
                   credentials = {
-                    secretAccessKey = config.age.secrets.affineS3Secret.path;
+                    secretAccessKey._secret = config.age.secrets.affineS3Secret.path;
                     accessKeyId = "AKIAZI2LIHXHDIZGJ3P5";
                   };
                 };
