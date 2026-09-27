@@ -128,7 +128,7 @@
 
             };
 
-            storage = {
+            storages = {
               blob.storage = {
                 provider = "aws-s3";
                 bucket = "vagahbond-affine-blobs";
