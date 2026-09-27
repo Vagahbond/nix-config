@@ -47,6 +47,13 @@
           group = config.services.affine-server.group;
         };
 
+        age.secrets.affineS3Secret = {
+          file = ../../secrets/affine_s3_secret.age;
+          mode = "400";
+          owner = config.services.affine-server.user;
+          group = config.services.affine-server.group;
+        };
+
         ###################################################################
         # SERVICE                                                         #
         ###################################################################
@@ -119,6 +126,31 @@
             server = {
               host = "beta.notes.vagahbond.com";
 
+            };
+
+            storage = {
+              blob.storage = {
+                provider = "aws-s3";
+                bucket = "vagahbond-affine-blobs";
+                config = {
+                  region = "ap-southeast-2";
+                  credentials = {
+                    secretAccessKey = config.age.secrets.affineS3Secret.path;
+                    accessKeyId = "AKIAZI2LIHXHDIZGJ3P5";
+                  };
+                };
+              };
+              avatar.storage = {
+                provider = "aws-s3";
+                bucket = "vagahbond-affine-avatars";
+                config = {
+                  region = "ap-southeast-2";
+                  credentials = {
+                    secretAccessKey = config.age.secrets.affineS3Secret.path;
+                    accessKeyId = "AKIAZI2LIHXHDIZGJ3P5";
+                  };
+                };
+              };
             };
           };
         };

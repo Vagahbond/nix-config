@@ -113,6 +113,11 @@ in
     platypute
   ];
 
+  "affine_s3_secret.age".publicKeys = [
+    mk
+    platypute
+  ];
+
   "redis_affine_pass_file.age".publicKeys = [
     mk
     platypute
