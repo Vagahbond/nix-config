@@ -44,7 +44,6 @@
       "shell"
     ];
     virtualization = [
-      "docker"
     ];
     impermanence = { };
     locales = { };
