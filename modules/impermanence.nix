@@ -29,7 +29,7 @@
               "/var/tmp"
             ];
             files = [
-              #  "/etc/machine-id"
+              "/etc/machine-id"
             ];
           };
         };
