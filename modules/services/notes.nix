@@ -124,7 +124,7 @@
               privateKey._secret = config.age.secrets.affineKey.path;
             };
             server = {
-              host = "beta.notes.vagahbond.com";
+              host = "notes.vagahbond.com";
 
             };
 
@@ -158,7 +158,7 @@
         ###################################################################
         # PROXY                                                           #
         ###################################################################
-        services.nginx.virtualHosts."notes.vagahbond.com" = {
+        services.nginx.virtualHosts."beta.notes.vagahbond.com" = {
           forceSSL = true;
           enableACME = true;
           # basicAuthFile = config.age.secrets.silverbulletEnv.path;
