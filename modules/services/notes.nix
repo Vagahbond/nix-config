@@ -75,17 +75,6 @@
                   };
                 };
               };
-              avatar.storage = {
-                provider = "aws-s3";
-                bucket = "vagahbond-affine-avatars";
-                config = {
-                  region = "ap-southeast-2";
-                  credentials = {
-                    secretAccessKey._secret = config.age.secrets.affineS3Secret.path;
-                    accessKeyId = "AKIAZI2LIHXHDIZGJ3P5";
-                  };
-                };
-              };
             };
           };
         };
