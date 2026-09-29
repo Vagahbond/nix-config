@@ -1,27 +1,28 @@
-{ pkgs }:
+{ pkgs, projectName }:
 {
   pgconfigure = pkgs.writeShellScriptBin "pgconfigure" ''
-    psql -h localhost -p 5432 -d postgres -c "CREATE USER homepage WITH PASSWORD 'password';"
-    psql -h localhost -p 5432 -d postgres -c "CREATE DATABASE homepage WITH OWNER homepage;";
+    psql -h $(pwd)/data -d postgres -c "CREATE USER ${projectName} WITH PASSWORD 'password';"
+    psql -h $(pwd)/data -d postgres -c "CREATE DATABASE ${projectName} WITH OWNER ${projectName};";
   '';
 
   pgstart = pkgs.writeShellScriptBin "pgstart" ''
-    pg_ctl -D data -l pglogfile start -o "-k ./";
+    pg_ctl -D data -l pglogfile start -o "-c listen_addresses=' ' -c unix_socket_directories='./'";
   '';
 
   pginit = pkgs.writeShellScriptBin "pginit" ''
-    pg_ctl -D data init;
+    pg_ctl -D data init -o "-c unix_socket_directories='./'";
   '';
 
   pgseed = pkgs.writeShellScriptBin "pgseed" ''
-    psql -h localhost -p 5432 -d homepage -f database.sql
+    psql -h $(pwd)/data -d ${projectName} -f database.sql
   '';
 
   pgstop = pkgs.writeShellScriptBin "pgstop" ''
-    pg_ctl -D data -l pglogfile stop -o "-k ./";
+    pg_ctl -D data -l pglogfile stop -o "-c unix_socket_directories='./'";
   '';
 
   pgdump = pkgs.writeShellScriptBin "pgdump" ''
-    pg_dump -h localhost -p 5432 -f database.sql homepage
+    pg_dump -h $(pwd)/data -f database.sql ${projectName}
   '';
+
 }
