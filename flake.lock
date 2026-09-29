@@ -619,6 +619,22 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "nixpkgs_8": {
+      "locked": {
+        "lastModified": 1790578696,
+        "narHash": "sha256-ZoxIApko70jCdbH3l20HWXOBaT2HZd87orzd2yJ9dVE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7a0f122f5090cf4c2ade2a13a0e229d4e19ba71f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nvf": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -783,21 +799,18 @@
     },
     "website": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1785956724,
-        "narHash": "sha256-flS5MYGBxeot7OgkD8tEDm/77rdtmfXrQZl7YE28oLM=",
+        "lastModified": 1790659869,
+        "narHash": "sha256-XlcVJob0I+r+C2RUbUbhIBw2Tk/bznxnGsS9aLWnv6Q=",
         "ref": "refs/heads/master",
-        "rev": "31f059c1dc15f91d3c13f4d73dcb66f61edbbce2",
-        "revCount": 55,
+        "rev": "7d9f2e54abda335ddb4432dc16f4f5c06428c67e",
+        "revCount": 62,
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       },
       "original": {
-        "rev": "31f059c1dc15f91d3c13f4d73dcb66f61edbbce2",
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       }

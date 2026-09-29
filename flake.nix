@@ -101,9 +101,7 @@
     };
 
     website = {
-      url = "git+ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git?rev=31f059c1dc15f91d3c13f4d73dcb66f61edbbce2";
-
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git";
 
     };
 
