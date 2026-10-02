@@ -802,11 +802,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1790827129,
-        "narHash": "sha256-XPEGSHSpUEnos7kwMRbvIUdnFWCEmEIhCViZewrOaKM=",
+        "lastModified": 1790829436,
+        "narHash": "sha256-QiTAENpa1BjBY28Q73sXEI/Ati3tXMWmA0kczaGhwSU=",
         "ref": "refs/heads/master",
-        "rev": "49f7112511488a496c602be1c7ff305b86d295d4",
-        "revCount": 67,
+        "rev": "690f77b08df8fc1dc07763bc460d5aeaf928fd44",
+        "revCount": 69,
         "type": "git",
         "url": "ssh://forgejo@git.vagahbond.com/vagahbond/homepage.git"
       },
