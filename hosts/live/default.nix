@@ -1,32 +1,65 @@
 {
-  name = "framework";
-  platform = "x86_64-linux";
+  name = "live";
+  modules = {
+    dev = [
+      "git"
+      "network"
+      "ai"
+    ];
+    editor = [
+      "nvf"
+    ];
+    admin = [
+      "keys"
+    ];
+    network = [
+      "ssh"
+    ];
+    nix = [
+      "nix"
+      "remoteBuild"
+    ];
+    security = [
+      "secrets"
+    ];
+    terminal = [
+      "prompt"
+      "shell"
+      "rss"
+      "music"
+    ];
+    system = { };
+    user = { };
+    desktop = { };
+    impermanence = { };
+  };
 
   configuration =
     {
-      inputs,
       pkgs,
+      config,
+      inputs,
+      username,
       ...
     }:
+    let
+      updatePlatyputeScript = pkgs.writeScriptBin "upgrade-platypute" ''
+        ssh -t platypute nh os switch "${config.environment.variables.NH_FLAKE}" --refresh;
+      '';
+    in
     {
+      system.stateVersion = "26.11";
+      nixpkgs.hostPlatform = "x86_64-linux";
+
       environment.systemPackages = [
         inputs.disko.packages.${pkgs.stdenv.hostPlatform.system}.default
+        updatePlatyputeScript
       ];
 
       imports = [ ./hardware-configuration.nix ];
 
-      rice = "eye-burner-minimal";
+      users.users.${username}.hashedPassword =
+        "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
 
-      user.password = "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
-
-      terminal = {
-        shell = "zsh";
-        shellAliases = {
-          clone-config = "git clone https://github.com/vagahbond/nix-config";
-          format-disks = "f(){ nix run github:nix-community/disko -- --mode disko $1}; f";
-          mount-disk = "f(){ sudo mkdir -p /mnt/nix && sudo mount /dev/$1 /mnt}; f";
-          install = "f() {nixos-install --flake .#$1}; f";
-        };
-      };
     };
 }
