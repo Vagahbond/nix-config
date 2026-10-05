@@ -58,6 +58,8 @@
 
       imports = [ ./hardware-configuration.nix ];
 
+      persistence.enable = false;
+
       users.users.${username}.hashedPassword =
         "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
 

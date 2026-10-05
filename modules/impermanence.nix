@@ -13,6 +13,7 @@
 
         options.persistence = {
           enable = pkgs.lib.mkEnableOption "impermanence";
+
           storageLocation = pkgs.lib.mkOption {
             type = pkgs.lib.types.str;
             description = "Name of the path to persistent storage.";

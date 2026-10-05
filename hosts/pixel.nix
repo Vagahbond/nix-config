@@ -59,6 +59,7 @@
       ];
 
       config = {
+        persistence.enable = false;
 
         fonts.packages = [ pkgs.nerd-fonts.bigblue-terminal ];
 

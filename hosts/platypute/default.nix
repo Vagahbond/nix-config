@@ -61,6 +61,7 @@
       system.stateVersion = "22.11";
 
       nixpkgs.hostPlatform = "x86_64-linux";
+      persistence.enable = true;
 
       # not enough goddamn disk space
       nix.settings = {
