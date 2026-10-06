@@ -1,7 +1,6 @@
 {
-  inputs,
-  config,
   lib,
+  architecture,
   ...
 }:
 {
@@ -22,13 +21,6 @@
     useDHCP = lib.mkDefault true;
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = lib.mkDefault "${architecture}-linux";
 
-  imports = [
-    "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-    "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-  ];
-
-  isoImage.volumeID = lib.mkForce "${config.networking.hostName}-live";
-  image.filename = lib.mkForce "nixos.iso";
 }

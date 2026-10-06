@@ -18,6 +18,7 @@
     nix = [
       "nix"
       "remoteBuild"
+      "live"
     ];
     security = [
       "secrets"
