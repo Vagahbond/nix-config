@@ -5,25 +5,16 @@
   ...
 }:
 {
-  # Live env goes in ram
-  fileSystems = {
-    "/" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = [
-        "relatime"
-        "mode=755"
-      ];
-    };
-
+  # Root is already a tmpfs provided by the ISO module. The installer module overrides
+  # the whole fileSystems option, so extra mounts need the same priority to be kept.
+  fileSystems = lib.mkImageMediaOverride {
     "/home" = {
-      device = "/dev/disk/by-partlabel/live-persist";
+      device = "/dev/disk/by-label/live-persist";
       fsType = "ext4";
       options = [
         "relatime"
-        "mode=755"
+        "nofail"
       ];
-      neededForBoot = true;
     };
   };
 
@@ -39,5 +30,5 @@
   ];
 
   isoImage.volumeID = lib.mkForce "${config.networking.hostName}-live";
-  isoImage.isoName = lib.mkForce "${config.networking.hostName}-nixos.iso";
+  image.filename = lib.mkForce "nixos.iso";
 }

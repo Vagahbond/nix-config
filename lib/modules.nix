@@ -88,7 +88,12 @@ let
     Gather hosts and loaded modules into a single system's configuration
   */
   prepareSystem =
-    systemLib: fnName: hostName:
+    {
+      systemLib,
+      fnName,
+      hostName,
+      hostExtraArgs ? { },
+    }:
     let
       host = import (getFileOrDir "${hostDir}/${hostName}");
 
@@ -116,14 +121,31 @@ let
         (_: { networking.hostName = name; })
       ];
 
-      specialArgs = extraArgs;
-
+      specialArgs = extraArgs // hostExtraArgs;
     };
 
 in
 {
-  mkDarwinHost = path: prepareSystem inputs.nix-darwin.lib "darwinSystem" path;
+  mkDarwinHost =
+    {
+      hostName,
+      hostExtraArgs ? { },
+    }:
+    prepareSystem {
+      inherit hostName hostExtraArgs;
+      systemLib = inputs.nix-darwin.lib;
+      fnName = "darwinSystem";
+    };
 
-  mkNixosHost = path: prepareSystem inputs.nixpkgs.lib "nixosSystem" path;
+  mkNixosHost =
+    {
+      hostName,
+      hostExtraArgs ? { },
+    }:
+    prepareSystem {
+      inherit hostExtraArgs hostName;
+      systemLib = inputs.nixpkgs.lib;
+      fnName = "nixosSystem";
+    };
 
 }

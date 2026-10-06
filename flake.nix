@@ -36,30 +36,70 @@
         inherit extraArgs inputs;
         inherit (inputs.nixpkgs) lib;
       };
+
+      liveIsoArchitectures = [
+        "x86_64"
+        "aarch64"
+      ];
+
+      mkLiveIsoHost =
+        architecture:
+        lib.mkNixosHost {
+          hostName = "live";
+          hostExtraArgs = {
+            inherit architecture;
+          };
+        };
     in
     {
       nixosConfigurations = {
-        platypute = lib.mkNixosHost "platypute";
-        pixel = lib.mkNixosHost "pixel";
-        live = lib.mkNixosHost "live";
-      };
+        platypute = lib.mkNixosHost { hostName = "platypute"; };
+        pixel = lib.mkNixosHost { hostName = "pixel"; };
+
+      }
+      // builtins.listToAttrs (
+        map (architecture: {
+          name = "live-${architecture}";
+          value = mkLiveIsoHost architecture;
+        }) liveIsoArchitectures
+      );
 
       darwinConfigurations = {
         air = lib.mkDarwinHost "air";
       };
 
-      devShells = forAllSystems (pkgs: {
-        default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            mermaid-cli
-            entr
-          ];
+      devShells = forAllSystems (
+        pkgs:
+        let
+          mkLiveIsoShell =
+            architecture:
+            pkgs.mkShell (
+              (import ./shells/live-iso.nix) {
+                inherit pkgs architecture;
+                isoImage = inputs.self.nixosConfigurations."live-${architecture}".config.system.build.isoImage;
+              }
+            );
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              mermaid-cli
+              entr
+            ];
 
-          shellHook = ''
-            echo "Editing my NixOS configuration!"
-          '';
-        };
-      });
+            shellHook = ''
+              echo "Editing my NixOS configuration!"
+            '';
+          };
+
+        }
+        // builtins.listToAttrs (
+          map (architecture: {
+            name = "live-iso-${architecture}";
+            value = mkLiveIsoShell architecture;
+          }) liveIsoArchitectures
+        )
+      );
 
       templates = {
         mongodb = {

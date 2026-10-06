@@ -40,6 +40,7 @@
       config,
       inputs,
       username,
+      architecture,
       ...
     }:
     let
@@ -49,7 +50,7 @@
     in
     {
       system.stateVersion = "26.11";
-      nixpkgs.hostPlatform = "x86_64-linux";
+      nixpkgs.hostPlatform = "${architecture}-linux";
 
       environment.systemPackages = [
         inputs.disko.packages.${pkgs.stdenv.hostPlatform.system}.default
