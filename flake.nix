@@ -65,7 +65,7 @@
       );
 
       darwinConfigurations = {
-        air = lib.mkDarwinHost "air";
+        air = lib.mkDarwinHost { hostName = "air"; };
       };
 
       devShells = forAllSystems (

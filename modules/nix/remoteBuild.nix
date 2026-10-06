@@ -20,32 +20,23 @@
           # Setup distributed builds                                    #
           ###############################################################
           buildMachines =
-            lib.optional (config.age.secrets ? builder_2_access) (
-              builtins.map
-                (
-                  system:
-
-                  {
-                    inherit system;
-                    sshKey = config.age.secrets.builder_2_access.path;
-
-                    hostName = "nixbuild";
-                    maxJobs = 100;
-                    speedFactor = 3;
-                    supportedFeatures = [
-                      "benchmark"
-                      "big-parallel"
-                    ];
-                  })
-                [
-                  "x86_64-linux"
-                  "aarch64-linux"
-                  "armv7l-linux"
-                ]
-            )
+            lib.optional (config.age.secrets ? builder_2_access) {
+              sshKey = config.age.secrets.builder_2_access.path;
+              systems = [
+                "x86_64-linux"
+                "aarch64-linux"
+                "armv7l-linux"
+              ];
+              hostName = "nixbuild";
+              maxJobs = 100;
+              speedFactor = 3;
+              supportedFeatures = [
+                "benchmark"
+                "big-parallel"
+              ];
+            }
             ++ lib.optional (config.age.secrets ? builder_access) {
               hostName = "builder";
-              # sshKey = "${config.users.users.${username}.home}/.ssh/builder_access";
               sshKey = config.age.secrets.builder_access.path;
               systems = [
                 # IDK how to make it build something else
