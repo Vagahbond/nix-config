@@ -1,6 +1,5 @@
 {
   pkgs,
-  architecture,
   ...
 }:
 let
@@ -92,17 +91,11 @@ let
     echo "Created $part (label: $label)"
   '';
 
-  buildLiveIso = pkgs.writeShellScriptBin "build_live_iso" ''
-    set -euo pipefail
-    exec nix build \
-      ".#nixosConfigurations.live-${architecture}.config.system.build.isoImage" \
-      --out-link result-live-iso   '';
-
   flashLiveIso = pkgs.writeShellScriptBin "flash_live_iso" ''
     set -euo pipefail
     [ "$#" -eq 1 ] || { echo "usage: flash_live_iso /dev/<disk>" >&2; exit 1; }
-    iso=("result-live-iso/iso/"*.iso)
-    [ "''${#[@]}" -eq 1 ] && [ -f "''${iso[0]}" ] || { echo "error: expected exactly one ISO in result-live-iso/iso" >&2; exit 1; }
+    iso=("result/iso/"*.iso)
+    [ "''${#[@]}" -eq 1 ] && [ -f "''${iso[0]}" ] || { echo "error: expected exactly one ISO in result/iso" >&2; exit 1; }
     ${pkgs.coreutils}/bin/dd if="''${iso[0]}" of="$1" bs=4M status=progress oflag=sync
   '';
 
@@ -127,7 +120,8 @@ let
 in
 {
   buildInputs = [
-    buildLiveIso
+    pkgs.mermaid-cli
+    pkgs.entr
     flashLiveIso
     # injectCurrentHostSshKey
   ]
@@ -136,13 +130,15 @@ in
   ];
 
   shellHook = ''
-    echo "Create a NixOS live env with a persistent partition mounted at /home
+    echo "This dev shell is for various aspects of this flake.
 
-    1) build_live_iso: build a live ISO image in result-live-iso/iso
+    ###############################################################
+    # Testing live ISOs                                           #
+    ###############################################################
 
-    2) flash_live_iso <disk>: flash the live ISO to <disk>
+    1) flash_live_iso <disk>: flash the live ISO to <disk>
 
-    3) create_live_persistent_partition <disk>: ${
+    2) create_live_persistent_partition <disk>: ${
       if pkgs.stdenv.hostPlatform.isLinux then
         "create a persistent partition on <disk>"
       else
