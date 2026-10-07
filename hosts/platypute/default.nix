@@ -1,6 +1,5 @@
 # nh os switch --dry --build-host platypute --target-host platypute --hostname platypute . --show-trace
 {
-  name = "platypute";
 
   modules = {
     dev = [

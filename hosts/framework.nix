@@ -1,4 +1,5 @@
 {
+
   modules = {
     dev = [
       "git"
@@ -19,7 +20,6 @@
       "remoteBuild"
     ];
     security = [
-      "fingerprint"
       "secrets"
     ];
     terminal = [
@@ -31,24 +31,33 @@
     system = { };
     user = { };
     desktop = { };
+    impermanence = { };
   };
 
   configuration =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      inputs,
+      username,
+      ...
+    }:
     let
       updatePlatyputeScript = pkgs.writeScriptBin "upgrade-platypute" ''
         ssh -t platypute nh os switch "${config.environment.variables.NH_FLAKE}" --refresh;
       '';
-
     in
     {
+      system.stateVersion = "26.11";
+      nixpkgs.hostPlatform = "x86_64-linux";
+
       environment.systemPackages = [
+        inputs.disko.packages.${pkgs.stdenv.hostPlatform.system}.default
         updatePlatyputeScript
-        pkgs.timewarrior
       ];
 
-      system.stateVersion = 6;
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      users.users.${username}.hashedPassword =
+        "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
 
     };
 }
