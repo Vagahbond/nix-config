@@ -103,7 +103,7 @@ in
   }
   {
     targets = [ "darwinConfiguration" ];
-    conf = { username, pkgs, ... }: {
+    conf = { username, ... }: {
       # https://github.com/nix-darwin/nix-darwin/issues/1817
       documentation.enable = false;
       system.tools.darwin-uninstaller.enable = false;
