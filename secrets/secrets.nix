@@ -9,8 +9,14 @@ let
 
   # Master key is responsible for re-keying everything
   mk = framework;
+
+  addMkToSet = builtins.mapAttrs (
+    _: v: {
+      publicKeys = v.publicKeys ++ [ mk ];
+    }
+  );
 in
-{
+addMkToSet {
   # Misc secrets
   "wifi.age".publicKeys = [ mk ];
   "kubeconfig.age".publicKeys = [ mk ];
