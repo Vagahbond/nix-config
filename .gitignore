@@ -2,3 +2,5 @@ result
 **/result
 *.sh
 .crush
+
+**/result-live-iso
