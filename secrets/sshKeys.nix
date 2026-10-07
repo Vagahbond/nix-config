@@ -9,7 +9,6 @@ let
     builder_2_access = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRcN1LHxdUYfuYw5YkEsVUq5wKy9QW2pxQo7I8jquN2 vagahbond@air";
     platypute_access = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHltlf+mdcWwHJ7bKcPB+V5xd2aqGLSwd1VSTV8v4Su vagahbond@framework";
     github_access = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBi/qH3wsZVyF61Wd1qgwvzx5VRl4uPYEWNxSCbYLC+n vagahbond@framework";
-    dedistonks_access = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPuP+GtAAxcazFzWDVqzV+CLTJXi1IqM4/QfNFukjFXr vagahbond@pm.me";
   };
 
   mkPrivateKey = name: {

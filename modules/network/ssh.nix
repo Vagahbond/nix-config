@@ -19,7 +19,6 @@
         secretNames = [
           "builder_2_access"
           "builder_access"
-          "dedistonks_access"
           "github_access"
           "platypute_access"
         ];
@@ -50,12 +49,6 @@
               HostName vagahbond.com
               User guardian
               Port 31
-
-            Host dedistonks
-              HostName vagahbond.com
-              User vagahbond
-              Port 45
-              ${identityFile "dedistonks_access"}
 
             Host github.com
               HostName github.com
