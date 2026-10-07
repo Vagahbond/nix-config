@@ -1,258 +1,215 @@
 let
   recipients = import ./recipients.nix;
   inherit (recipients)
-    dedistonks
     framework
     pixel
     platypute
+    air
     ;
 
   # Master key is responsible for re-keying everything
-  mk = framework;
+  mk = air;
 
   addMkToSet = builtins.mapAttrs (
     _: v: {
-      publicKeys = v.publicKeys ++ [ mk ];
+      publicKeys = if builtins.elem mk v.publicKeys then v.publicKeys else v.publicKeys ++ [ mk ];
     }
   );
 in
 addMkToSet {
   # Misc secrets
-  "wifi.age".publicKeys = [ mk ];
-  "kubeconfig.age".publicKeys = [ mk ];
-  "wakatime_config.age".publicKeys = [
-    mk
-    dedistonks
-    platypute
-    pixel
+  "wifi.age".publicKeys = [
+    air
+    framework
   ];
 
   "nextcloud_admin_pass.age".publicKeys = [
-    mk
     platypute
   ];
 
   "nextcloud_s3_secret.age".publicKeys = [
-    mk
     platypute
   ];
 
   "ente_s3_secret.age".publicKeys = [
-    mk
     platypute
   ];
 
   "ente_enc_key_secret.age".publicKeys = [
-    mk
     platypute
   ];
 
   "ente_enc_hash_secret.age".publicKeys = [
-    mk
     platypute
   ];
 
   "ente_jwt_secret.age".publicKeys = [
-    mk
     platypute
   ];
 
   "ente_ott_secret.age".publicKeys = [
-    mk
     platypute
 
   ];
 
   "nextcloud_mail_password.age".publicKeys = [
-    mk
     platypute
   ];
 
-  "nextcloud_client_account.age".publicKeys = [ mk ];
+  "nextcloud_client_account.age".publicKeys = [ ];
 
   "glance_secret_key.age".publicKeys = [
-    mk
     platypute
   ];
 
   "glance_vagahbond_password.age".publicKeys = [
-    mk
     platypute
   ];
 
   "grafana_secret_key.age".publicKeys = [
     platypute
-    mk
   ];
 
   "invoiceshelf_env.age".publicKeys = [
-    mk
     platypute
   ];
 
   "ghost_env.age".publicKeys = [
-    mk
     platypute
   ];
   "joan_ghost_env.age".publicKeys = [
-    mk
     platypute
   ];
 
   "universe.age".publicKeys = [
-    mk
     platypute
   ];
   "learnify.age".publicKeys = [
-    mk
     platypute
   ];
 
   # "silverbullet_env.age".publicKeys = [mk platypute];
   "affine_env.age".publicKeys = [
-    mk
     platypute
   ];
 
   "affine_key.age".publicKeys = [
-    mk
     platypute
   ];
 
   "affine_s3_secret.age".publicKeys = [
-    mk
     platypute
   ];
 
   "redis_affine_pass_file.age".publicKeys = [
-    mk
     platypute
   ];
 
   # SSH Keys
   "ssh_config.age".publicKeys = [
-    mk
     pixel
     platypute
+    air
+    framework
   ];
 
   "builder_access.age".publicKeys = [
-    mk
     pixel
+    air
+    framework
   ];
 
   "builder_2_access.age".publicKeys = [
-    mk
     pixel
     platypute
+    air
+    framework
   ];
 
   "platypute_access.age".publicKeys = [
-    mk
     pixel
+    platypute
+    air
   ];
 
   "github_access.age".publicKeys = [
     platypute
-    mk
     pixel
-  ];
-
-  "dedistonks_access.age".publicKeys = [
-    mk
-    pixel
+    air
+    framework
   ];
 
   "aws_ro_access.age".publicKeys = [
     platypute
-    mk
   ];
 
   "aws_ro_secret.age".publicKeys = [
     platypute
-    mk
   ];
 
   "postgres_backup_s3_access_key.age".publicKeys = [
     platypute
-    mk
   ];
 
   "postgres_backup_s3_secret_key.age".publicKeys = [
     platypute
-    mk
   ];
 
   "vultr_api_key.age".publicKeys = [
     platypute
-    mk
   ];
 
   "nextCloudMonitoringAccessToken.age".publicKeys = [
     platypute
-    mk
   ];
 
   "wger_env.age".publicKeys = [
     platypute
-    mk
   ];
 
   "mail_user_password.age".publicKeys = [
     platypute
-    mk
   ];
 
   "mk_reset_pwd.age".publicKeys = [
     platypute
-    mk
   ];
 
   "mk_reset_env.age".publicKeys = [
     platypute
-    mk
   ];
 
   "tournament_env.age".publicKeys = [
     platypute
-    mk
   ];
 
   "opencloud_env.age".publicKeys = [
     platypute
-    mk
   ];
 
   "filestash_secret_key.age".publicKeys = [
     platypute
-    mk
   ];
   "opencode_conf.age".publicKeys = [
-    mk
   ];
 
   "firefly_app_key.age".publicKeys = [
-    mk
     platypute
   ];
 
   "n8n_encryption_key.age".publicKeys = [
-    mk
     platypute
   ];
 
   "n8n_runners_auth_token.age".publicKeys = [
-    mk
     platypute
   ];
 
   "forgejo_admin_pass.age".publicKeys = [
-    mk
     platypute
   ];
 
   "forgejo_runner_token.age".publicKeys = [
-    mk
     platypute
   ];
 
