@@ -21,6 +21,8 @@
     inputs.disko.nixosModules.disko
   ];
 
+  users.users.nixos = lib.mkForce null;
+
   fileSystems = pkgs.lib.mkImageMediaOverride {
     "/home" = {
       device = "/dev/disk/by-label/live-persist";
