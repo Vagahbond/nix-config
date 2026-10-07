@@ -93,14 +93,10 @@ let
       fnName,
       hostName,
       hostExtraArgs ? { },
+      hostExtraModules ? [ ],
     }:
     let
       host = import (getFileOrDir "${hostDir}/${hostName}");
-
-      name =
-        assert lib.assertMsg (builtins.hasAttr "name" host)
-          "You need to specify a name (corresponds to hostname) in your host's config!";
-        host.name;
 
       importedModules = importModules host.modules;
 
@@ -113,12 +109,13 @@ let
         ++ [
           host.configuration
         ]
-        ++ globalModules;
+        ++ globalModules
+        ++ hostExtraModules;
 
     in
     fn {
       modules = baseModules ++ [
-        (_: { networking.hostName = name; })
+        (_: { networking.hostName = hostName; })
       ];
 
       specialArgs = extraArgs // hostExtraArgs;
@@ -130,9 +127,10 @@ in
     {
       hostName,
       hostExtraArgs ? { },
+      hostExtraModules ? [ ],
     }:
     prepareSystem {
-      inherit hostName hostExtraArgs;
+      inherit hostName hostExtraArgs hostExtraModules;
       systemLib = inputs.nix-darwin.lib;
       fnName = "darwinSystem";
     };
@@ -141,9 +139,10 @@ in
     {
       hostName,
       hostExtraArgs ? { },
+      hostExtraModules ? [ ],
     }:
     prepareSystem {
-      inherit hostExtraArgs hostName;
+      inherit hostName hostExtraArgs hostExtraModules;
       systemLib = inputs.nixpkgs.lib;
       fnName = "nixosSystem";
     };

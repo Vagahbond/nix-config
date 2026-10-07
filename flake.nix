@@ -2,7 +2,7 @@
   description = "My modular NixOS configuration that totally did not take countless horus to make.";
 
   outputs =
-    inputs:
+    { self, ... }@inputs:
     let
 
       forAllSystems =
@@ -35,77 +35,80 @@
       lib = import ./lib/modules.nix {
         inherit extraArgs inputs;
         inherit (inputs.nixpkgs) lib;
+
+        globalModules = [ ];
       };
 
-      liveIsoArchitectures = [
+      liveEnvArchitectures = [
         "x86_64"
         "aarch64"
       ];
 
-      mkLiveIsoHost =
-        architecture:
-        lib.mkNixosHost {
-          hostName = "live";
-          hostExtraArgs = {
-            inherit architecture;
-          };
-        };
-    in
-    {
-      nixosConfigurations = {
+      baseConfigurations = {
         platypute = lib.mkNixosHost { hostName = "platypute"; };
         pixel = lib.mkNixosHost { hostName = "pixel"; };
+        framework = lib.mkNixosHost { hostName = "framework"; };
+        guest = lib.mkNixosHost { hostName = "guest"; };
 
-      }
-      // builtins.listToAttrs (
-        map (architecture: {
-          name = "live-${architecture}";
-          value = mkLiveIsoHost architecture;
-        }) liveIsoArchitectures
+      };
+
+      mkLiveHostName = hostname: architecture: "${hostname}-live-${architecture}";
+
+      liveEnvs = builtins.listToAttrs (
+        builtins.concatMap (
+          host:
+          map (architecture: {
+            name = mkLiveHostName host architecture;
+            value = lib.mkNixosHost {
+              hostName = host;
+              hostExtraArgs = {
+                inherit architecture;
+              };
+              hostExtraModules = [
+                ./live.nix
+              ];
+            };
+          }) liveEnvArchitectures
+        ) (builtins.attrNames baseConfigurations)
       );
+
+      isoBuildShortcuts = builtins.listToAttrs (
+        builtins.concatMap (
+          value:
+          (map (architecture: {
+            name = "${architecture}-linux";
+            value =
+              let
+                hostname = value.config.networking.hostName;
+              in
+              {
+                "${hostname}-live" =
+                  self.nixosConfigurations.${mkLiveHostName hostname architecture}.config.system.build.isoImage;
+              };
+          }) liveEnvArchitectures)
+        ) (builtins.attrValues baseConfigurations)
+      );
+
+    in
+    {
+      nixosConfigurations = baseConfigurations // liveEnvs;
 
       darwinConfigurations = {
         air = lib.mkDarwinHost { hostName = "air"; };
       };
 
-      devShells = forAllSystems (
-        pkgs:
-        let
-          mkLiveIsoShell =
-            architecture:
-            pkgs.mkShell (
-              (import ./shells/live-iso.nix) {
-                inherit pkgs architecture;
-                isoImage = inputs.self.nixosConfigurations."live-${architecture}".config.system.build.isoImage;
-              }
-            );
-        in
-        {
-          default = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              mermaid-cli
-              entr
-            ];
+      devShells = forAllSystems (pkgs: {
+        default = pkgs.mkShell (import ./shell.nix { inherit pkgs; });
+      });
 
-            shellHook = ''
-              echo "Editing my NixOS configuration!"
-            '';
-          };
-
-        }
-        // builtins.listToAttrs (
-          map (architecture: {
-            name = "live-iso-${architecture}";
-            value = mkLiveIsoShell architecture;
-          }) liveIsoArchitectures
-        )
-      );
+      packages = isoBuildShortcuts;
 
       templates = {
         mongodb = {
           path = ./templates/mongodb;
           description = "NodeJS + MongoDB dev shell";
         };
+
         postgresql = {
           path = ./templates/postgresql;
           description = "NodeJS + PostgreSQL dev shell";

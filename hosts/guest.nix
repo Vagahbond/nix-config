@@ -1,5 +1,4 @@
 {
-  name = "live";
   modules = {
     dev = [
       "git"
@@ -18,7 +17,6 @@
     nix = [
       "nix"
       "remoteBuild"
-      "live"
     ];
     security = [
       "secrets"
@@ -41,7 +39,7 @@
       config,
       inputs,
       username,
-      architecture,
+      architecture ? null,
       ...
     }:
     let
@@ -50,15 +48,20 @@
       '';
     in
     {
+      assertions = [
+        # This host can only be used as a built ISO.
+        {
+          assertion = architecture != null;
+          message = "This host can only be used as a built ISO.";
+        }
+      ];
       system.stateVersion = "26.11";
-      nixpkgs.hostPlatform = "${architecture}-linux";
+      nixpkgs.hostPlatform = "x86_64-linux";
 
       environment.systemPackages = [
         inputs.disko.packages.${pkgs.stdenv.hostPlatform.system}.default
         updatePlatyputeScript
       ];
-
-      imports = [ ./hardware-configuration.nix ];
 
       persistence.enable = false;
 
