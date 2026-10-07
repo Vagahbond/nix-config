@@ -73,20 +73,16 @@
       );
 
       isoBuildShortcuts = builtins.listToAttrs (
-        builtins.concatMap (
-          value:
-          (map (architecture: {
-            name = "${architecture}-linux";
-            value =
-              let
-                hostname = value.config.networking.hostName;
-              in
-              {
-                "${hostname}-live" =
-                  self.nixosConfigurations.${mkLiveHostName hostname architecture}.config.system.build.isoImage;
-              };
-          }) liveEnvArchitectures)
-        ) (builtins.attrValues baseConfigurations)
+        map (architecture: {
+          name = "${architecture}-linux";
+          value = builtins.listToAttrs (
+            map (hostname: {
+              name = "${hostname}-live";
+              value =
+                self.nixosConfigurations.${mkLiveHostName hostname architecture}.config.system.build.isoImage;
+            }) (builtins.attrNames baseConfigurations)
+          );
+        }) liveEnvArchitectures
       );
 
     in

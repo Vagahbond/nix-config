@@ -8,12 +8,20 @@ Personal multi-host Nix flake (NixOS + nix-darwin) for user `vagahbond`. No home
 |---|---|---|---|
 | `nixosConfigurations.platypute` | `hosts/platypute/` | x86_64-linux | Main server: nginx, services, postgres, docker. tmpfs root (disko) + impermanence. |
 | `nixosConfigurations.pixel` | `hosts/pixel.nix` | aarch64-linux | Android AVF VM (`inputs.avf`). No impermanence. |
-| `nixosConfigurations.live` | `hosts/live/` | x86_64-linux | Bootable live ISO (minimal installer CD). tmpfs root, `/home` on ext4 labelled `live-persist` (`nofail`). Impermanence module listed but `persistence.enable = false`. |
-| `darwinConfigurations.air` | `hosts/air.nix` | aarch64-darwin | MacBook. |
+| `nixosConfigurations.framework` | `hosts/framework.nix` | x86_64-linux | Desktop/dev configuration. Impermanence module loaded, disabled by default; no hardware/disk imports. |
+| `nixosConfigurations.guest` | `hosts/guest.nix` | x86_64-linux (base setting) | Generic desktop/dev live environment. Base output exists but asserts that `architecture` is supplied; use its generated live outputs. |
+| `darwinConfigurations.air` | `hosts/air.nix` | aarch64-darwin | MacBook. No generated live variants. |
 
-`live` gotcha: nixpkgs' `installation-cd-base.nix` sets the whole `fileSystems` with `lib.mkImageMediaOverride`, so extra mounts in `hosts/live/hardware-configuration.nix` must also be wrapped in `lib.mkImageMediaOverride` or they are silently dropped. Root tmpfs comes from the ISO module; don't redefine `/`.
+Adding a host: create `hosts/<name>.nix` or `hosts/<name>/default.nix`, then add `lib.mkNixosHost { hostName = "<name>"; }` to `baseConfigurations` in `flake.nix`, or `lib.mkDarwinHost { hostName = "<name>"; }` to `darwinConfigurations`. NixOS hosts automatically gain live variants.
 
-Adding a host: create `hosts/<name>.nix` or `hosts/<name>/default.nix`, then add `lib.mkNixosHost "<name>"` / `lib.mkDarwinHost "<name>"` in `flake.nix`.
+### Generated live environments
+
+- `flake.nix` generates `nixosConfigurations.<host>-live-<architecture>` for every entry in `baseConfigurations` (`platypute`, `pixel`, `framework`, `guest`) and each `liveEnvArchitectures` entry (`x86_64`, `aarch64`): eight live outputs. The old standalone `nixosConfigurations.live` and `hosts/live/` no longer exist.
+- Each variant reloads the same host with `hostExtraArgs = { inherit architecture; };` and `hostExtraModules = [ ./live.nix ];`. Host modules, services and hardware imports remain included; these are not stripped-down rescue configurations. The runtime hostname remains the base host name.
+- `live.nix` imports the minimal installation CD, channel and disko modules, forces `nixpkgs.hostPlatform` to `${architecture}-linux`, and forces `persistence.enable = false`. It sets volume ID `<host>-live`, ISO filename `nixos.iso`, and disables getty autologin.
+- Root comes from the ISO module. `/home` mounts ext4 labelled `live-persist` with `relatime` and `nofail`; this is direct home persistence, not impermanence. Other state is not persisted through the impermanence module.
+- ISO filesystem gotcha: nixpkgs' `installation-cd-base.nix` sets the whole `fileSystems` with `lib.mkImageMediaOverride`. Extra mounts in `live.nix` must use that override too or they are silently dropped. Don't redefine `/`.
+- `packages.<architecture>-linux.<host>-live` shortcuts are constructed by `isoBuildShortcuts`, grouping all host ISO packages under each architecture's system key. All eight live outputs have shortcuts; use `nix build .#packages.x86_64-linux.guest-live` or the full `nixosConfigurations` ISO path.
 
 ## Commands
 
@@ -26,16 +34,22 @@ nh os switch --dry --build-host platypute --target-host platypute --hostname pla
 nix eval .#nixosConfigurations.platypute.config.system.build.toplevel.drvPath
 nix eval .#darwinConfigurations.air.system.drvPath
 
-nix eval .#nixosConfigurations.live.config.system.build.isoImage.drvPath
+nix eval .#nixosConfigurations.guest-live-x86_64.config.system.build.isoImage.drvPath
+nix build .#nixosConfigurations.guest-live-x86_64.config.system.build.isoImage
+nix build .#nixosConfigurations.framework-live-aarch64.config.system.build.isoImage
+nix build .#packages.x86_64-linux.guest-live
 
-nix flake update          # most commits are "flake: update"
-nix develop               # devShell: mermaid-cli + entr (for doc/architecture.md)
-nix develop .#live-env    # devShell for the live ISO
+nix flake update
+nix develop
 ```
 
-`live-env` shell commands (defined in `flake.nix` via `pkgs.writeShellScriptBin`):
-- `build_live_iso [nix build args]`: builds `.#nixosConfigurations.live.config.system.build.isoImage` to `./result-live-iso`. Run from repo root. Needs an x86_64-linux builder (remote builder on `air`).
-- `create_live_persistent_partition /dev/<disk>` (Linux only, root, interactive `YES` confirm): turns trailing free space on a whole disk (e.g. a USB stick the ISO was `dd`'d onto) into an ext4 partition with label and GPT name `live-persist`. Supports GPT (runs `sgdisk -e` first) and MBR. Destructive: never run it against a real disk while testing.
+Live builds: replace the host and architecture in the examples above as needed. Run from the repo root; default output is `./result/iso/nixos.iso`. Builds need a builder for the target Linux platform (e.g. an x86_64-linux remote builder when building from `air`); generating an aarch64 output does not make a local macOS build possible.
+
+The default devShell is defined through `shell.nix`, available on `x86_64-linux` and `aarch64-darwin`, and includes mermaid-cli + entr for `doc/architecture.md` plus live ISO helpers. There is no longer a `live-env` shell or `build_live_iso` command.
+
+- `flash_live_iso /dev/<disk>`: writes the single ISO under `result/iso/` to the supplied device with `dd`. Requires device write access. Destructive, with no confirmation or whole-disk/mounted-device checks; verify the destination manually and never run against a real disk while testing.
+- `create_live_persistent_partition /dev/<disk>` (Linux only, root, interactive `YES` confirm): turns trailing free space on a whole unmounted disk (e.g. a USB stick the ISO was flashed onto) into ext4 labelled `live-persist`, also using that GPT partition name. Supports GPT and MBR. On GPT it runs `sgdisk -e` before the confirmation, so invocation can modify the disk even if later aborted. Never run against a real disk while testing.
+- SSH-key injection is not enabled; the SSH identity needed to decrypt secrets must be supplied manually to the live environment.
 
 - `air` has an `upgrade-platypute` script: `ssh -t platypute nh os switch "$NH_FLAKE" --refresh`.
 - `NH_FLAKE` points to `git+ssh://forgejo@git.vagahbond.com/vagahbond/nix-config.git`, so remote upgrades use the **pushed** remote repo, not local working tree.
@@ -72,7 +86,7 @@ modules = {
 };
 ```
 
-Each name resolves to `<dir>/<name>.nix` or `<dir>/<name>/default.nix` (assert error if missing). Host file must provide `name` (becomes `networking.hostName`), `modules`, and `configuration` (plain module, may use `imports`, `options`/`config`).
+Each name resolves to `<dir>/<name>.nix` or `<dir>/<name>/default.nix` (assert error if missing). Host file provides `modules` and `configuration` (plain module, may use `imports`, `options`/`config`). The constructor's `hostName` sets `networking.hostName`; no host-level `name` is required. Constructors accept optional `hostExtraArgs` (merged into `specialArgs`) and `hostExtraModules` (appended after host/global modules), used by live variants.
 
 **Only modules listed by a host are evaluated.** Unlisted modules can be stale/broken (e.g. `services/mkReset.nix` and `services/tournament.nix` reference `inputs.mkReset` etc. which are not in `flake.nix`; `editor/office.nix` uses old `config.impermanence.storageLocation`). Check `flake.nix` inputs before enabling a dormant module.
 
@@ -83,7 +97,7 @@ External flake modules are pulled in per-module via `imports = [ inputs.<x>.nixo
 
 ## Impermanence
 
-- `modules/impermanence.nix` defines `options.persistence.enable` (`mkEnableOption`, default false) and `options.persistence.storageLocation` (default `/nix/persistent`), and imports impermanence. Hosts must set `persistence.enable` explicitly. Only platypute enables it (tmpfs `/` of 6G, see `hosts/platypute/disk-config.nix`); `live` lists the module with `persistence.enable = false`.
+- `modules/impermanence.nix` defines `options.persistence.enable` (`mkEnableOption`, default false) and `options.persistence.storageLocation` (default `/nix/persistent`), and imports impermanence. Only base platypute enables it (tmpfs `/` of 6G, see `hosts/platypute/disk-config.nix`). Framework loads it but leaves it disabled; guest explicitly disables it. `live.nix` forces it off for every live variant, including platypute; the optional `live-persist` `/home` mount is separate.
 - Convention: any nixos entry that needs state adds `environment.persistence.${config.persistence.storageLocation} = { directories = [...]; }` (or `users.${username}.directories`). New services storing data outside `/var/lib`, `/var/log`, `/var/cache`, `/var/tmp` must persist it or it is wiped on reboot.
 - `pixel` has no impermanence; it stubs `options.environment.persistence` as a free `attrs` option in its host file so these declarations are ignored. Keep that in mind if a module references persistence options differently.
 
