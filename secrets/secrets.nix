@@ -128,8 +128,8 @@ addMkToSet {
 
   "platypute_access.age".publicKeys = [
     pixel
-    platypute
     air
+    framework
   ];
 
   "github_access.age".publicKeys = [
