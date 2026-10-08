@@ -14,24 +14,4 @@
         };
       };
   }
-  {
-    targets = [ "nixosConfiguration" ];
-    conf =
-      {
-        config,
-        username,
-        ...
-      }:
-      {
-        environment.persistence.${config.impermanence.storageLocation} = {
-          users.users.${username} = {
-            directories = [
-              ".config/libreoffice"
-            ];
-            files = [
-            ];
-          };
-        };
-      };
-  }
 ]

@@ -29,11 +29,19 @@
     "virtio_blk"
   ];
 
-  users.users.nixos = lib.mkImageMediaOverride {
-    isSystemUser = true;
-    group = "nixos";
+  users = {
+    users = {
+      nixos = lib.mkImageMediaOverride {
+        isSystemUser = true;
+        group = "nixos";
+      };
+      root = {
+        # no login on root !
+        hashedPassword = "!";
+      };
+    };
+    groups.nixos = { };
   };
-  users.groups.nixos = { };
 
   security.sudo = {
     wheelNeedsPassword = lib.mkImageMediaOverride false;
