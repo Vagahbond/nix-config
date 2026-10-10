@@ -55,9 +55,10 @@
               PreferredAuthentications publickey
               ${identityFile "github_access"}
 
-            Host VagahGit
+            Host forgejo
               HostName git.vagahbond.com
               PreferredAuthentications publickey  
+              User forgejo
               ${identityFile "github_access"}
 
             Host platypute
