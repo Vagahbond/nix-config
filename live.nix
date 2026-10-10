@@ -48,7 +48,7 @@
   };
 
   fileSystems = pkgs.lib.mkImageMediaOverride {
-    "/nix" = {
+    "/persist" = {
       device = "/dev/disk/by-label/live-persist";
       fsType = "ext4";
       options = [
@@ -59,18 +59,23 @@
     };
   };
 
-  environment.persistence.${config.persistence.storageLocation} = lib.mkForce {
-    enable = lib.mkForce true;
-    directories = [
-      "/var/cache"
-      "/var/log"
-      "/var/lib"
-      "/var/tmp"
-      "/home"
-    ];
-    files = [
-      "/etc/machine-id"
-    ];
+  environment.persistence = {
+    ${config.persistence.storageLocation} = lib.mkForce {
+      enable = lib.mkForce false;
+    };
+    "/persist" = {
+      enable = lib.mkForce true;
+      directories = [
+        "/var/cache"
+        "/var/log"
+        "/var/lib"
+        "/var/tmp"
+        "/home"
+      ];
+      files = [
+        "/etc/machine-id"
+      ];
+    };
   };
 
   networking = {
@@ -78,8 +83,6 @@
   };
 
   nixpkgs.hostPlatform = lib.mkForce "${architecture}-linux";
-
-  persistence.enable = lib.mkForce true;
 
   isoImage.volumeID = lib.mkForce "${config.networking.hostName}-live";
   image.fileName = lib.mkForce "nixos.iso";
