@@ -3,6 +3,7 @@
   {
     targets = [
       "darwinConfiguration"
+      "nixosConfiguration"
     ];
     conf =
       {
