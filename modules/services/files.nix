@@ -4,6 +4,7 @@
     conf =
       {
         config,
+        pkgs,
         ...
       }:
       {
@@ -65,6 +66,7 @@
             url = "https://files.vagahbond.com";
             environmentFile = config.age.secrets.opencloudEnv.path;
             port = 9208;
+            package = pkgs.opencloud;
             settings = {
               csp = {
                 directives = {
