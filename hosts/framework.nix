@@ -28,9 +28,9 @@
       "rss"
       "music"
     ];
+    desktop = { };
     system = { };
     user = { };
-    desktop = { };
     impermanence = { };
   };
 
