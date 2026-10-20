@@ -60,7 +60,8 @@
             };
             server = {
               host = "notes.vagahbond.com";
-
+              externalUrl = "https://${config.services.affine-server.settings.server.host}";
+              name = "Bloc-notes";
             };
 
             storages = {
@@ -69,6 +70,7 @@
                 bucket = "vagahbond-affine-blobs";
                 config = {
                   region = "ap-southeast-2";
+
                   credentials = {
                     secretAccessKey._secret = config.age.secrets.affineS3Secret.path;
                     accessKeyId = "AKIAZI2LIHXHDIZGJ3P5";
