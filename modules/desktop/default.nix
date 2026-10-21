@@ -4,33 +4,32 @@
     {
       username,
       pkgs,
+      inputs,
       ...
     }:
     {
-      programs.xdg-terminal-exec.enable = true;
-      programs.xdg-terminal-exec.settings.default = [
-        "ghostty.desktop"
-      ];
       xdg = {
         terminal-exec.enable = true;
-        mimeApps.enable = true;
-        mimeApps.defaultApplications = {
-          "video/mp4" = [ "vlc.desktop" ];
-          "video/x-matroska" = [ "vlc.desktop" ];
-          "video/webm" = [ "vlc.desktop" ];
-          "video/x-msvideo" = [ "vlc.desktop" ];
-          "video/quicktime" = [ "vlc.desktop" ];
+        terminal-exec.settings = {
+          default = [
+            "ghostty.desktop"
+          ];
+        };
+        mime.enable = true;
+        mime.defaultApplications = {
+          "video/*" = [ "vlc.desktop" ];
+          "application/pdf" = "brave-origin.desktop";
         };
       };
 
       environment.systemPackages = with pkgs; [
-        zen
+        brave-origin
         ghostty
         vlc
       ];
 
       home-files.${username} = {
-        ".config/ghostty/config" = ./ghostty.conf;
+        ".config/ghostty/config".source = ./ghostty.conf;
       };
 
       services = {
