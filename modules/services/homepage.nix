@@ -3,25 +3,23 @@
     targets = [ "nixosConfiguration" ];
     conf =
       { inputs, pkgs, ... }:
+      let
+        domain = "yoni-firroloni.com";
+      in
       {
+
         services.nginx = {
           enable = true;
-          virtualHosts."yoni-firroloni.com" = {
+          virtualHosts.${domain} = {
             default = true;
             enableACME = true;
             forceSSL = true;
+            root = inputs.website.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+              siteOrigin = "https://${domain}";
+            };
             serverAliases = [
               "vagahbond.com"
             ];
-            locations."/" = {
-              root = "${inputs.website.packages.${pkgs.stdenv.hostPlatform.system}.default}";
-              extraConfig = ''
-                if ($request_uri ~ ^/(.*)\.html(\?|$)) {
-                  return 302 /$1;
-                }
-                try_files $uri $uri.html $uri/ =404;
-              '';
-            };
           };
         };
       };
