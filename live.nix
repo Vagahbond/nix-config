@@ -21,6 +21,8 @@
     inputs.disko.nixosModules.disko
   ];
 
+  # Re-run activation scripts on user login
+
   boot.initrd.availableKernelModules = [
     "ata_piix"
     "uhci_hcd"
@@ -97,6 +99,26 @@
       autologinUser = pkgs.lib.mkForce null;
       helpLine = pkgs.lib.mkForce ''
         Youre logging into ${config.networking.hostName}
+      '';
+    };
+  };
+
+  systemd.services.run-current-system-activate = {
+    wantedBy = [ "graphical.target" ];
+    after = [
+      "graphical.target"
+      "display-manager.service"
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "run-activate" ''
+        for i in $(seq 1 60); do
+          if [ -e /path/to/decrypted/secret ]; then
+            exec /run/current-system/activate
+          fi
+          sleep 2
+        done
+        exit 1
       '';
     };
   };
