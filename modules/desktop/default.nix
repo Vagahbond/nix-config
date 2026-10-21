@@ -4,10 +4,19 @@
     {
       username,
       pkgs,
-      inputs,
       ...
     }:
     {
+
+      fonts = {
+        packages = with pkgs; [ nerd-fonts.mononoki ];
+        fontDir.enable = true;
+        enableDefaultPackages = true;
+        fontconfig = {
+          enable = true;
+        };
+      };
+
       xdg = {
         terminal-exec.enable = true;
         terminal-exec.settings = {
@@ -28,8 +37,13 @@
         vlc
       ];
 
+      environment.variables = {
+        FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
+        FONTCONFIG_PATH = "${pkgs.fontconfig.out}/etc/fonts";
+      };
+
       home-files.${username} = {
-        ".config/ghostty/config".source = ./ghostty.conf;
+        ".config/ghostty/ghostty.conf".source = ./ghostty.conf;
       };
 
       services = {
@@ -38,10 +52,6 @@
         desktopManager.cosmic.enable = true;
         displayManager = {
           cosmic-greeter.enable = true;
-          autoLogin = {
-            enable = true;
-            user = username;
-          };
         };
       };
     };
