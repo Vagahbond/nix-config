@@ -13,6 +13,7 @@
         recommendedOptimisation = true;
         recommendedProxySettings = true;
         recommendedTlsSettings = true;
+        recommendedBrotliSettings = true;
 
       };
       networking.firewall.allowedTCPPorts = [
