@@ -20,7 +20,7 @@
             add_header Strict-Transport-Security $hsts_header;
 
             # Enable CSP for your services.
-            #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
+            add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
 
             # Minimize information leaked to other domains
             add_header 'Referrer-Policy' 'origin-when-cross-origin';
@@ -33,6 +33,9 @@
 
             # This might create errors
             proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+
+            add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
+            add_header Referrer-Policy "strict-origin-when-cross-origin" always;
           '';
 
           virtualHosts.${domain} = {
