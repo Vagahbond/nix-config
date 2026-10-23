@@ -25,8 +25,6 @@
     terminal = [
       "prompt"
       "shell"
-      "rss"
-      "music"
     ];
     desktop = { };
     system = { };

@@ -28,6 +28,9 @@
             ripgrep
             yazi
             fd
+            cliamp
+            glow
+            bulletty
           ];
 
           environment.shellAliases = {
