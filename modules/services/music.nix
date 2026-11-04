@@ -56,7 +56,6 @@
             script = ''
               exec ${pkgs.rclone}/bin/rclone mount s3remote:${bucketName} ${mountDir} \
                 --config /dev/null \
-                --allow-other \
                 --read-only \
                 --dir-cache-time 1h \
                 --cache-dir /var/cache/jellyfin-rclone \
@@ -68,7 +67,8 @@
             '';
 
             serviceConfig = {
-              Type = "simple";
+              CacheDirectory = "jellyfin-rclone";
+              Type = "notify";
               EnvironmentFile = config.age.secrets.musicS3.path;
               User = config.services.jellyfin.user;
               ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mountDir}";
