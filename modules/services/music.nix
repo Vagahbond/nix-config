@@ -1,7 +1,7 @@
 [
   {
     targets = [ "nixosConfiguration" ];
-    conf = _: {
+    conf = { config }: {
       services = {
         jellyfin = {
           enable = true;
@@ -12,7 +12,7 @@
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            # proxyPass = "http://127.0.0.1:8085";
+            proxyPass = "http://127.0.0.1:8096";
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
         };
