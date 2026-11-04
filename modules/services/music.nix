@@ -1,7 +1,7 @@
 [
   {
     targets = [ "nixosConfiguration" ];
-    conf = { config }: {
+    conf = { config, ... }: {
       services = {
         jellyfin = {
           enable = true;
