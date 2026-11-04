@@ -4,7 +4,7 @@
     conf = { config, pkgs, ... }: {
 
       age.secrets.musicS3 = {
-        file = ../../secrets/music_s3.env.age;
+        file = ../../secrets/jellyfin_s3_secret.age;
         owner = config.services.jellyfin.user;
         group = config.services.jellyfin.group;
         mode = "400";
