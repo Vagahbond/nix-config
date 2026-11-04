@@ -46,14 +46,13 @@
               "multi-user.target"
             ];
 
-            path = [ pkgs.fuse3 ];
-
             environment = {
               RCLONE_CONFIG_S3REMOTE_TYPE = "s3";
               RCLONE_CONFIG_S3REMOTE_PROVIDER = "AWS";
               RCLONE_CONFIG_S3REMOTE_REGION = "ap-southeast-2";
             };
             script = ''
+              export PATH="${config.security.wrapperDir}:$PATH"
               exec ${pkgs.rclone}/bin/rclone mount s3remote:${bucketName} ${mountDir} \
                 --config /dev/null \
                 --read-only \
@@ -72,7 +71,7 @@
               EnvironmentFile = config.age.secrets.musicS3.path;
               User = config.services.jellyfin.user;
               ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mountDir}";
-              ExecStop = "${pkgs.fuse3}/bin/fusermount3 -u ${mountDir}";
+              ExecStop = "${config.security.wrapperDir}/fusermount3 -u ${mountDir}";
 
               Restart = "always";
               RestartSec = 10;
