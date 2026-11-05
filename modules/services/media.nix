@@ -3,15 +3,22 @@
     targets = [ "nixosConfiguration" ];
     conf = { config, pkgs, ... }: {
 
-      age.secrets.musicS3 = {
+      age.secrets.jellyfinS3 = {
         file = ../../secrets/jellyfin_s3_secret.age;
         owner = config.services.jellyfin.user;
         group = config.services.jellyfin.group;
         mode = "400";
       };
 
+      age.secrets.jellyfinCrypt = {
+        file = ../../secrets/jellyfin_crypt.age;
+        owner = config.services.jellyfin.user;
+        group = config.services.jellyfin.group;
+        mode = "400";
+      };
+
       services = {
-        nginx.virtualHosts."music.vagahbond.com" = {
+        nginx.virtualHosts."media.vagahbond.com" = {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
@@ -50,10 +57,15 @@
               RCLONE_CONFIG_S3REMOTE_TYPE = "s3";
               RCLONE_CONFIG_S3REMOTE_PROVIDER = "AWS";
               RCLONE_CONFIG_S3REMOTE_REGION = "ap-southeast-2";
+              RCLONE_CONFIG_MEDIA_TYPE = "crypt";
+              RCLONE_CONFIG_MEDIA_REMOTE = "s3remote:${bucketName}";
+              RCLONE_CONFIG_MEDIA_FILENAME_ENCRYPTION = "standard";
+              RCLONE_CONFIG_MEDIA_DIRECTORY_NAME_ENCRYPTION = "true";
+              RCLONE_CONFIG_MEDIA_STRICT_NAMES = "true";
             };
             script = ''
               export PATH="${config.security.wrapperDir}:$PATH"
-              exec ${pkgs.rclone}/bin/rclone mount s3remote:${bucketName} ${mountDir} \
+              exec ${pkgs.rclone}/bin/rclone mount media: ${mountDir} \
                 --config /dev/null \
                 --read-only \
                 --dir-cache-time 1h \
@@ -68,7 +80,10 @@
             serviceConfig = {
               CacheDirectory = "jellyfin-rclone";
               Type = "notify";
-              EnvironmentFile = config.age.secrets.musicS3.path;
+              EnvironmentFile = [
+                config.age.secrets.jellyfinS3.path
+                config.age.secrets.jellyfinCrypt.path
+              ];
               User = config.services.jellyfin.user;
               ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mountDir}";
               ExecStop = "${config.security.wrapperDir}/fusermount3 -u ${mountDir}";

@@ -23,8 +23,9 @@ flowchart LR
         money.vagahbond.com
         importer.money.vagahbond.com
         accounting.vagahbond.com
+        media.vagahbond.com
 
-        music-experiments.vagahbond.com
+        audio-experiments.vagahbond.com
         vagahbond.com
         touches-grasses.fr
 
@@ -82,6 +83,7 @@ flowchart LR
         affineCache[Notes cache]
       end
       ente[Photos]
+      jellyfin[Media]
 
       builder[Nix eval server]
       subgraph fireflygroup[Firefly]
@@ -142,8 +144,9 @@ api.pics.vagahbond.com --> ente
 money.vagahbond.com-->  firefly
 importer.money.vagahbond.com-->  ffimporter
 accounting.vagahbond.com-->  dolibarr
+media.vagahbond.com --> jellyfin
 
-music-experiments.vagahbond.com-->  audio
+audio-experiments.vagahbond.com-->  audio
 vagahbond.com-->  homepage
 touches-grasses.fr-->  blog
 
@@ -172,6 +175,7 @@ n8nrunner --> n8n
 affine --> awss3 
 ente --> awss3 
 opencloud --> awss3
+jellyfin --> awss3
 
 n8n --> matrix
 kuma --> matrix

@@ -34,7 +34,7 @@
       "proxy"
       "ssh"
       "vaultwarden"
-      "music"
+      "media"
     ];
     network = [
       "ssh"

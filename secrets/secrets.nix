@@ -216,4 +216,8 @@ addMkToSet {
   "jellyfin_s3_secret.age".publicKeys = [
     platypute
   ];
+
+  "jellyfin_crypt.age".publicKeys = [
+    platypute
+  ];
 }
