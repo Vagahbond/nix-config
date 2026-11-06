@@ -8,6 +8,13 @@
     }:
     {
 
+      users.users.${username}.extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+
+      security.rtkit.enable = true;
+
       fonts = {
         packages = with pkgs; [ nerd-fonts.mononoki ];
         fontDir.enable = true;
@@ -18,6 +25,10 @@
       };
 
       xdg = {
+        portal = {
+          enable = true;
+          extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+        };
         terminal-exec.enable = true;
         terminal-exec.settings = {
           default = [
@@ -35,6 +46,7 @@
         brave-origin
         ghostty
         vlc
+        kitty
       ];
 
       environment.variables = {
@@ -46,13 +58,36 @@
         ".config/ghostty/ghostty.conf".source = ./ghostty.conf;
       };
 
+      networking.networkmanager.enable = true;
+
+      hardware.enableRedistributableFirmware = true;
+      hardware.wirelessRegulatoryDatabase = true;
+
       services = {
-        system76-scheduler.enable = true;
-        # Enable the COSMIC desktop environment
-        desktopManager.cosmic.enable = true;
-        displayManager = {
-          cosmic-greeter.enable = true;
+        hypridle.enable = true;
+        pipewire = {
+          enable = true;
+          alsa.enable = true;
+          alsa.support32Bit = true;
+          pulse.enable = true;
         };
+
+        fprintd.enable = true;
+        displayManager.regreet = {
+          enable = true;
+        };
+      };
+      programs = {
+        localsend.enable = true;
+        iio-hyprland.enable = true;
+        hyprland = {
+          enable = true;
+          xwayland.enable = true;
+          withUWSM = true;
+        };
+        hyprlock.enable = true;
+
+        dconf.enable = true;
       };
     };
 }
