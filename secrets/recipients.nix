@@ -1,5 +1,5 @@
 {
-  framework = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFusXTBhXLpViUVKjfHRJnjVb6WZFrxYq2/0Kh7MKwN vagahbond@framework";
+  framework = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICkQhv2M2TGIBP1J8kACmDnvhkgVf13vwNFLbC1tBpFf vagahbond@framework";
   air = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFusXTBhXLpViUVKjfHRJnjVb6WZFrxYq2/0Kh7MKwN vagahbond@air";
   dedistonks = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAf1czoN5B1iRpQxeAKwgTPLFDkHyb3S118Ka3Djxo89 vagahbond@dedistonks";
   platypute = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBaJF2F4uGyvYMnt0t1sgdUdxdU0+eEUzH//hGheZSPd vagahbond@pixel";
