@@ -77,14 +77,30 @@
 
         loader = {
           efi.canTouchEfiVariables = true;
-          grub = {
+          systemd-boot = {
             enable = true;
-            device = "nodev";
-            efiSupport = true;
 
-            # Enable automatic detection of other OSes
-            useOSProber = true;
           };
+          /*
+            grub = {
+              enable = true;
+              device = "nodev";
+              efiSupport = true;
+
+              # Enable automatic detection of other OSes
+              useOSProber = true;
+              extraEntries = ''
+                menuentry "Pop!_OS" {
+                  insmod part_gpt
+                  insmod fat
+                  insmod search_fs_uuid
+                  insmod chain
+                  search --no-floppy --fs-uuid --set=root
+                  chainloader /EFI/systemd/systemd-bootx64.efi
+                }
+              '';
+            };
+          */
         };
 
       };
