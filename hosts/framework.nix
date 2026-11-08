@@ -8,6 +8,7 @@
     ];
     editor = [
       "nvf"
+      "office"
     ];
     admin = [
       "keys"
@@ -57,17 +58,39 @@
       users.users.${username}.hashedPassword =
         "$y$j9T$ofYLQRbiSsTERtHKAoi.J1$XW1xU541EsKvdMc3WNMEliNvUn4tVxKl99PbSB5gUg/";
 
+      hardware.enableAllFirmware = true;
+      /*
+            services.udev.extraRules = ''
+              ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR(power/control)="on"
+            '';
+      */
+
       boot = {
-        kernelModules = [ "kvm-intel" ];
+        kernelModules = [
+          "kvm-intel"
+          "thunderbolt"
+          "typec"
+          "ucsi_acpi"
+          "xhci_pci"
+          "xhci_hcd"
+        ];
+        kernelParams = [
+          "usbcore.autosuspend=-1"
+        ];
         initrd = {
           availableKernelModules = [
-            "xhci_pci"
-            "thunderbolt"
             "nvme"
             "usb_storage"
             "sd_mod"
           ];
           kernelModules = [
+            "xhci_pci"
+            "xhci_hcd"
+            "usbcore"
+            "usbhid"
+            "thunderbolt"
+            "typec"
+            "ucsi_acpi"
             "dm-snapshot"
             "cryptd"
           ];
