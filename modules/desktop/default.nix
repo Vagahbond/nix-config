@@ -49,6 +49,8 @@
         vlc
         kitty
         element-desktop
+        ente-desktop
+        protonmail-desktop
 
         # UTILITIES
         wl-clipboard
