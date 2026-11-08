@@ -43,10 +43,25 @@
       };
 
       environment.systemPackages = with pkgs; [
+        # APPS
         brave-origin
         ghostty
         vlc
         kitty
+        element-desktop
+
+        # UTILITIES
+        wl-clipboard
+        hyprlauncher
+        hyprpwcenter
+        hyprpaper
+        hyprpicker
+        hyprcursor
+        hyprsunset
+        hyprpolkitagent
+        mako
+        libnotify
+
       ];
 
       environment.variables = {
@@ -55,7 +70,7 @@
       };
 
       home-files.${username} = {
-        ".config/ghostty/ghostty.conf".source = ./ghostty.conf;
+        # ".config/ghostty/ghostty.conf".source = ./ghostty.conf;
       };
 
       networking.networkmanager.enable = true;
