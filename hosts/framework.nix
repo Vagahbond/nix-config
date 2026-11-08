@@ -81,6 +81,8 @@
             enable = true;
 
           };
+
+          grub.enable = false;
           /*
             grub = {
               enable = true;
