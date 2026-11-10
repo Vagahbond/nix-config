@@ -31,6 +31,7 @@
     system = { };
     user = { };
     impermanence = { };
+    locales = { };
   };
 
   configuration =

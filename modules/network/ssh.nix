@@ -55,7 +55,7 @@
               PreferredAuthentications publickey
               ${identityFile "github_access"}
 
-            Host forgejo
+            Host forgejo git.vagahbond.com
               HostName git.vagahbond.com
               PreferredAuthentications publickey  
               User forgejo

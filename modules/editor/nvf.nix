@@ -54,7 +54,7 @@ let
                 enable = true;
                 name = "rose-pine";
                 style = "dawn";
-                transparent = true;
+                transparent = false;
               };
 
               autopairs.nvim-autopairs.enable = true;

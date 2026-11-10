@@ -6,7 +6,8 @@
       pkgs,
       ...
     }:
-    {
+    (import ./theme-cycler.nix { inherit pkgs username; })
+    // {
 
       users.users.${username}.extraGroups = [
         "networkmanager"
@@ -27,7 +28,10 @@
       xdg = {
         portal = {
           enable = true;
-          extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+          extraPortals = with pkgs; [
+            xdg-desktop-portal-hyprland
+            xdg-desktop-portal-gtk
+          ];
         };
         terminal-exec.enable = true;
         terminal-exec.settings = {
@@ -51,9 +55,11 @@
         element-desktop
         ente-desktop
         protonmail-desktop
+        slack
+        zoom-us
+        signal-desktop
 
         # UTILITIES
-        wl-clipboard
         hyprlauncher
         hyprpwcenter
         hyprpaper
@@ -61,8 +67,11 @@
         hyprcursor
         hyprsunset
         hyprpolkitagent
-        mako
+        quickshell
+        mako # Might not be needed after quickshelling
+
         libnotify
+        wl-clipboard
 
       ];
 
@@ -96,7 +105,6 @@
       };
       programs = {
         localsend.enable = true;
-        iio-hyprland.enable = true;
         hyprland = {
           enable = true;
           xwayland.enable = true;
